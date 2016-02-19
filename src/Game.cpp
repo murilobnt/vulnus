@@ -4,28 +4,27 @@
 // sf::Font font;
 
 
-// cutscene(0, *aliveTexture.getTexture()),
 Game::Game(int gameWidth, int gameHeight, std::string gameTitle) :
 					 gameScreen(sf::VideoMode(gameWidth, gameHeight), gameTitle),
 					 camera(0.f, 0.f, 320.f, 240.f, 2.0),
 					 aliveTexture("images/textures.png", 224, 128),
 					 backgroundTexture("images/background.png", 1024, 960),
 					 cutsceneTexture("images/cutscene.png", 320, 128),
+					 cutscene(0, *aliveTexture.getTexture()),
 					 player(100.f, 2, *aliveTexture.getTexture(), 32, 0, 32, 32, 0.2)
 {
-	//text = sf::Text("hello", font);
 	backgroundSprite.setTexture(*backgroundTexture.getTexture());
 	backgroundSprite.setPosition(sf::Vector2f(0,0));
 	this->gameWidth = gameWidth;
 	this->gameHeight = gameHeight;
 	//this->cutscene.setActive(0, true);
-	//this->gameScreen.setFramerateLimit(60);
+	this->gameScreen.setFramerateLimit(60);
 	this->timeSinceLastUpdate = sf::Time::Zero;
 	this->player.setSpritePosition(0, 960 - 64);
 }
 
 void Game::gameStart(){
-	this->gameScreen.setView(camera.getObject());
+	controlCamera();
 
 	const int level[] =
 	{
@@ -77,20 +76,48 @@ void Game::gameStart(){
 void Game::gameLoop(){
 	sf::Event event;
 	player.applyGravity();
+	launchCutscene();
 	    while (this->gameScreen.pollEvent(event))
 	    {
+				/*
+				case sf::Event::KeyPressed :
+				if(!this->cutscene.isActive()){
+					player.handlePlayerInput(event.key.code, false); break;
+				} else {
+					cutscene.proceedCutscene(event.key.code, true);
+				}
+				break;
+
+				case sf::Event::KeyReleased :
+					if(this->cutscene.isActive()){
+						cutscene.proceedCutscene(event.key.code, false);
+					} else {
+						player.handlePlayerInput(event.key.code, true);
+					}
+				break;
+				*/
 	            switch(event.type){
-	                case sf::Event::KeyPressed : player.handlePlayerInput(event.key.code, false); break;
-	                // case sf::Event::KeyReleased :
-									// 	if(this->cutscene.isActive()){
-									// 		cutscene.proceedCutscene(event.key.code);
-									// 	} else {
-									// 		player.handlePlayerInput(event.key.code, true);
-									// 	}
-									// 	break;
-									case sf::Event::KeyReleased : player.handlePlayerInput(event.key.code, true); break;
+								case sf::Event::KeyPressed :
+								if(!this->cutscene.isActive()){
+									player.handlePlayerInput(event.key.code, false); //break;
+								} else {
+									cutscene.proceedCutscene(event.key.code, true);
+								}
+								break;
+
+								case sf::Event::KeyReleased :
+									if(this->cutscene.isActive()){
+										cutscene.proceedCutscene(event.key.code, false);
+									} else {
+										player.handlePlayerInput(event.key.code, true);
+									}
+								break;
+									//case sf::Event::KeyReleased : player.handlePlayerInput(event.key.code, true); break;
 									case sf::Event::MouseButtonPressed :
+									if(!this->cutscene.isActive()){
 										player.handleMouseInput(this->gameScreen.mapPixelToCoords(sf::Vector2i(event.mouseButton.x, event.mouseButton.y)));
+										//player.handlePlayerInput(event.key.code, false); break;
+									}
 										break;
 	                case sf::Event::Closed : this->gameScreen.close(); break;
 	            }
@@ -104,9 +131,9 @@ void Game::gameLoop(){
 }
 
 void Game::launchCutscene(){
-	// if(this->cutscene.isActive()){
-	// 	this->cutscene.setTextToCamera(this->camera.getObject());
-	// }
+	if(this->cutscene.isActive()){
+		this->cutscene.setTextToCamera(this->camera.getObject());
+	}
 }
 
 void Game::applyPlayerAnimation(Player* player){
@@ -136,9 +163,9 @@ void Game::clearNDraw(){
 	this->gameScreen.draw(backgroundSprite);
 	this->gameScreen.draw(tileMap);
 	this->gameScreen.draw(player.getSprite());
-	// if(this->cutscene.isActive()){
-	// 	this->gameScreen.draw(cutscene.getText());
-	// }
+	if(this->cutscene.isActive()){
+		this->gameScreen.draw(cutscene.text);
+	}
 	drawBullets();
 	this->gameScreen.display();
 }

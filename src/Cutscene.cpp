@@ -1,24 +1,20 @@
 #include "Cutscene.h"
 
-Cutscene::Cutscene(int id, sf::Texture const& texture){
+//Cutscene::Cutscene(int id, sf::Texture const& texture, CutscenesDatabase datas) : theTexts(0, datas){
+Cutscene::Cutscene(int id, sf::Texture const& texture) : database(){
   this->id = id;
-  //this->sprite.setTexture(texture);
-  this->font.loadFromFile("Ubuntu-C.tff");
-  std::string theText;
+  this->font.loadFromFile("fonts/Ubuntu-C.tff");
 
-  switch (id) {
-    case 0:
-      theText = "Este é apenas um teste! A primeira cutscene!";
-      break;
-    default:
-      theText = "O default foi acionado!";
-      break;
-      text = sf::Text(theText, font);
-  }
+  //std::string texto;
+  setActive(0, true);
 
-  this->text.setCharacterSize(15);
-	this->text.setStyle(sf::Text::Bold);
-	this->text.setColor(sf::Color::Red);
+  //this->iterator = 0;
+  //this->active = true;
+  //this->keepAdvancing = true;
+
+  //this->text = sf::Text(texto, font);
+
+  refreshText(id);
 }
 
 bool Cutscene::isActive(){
@@ -27,7 +23,13 @@ bool Cutscene::isActive(){
 
 void Cutscene::setActive(int id, bool active){
   this->id = id;
+  setActive(active);
+}
+
+void Cutscene::setActive(bool active){
   this->active = active;
+  this->iterator = 0;
+  this->keepAdvancing = true;
 }
 
 sf::Text Cutscene::getText(){
@@ -35,11 +37,38 @@ sf::Text Cutscene::getText(){
 }
 
 void Cutscene::setTextToCamera(sf::View view){
-  this->text.setPosition(sf::Vector2f(view.getSize().x/2, view.getSize().y - 30));
+  this->text.setPosition(sf::Vector2f(view.getCenter().x - (this->text.getLocalBounds().width/2), view.getCenter().y + (view.getSize().y/2) - 60));
 }
 
-void Cutscene::proceedCutscene(sf::Keyboard::Key key){
-  if(key == sf::Keyboard::X){
-    this->active = false;
+void Cutscene::proceedCutscene(sf::Keyboard::Key key, bool pressed){
+  if(!this->keepAdvancing){
+    this->setActive(false);
   }
+
+  if(key == sf::Keyboard::X && !this->pressed){
+    refreshText(this->id);
+  }
+
+  this->pressed = pressed;
 }
+
+void Cutscene::refreshText(int id){
+  if(this->current != this->database.getCutsceneById(id)){
+    this->current = this->database.getCutsceneById(id);
+  }
+
+  if(this->iterator >= this->current.size()){
+    this->keepAdvancing = false;
+    return;
+  }
+
+  //std::cout << this->current[this->iterator] << std::endl;
+  this->text = sf::Text(this->current[this->iterator], font);
+  this->text.setCharacterSize(15);
+	this->text.setColor(sf::Color::Black);
+  this->iterator++;
+}
+
+// void Cutscene::draw(sf::RenderTarget& target){
+//  target.draw(text);
+// }

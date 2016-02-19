@@ -2,6 +2,7 @@
 #define _CAMERA_H_
 
 #include <SFML/Graphics.hpp>
+#include <iostream>
 #include "Player.h"
 
 class Camera{

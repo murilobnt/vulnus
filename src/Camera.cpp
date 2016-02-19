@@ -32,7 +32,6 @@ void Camera::getToPlayer(Player player, sf::Vector2u levelSize){
     yToPutCamera = levelSize.y - viewSize.y;
     //std::cout << "4" << std::endl;
   }
-
   this->view.setCenter(xToPutCamera, yToPutCamera);
 }
 

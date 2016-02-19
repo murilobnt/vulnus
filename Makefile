@@ -28,9 +28,9 @@ LFLAGS = $(WARN) $(LIB_DIR) $(LIBS) -std=$(LANGUAGE_STANDARD)
 PGM = gnjk
 
 ### List of objects
-OBJS = $(BIN_DIR)/$(PGM).o $(BIN_DIR)/AliveEntity.o $(BIN_DIR)/Bullet.o $(BIN_DIR)/BulletSet.o $(BIN_DIR)/Camera.o $(BIN_DIR)/Cutscene.o $(BIN_DIR)/Game.o $(BIN_DIR)/Player.o $(BIN_DIR)/TextureSet.o $(BIN_DIR)/Tile.o $(BIN_DIR)/TileMap.o $(BIN_DIR)/TileSet.o
+OBJS = $(BIN_DIR)/$(PGM).o $(BIN_DIR)/AliveEntity.o $(BIN_DIR)/Bullet.o $(BIN_DIR)/BulletSet.o $(BIN_DIR)/Camera.o $(BIN_DIR)/Cutscene.o $(BIN_DIR)/CutsceneDatabase.o $(BIN_DIR)/Game.o $(BIN_DIR)/Player.o $(BIN_DIR)/TextureSet.o $(BIN_DIR)/Tile.o $(BIN_DIR)/TileMap.o $(BIN_DIR)/TileSet.o
 ### List of sources
-RCS = $(SOURCE_DIR)/$(PGM).cpp $(SOURCE_DIR)/AliveEntity.cpp $(SOURCE_DIR)/Bullet.cpp $(SOURCE_DIR)/BulletSet.cpp $(BIN_DIR)/Camera.o $(SOURCE_DIR)/Cutscene.cpp $(SOURCE_DIR)/Game.cpp $(SOURCE_DIR)/Player.cpp $(SOURCE_DIR)/TextureSet.cpp $(SOURCE_DIR)/Tile.cpp $(SOURCE_DIR)/TileMap.cpp $(SOURCE_DIR)/TileSet.cpp
+RCS = $(SOURCE_DIR)/$(PGM).cpp $(SOURCE_DIR)/AliveEntity.cpp $(SOURCE_DIR)/Bullet.cpp $(SOURCE_DIR)/BulletSet.cpp $(BIN_DIR)/Camera.o $(SOURCE_DIR)/Cutscene.cpp $(SOURCE_DIR)/CutsceneDatabase.cpp $(SOURCE_DIR)/Game.cpp $(SOURCE_DIR)/Player.cpp $(SOURCE_DIR)/TextureSet.cpp $(SOURCE_DIR)/Tile.cpp $(SOURCE_DIR)/TileMap.cpp $(SOURCE_DIR)/TileSet.cpp
 
 ### Entries
 $(PGM): $(OBJS)
@@ -110,6 +110,18 @@ $(SOURCE_DIR)/Cutscene.cpp: $(INCLUDE_DIR)/Cutscene.h
 
 #
 $(SOURCE_DIR)/$(PGM).cpp: $(SOURCE_DIR)/Cutscene.cpp
+
+
+##### CutsceneDatabase
+#
+$(BIN_DIR)/CutsceneDatabase.o: $(SOURCE_DIR)/CutsceneDatabase.cpp
+	$(CXX) $(CFLAGS) -c $(INCLUD_PATHS) $(SOURCE_DIR)/CutsceneDatabase.cpp -o $(BIN_DIR)/CutsceneDatabase.o
+
+#
+$(SOURCE_DIR)/Cutscene.cpp: $(INCLUDE_DIR)/CutsceneDatabase.h
+
+#
+$(SOURCE_DIR)/$(PGM).cpp: $(SOURCE_DIR)/CutsceneDatabase.cpp
 
 ##### Game
 #

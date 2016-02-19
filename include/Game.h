@@ -2,6 +2,8 @@
 #define _GAME_H_
 
 #include <SFML/Graphics.hpp>
+#include <iostream>
+#include <string>
 #include "Camera.h"
 #include "Player.h"
 #include "TextureSet.h"
@@ -27,7 +29,8 @@ private:
 	TileMap tileMap;
 	TileSet theTiles;
 
-	//Cutscene cutscene;
+	Cutscene cutscene;
+	//CutscenesDatabase cutscenesData;
 
 	int gameWidth;
 	int gameHeight;
