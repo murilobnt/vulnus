@@ -8,8 +8,6 @@
 #include "CutsceneDatabase.h"
 #include <vector>
 #include <string>
-//#include "CutsceneText.h"
-//#include "CutscenesDatabase.h"
 
 class Cutscene{
 private:
@@ -23,10 +21,9 @@ private:
   CutsceneDatabase database;
   int iterator;
   std::vector<std::string> current;
-  //CutsceneText theTexts;
+  sf::Text text;
 
 public:
-  sf::Text text;
   Cutscene(int id, sf::Texture const& texture);
   bool isActive();
   void setActive(int id, bool active);
@@ -35,9 +32,8 @@ public:
   void setTextToCamera(sf::View view);
   void proceedCutscene(sf::Keyboard::Key key, bool pressed);
   void refreshText(int id);
-  //void refreshText();
-  //void draw(sf::RenderTarget& target);
-  //void switchCutsceneById(int id, CutscenesDatabase datas);
+  void drawText(sf::RenderTarget& target);
+  void drawCutsceneBackground(sf::RenderTarget& target);
 };
 
 #endif

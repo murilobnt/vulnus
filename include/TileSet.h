@@ -2,6 +2,7 @@
 #define _TILESET_H_
 
 #include <vector>
+#include <iostream>
 #include "Tile.h"
 #include "Player.h"
 #include "Bullet.h"

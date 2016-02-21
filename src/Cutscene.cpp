@@ -5,15 +5,10 @@ Cutscene::Cutscene(int id, sf::Texture const& texture) : database(){
   this->id = id;
   this->font.loadFromFile("fonts/Ubuntu-C.tff");
 
-  //std::string texto;
-  setActive(0, true);
+  this->sprite.setTexture(texture);
+  this->sprite.setTextureRect(sf::IntRect(0, 0, 416, 96));
 
-  //this->iterator = 0;
-  //this->active = true;
-  //this->keepAdvancing = true;
-
-  //this->text = sf::Text(texto, font);
-
+  setActive(id, true);
   refreshText(id);
 }
 
@@ -37,6 +32,7 @@ sf::Text Cutscene::getText(){
 }
 
 void Cutscene::setTextToCamera(sf::View view){
+  this->sprite.setPosition(sf::Vector2f(view.getCenter().x - (this->sprite.getLocalBounds().width/2), view.getCenter().y + (view.getSize().y/2) - 80));
   this->text.setPosition(sf::Vector2f(view.getCenter().x - (this->text.getLocalBounds().width/2), view.getCenter().y + (view.getSize().y/2) - 60));
 }
 
@@ -64,11 +60,15 @@ void Cutscene::refreshText(int id){
 
   //std::cout << this->current[this->iterator] << std::endl;
   this->text = sf::Text(this->current[this->iterator], font);
-  this->text.setCharacterSize(15);
-	this->text.setColor(sf::Color::Black);
+  this->text.setCharacterSize(20);
+	this->text.setColor(sf::Color::White);
   this->iterator++;
 }
 
-// void Cutscene::draw(sf::RenderTarget& target){
-//  target.draw(text);
-// }
+void Cutscene::drawText(sf::RenderTarget& target){
+  target.draw(text);
+}
+
+void Cutscene::drawCutsceneBackground(sf::RenderTarget& target){
+  target.draw(sprite);
+}

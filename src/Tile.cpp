@@ -2,6 +2,7 @@
 
 Tile::Tile(sf::Vector2f pos){
   this->pos = pos;
+  tileRect = sf::FloatRect(pos, sf::Vector2f(32, 32));
 }
 
 sf::Vector2f Tile::getPosition(){
@@ -14,4 +15,8 @@ float Tile::getPositionX(){
 
 float Tile::getPositionY(){
   return this->pos.y;
+}
+
+sf::FloatRect Tile::getTileRect(){
+  return this->tileRect;
 }

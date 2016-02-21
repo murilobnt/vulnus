@@ -9,8 +9,8 @@ Game::Game(int gameWidth, int gameHeight, std::string gameTitle) :
 					 camera(0.f, 0.f, 320.f, 240.f, 2.0),
 					 aliveTexture("images/textures.png", 224, 128),
 					 backgroundTexture("images/background.png", 1024, 960),
-					 cutsceneTexture("images/cutscene.png", 320, 128),
-					 cutscene(0, *aliveTexture.getTexture()),
+					 cutsceneTexture("images/rcutscene.png", 416, 96),
+					 cutscene(0, *cutsceneTexture.getTexture()),
 					 player(100.f, 2, *aliveTexture.getTexture(), 32, 0, 32, 32, 0.2)
 {
 	backgroundSprite.setTexture(*backgroundTexture.getTexture());
@@ -143,8 +143,8 @@ void Game::applyPlayerAnimation(Player* player){
 void Game::moveNStopPlayer(){
 	player.movePlayer();
 	theTiles.verifyPlayerCollision(&player);
-	std::vector<Bullet>* bullets = player.getTheBulletsObject();
-	theTiles.verifyBulletCollision(bullets);
+	//std::vector<Bullet>* bullets = player.getTheBulletsObject();
+	theTiles.verifyBulletCollision(player.getTheBulletsObject());
 	player.moveEntity();
 }
 
@@ -164,7 +164,8 @@ void Game::clearNDraw(){
 	this->gameScreen.draw(tileMap);
 	this->gameScreen.draw(player.getSprite());
 	if(this->cutscene.isActive()){
-		this->gameScreen.draw(cutscene.text);
+		this->cutscene.drawCutsceneBackground(this->gameScreen);
+		this->cutscene.drawText(this->gameScreen);
 	}
 	drawBullets();
 	this->gameScreen.display();
