@@ -7,17 +7,16 @@
 Game::Game(int gameWidth, int gameHeight, std::string gameTitle) :
 					 gameScreen(sf::VideoMode(gameWidth, gameHeight), gameTitle),
 					 camera(0.f, 0.f, 320.f, 240.f, 2.0),
-					 aliveTexture("images/textures.png", 224, 128),
+					 aliveTexture("images/aliveentities.png", 64, 64),
 					 backgroundTexture("images/background.png", 1024, 960),
 					 cutsceneTexture("images/rcutscene.png", 416, 96),
-					 cutscene(0, *cutsceneTexture.getTexture()),
+					 cutscene(0, *cutsceneTexture.getTexture(), true),
 					 player(100.f, 2, *aliveTexture.getTexture(), 32, 0, 32, 32, 0.2)
 {
 	backgroundSprite.setTexture(*backgroundTexture.getTexture());
 	backgroundSprite.setPosition(sf::Vector2f(0,0));
 	this->gameWidth = gameWidth;
 	this->gameHeight = gameHeight;
-	//this->cutscene.setActive(0, true);
 	this->gameScreen.setFramerateLimit(60);
 	this->timeSinceLastUpdate = sf::Time::Zero;
 	this->player.setSpritePosition(0, 960 - 64);
@@ -79,23 +78,6 @@ void Game::gameLoop(){
 	launchCutscene();
 	    while (this->gameScreen.pollEvent(event))
 	    {
-				/*
-				case sf::Event::KeyPressed :
-				if(!this->cutscene.isActive()){
-					player.handlePlayerInput(event.key.code, false); break;
-				} else {
-					cutscene.proceedCutscene(event.key.code, true);
-				}
-				break;
-
-				case sf::Event::KeyReleased :
-					if(this->cutscene.isActive()){
-						cutscene.proceedCutscene(event.key.code, false);
-					} else {
-						player.handlePlayerInput(event.key.code, true);
-					}
-				break;
-				*/
 	            switch(event.type){
 								case sf::Event::KeyPressed :
 								if(!this->cutscene.isActive()){
@@ -143,7 +125,6 @@ void Game::applyPlayerAnimation(Player* player){
 void Game::moveNStopPlayer(){
 	player.movePlayer();
 	theTiles.verifyPlayerCollision(&player);
-	//std::vector<Bullet>* bullets = player.getTheBulletsObject();
 	theTiles.verifyBulletCollision(player.getTheBulletsObject());
 	player.moveEntity();
 }

@@ -33,7 +33,7 @@ AliveEntity::AliveEntity(int x, int y, sf::Texture const& texture,
 	this->animationRightLoop = 0;
 	setSprite(texture);
 	configureSpriteRect(spriteX, spriteY, spriteW, spriteH);
-	setAnimationFramerate(15);
+	setAnimationFramerate(10);
 }
 
 void AliveEntity::moveEntity(){

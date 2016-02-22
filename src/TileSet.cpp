@@ -21,7 +21,7 @@ void TileSet::verifyPlayerCollision(Player* player){
       }
 
       // Left of the player collision
-      if((playerPosition.x + 6 < (*it).getPositionX() + 32 && playerPosition.x + 6 > (*it).getPositionX()) &&
+      if((playerPosition.x + 4 < (*it).getPositionX() + 32 && playerPosition.x + 4 > (*it).getPositionX()) &&
         ((playerPosition.y > (*it).getPositionY() && playerPosition.y < (*it).getPositionY() + 28) ||
         (playerPosition.y + 28 < (*it).getPositionY() + 32 && playerPosition.y + 28 > (*it).getPositionY()))){
         if(player->getMovement().x < 0.f){
@@ -34,7 +34,6 @@ void TileSet::verifyPlayerCollision(Player* player){
         ((playerPosition.x + 8 > (*it).getPositionX() && playerPosition.x + 8 < (*it).getPositionX() + 32) ||
         (playerPosition.x + 26 < (*it).getPositionX() + 32 && playerPosition.x + 26 > (*it).getPositionX()))){
         if(playerPosition.y + 32 + player->getMovement().y > (*it).getPositionY()){
-          //player->getSpriteObject()->setPosition(player->getSprite().getPosition().x, (*it).getPositionY() - 32);
           player->setSpritePosition(player->getSprite().getPosition().x, (*it).getPositionY() - 32);
         }
         if(player->getMovement().y > 0.f){

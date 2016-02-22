@@ -1,14 +1,13 @@
 #include "Cutscene.h"
 
-//Cutscene::Cutscene(int id, sf::Texture const& texture, CutscenesDatabase datas) : theTexts(0, datas){
-Cutscene::Cutscene(int id, sf::Texture const& texture) : database(){
+Cutscene::Cutscene(int id, sf::Texture const& texture, bool startCutscene) : database(){
   this->id = id;
   this->font.loadFromFile("fonts/Ubuntu-C.tff");
 
   this->sprite.setTexture(texture);
   this->sprite.setTextureRect(sf::IntRect(0, 0, 416, 96));
 
-  setActive(id, true);
+  setActive(id, startCutscene);
   refreshText(id);
 }
 

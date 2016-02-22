@@ -19,7 +19,6 @@ void Player::decreaseSpeed(float modifier){
 Player::Player(float health, float speed, sf::Texture const& texture,
 	             int spriteX, int spriteY, int spriteW, int spriteH,
 							 float gravity) : AliveEntity::AliveEntity(0, 0, texture, spriteX, spriteY, spriteW, spriteH, gravity) {
-	//this->isJumping = false;
 	this->bulletControl = false;
 	this->invulnerability = false;
 	this->health = health;
@@ -73,7 +72,6 @@ void Player::movePlayer(){
 		}
 		return;
 	}
-	//right ? this->movement.x = speed : this->movement.x = -(speed);
 	if(this->movingRight){
 		this->movement.x = speed;
 	} else if(this->movingLeft){
@@ -100,6 +98,9 @@ void Player::handlePlayerInput(sf::Keyboard::Key key, bool release){
 	}
 
 	if(release && (key == sf::Keyboard::W || key == sf::Keyboard::Up || key == sf::Keyboard::Space)){
+		if(this->movement.y < 0){
+			this->movement.y += 1;
+		}
 		jumpWill = false;
 	}
 
@@ -117,13 +118,11 @@ void Player::handlePlayerInput(sf::Keyboard::Key key, bool release){
 				this->moving = true;
 				this->movingRight = true;
 				this->facingRight = true;
-				//movePlayer(true);
 			}
 			if(key == sf::Keyboard::A  || key == sf::Keyboard::Left){
 				this->moving = true;
 				this->movingLeft = true;
 				this->facingRight = false;
-				//movePlayer(false);
 			}
 	}
 }
@@ -131,8 +130,6 @@ void Player::handlePlayerInput(sf::Keyboard::Key key, bool release){
 void Player::handleMouseInput(sf::Vector2f mousePosition){
 	int mouseX = mousePosition.x;
 	int mouseY = mousePosition.y;
-	//this->getSpriteObject()->setPosition(sf::Vector2f(mouseX - 16, mouseY - 16));
-	//this->sprite.setPosition(sf::Vector2f(mouseX - 16, mouseY - 16));
 	setSpritePosition(sf::Vector2f(mouseX - 16, mouseY - 16));
 }
 
@@ -158,34 +155,34 @@ void Player::desacceleratePlayer(){
 void Player::applyPlayerAnimation(sf::Time* timeSinceLastUpdate){
 	if(*timeSinceLastUpdate > this->getAnimationFramerate()){
 		*timeSinceLastUpdate -= this->getAnimationFramerate();
-		if(this->movement.x > 0.f){
+		if(this->facingRight){
 			if(!this->isJumping){
-				if(this->animationRightLoop*32 > 64){
+				if(this->animationRightLoop*32 > 32){
 					this->animationRightLoop = 0;
 				}
-				//this->getSpriteObject()->setTextureRect(sf::IntRect(32 * animationRightLoop, 64, 32, 32));
-				//this->sprite.setTextureRect(sf::IntRect(32 * animationRightLoop, 64, 32, 32));
-				configureSpriteRect(32 * animationRightLoop, 64, 32, 32);
-				++this->animationRightLoop;
+				if(this->movement.x > 0){
+					configureSpriteRect(32 * animationRightLoop, 0, 32, 32);
+					++this->animationRightLoop;
+				} else if(this->movement.x == 0.f){
+					configureSpriteRect(32, 0, 32, 32);
+				}
 			} else {
-				//this->sprite.setTextureRect(sf::IntRect(64, 64, 32, 32));
-				configureSpriteRect(64, 64, 32, 32);
+				configureSpriteRect(0, 0, 32, 32);
 			}
-		} else if(this->movement.x < 0.f){
+		} else if(!this->facingRight){
 			if(!this->isJumping){
-				if(this->animationLeftLoop*32 > 64){
+				if(this->animationLeftLoop*32 > 32){
 					this->animationLeftLoop = 0;
 				}
-				//this->sprite.setTextureRect(sf::IntRect(32 * animationLeftLoop, 32, 32, 32));
-				configureSpriteRect(32 * animationLeftLoop, 32, 32, 32);
-				++this->animationLeftLoop;
+				if(this->movement.x < 0){
+					configureSpriteRect(32 * animationLeftLoop, 32, 32, 32);
+					++this->animationLeftLoop;
+				} else if(this->movement.x == 0.f){
+					configureSpriteRect(32, 32, 32, 32);
+				}
 			} else {
-				//this->sprite.setTextureRect(sf::IntRect(64, 32, 32, 32));
-				configureSpriteRect(64, 32, 32, 32);
+				configureSpriteRect(0, 32, 32, 32);
 			}
-		} else if(this->movement.x == 0.f && !isJumping) {
-			//this->sprite.setTextureRect(sf::IntRect(32, 0, 32, 32));
-			configureSpriteRect(32, 0, 32, 32);
 		}
 	}
 }

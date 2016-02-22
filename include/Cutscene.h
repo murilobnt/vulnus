@@ -24,7 +24,7 @@ private:
   sf::Text text;
 
 public:
-  Cutscene(int id, sf::Texture const& texture);
+  Cutscene(int id, sf::Texture const& texture, bool startCutscene);
   bool isActive();
   void setActive(int id, bool active);
   void setActive(bool active);
