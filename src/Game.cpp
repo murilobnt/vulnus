@@ -3,16 +3,19 @@
 // sf::Text text;
 // sf::Font font;
 
+sf::Music bgm;
 
 Game::Game(int gameWidth, int gameHeight, std::string gameTitle) :
 					 gameScreen(sf::VideoMode(gameWidth, gameHeight), gameTitle),
 					 camera(0.f, 0.f, 320.f, 240.f, 2.0),
 					 aliveTexture("images/aliveentities.png", 64, 64),
-					 backgroundTexture("images/background.png", 1024, 960),
+					 backgroundTexture("images/background.png", 1171, 1098),
 					 cutsceneTexture("images/rcutscene.png", 416, 96),
 					 cutscene(0, *cutsceneTexture.getTexture(), true),
 					 player(100.f, 2, *aliveTexture.getTexture(), 32, 0, 32, 32, 0.2)
 {
+	bgm.openFromFile("sounds/Overworld.ogg");
+	bgm.setLoop(true);
 	backgroundSprite.setTexture(*backgroundTexture.getTexture());
 	backgroundSprite.setPosition(sf::Vector2f(0,0));
 	this->gameWidth = gameWidth;
@@ -23,6 +26,7 @@ Game::Game(int gameWidth, int gameHeight, std::string gameTitle) :
 }
 
 void Game::gameStart(){
+	bgm.play();
 	controlCamera();
 
 	const int level[] =
@@ -106,6 +110,7 @@ void Game::gameLoop(){
 	    }
 			moveNStopPlayer();
 			applyPlayerAnimation(&player);
+			refreshBackgroundPos();
 			moveBullets();
 			controlCamera();
 			restrictPlayerMovement();
@@ -173,4 +178,9 @@ int Game::getGameWidth(){
 
 int Game::getGameHeight(){
 	return this->gameHeight;
+}
+
+void Game::refreshBackgroundPos(){
+	sf::Vector2f playerPos = player.getSprite().getPosition();
+	this->backgroundSprite.setPosition(sf::Vector2f(-0.2 * this->camera.getObject().getCenter().x, 0));
 }

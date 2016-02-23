@@ -2,6 +2,7 @@
 #define _GAME_H_
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <iostream>
 #include <string>
 #include "Camera.h"
@@ -29,6 +30,8 @@ private:
 	TileMap tileMap;
 	TileSet theTiles;
 
+	//sf::Music bgm;
+
 	Cutscene cutscene;
 	//CutscenesDatabase cutscenesData;
 
@@ -51,6 +54,7 @@ public:
 	void launchCutscene();
 	int getGameWidth();
 	int getGameHeight();
+	void refreshBackgroundPos();
 };
 
 #endif

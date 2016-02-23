@@ -9,7 +9,7 @@ WALL = -Wall
 #OPT = -02
 LANGUAGE_STANDARD = c++0x
 LIBS = $(LIBS_SFML)
-LIBS_SFML = -lsfml-graphics -lsfml-window -lsfml-system
+LIBS_SFML = -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 
 ### Diretories
 LIB_DIR = -L/usr/local/lib
