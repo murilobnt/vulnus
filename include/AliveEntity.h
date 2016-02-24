@@ -82,16 +82,65 @@ public:
 	 * Move this entity.
 	 */
 	void moveEntity();
+
+	/**
+	 * Get the movement of this entity.
+	 * @return the movement of the entity
+	 */
 	sf::Vector2f getMovement();
+
+	/**
+	 * Set the movement of the entity on the X axis.
+	 * @param x new movement in X axis
+	 */
 	void setMovementX(float x);
+
+	/**
+	 * Set the movement of the entity on the Y axis.
+	 * @param y new movement in Y axis
+	 */
 	void setMovementY(float x);
+
+	/**
+	 * Apply the gravity on entity.
+	 */
 	void applyGravity();
-	void changeSprite(bool right, bool left);
+
+	/**
+	 * Set the animation framerate.
+	 * @param fps the animation framerate
+	 */
 	void setAnimationFramerate(float fps);
+
+	/**
+	 * Get the framerate of the animation.
+	 * @return the animation framerate
+	 */
 	sf::Time getAnimationFramerate();
+
+	/**
+	 * Check if the player is jumping or not.
+	 * @return if the player is jumping or not
+	 */
 	bool getIsJumping();
+
+	/**
+	 * Set the verifier to the jump of the player.
+	 * @param jumping the new state of the jumping verifier
+	 */
 	void setIsJumping(bool jumping);
+
+	/**
+	 * Get the total gravity of the entity.
+	 * @return the total gravity of the entity
+	 */
 	float getGravity();
+
+	/**
+	 * Set the position of the sprite.
+	 * @param x the new x position of the sprite
+	 * @param y the new y position of the sprite
+	 */
 	void setSpritePosition(float x, float y);
 };
 

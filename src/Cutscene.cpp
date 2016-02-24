@@ -7,7 +7,7 @@ Cutscene::Cutscene(int id, sf::Texture const& texture, bool startCutscene) : dat
   this->sprite.setTexture(texture);
   this->sprite.setTextureRect(sf::IntRect(0, 0, 416, 96));
 
-  setActive(id, startCutscene);
+  setActive(id);
   refreshText(id);
 }
 
@@ -15,9 +15,9 @@ bool Cutscene::isActive(){
   return active;
 }
 
-void Cutscene::setActive(int id, bool active){
+void Cutscene::setActive(int id){
   this->id = id;
-  setActive(active);
+  setActive(true);
 }
 
 void Cutscene::setActive(bool active){
