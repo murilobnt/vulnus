@@ -3,8 +3,6 @@
 // sf::Text text;
 // sf::Font font;
 
-sf::Music bgm;
-
 Game::Game(int gameWidth, int gameHeight, std::string gameTitle) :
 					 gameScreen(sf::VideoMode(gameWidth, gameHeight), gameTitle),
 					 camera(0.f, 0.f, 320.f, 240.f, 2.0),
