@@ -6,6 +6,7 @@
 #include <string>
 #include <cmath>
 #include <vector>
+#include <iostream>
 #include <SFML/Graphics.hpp>
 #include "Bullet.h"
 
@@ -18,17 +19,8 @@ private:
 	bool movingRight;
 	bool movingLeft;
 
-	// Check the orientation of the player
-	bool facingRight;
-
 	// The control of the speed of the bullet button
 	bool bulletControl;
-
-	// The total health
-	float health;
-
-	// The speed
-	float speed;
 
 	// The level
 	float level;
@@ -38,18 +30,6 @@ private:
 
 	// The set of every bullet of the player
 	std::vector<Bullet> theBullets;
-
-	// Recover player health
-	void increaseHealth(float modifier);
-
-	// Increase player speed
-	void increaseSpeed(float modifier);
-
-	// Decrease player health
-	void decreaseHealth(float modifier);
-
-	// Decrease player speed
-	void decreaseSpeed(float modifier);
 
 public:
 	/**
@@ -63,7 +43,7 @@ public:
 	 * @param spriteH the height of the sprite
 	 * @param gravity the gravity for the player
 	 */
-	Player(float health, float speed, sf::Texture const& texture, int spriteX, int spriteY, int spriteW, int spriteH, float gravity);
+	Player(float health, float speed, sf::Texture const& texture, int spriteX, int spriteY, int spriteW, int spriteH, float gravity, int spriteInitX, int spriteEndX, int spriteInitY, int spriteEndY);
 
 	// Check if the player is moving to any direction
 	bool moving;
@@ -114,6 +94,10 @@ public:
 	 * Desaccelerate the player.
 	 */
 	void desacceleratePlayer();
+
+	void applyRightAnimation();
+
+	void applyLeftAnimation();
 
 	/**
 	 * Animate the player according to certain framerate.

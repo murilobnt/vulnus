@@ -10,7 +10,7 @@ void TileSet::verifyPlayerCollision(Player* player){
   sf::Vector2f playerPosition = player->getSprite().getPosition();
 
   for(std::vector<Tile>::iterator it = this->tileSet.begin(); it != this->tileSet.end(); ++it) {
-    if(player->getSprite().getGlobalBounds().intersects((*it).getTileRect())){
+    //if(player->getSprite().getGlobalBounds().intersects((*it).getTileRect())){
       // Right of the player collision
       if((playerPosition.x + 28 > (*it).getPositionX() && playerPosition.x + 28 < (*it).getPositionX() + 32) &&
         ((playerPosition.y > (*it).getPositionY() && playerPosition.y < (*it).getPositionY() + 28) ||
@@ -48,7 +48,7 @@ void TileSet::verifyPlayerCollision(Player* player){
         (playerPosition.x + 26 < (*it).getPositionX() + 32 && playerPosition.x + 26 > (*it).getPositionX()))){
         player->setMovementY(player->getGravity() + 1);
       }
-    }
+    //}
   }
 }
 

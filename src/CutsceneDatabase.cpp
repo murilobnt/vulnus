@@ -14,14 +14,14 @@ std::vector<std::string> CutsceneDatabase::getCutsceneById(int id){
     cutsceneContent.push_back(currentContent);
     currentContent = "I remember this... I saw this before already.";
     cutsceneContent.push_back(currentContent);
-    currentContent = "No, this don't make any sense at all.\n I'm only trying to show a cutscene";
+    currentContent = "No, this doesn't make any sense at all.\n I'm only trying to show a cutscene";
     cutsceneContent.push_back(currentContent);
     return cutsceneContent;
     break;
     case 1:
-    currentContent = "Bom... Cheguei aqui em cima!";
+    currentContent = "Well, I'm up here!";
     cutsceneContent.push_back(currentContent);
-    currentContent = "Sinto um pouco de frio, mas nada muito forte...";
+    currentContent = "I feel a little cold, but it's cool";
     cutsceneContent.push_back(currentContent);
     return cutsceneContent;
   }

@@ -30,7 +30,7 @@ public:
 	 * @param w the width of the texture
 	 * @param h the height of the texture
 	 */
-	TextureSet(std::string pathToImage, int w, int h);
+	TextureSet(std::string pathToImage, int w, int h, bool isRepeated = false);
 
 	/**
 	 * Get the texture.

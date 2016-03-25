@@ -6,16 +6,18 @@
 Game::Game(int gameWidth, int gameHeight, std::string gameTitle) :
 					 gameScreen(sf::VideoMode(gameWidth, gameHeight), gameTitle),
 					 camera(0.f, 0.f, 320.f, 240.f, 2.0),
-					 aliveTexture("images/aliveentities.png", 64, 64),
-					 backgroundTexture("images/background.png", 1171, 1098),
+					 aliveTexture("images/aliveentitiesa.png", 128, 64),
+					 backgroundTexture("images/background4.png", 100, 100, true),
 					 cutsceneTexture("images/rcutscene.png", 416, 96),
 					 cutscene(0, *cutsceneTexture.getTexture(), true),
-					 player(100.f, 2, *aliveTexture.getTexture(), 32, 0, 32, 32, 0.2)
+					 player(100.f, 2, *aliveTexture.getTexture(), 32, 0, 32, 32, 0.2, 0, 32, 0, 32)
 {
+	// backgroundTexture("images/background.png", 1171, 1098),
 	bgm.openFromFile("sounds/Overworld.ogg");
 	bgm.setLoop(true);
 	backgroundSprite.setTexture(*backgroundTexture.getTexture());
 	backgroundSprite.setPosition(sf::Vector2f(0,0));
+	backgroundSprite.setTextureRect(sf::IntRect(0, 0, 1200, 1000));
 	this->gameWidth = gameWidth;
 	this->gameHeight = gameHeight;
 	this->gameScreen.setFramerateLimit(60);
@@ -66,7 +68,7 @@ void Game::gameStart(){
 	tileMap.load("images/tiles.png", sf::Vector2u(32, 32), level, 32, 30, selected, 2);
 
 	theTiles = tileMap.getTiles();
-
+	
 	while(this->gameScreen.isOpen()){
 		this->elapsedTime = this->clock.restart();
 		this->timeSinceLastUpdate += elapsedTime;
@@ -179,6 +181,5 @@ int Game::getGameHeight(){
 }
 
 void Game::refreshBackgroundPos(){
-	sf::Vector2f playerPos = player.getSprite().getPosition();
 	this->backgroundSprite.setPosition(sf::Vector2f(-0.2 * this->camera.getObject().getCenter().x, 0));
 }

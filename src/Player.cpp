@@ -1,28 +1,10 @@
 #include "Player.h"
 
-void Player::increaseHealth(float modifier){
-	this->health += modifier;
-}
-
-void Player::increaseSpeed(float modifier){
-	this->speed += modifier;
-}
-
-void Player::decreaseHealth(float modifier){
-	this->health -= modifier;
-}
-
-void Player::decreaseSpeed(float modifier){
-	this->speed -= modifier;
-}
-
 Player::Player(float health, float speed, sf::Texture const& texture,
 	             int spriteX, int spriteY, int spriteW, int spriteH,
-							 float gravity) : AliveEntity::AliveEntity(0, 0, texture, spriteX, spriteY, spriteW, spriteH, gravity) {
+							 float gravity, int spriteInitX, int spriteEndX, int spriteInitY, int spriteEndY) : AliveEntity::AliveEntity(0, 0, health, speed, texture, spriteX, spriteY, spriteW, spriteH, gravity, spriteInitX, spriteEndX, spriteInitY, spriteEndY) {
 	this->bulletControl = false;
 	this->invulnerability = false;
-	this->health = health;
-	this->speed = speed;
 	this->level = level;
 	this->desaccelerationX = 0.1;
 	this->moving = false;
@@ -73,9 +55,17 @@ void Player::movePlayer(){
 		return;
 	}
 	if(this->movingRight){
-		this->movement.x = speed;
+		if(this->movement.x < speed){
+			this->movement.x += 0.2;
+		} else{
+			this->movement.x = speed;
+		}
 	} else if(this->movingLeft){
-		this->movement.x = -(speed);
+		if(this->movement.x > -(speed)){
+			this->movement.x -= 0.2;
+		} else {
+			this->movement.x = -(speed);
+		}
 	}
 }
 
@@ -152,36 +142,44 @@ void Player::desacceleratePlayer(){
 	}
 }
 
+void Player::applyRightAnimation(){
+	if(spriteInitX + this->animationRightLoop*32 > spriteEndX){
+		this->animationRightLoop = 0;
+	}
+	if(this->movement.x > 0){
+		configureSpriteRect(spriteInitX + animationRightLoop*32, spriteInitY, 32, 32);
+		++this->animationRightLoop;
+	} else if(this->movement.x == 0.f){
+		configureSpriteRect(spriteEndX, spriteInitY, 32, 32);
+	}
+}
+
+void Player::applyLeftAnimation(){
+	if(this->spriteInitX + this->animationLeftLoop*32 > spriteEndX){
+		this->animationLeftLoop = 0;
+	}
+	if(this->movement.x < 0){
+		configureSpriteRect(spriteInitX + animationLeftLoop * 32, spriteEndY, 32, 32);
+		++this->animationLeftLoop;
+	} else if(this->movement.x == 0.f){
+		configureSpriteRect(spriteEndX, spriteEndY, 32, 32);
+	}
+}
+
 void Player::applyPlayerAnimation(sf::Time* timeSinceLastUpdate){
 	if(*timeSinceLastUpdate > this->getAnimationFramerate()){
 		*timeSinceLastUpdate -= this->getAnimationFramerate();
 		if(this->facingRight){
 			if(!this->isJumping){
-				if(this->animationRightLoop*32 > 32){
-					this->animationRightLoop = 0;
-				}
-				if(this->movement.x > 0){
-					configureSpriteRect(32 * animationRightLoop, 0, 32, 32);
-					++this->animationRightLoop;
-				} else if(this->movement.x == 0.f){
-					configureSpriteRect(32, 0, 32, 32);
-				}
+				applyRightAnimation();
 			} else {
-				configureSpriteRect(0, 0, 32, 32);
+				configureSpriteRect(spriteInitX, spriteInitY, 32, 32);
 			}
 		} else if(!this->facingRight){
 			if(!this->isJumping){
-				if(this->animationLeftLoop*32 > 32){
-					this->animationLeftLoop = 0;
-				}
-				if(this->movement.x < 0){
-					configureSpriteRect(32 * animationLeftLoop, 32, 32, 32);
-					++this->animationLeftLoop;
-				} else if(this->movement.x == 0.f){
-					configureSpriteRect(32, 32, 32, 32);
-				}
+				applyLeftAnimation();
 			} else {
-				configureSpriteRect(0, 32, 32, 32);
+				configureSpriteRect(spriteInitX, spriteEndY, 32, 32);
 			}
 		}
 	}

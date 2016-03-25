@@ -35,6 +35,33 @@ protected:
 	// The integer to control the loop of the animation of the entity when it's walking left
 	int animationLeftLoop;
 
+	// The boundaries of the animation
+	int spriteInitX;
+	int spriteEndX;
+	int spriteInitY;
+	int spriteEndY;
+
+	// Check the orientation of the entity
+	bool facingRight;
+
+	// The total health
+	float health;
+
+	// The speed
+	float speed;
+
+	// Recover player health
+	void increaseHealth(float modifier);
+
+	// Increase player speed
+	void increaseSpeed(float modifier);
+
+	// Decrease player health
+	void decreaseHealth(float modifier);
+
+	// Decrease player speed
+	void decreaseSpeed(float modifier);
+
 	/**
 	 * Set the sprite based on a texture.
 	 * @param texture The texture
@@ -76,7 +103,7 @@ public:
 	 * @param spriteH the height of the sprite
 	 * @param gravity the gravity for the entity
 	 */
-	AliveEntity(int x, int y, sf::Texture const& texture, int spriteX, int spriteY, int spriteW, int spriteH, float gravity);
+	AliveEntity(int x, int y, float health, float speed, sf::Texture const& texture, int spriteX, int spriteY, int spriteW, int spriteH, float gravity, int spriteInitX, int spriteEndX, int spriteInitY, int spriteEndY);
 
 	/**
 	 * Move this entity.

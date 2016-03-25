@@ -1,6 +1,22 @@
 #include "AliveEntity.h"
 #include "TextureSet.h"
 
+void AliveEntity::increaseHealth(float modifier){
+	this->health += modifier;
+}
+
+void AliveEntity::increaseSpeed(float modifier){
+	this->speed += modifier;
+}
+
+void AliveEntity::decreaseHealth(float modifier){
+	this->health -= modifier;
+}
+
+void AliveEntity::decreaseSpeed(float modifier){
+	this->speed -= modifier;
+}
+
 void AliveEntity::setSprite(sf::Texture const& texture){
 	this->sprite.setTexture(texture);
 }
@@ -21,16 +37,26 @@ void AliveEntity::moveEntity(sf::Vector2f movement){
 	this->sprite.move(movement);
 }
 
-AliveEntity::AliveEntity(int x, int y, sf::Texture const& texture,
+AliveEntity::AliveEntity(int x, int y, float health, float speed, sf::Texture const& texture,
 	                       int spriteX, int spriteY, int spriteW, int spriteH,
-											   float gravity){
+											   float gravity, int spriteInitX, int spriteEndX, int spriteInitY, int spriteEndY){
 	this->movement = sf::Vector2f(0.f, 0.f);
 	this->sprite.setPosition(x, y);
+
 	this->gravity = gravity;
 	this->isJumping = true;
 	this->jumpWill = false;
 	this->animationLeftLoop = 0;
 	this->animationRightLoop = 0;
+
+	this->health = health;
+	this->speed = speed;
+
+	this->spriteInitX = spriteInitX;
+	this->spriteEndX = spriteEndX;
+	this->spriteInitY = spriteInitY;
+	this->spriteEndY = spriteEndY;
+
 	setSprite(texture);
 	configureSpriteRect(spriteX, spriteY, spriteW, spriteH);
 	setAnimationFramerate(10);

@@ -1,185 +1,76 @@
-### Programs
-CXX = g++
-RM_CMD = /bin/rm
+# Variaveis:
+## O Compilador
+CC = g++
 
-### Variables
-#DEBUG =-ggdb
-WALL = -Wall
-#PROFILE = -pg
-#OPT = -02
-LANGUAGE_STANDARD = c++0x
-LIBS = $(LIBS_SFML)
-LIBS_SFML = -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
+## Flags adicionais
+FLAGS = -Wall
 
-### Diretories
-LIB_DIR = -L/usr/local/lib
-BIN_DIR = ./bin
-SOURCE_DIR = ./src
-INCLUDE_DIR = ./include
-INCLUD_PATHS = -I $(INCLUDE_DIR)
+## Modificador da linguagem
+LANGUAGE = c++0x
 
-### Compilation flags
-CFLAGS = $(WARN) $(DEBUG)$ $(PROFILE) $(OPT) -std=$(LANGUAGE_STANDARD)
+## O executável
+TARGET = gnjk
 
-### Linkation flags
-LFLAGS = $(WARN) $(LIB_DIR) $(LIBS) -std=$(LANGUAGE_STANDARD)
+## A inclusão dos headers
+INCLUDES = -I ./include
 
-### Program name
-PGM = gnjk
+## SFML
+SFML = -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 
-### List of objects
-OBJS = $(BIN_DIR)/$(PGM).o $(BIN_DIR)/AliveEntity.o $(BIN_DIR)/Bullet.o $(BIN_DIR)/BulletSet.o $(BIN_DIR)/Camera.o $(BIN_DIR)/Cutscene.o $(BIN_DIR)/CutsceneDatabase.o $(BIN_DIR)/Game.o $(BIN_DIR)/Player.o $(BIN_DIR)/TextureSet.o $(BIN_DIR)/Tile.o $(BIN_DIR)/TileMap.o $(BIN_DIR)/TileSet.o
-### List of sources
-RCS = $(SOURCE_DIR)/$(PGM).cpp $(SOURCE_DIR)/AliveEntity.cpp $(SOURCE_DIR)/Bullet.cpp $(SOURCE_DIR)/BulletSet.cpp $(BIN_DIR)/Camera.o $(SOURCE_DIR)/Cutscene.cpp $(SOURCE_DIR)/CutsceneDatabase.cpp $(SOURCE_DIR)/Game.cpp $(SOURCE_DIR)/Player.cpp $(SOURCE_DIR)/TextureSet.cpp $(SOURCE_DIR)/Tile.cpp $(SOURCE_DIR)/TileMap.cpp $(SOURCE_DIR)/TileSet.cpp
+## O diretório dos objetos
+OBJS-DIR = ./bin
 
-### Entries
-$(PGM): $(OBJS)
-	$(CXX) $(OBJS) $(LFLAGS) -o $(BIN_DIR)/$(PGM)
+## O diretório dos .cpp
+SRC = ./src
 
-#
-$(BIN_DIR)/$(PGM).o: $(SRCS)
-	$(CXX) $(CFLAGS) -c $(INCLUD_PATHS) $(SOURCE_DIR)/$(PGM).cpp -o $(BIN_DIR)/$(PGM).o
+## Os objetos utilizados pelo main
+OBJS = $(OBJS-DIR)/$(TARGET).o $(OBJS-DIR)/AliveEntity.o $(OBJS-DIR)/Bullet.o $(OBJS-DIR)/BulletSet.o $(OBJS-DIR)/Camera.o $(OBJS-DIR)/Cutscene.o $(OBJS-DIR)/CutsceneDatabase.o $(OBJS-DIR)/Game.o $(OBJS-DIR)/Player.o $(OBJS-DIR)/TextureSet.o $(OBJS-DIR)/Tile.o $(OBJS-DIR)/TileMap.o $(OBJS-DIR)/TileSet.o
 
+#Sintaxe de compilação
 
-##### AliveEntity
-#
-$(BIN_DIR)/AliveEntity.o: $(SOURCE_DIR)/AliveEntity.cpp
-	$(CXX) $(CFLAGS) -c $(INCLUD_PATHS) $(SOURCE_DIR)/AliveEntity.cpp -o $(BIN_DIR)/AliveEntity.o
+all: $(TARGET)
 
-#
-$(SOURCE_DIR)/AliveEntity.cpp: $(INCLUDE_DIR)/AliveEntity.h
+$(TARGET) : $(OBJS)
+	$(CC) $(FLAGS) -std=$(LANGUAGE) $(OBJS) $(SFML) -o $(OBJS-DIR)/$(TARGET)
 
-#
-$(SOURCE_DIR)/$(PGM).cpp: $(SOURCE_DIR)/AliveEntity.cpp
+$(OBJS-DIR)/$(TARGET).o : $(SRC)/$(TARGET).cpp
+	$(CC) $(FLAGS) -c $(INCLUDES) $(SRC)/$(TARGET).cpp -o $(OBJS-DIR)/$(TARGET).o
 
+$(OBJS-DIR)/AliveEntity.o : $(SRC)/AliveEntity.cpp
+	$(CC) $(FLAGS) -c $(INCLUDES) $(SRC)/AliveEntity.cpp -o $(OBJS-DIR)/AliveEntity.o
 
-##### Player
-#
-$(BIN_DIR)/Player.o: $(SOURCE_DIR)/Player.cpp
-	$(CXX) $(CFLAGS) -c $(INCLUD_PATHS) $(SOURCE_DIR)/Player.cpp -o $(BIN_DIR)/Player.o
+$(OBJS-DIR)/Bullet.o : $(SRC)/Bullet.cpp
+	$(CC) $(FLAGS) -c $(INCLUDES) $(SRC)/Bullet.cpp -o $(OBJS-DIR)/Bullet.o
 
-#
-$(SOURCE_DIR)/Player.cpp: $(INCLUDE_DIR)/Player.h
+$(OBJS-DIR)/BulletSet.o : $(SRC)/BulletSet.cpp
+	$(CC) $(FLAGS) -c $(INCLUDES) $(SRC)/BulletSet.cpp -o $(OBJS-DIR)/BulletSet.o
 
-#
-$(SOURCE_DIR)/$(PGM).cpp: $(SOURCE_DIR)/Player.cpp
+$(OBJS-DIR)/Camera.o : $(SRC)/Camera.cpp
+	$(CC) $(FLAGS) -c $(INCLUDES) $(SRC)/Camera.cpp -o $(OBJS-DIR)/Camera.o
 
-##### Load Bullet
-#
-$(BIN_DIR)/Bullet.o: $(SOURCE_DIR)/Bullet.cpp
-	$(CXX) $(CFLAGS) -c $(INCLUD_PATHS) $(SOURCE_DIR)/Bullet.cpp -o $(BIN_DIR)/Bullet.o
+$(OBJS-DIR)/Cutscene.o : $(SRC)/Cutscene.cpp
+	$(CC) $(FLAGS) -c $(INCLUDES) $(SRC)/Cutscene.cpp -o $(OBJS-DIR)/Cutscene.o
 
-#
-$(SOURCE_DIR)/Bullet.cpp: $(INCLUDE_DIR)/Bullet.h
+$(OBJS-DIR)/CutsceneDatabase.o : $(SRC)/CutsceneDatabase.cpp
+	$(CC) $(FLAGS) -c $(INCLUDES) $(SRC)/CutsceneDatabase.cpp -o $(OBJS-DIR)/CutsceneDatabase.o
 
-#
-$(SOURCE_DIR)/$(PGM).cpp: $(SOURCE_DIR)/Bullet.cpp
+$(OBJS-DIR)/Game.o : $(SRC)/Game.cpp
+	$(CC) $(FLAGS) -c $(INCLUDES) $(SRC)/Game.cpp -o $(OBJS-DIR)/Game.o
 
+$(OBJS-DIR)/Player.o : $(SRC)/Player.cpp
+	$(CC) $(FLAGS) -c $(INCLUDES) $(SRC)/Player.cpp -o $(OBJS-DIR)/Player.o
 
-##### Load Game Error
-#
-$(BIN_DIR)/BulletSet.o: $(SOURCE_DIR)/BulletSet.cpp
-	$(CXX) $(CFLAGS) -c $(INCLUD_PATHS) $(SOURCE_DIR)/BulletSet.cpp -o $(BIN_DIR)/BulletSet.o
+$(OBJS-DIR)/TextureSet.o : $(SRC)/TextureSet.cpp
+	$(CC) $(FLAGS) -c $(INCLUDES) $(SRC)/TextureSet.cpp -o $(OBJS-DIR)/TextureSet.o
 
-#
-$(SOURCE_DIR)/BulletSet.cpp: $(INCLUDE_DIR)/BulletSet.h
+$(OBJS-DIR)/Tile.o : $(SRC)/Tile.cpp
+	$(CC) $(FLAGS) -c $(INCLUDES) $(SRC)/Tile.cpp -o $(OBJS-DIR)/Tile.o
 
-#
-$(SOURCE_DIR)/$(PGM).cpp: $(SOURCE_DIR)/BulletSet.cpp
+$(OBJS-DIR)/TileMap.o : $(SRC)/TileMap.cpp
+	$(CC) $(FLAGS) -c $(INCLUDES) $(SRC)/TileMap.cpp -o $(OBJS-DIR)/TileMap.o
 
+$(OBJS-DIR)/TileSet.o : $(SRC)/TileSet.cpp
+	$(CC) $(FLAGS) -c $(INCLUDES) $(SRC)/TileSet.cpp -o $(OBJS-DIR)/TileSet.o
 
-##### Camera
-#
-$(BIN_DIR)/Camera.o: $(SOURCE_DIR)/Camera.cpp
-	$(CXX) $(CFLAGS) -c $(INCLUD_PATHS) $(SOURCE_DIR)/Camera.cpp -o $(BIN_DIR)/Camera.o
-
-#
-$(SOURCE_DIR)/Camera.cpp: $(INCLUDE_DIR)/Camera.h
-
-#
-$(SOURCE_DIR)/$(PGM).cpp: $(SOURCE_DIR)/Camera.cpp
-
-
-##### Cutscene
-#
-$(BIN_DIR)/Cutscene.o: $(SOURCE_DIR)/Cutscene.cpp
-	$(CXX) $(CFLAGS) -c $(INCLUD_PATHS) $(SOURCE_DIR)/Cutscene.cpp -o $(BIN_DIR)/Cutscene.o
-
-#
-$(SOURCE_DIR)/Cutscene.cpp: $(INCLUDE_DIR)/Cutscene.h
-
-#
-$(SOURCE_DIR)/$(PGM).cpp: $(SOURCE_DIR)/Cutscene.cpp
-
-
-##### CutsceneDatabase
-#
-$(BIN_DIR)/CutsceneDatabase.o: $(SOURCE_DIR)/CutsceneDatabase.cpp
-	$(CXX) $(CFLAGS) -c $(INCLUD_PATHS) $(SOURCE_DIR)/CutsceneDatabase.cpp -o $(BIN_DIR)/CutsceneDatabase.o
-
-#
-$(SOURCE_DIR)/Cutscene.cpp: $(INCLUDE_DIR)/CutsceneDatabase.h
-
-#
-$(SOURCE_DIR)/$(PGM).cpp: $(SOURCE_DIR)/CutsceneDatabase.cpp
-
-##### Game
-#
-$(BIN_DIR)/Game.o: $(SOURCE_DIR)/Game.cpp
-	$(CXX) $(CFLAGS) -c $(INCLUD_PATHS) $(SOURCE_DIR)/Game.cpp -o $(BIN_DIR)/Game.o
-
-#
-$(SOURCE_DIR)/Game.cpp: $(INCLUDE_DIR)/Game.h
-
-#
-$(SOURCE_DIR)/$(PGM).cpp: $(SOURCE_DIR)/Game.cpp
-
-##### TextureSet
-#
-$(BIN_DIR)/TextureSet.o: $(SOURCE_DIR)/TextureSet.cpp
-	$(CXX) $(CFLAGS) -c $(INCLUD_PATHS) $(SOURCE_DIR)/TextureSet.cpp -o $(BIN_DIR)/TextureSet.o
-
-#
-$(SOURCE_DIR)/TextureSet.cpp: $(INCLUDE_DIR)/TextureSet.h
-
-#
-$(SOURCE_DIR)/$(PGM).cpp: $(SOURCE_DIR)/TextureSet.cpp
-
-##### Tile
-#
-$(BIN_DIR)/Tile.o: $(SOURCE_DIR)/Tile.cpp
-	$(CXX) $(CFLAGS) -c $(INCLUD_PATHS) $(SOURCE_DIR)/Tile.cpp -o $(BIN_DIR)/Tile.o
-
-#
-$(SOURCE_DIR)/Tile.cpp: $(INCLUDE_DIR)/Tile.h
-
-#
-$(SOURCE_DIR)/$(PGM).cpp: $(SOURCE_DIR)/Tile.cpp
-
-##### TileMap
-#
-$(BIN_DIR)/TileMap.o: $(SOURCE_DIR)/TileMap.cpp
-	$(CXX) $(CFLAGS) -c $(INCLUD_PATHS) $(SOURCE_DIR)/TileMap.cpp -o $(BIN_DIR)/TileMap.o
-
-#
-$(SOURCE_DIR)/TileMap.cpp: $(INCLUDE_DIR)/TileMap.h
-
-#
-$(SOURCE_DIR)/$(PGM).cpp: $(SOURCE_DIR)/TileMap.cpp
-
-
-##### Game Over
-#
-$(BIN_DIR)/TileSet.o: $(SOURCE_DIR)/TileSet.cpp
-	$(CXX) $(CFLAGS) -c $(INCLUD_PATHS) $(SOURCE_DIR)/TileSet.cpp -o $(BIN_DIR)/TileSet.o
-
-#
-$(SOURCE_DIR)/TileSet.cpp: $(INCLUDE_DIR)/TileSet.h
-
-#
-$(SOURCE_DIR)/$(PGM).cpp: $(SOURCE_DIR)/TileSet.cpp
-
-
-# Eliinates junk files
 clean:
-	$(RM_CMD) $(BIN_DIR)/*.o $(SOURCE_DIR)/*~ $(INCLUDE_DIR)/*~ $(BIN_DIR)/$(PGM)
+	$(RM) $(OBJS-DIR)/*.o $(OBJS-DIR)/$(TARGET)

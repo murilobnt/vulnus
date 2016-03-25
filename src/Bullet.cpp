@@ -6,6 +6,7 @@ Bullet::Bullet(float speed, sf::Vector2f playerPos, bool movingRight) : bullet(s
   this->movingRight = movingRight;
   this->speed = speed;
   this->bullet.setPosition(playerPos);
+  bullet.setFillColor(sf::Color::Red);
 }
 
 void Bullet::moveBullet(){
