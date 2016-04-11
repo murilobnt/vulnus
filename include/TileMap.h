@@ -29,6 +29,8 @@ private:
    unsigned int levelHeight;
 
 public:
+
+  TileMap();
   /**
    * Load the tileset.
    * @param tileset the path to tiles' texture

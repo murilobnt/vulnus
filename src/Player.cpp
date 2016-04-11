@@ -77,6 +77,7 @@ void Player::handlePlayerInput(sf::Keyboard::Key key, bool release){
 	if(key == sf::Keyboard::K && !this->bulletControl){
 		this->theBullets.push_back(Bullet(6.0, sf::Vector2f(this->getSprite().getPosition().x + 16, this->getSprite().getPosition().y + 16), this->facingRight));
 		this->bulletControl = true;
+		std::cout << "Player x: " << this->sprite.getPosition().x << std::endl;
 	}
 	if(key == sf::Keyboard::K && release){
 		this->bulletControl = false;

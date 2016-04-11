@@ -12,11 +12,12 @@ private:
   sf::FloatRect tileRect;
 
 public:
+  int id;
   /**
    * Constructor.
    * @param pos the position of the tile
    */
-  Tile(sf::Vector2f pos);
+  Tile(sf::Vector2f pos, int id);
 
   /**
    * Get the position of the tile.

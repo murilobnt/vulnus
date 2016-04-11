@@ -1,7 +1,8 @@
 #include "Tile.h"
 
-Tile::Tile(sf::Vector2f pos){
+Tile::Tile(sf::Vector2f pos, int id){
   this->pos = pos;
+  this->id = id;
   tileRect = sf::FloatRect(pos, sf::Vector2f(32, 32));
 }
 

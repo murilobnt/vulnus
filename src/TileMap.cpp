@@ -1,8 +1,11 @@
 #include "TileMap.h"
 
+TileMap::TileMap(){ }
+
 bool TileMap::load(const std::string& tileset, sf::Vector2u tileSize, const int* tiles, unsigned int width, unsigned int height, const int* selected, int length) {
   this->levelWidth = width * 32;
   this->levelHeight = height * 32;
+
   // load the tileset texture
   if (!m_tileset.loadFromFile(tileset))
       return false;
@@ -10,6 +13,8 @@ bool TileMap::load(const std::string& tileset, sf::Vector2u tileSize, const int*
   // resize the vertex array to fit the level size
   m_vertices.setPrimitiveType(sf::Quads);
   m_vertices.resize(width * height * 4);
+
+  int p = 0;
 
   // populate the vertex array, with one quad per tile
   for (unsigned int i = 0; i < width; ++i)
@@ -33,7 +38,7 @@ bool TileMap::load(const std::string& tileset, sf::Vector2u tileSize, const int*
 
             for(int k = 0; k < length; k++){
               if(tu == selected[k]){
-                this->tiles.addTile(Tile(quad[0].position));
+                this->tiles.addTile(Tile(quad[0].position, p++));
                 //break;
               }
             }

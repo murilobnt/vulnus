@@ -8,7 +8,7 @@
 #include "Camera.h"
 #include "Player.h"
 #include "TextureSet.h"
-#include "TileMap.h"
+#include "Level.h"
 #include "TileSet.h"
 #include "Bullet.h"
 #include "Cutscene.h"
@@ -45,7 +45,8 @@ private:
 	sf::Sprite backgroundSprite;
 
 	// The map of the tiles
-	TileMap tileMap;
+	//TileMap tileMap;
+	Level level;
 
 	// All the colliding tiles
 	TileSet theTiles;
