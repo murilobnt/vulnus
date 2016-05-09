@@ -6,6 +6,8 @@ bool TileMap::load(const std::string& tileset, sf::Vector2u tileSize, const int*
   this->levelWidth = width * 32;
   this->levelHeight = height * 32;
 
+  //this->tiles = TileSet(levelWidth, levelHeight, 64);
+
   // load the tileset texture
   if (!m_tileset.loadFromFile(tileset))
       return false;

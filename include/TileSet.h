@@ -6,6 +6,7 @@
 #include "Tile.h"
 #include "Player.h"
 #include "Bullet.h"
+#include "Grid.h"
 
 class TileSet{
 private:

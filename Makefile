@@ -24,7 +24,7 @@ OBJS-DIR = ./bin
 SRC = ./src
 
 ## Os objetos utilizados pelo main
-OBJS = $(OBJS-DIR)/$(TARGET).o $(OBJS-DIR)/AliveEntity.o $(OBJS-DIR)/Bullet.o $(OBJS-DIR)/BulletSet.o $(OBJS-DIR)/Camera.o $(OBJS-DIR)/Cutscene.o $(OBJS-DIR)/CutsceneDatabase.o $(OBJS-DIR)/Enemy.o $(OBJS-DIR)/Game.o $(OBJS-DIR)/Level.o $(OBJS-DIR)/Player.o $(OBJS-DIR)/TextureSet.o $(OBJS-DIR)/Tile.o $(OBJS-DIR)/TileMap.o $(OBJS-DIR)/TileSet.o
+OBJS = $(OBJS-DIR)/$(TARGET).o $(OBJS-DIR)/AliveEntity.o $(OBJS-DIR)/Bullet.o $(OBJS-DIR)/BulletSet.o $(OBJS-DIR)/Camera.o $(OBJS-DIR)/Cutscene.o $(OBJS-DIR)/CutsceneDatabase.o $(OBJS-DIR)/Enemy.o $(OBJS-DIR)/Game.o $(OBJS-DIR)/Grid.o $(OBJS-DIR)/Level.o $(OBJS-DIR)/Player.o $(OBJS-DIR)/TextureSet.o $(OBJS-DIR)/Tile.o $(OBJS-DIR)/TileMap.o $(OBJS-DIR)/TileSet.o
 
 #Sintaxe de compilação
 
@@ -59,6 +59,9 @@ $(OBJS-DIR)/Enemy.o : $(SRC)/Enemy.cpp
 
 $(OBJS-DIR)/Game.o : $(SRC)/Game.cpp
 	$(CC) $(FLAGS) -c $(INCLUDES) $(SRC)/Game.cpp -o $(OBJS-DIR)/Game.o
+
+$(OBJS-DIR)/Grid.o : $(SRC)/Grid.cpp
+	$(CC) $(FLAGS) -c $(INCLUDES) $(SRC)/Grid.cpp -o $(OBJS-DIR)/Grid.o
 
 $(OBJS-DIR)/Level.o : $(SRC)/Level.cpp
 	$(CC) $(FLAGS) -c $(INCLUDES) $(SRC)/Level.cpp -o $(OBJS-DIR)/Level.o
