@@ -6,33 +6,37 @@ Camera::Camera(float xCenter, float yCenter, float w, float h, float zoom) : vie
   cameraZoom(zoom);
 }
 
+void Camera::calculateCameraXPosition(float& cameraXPosition, sf::Vector2f playerSpritePos, sf::Vector2f viewSize, sf::Vector2u levelSize){
+  if((playerSpritePos.x + 16) - viewSize.x < 0){
+    cameraXPosition = viewSize.x;
+  }
+
+  if((playerSpritePos.x + 16) + viewSize.x > levelSize.x){
+    cameraXPosition = levelSize.x - viewSize.x;
+  }
+}
+
+void Camera::calculateCameraYPosition(float& cameraYPosition, sf::Vector2f playerSpritePos, sf::Vector2f viewSize, sf::Vector2u levelSize ){
+  if((playerSpritePos.y + 16) - viewSize.y < 0){
+    cameraYPosition = viewSize.y;
+  }
+
+  if((playerSpritePos.y + 16) + viewSize.y > levelSize.y){
+    cameraYPosition = levelSize.y - viewSize.y;
+  }
+}
+
 void Camera::getToPlayer(Player player, sf::Vector2u levelSize){
   sf::Vector2f playerSpritePos = player.getSprite().getPosition();
   sf::Vector2f viewSize(this->w, this->h);
 
-  float xToPutCamera = playerSpritePos.x + 16;
-  float yToPutCamera = playerSpritePos.y + 16;
+  float cameraXPosition = playerSpritePos.x + 16;
+  float cameraYPosition = playerSpritePos.y + 16;
 
-  if((playerSpritePos.x + 16) - viewSize.x < 0){
-    xToPutCamera = viewSize.x;
-    //std::cout << "1" << std::endl;
-  }
+  calculateCameraXPosition(cameraXPosition, playerSpritePos, viewSize, levelSize);
+  calculateCameraYPosition(cameraYPosition, playerSpritePos, viewSize, levelSize);
 
-  if((playerSpritePos.x + 16) + viewSize.x > levelSize.x){
-    xToPutCamera = levelSize.x - viewSize.x;
-    //std::cout << "2" << std::endl;
-  }
-
-  if((playerSpritePos.y + 16) - viewSize.y < 0){
-    yToPutCamera = viewSize.y;
-    //std::cout << "3" << std::endl;
-  }
-
-  if((playerSpritePos.y + 16) + viewSize.y > levelSize.y){
-    yToPutCamera = levelSize.y - viewSize.y;
-    //std::cout << "4" << std::endl;
-  }
-  this->view.setCenter(xToPutCamera, yToPutCamera);
+  this->view.setCenter(cameraXPosition, cameraYPosition);
 }
 
 void Camera::cameraZoom(float zoom){

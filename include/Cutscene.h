@@ -28,11 +28,14 @@ private:
   // The database of all cutscenes
   CutsceneDatabase database;
   // The iterator to pass through all cutscene stages
-  int iterator;
+  uint textDisplayIterator;
   // The set of the texts of the current cutscene
   std::vector<std::string> current;
   // The text to be drawn
   sf::Text text;
+
+  sf::Vector2f calculateTextBoxPosition(sf::View view);
+  sf::Vector2f calculateTextPosition(sf::View view);
 
 public:
   /**

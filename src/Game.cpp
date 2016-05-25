@@ -1,8 +1,5 @@
 #include "Game.h"
 
-// sf::Text text;
-// sf::Font font;
-
 Game::Game(int gameWidth, int gameHeight, std::string gameTitle) :
 					 gameScreen(sf::VideoMode(gameWidth, gameHeight), gameTitle),
 					 camera(0.f, 0.f, 320.f, 240.f, 2.0),
@@ -13,7 +10,6 @@ Game::Game(int gameWidth, int gameHeight, std::string gameTitle) :
 					 level(1, *aliveTexture.getTexture()),
 					 player(100.f, 2, *aliveTexture.getTexture(), 32, 0, 32, 32, 0.2, 0, 32, 0, 32)
 {
-	// backgroundTexture("images/background.png", 1171, 1098),
 	bgm.openFromFile("sounds/Overworld.ogg");
 	bgm.setLoop(true);
 	backgroundSprite.setTexture(*backgroundTexture.getTexture());
@@ -23,14 +19,12 @@ Game::Game(int gameWidth, int gameHeight, std::string gameTitle) :
 	this->gameHeight = gameHeight;
 	this->gameScreen.setFramerateLimit(60);
 	this->timeSinceLastUpdate = sf::Time::Zero;
-	this->player.setSpritePosition(0, 960 - 64);
+	this->player.setSpritePosition(0, 480 - 64);
 }
 
 void Game::gameStart(){
 	bgm.play();
 	controlCamera();
-
-	//tileMap.load("images/tiles.png", sf::Vector2u(32, 32), level, 32, 30, selected, 2);
 
 	theTiles = level.getTileMap().getTiles();
 
@@ -50,7 +44,7 @@ void Game::gameLoop(){
 	            switch(event.type){
 								case sf::Event::KeyPressed :
 								if(!this->cutscene.isActive()){
-									player.handlePlayerInput(event.key.code, false); //break;
+									player.handlePlayerInput(event.key.code, false);
 								} else {
 									cutscene.proceedCutscene(event.key.code, true);
 								}
@@ -63,16 +57,15 @@ void Game::gameLoop(){
 										player.handlePlayerInput(event.key.code, true);
 									}
 								break;
-									//case sf::Event::KeyReleased : player.handlePlayerInput(event.key.code, true); break;
 									case sf::Event::MouseButtonPressed :
 									if(!this->cutscene.isActive()){
 										player.handleMouseInput(this->gameScreen.mapPixelToCoords(sf::Vector2i(event.mouseButton.x, event.mouseButton.y)));
-										//player.handlePlayerInput(event.key.code, false); break;
 									}
 										break;
 	                case sf::Event::Closed : this->gameScreen.close(); break;
 	            }
 	    }
+
 			moveNStopPlayer();
 			applyPlayerAnimation(&player);
 			refreshBackgroundPos();

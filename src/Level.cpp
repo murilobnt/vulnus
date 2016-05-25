@@ -1,7 +1,6 @@
 #include "Level.h"
 
 Level::Level(int id, sf::Texture const& enemiesTexture){
-  //tileMap.load("images/tiles.png", sf::Vector2u(32, 32), level, 32, 30, selected, 2);
   loadLevel(id, enemiesTexture);
 }
 
@@ -60,8 +59,7 @@ void Level::loadLevelOne(sf::Texture const& enemiesTexture){
 	const int selected[] = {1, 2};
 
   tileMap.load("images/tiles.png", sf::Vector2u(32, 32), level, 32, 20, selected, 2);
-
-  //(int x, int y, float health, float speed, sf::Texture const& texture, int spriteX, int spriteY, int spriteW, int spriteH, float gravity, int spriteInitX, int spriteEndX, int spriteInitY, int spriteEndY);(int x, int y, float health, float speed, sf::Texture const& texture, int spriteX, int spriteY, int spriteW, int spriteH, float gravity, int spriteInitX, int spriteEndX, int spriteInitY, int spriteEndY);
+  
   Enemy enemy(0, 0, 30, 2, enemiesTexture, 64, 0, 32, 32, 0.2, 64, 96, 0, 32);
 
   enemies.push_back(enemy);

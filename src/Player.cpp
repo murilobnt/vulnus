@@ -25,35 +25,33 @@ void Player::recoveryHealth(float modifier){
 	this->increaseHealth(modifier);
 }
 
-void Player::movePlayer(){
-	float jumpDesacceleration = speed/8;
-	float jumpAcceleration = speed/6;
-	if(isJumping){
-		if(movingRight){
-			if(movement.x < 0){
-				movement.x -= jumpDesacceleration;
-			}
-			if(movement.x < speed){
-				if(movement.x + jumpAcceleration > speed){
-					movement.x = speed;
-				} else {
-					movement.x += jumpAcceleration;
-				}
-			}
-		} else if (movingLeft) {
-			if(movement.x > 0){
-				movement.x += jumpDesacceleration;
-			}
-			if(movement.x > -speed){
-				if(movement.x - jumpAcceleration < -speed){
-					movement.x = -speed;
-				} else {
-					movement.x -= jumpAcceleration;
-				}
+void Player::handleJumpingMovement(float jumpAcceleration, float jumpDesacceleration){
+	if(movingRight){
+		if(movement.x < 0){
+			movement.x -= jumpDesacceleration;
+		}
+		if(movement.x < speed){
+			if(movement.x + jumpAcceleration > speed){
+				movement.x = speed;
+			} else {
+				movement.x += jumpAcceleration;
 			}
 		}
-		return;
+	} else if (movingLeft) {
+		if(movement.x > 0){
+			movement.x += jumpDesacceleration;
+		}
+		if(movement.x > -speed){
+			if(movement.x - jumpAcceleration < -speed){
+				movement.x = -speed;
+			} else {
+				movement.x -= jumpAcceleration;
+			}
+		}
 	}
+}
+
+void Player::handleGroundMovement(float jumpAcceleration, float jumpDesacceleration){
 	if(this->movingRight){
 		if(this->movement.x < speed){
 			this->movement.x += 0.2;
@@ -69,52 +67,69 @@ void Player::movePlayer(){
 	}
 }
 
+void Player::movePlayer(){
+	float jumpDesacceleration = speed/8;
+	float jumpAcceleration = speed/6;
+	if(isJumping){
+		handleJumpingMovement(jumpAcceleration, jumpDesacceleration);
+		return;
+	}
+	handleGroundMovement(jumpAcceleration, jumpDesacceleration);
+}
+
 void Player::stopPlayer(){
 	this->movement.x = 0;
 }
 
-void Player::handlePlayerInput(sf::Keyboard::Key key, bool release){
-	if(key == sf::Keyboard::K && !this->bulletControl){
+void Player::shoot(bool release){
+	if(!this->bulletControl){
 		this->theBullets.push_back(Bullet(6.0, sf::Vector2f(this->getSprite().getPosition().x + 16, this->getSprite().getPosition().y + 16), this->facingRight));
 		this->bulletControl = true;
-		std::cout << "Player x: " << this->sprite.getPosition().x << std::endl;
-	}
-	if(key == sf::Keyboard::K && release){
+	} else if(release){
 		this->bulletControl = false;
 	}
+}
 
-	if(key == sf::Keyboard::W || key == sf::Keyboard::Up || key == sf::Keyboard::Space){
+void Player::handlePlayerInput(sf::Keyboard::Key key, bool release){
+	switch (key) {
+		case sf::Keyboard::K:
+		shoot(release);
+		break;
+		case sf::Keyboard::W:
+		case sf::Keyboard::Up:
+		case sf::Keyboard::Space:
 		jump();
 		jumpWill = true;
-	}
-
-	if(release && (key == sf::Keyboard::W || key == sf::Keyboard::Up || key == sf::Keyboard::Space)){
-		if(this->movement.y < 0){
-			this->movement.y += 1;
+		if(release){
+			if(this->movement.y < 0){
+				this->movement.y += 1;
+			}
+			jumpWill = false;
+			break;
 		}
-		jumpWill = false;
-	}
-
-	if(release && key != sf::Keyboard::W){
-		if(key == sf::Keyboard::D || key == sf::Keyboard::Right){
+		break;
+		case sf::Keyboard::D:
+		case sf::Keyboard::Right:
+		if(release){
 			this->movingRight = false;
 			this->moving = false;
+		} else {
+			this->moving = true;
+			this->movingRight = true;
+			this->facingRight = true;
 		}
-		if(key == sf::Keyboard::A  || key == sf::Keyboard::Left){
+		break;
+		case sf::Keyboard::A:
+		case sf::Keyboard::Left:
+		if(release){
 			this->movingLeft = false;
 			this->moving = false;
+		} else {
+			this->moving = true;
+			this->movingLeft = true;
+			this->facingRight = false;
 		}
-	} else {
-			if(key == sf::Keyboard::D  || key == sf::Keyboard::Right){
-				this->moving = true;
-				this->movingRight = true;
-				this->facingRight = true;
-			}
-			if(key == sf::Keyboard::A  || key == sf::Keyboard::Left){
-				this->moving = true;
-				this->movingLeft = true;
-				this->facingRight = false;
-			}
+		break;
 	}
 }
 
@@ -191,7 +206,6 @@ void Player::checkHalfOne(){
 	float full = fmod(this->getSprite().getPosition().x, 1.0);
 
 	if((half > 0 && half < 0.1) && full != 0){
-		//this->sprite.move(sf::Vector2f(0.2, 0.0));
 		moveEntity(sf::Vector2f(0.2, 0.0));
 	}
 }
@@ -208,15 +222,7 @@ void Player::moveNDeleteBullets(){
 	if(this->theBullets.empty()){
 		return;
 	}
-
-	/*for(std::vector<Bullet>::iterator it = this->theBullets.begin(); it != this->theBullets.end(); ++it){
-		(*it).moveBullet();
-		if((*it).shouldBeDestroyed()){
-			//this->theBullets.erase(std::remove(this->theBullets.begin(), this->theBullets.end(), *it), this->theBullets.end());
-			//remove the bullet
-		}
-	}
-	*/
+	
 	for (uint i = 0; i < this->theBullets.size(); i++) {
         Bullet *cur = &this->theBullets[i];
 				cur->moveBullet();

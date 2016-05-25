@@ -22,7 +22,7 @@ void Cutscene::setActive(int id){
 
 void Cutscene::setActive(bool active){
   this->active = active;
-  this->iterator = 0;
+  this->textDisplayIterator = 0;
   this->keepAdvancing = true;
 }
 
@@ -30,9 +30,17 @@ sf::Text Cutscene::getText(){
   return this->text;
 }
 
+sf::Vector2f Cutscene::calculateTextBoxPosition(sf::View view){
+  return sf::Vector2f(view.getCenter().x - (this->sprite.getLocalBounds().width/2), view.getCenter().y + (view.getSize().y/2) - 80);
+}
+
+sf::Vector2f Cutscene::calculateTextPosition(sf::View view){
+  return sf::Vector2f(view.getCenter().x - (this->text.getLocalBounds().width/2), view.getCenter().y + (view.getSize().y/2) - 60);
+}
+
 void Cutscene::setTextToCamera(sf::View view){
-  this->sprite.setPosition(sf::Vector2f(view.getCenter().x - (this->sprite.getLocalBounds().width/2), view.getCenter().y + (view.getSize().y/2) - 80));
-  this->text.setPosition(sf::Vector2f(view.getCenter().x - (this->text.getLocalBounds().width/2), view.getCenter().y + (view.getSize().y/2) - 60));
+  this->sprite.setPosition(calculateTextBoxPosition(view));
+  this->text.setPosition(calculateTextPosition(view));
 }
 
 void Cutscene::proceedCutscene(sf::Keyboard::Key key, bool pressed){
@@ -52,16 +60,16 @@ void Cutscene::refreshText(int id){
     this->current = this->database.getCutsceneById(id);
   }
 
-  if(this->iterator >= this->current.size()){
+  if(this->textDisplayIterator >= this->current.size()){
     this->keepAdvancing = false;
     return;
   }
 
-  //std::cout << this->current[this->iterator] << std::endl;
-  this->text = sf::Text(this->current[this->iterator], font);
+  this->text = sf::Text(this->current[this->textDisplayIterator], font);
+
   this->text.setCharacterSize(20);
 	this->text.setColor(sf::Color::White);
-  this->iterator++;
+  this->textDisplayIterator++;
 }
 
 void Cutscene::drawText(sf::RenderTarget& target){

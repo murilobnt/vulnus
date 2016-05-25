@@ -79,13 +79,7 @@ void AliveEntity::setMovementY(float y){
 }
 
 void AliveEntity::applyGravity(){
-	//if(this->getSprite().getPosition().y < 315){
 		this->movement.y += gravity;
-	//}else {
-			/*this->movement.y = 0;
-			isJumping = false;
-	}
-	*/
 }
 
 void AliveEntity::setAnimationFramerate(float fps){

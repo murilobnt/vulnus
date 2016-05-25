@@ -14,6 +14,10 @@ private:
   // The height of the camera
   float h;
 
+  void calculateCameraXPosition(float& cameraXPosition, sf::Vector2f playerSpritePos, sf::Vector2f viewSize, sf::Vector2u levelSize);
+  
+  void calculateCameraYPosition(float& cameraYPosition, sf::Vector2f playerSpritePos, sf::Vector2f viewSize, sf::Vector2u levelSize );
+
 public:
   /**
    * Constructor.
