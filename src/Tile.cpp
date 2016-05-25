@@ -1,21 +1,21 @@
 #include "Tile.h"
 
-Tile::Tile(sf::Vector2f pos, int id){
-  this->pos = pos;
+Tile::Tile(sf::Vector2f tilePosition, int id){
+  this->tilePosition = tilePosition;
   this->id = id;
-  tileRect = sf::FloatRect(pos, sf::Vector2f(32, 32));
+  tileRect = sf::FloatRect(tilePosition, sf::Vector2f(32, 32));
 }
 
 sf::Vector2f Tile::getPosition(){
-  return this->pos;
+  return this->tilePosition;
 }
 
 float Tile::getPositionX(){
-  return this->pos.x;
+  return this->tilePosition.x;
 }
 
 float Tile::getPositionY(){
-  return this->pos.y;
+  return this->tilePosition.y;
 }
 
 sf::FloatRect Tile::getTileRect(){

@@ -12,7 +12,7 @@
 class Cutscene{
 private:
   // The sprite of the text box
-  sf::Sprite sprite;
+  sf::Sprite textBoxSprite;
   // The id of the cutscene
   int id;
   // The verifier to check if the cutscene is active or not
@@ -22,7 +22,7 @@ private:
   // The verifier to check if the player has not reached the end of the cutscene yet
   bool keepAdvancing;
   // The verifier to check if the player is still pressing the key to proceed the cutscene
-  bool pressed;
+  bool continueButtonIsPressed;
   // The font of the text to be drawn
   sf::Font font;
   // The database of all cutscenes
@@ -78,10 +78,10 @@ public:
 
   /**
    * Check the player input.
-   * @param key the key pressed by the user during the cutscene
-   * @param pressed the verifier to check if the user isn't constantly pressing the key
+   * @param key the key continueButtonIsPressed by the user during the cutscene
+   * @param continueButtonIsPressed the verifier to check if the user isn't constantly pressing the key
    */
-  void proceedCutscene(sf::Keyboard::Key key, bool pressed);
+  void proceedCutscene(sf::Keyboard::Key key, bool continueButtonIsPressed);
 
   /**
    * Proceed on the cutscene.

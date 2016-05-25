@@ -7,14 +7,11 @@
 
 class AliveEntity{
 private:
-	// The gravity of the entity
-	float gravity;
-
-	// The maximum gravity of the entity
-	//float maximumGravity;
+	// The entityGravity of the entity
+	float entityGravity;
 
 	// The framerate of the animation
-	sf::Time animFps;
+	sf::Time spriteAnimationFramerate;
 
 protected:
 	// The sprite of the entity
@@ -101,9 +98,9 @@ public:
 	 * @param spriteY the y position of the sprite
 	 * @param spriteW the width of the sprite
 	 * @param spriteH the height of the sprite
-	 * @param gravity the gravity for the entity
+	 * @param entityGravity the entityGravity for the entity
 	 */
-	AliveEntity(int x, int y, float health, float speed, sf::Texture const& texture, int spriteX, int spriteY, int spriteW, int spriteH, float gravity, int spriteInitX, int spriteEndX, int spriteInitY, int spriteEndY);
+	AliveEntity(int x, int y, float health, float speed, sf::Texture const& texture, int spriteX, int spriteY, int spriteW, int spriteH, float entityGravity, int spriteInitX, int spriteEndX, int spriteInitY, int spriteEndY);
 
 	/**
 	 * Move this entity.
@@ -129,7 +126,7 @@ public:
 	void setMovementY(float x);
 
 	/**
-	 * Apply the gravity on entity.
+	 * Apply the entityGravity on entity.
 	 */
 	void applyGravity();
 
@@ -158,8 +155,8 @@ public:
 	void setIsJumping(bool jumping);
 
 	/**
-	 * Get the total gravity of the entity.
-	 * @return the total gravity of the entity
+	 * Get the total entityGravity of the entity.
+	 * @return the total entityGravity of the entity
 	 */
 	float getGravity();
 

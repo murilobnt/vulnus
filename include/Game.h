@@ -20,7 +20,7 @@ private:
 	sf::RenderWindow gameScreen;
 
 	// The camera of the game
-	Camera camera;
+	Camera gameCamera;
 
 	// The clock of the processor
 	sf::Clock clock;

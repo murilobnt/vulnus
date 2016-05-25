@@ -39,11 +39,11 @@ void AliveEntity::moveEntity(sf::Vector2f movement){
 
 AliveEntity::AliveEntity(int x, int y, float health, float speed, sf::Texture const& texture,
 	                       int spriteX, int spriteY, int spriteW, int spriteH,
-											   float gravity, int spriteInitX, int spriteEndX, int spriteInitY, int spriteEndY){
+											   float entityGravity, int spriteInitX, int spriteEndX, int spriteInitY, int spriteEndY){
 	this->movement = sf::Vector2f(0.f, 0.f);
 	this->sprite.setPosition(x, y);
 
-	this->gravity = gravity;
+	this->entityGravity = entityGravity;
 	this->isJumping = true;
 	this->jumpWill = false;
 	this->animationLeftLoop = 0;
@@ -79,15 +79,15 @@ void AliveEntity::setMovementY(float y){
 }
 
 void AliveEntity::applyGravity(){
-		this->movement.y += gravity;
+		this->movement.y += entityGravity;
 }
 
 void AliveEntity::setAnimationFramerate(float fps){
-	this->animFps = sf::seconds(1.f/fps);
+	this->spriteAnimationFramerate = sf::seconds(1.f/fps);
 }
 
 sf::Time AliveEntity::getAnimationFramerate(){
-	return this->animFps;
+	return this->spriteAnimationFramerate;
 }
 
 bool AliveEntity::getIsJumping(){
@@ -99,7 +99,7 @@ void AliveEntity::setIsJumping(bool jumping){
 }
 
 float AliveEntity::getGravity(){
-	return this->gravity;
+	return this->entityGravity;
 }
 
 void AliveEntity::setSpritePosition(float x, float y){

@@ -2,7 +2,7 @@
 
 Game::Game(int gameWidth, int gameHeight, std::string gameTitle) :
 					 gameScreen(sf::VideoMode(gameWidth, gameHeight), gameTitle),
-					 camera(0.f, 0.f, 320.f, 240.f, 2.0),
+					 gameCamera(0.f, 0.f, 320.f, 240.f, 2.0),
 					 aliveTexture("images/aliveentitiesa.png", 128, 64),
 					 backgroundTexture("images/background4.png", 100, 100, true),
 					 cutsceneTexture("images/rcutscene.png", 416, 96),
@@ -37,8 +37,10 @@ void Game::gameStart(){
 
 void Game::gameLoop(){
 	sf::Event event;
+
 	player.applyGravity();
 	launchCutscene();
+
 	    while (this->gameScreen.pollEvent(event))
 	    {
 	            switch(event.type){
@@ -77,7 +79,7 @@ void Game::gameLoop(){
 
 void Game::launchCutscene(){
 	if(this->cutscene.isActive()){
-		this->cutscene.setTextToCamera(this->camera.getObject());
+		this->cutscene.setTextToCamera(this->gameCamera.getObject());
 	}
 }
 
@@ -93,8 +95,8 @@ void Game::moveNStopPlayer(){
 }
 
 void Game::controlCamera(){
-	this->camera.getToPlayer(player, level.getTileMap().getLevelSize());
-	this->gameScreen.setView(camera.getObject());
+	this->gameCamera.getToPlayer(player, level.getTileMap().getLevelSize());
+	this->gameScreen.setView(gameCamera.getObject());
 }
 
 void Game::restrictPlayerMovement(){
@@ -117,12 +119,12 @@ void Game::clearNDraw(){
 }
 
 void Game::drawBullets(){
-	std::vector<Bullet> theBullets = player.getTheBullets();
-	if(theBullets.empty()){
+	std::vector<Bullet> playerBullets = player.getTheBullets();
+	if(playerBullets.empty()){
 		return;
 	}
 
-	for(std::vector<Bullet>::iterator it = theBullets.begin(); it != theBullets.end(); ++it){
+	for(std::vector<Bullet>::iterator it = playerBullets.begin(); it != playerBullets.end(); ++it){
 		this->gameScreen.draw((*it).getBullet());
 	}
 }
@@ -140,5 +142,5 @@ int Game::getGameHeight(){
 }
 
 void Game::refreshBackgroundPos(){
-	this->backgroundSprite.setPosition(sf::Vector2f(-0.2 * this->camera.getObject().getCenter().x, 0));
+	this->backgroundSprite.setPosition(sf::Vector2f(-0.2 * this->gameCamera.getObject().getCenter().x, 0));
 }

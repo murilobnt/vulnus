@@ -10,7 +10,7 @@ private:
   // Verifier to tell if the bullet is moving right or not
   bool movingRight;
   // The rectangle of the bullet to be drawn
-  sf::RectangleShape bullet;
+  sf::RectangleShape bulletSprite;
   // The initial position of the bullet
   sf::Vector2f initialPosition;
   // Verifier to tell if the bullet may be destroyed on the next verification

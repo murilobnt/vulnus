@@ -6,7 +6,7 @@
 class Tile{
 private:
   // The position of the tile
-  sf::Vector2f pos;
+  sf::Vector2f tilePosition;
 
   // The rect of the tile
   sf::FloatRect tileRect;
@@ -15,9 +15,9 @@ public:
   int id;
   /**
    * Constructor.
-   * @param pos the position of the tile
+   * @param tilePosition the position of the tile
    */
-  Tile(sf::Vector2f pos, int id);
+  Tile(sf::Vector2f tilePosition, int id);
 
   /**
    * Get the position of the tile.

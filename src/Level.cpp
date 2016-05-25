@@ -59,8 +59,8 @@ void Level::loadLevelOne(sf::Texture const& enemiesTexture){
 	const int selected[] = {1, 2};
 
   tileMap.load("images/tiles.png", sf::Vector2u(32, 32), level, 32, 20, selected, 2);
-  
-  Enemy enemy(0, 0, 30, 2, enemiesTexture, 64, 0, 32, 32, 0.2, 64, 96, 0, 32);
+
+  Enemy enemy(96, 566 - 22, 30, 2, enemiesTexture, 64, 0, 32, 32, 0.2, 64, 96, 0, 32);
 
   enemies.push_back(enemy);
 }

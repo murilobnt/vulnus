@@ -7,48 +7,64 @@ void TileSet::addTile(Tile tile){
   //this->grid.addTile(tile);
 }
 
+enum TileSet::collisionCase TileSet::getCollisionCase(sf::Vector2f playerPosition, Tile it, sf::Vector2f playerMovement){
+  if((playerPosition.x + 28 > it.getPositionX() && playerPosition.x + 28 < it.getPositionX() + 32) &&
+    ((playerPosition.y > it.getPositionY() && playerPosition.y < it.getPositionY() + 28) ||
+    (playerPosition.y + 28 < it.getPositionY() + 32 && playerPosition.y + 28 > it.getPositionY()))){
+    return rightWallCollision;
+  }
+
+  if((playerPosition.x + 4 < it.getPositionX() + 32 && playerPosition.x + 4 > it.getPositionX()) &&
+    ((playerPosition.y > it.getPositionY() && playerPosition.y < it.getPositionY() + 28) ||
+    (playerPosition.y + 28 < it.getPositionY() + 32 && playerPosition.y + 28 > it.getPositionY()))){
+    return leftWallCollision;
+  }
+
+  if((playerPosition.y + 32 + playerMovement.y > it.getPositionY() && playerPosition.y + 32 < it.getPositionY() + 32) &&
+    ((playerPosition.x + 8 > it.getPositionX() && playerPosition.x + 8 < it.getPositionX() + 32) ||
+    (playerPosition.x + 26 < it.getPositionX() + 32 && playerPosition.x + 26 > it.getPositionX()))){
+      return groundCollision;
+    }
+
+  if((playerPosition.y < it.getPositionY() + 32 && playerPosition.y > it.getPositionY()) &&
+      ((playerPosition.x + 8 > it.getPositionX() && playerPosition.x + 8 < it.getPositionX() + 32) ||
+      (playerPosition.x + 26 < it.getPositionX() + 32 && playerPosition.x + 26 > it.getPositionX()))){
+      return roofCollision;
+    }
+  return noCollision;
+}
+
 void TileSet::verifyPlayerCollision(Player* player){
   sf::Vector2f playerPosition = player->getSprite().getPosition();
+  sf::Vector2f playerMovement = player->getMovement();
 
   for(std::vector<Tile>::iterator it = this->tileSet.begin(); it != this->tileSet.end(); ++it) {
-      // Right of the player collision
-      if((playerPosition.x + 28 > (*it).getPositionX() && playerPosition.x + 28 < (*it).getPositionX() + 32) &&
-        ((playerPosition.y > (*it).getPositionY() && playerPosition.y < (*it).getPositionY() + 28) ||
-        (playerPosition.y + 28 < (*it).getPositionY() + 32 && playerPosition.y + 28 > (*it).getPositionY()))){
-        if(player->getMovement().x > 0.f){
-          player->setMovementX(0.f);
-        }
+    switch(getCollisionCase(playerPosition, *it, playerMovement)){
+      case rightWallCollision:
+      if(player->getMovement().x > 0.f){
+        player->setMovementX(0.f);
       }
-
-      // Left of the player collision
-      if((playerPosition.x + 4 < (*it).getPositionX() + 32 && playerPosition.x + 4 > (*it).getPositionX()) &&
-        ((playerPosition.y > (*it).getPositionY() && playerPosition.y < (*it).getPositionY() + 28) ||
-        (playerPosition.y + 28 < (*it).getPositionY() + 32 && playerPosition.y + 28 > (*it).getPositionY()))){
-        if(player->getMovement().x < 0.f){
-          player->setMovementX(0.f);
-        }
+      break;
+      case leftWallCollision:
+      if(player->getMovement().x < 0.f){
+        player->setMovementX(0.f);
       }
-
-      // Below of the player collision
-      if((playerPosition.y + 32 + player->getMovement().y > (*it).getPositionY() && playerPosition.y + 32 < (*it).getPositionY() + 32) &&
-        ((playerPosition.x + 8 > (*it).getPositionX() && playerPosition.x + 8 < (*it).getPositionX() + 32) ||
-        (playerPosition.x + 26 < (*it).getPositionX() + 32 && playerPosition.x + 26 > (*it).getPositionX()))){
-        if(playerPosition.y + 32 + player->getMovement().y > (*it).getPositionY()){
-          player->setSpritePosition(player->getSprite().getPosition().x, (*it).getPositionY() - 32);
-        }
-        if(player->getMovement().y > 0.f){
-          player->setMovementY(0.f);
-          player->setIsJumping(false);
-        }
+      break;
+      case groundCollision:
+      if(playerPosition.y + 32 + player->getMovement().y > (*it).getPositionY()){
+        player->setSpritePosition(player->getSprite().getPosition().x, (*it).getPositionY() - 32);
       }
-
-      // Above of the player collision
-      if((playerPosition.y < (*it).getPositionY() + 32 && playerPosition.y > (*it).getPositionY()) &&
-        ((playerPosition.x + 8 > (*it).getPositionX() && playerPosition.x + 8 < (*it).getPositionX() + 32) ||
-        (playerPosition.x + 26 < (*it).getPositionX() + 32 && playerPosition.x + 26 > (*it).getPositionX()))){
-        player->setMovementY(player->getGravity() + 1);
+      if(player->getMovement().y > 0.f){
+        player->setMovementY(0.f);
+        player->setIsJumping(false);
       }
-    //}
+      break;
+      case roofCollision:
+      player->setMovementY(player->getGravity() + 1);
+      break;
+      case noCollision:
+      break;
+    }
   }
 }
 

@@ -4,8 +4,8 @@ Cutscene::Cutscene(int id, sf::Texture const& texture, bool startCutscene) : dat
   this->id = id;
   this->font.loadFromFile("fonts/Ubuntu-C.tff");
 
-  this->sprite.setTexture(texture);
-  this->sprite.setTextureRect(sf::IntRect(0, 0, 416, 96));
+  this->textBoxSprite.setTexture(texture);
+  this->textBoxSprite.setTextureRect(sf::IntRect(0, 0, 416, 96));
 
   setActive(id);
   refreshText(id);
@@ -31,7 +31,7 @@ sf::Text Cutscene::getText(){
 }
 
 sf::Vector2f Cutscene::calculateTextBoxPosition(sf::View view){
-  return sf::Vector2f(view.getCenter().x - (this->sprite.getLocalBounds().width/2), view.getCenter().y + (view.getSize().y/2) - 80);
+  return sf::Vector2f(view.getCenter().x - (this->textBoxSprite.getLocalBounds().width/2), view.getCenter().y + (view.getSize().y/2) - 80);
 }
 
 sf::Vector2f Cutscene::calculateTextPosition(sf::View view){
@@ -39,20 +39,20 @@ sf::Vector2f Cutscene::calculateTextPosition(sf::View view){
 }
 
 void Cutscene::setTextToCamera(sf::View view){
-  this->sprite.setPosition(calculateTextBoxPosition(view));
+  this->textBoxSprite.setPosition(calculateTextBoxPosition(view));
   this->text.setPosition(calculateTextPosition(view));
 }
 
-void Cutscene::proceedCutscene(sf::Keyboard::Key key, bool pressed){
+void Cutscene::proceedCutscene(sf::Keyboard::Key key, bool continueButtonIsPressed){
   if(!this->keepAdvancing){
     this->setActive(false);
   }
 
-  if(key == sf::Keyboard::X && !this->pressed){
+  if(key == sf::Keyboard::X && !this->continueButtonIsPressed){
     refreshText(this->id);
   }
 
-  this->pressed = pressed;
+  this->continueButtonIsPressed = continueButtonIsPressed;
 }
 
 void Cutscene::refreshText(int id){
@@ -77,5 +77,5 @@ void Cutscene::drawText(sf::RenderTarget& target){
 }
 
 void Cutscene::drawCutsceneBackground(sf::RenderTarget& target){
-  target.draw(sprite);
+  target.draw(textBoxSprite);
 }
