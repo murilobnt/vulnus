@@ -30,7 +30,7 @@ private:
   // The iterator to pass through all cutscene stages
   uint textDisplayIterator;
   // The set of the texts of the current cutscene
-  std::vector<std::string> current;
+  std::vector<std::string> currentCutscene;
   // The text to be drawn
   sf::Text text;
 

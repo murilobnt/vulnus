@@ -1,24 +1,24 @@
 #include "Bullet.h"
 
-Bullet::Bullet(float speed, sf::Vector2f playerPos, bool movingRight) : bullet(sf::Vector2f(20, 5)){
+Bullet::Bullet(float speed, sf::Vector2f playerPos, bool movingRight) : bulletSprite(sf::Vector2f(20, 5)){
   this->markedForDeath = false;
   this->initialPosition = playerPos;
   this->movingRight = movingRight;
   this->speed = speed;
-  this->bullet.setPosition(playerPos);
-  bullet.setFillColor(sf::Color::Red);
+  this->bulletSprite.setPosition(playerPos);
+  bulletSprite.setFillColor(sf::Color::Red);
 }
 
 void Bullet::moveBullet(){
-  this->movingRight ? bullet.move(sf::Vector2f(speed, 0)) : bullet.move(sf::Vector2f(-speed, 0));
+  this->movingRight ? bulletSprite.move(sf::Vector2f(speed, 0)) : bulletSprite.move(sf::Vector2f(-speed, 0));
 }
 
 sf::Vector2f Bullet::getBulletPosition(){
-  return this->bullet.getPosition();
+  return this->bulletSprite.getPosition();
 }
 
 sf::RectangleShape Bullet::getBullet(){
-  return this->bullet;
+  return this->bulletSprite;
 }
 
 void Bullet::shouldBeDestroyed(bool markedForDeath){
@@ -27,11 +27,11 @@ void Bullet::shouldBeDestroyed(bool markedForDeath){
     return;
   }
   if(movingRight){
-    if(this->bullet.getPosition().x > this->initialPosition.x + 200){
+    if(this->bulletSprite.getPosition().x > this->initialPosition.x + 200){
       this->markedForDeath = true;
     }
   } else {
-    if(this->bullet.getPosition().x < this->initialPosition.x - 200){
+    if(this->bulletSprite.getPosition().x < this->initialPosition.x - 200){
       this->markedForDeath = true;
     }
   }

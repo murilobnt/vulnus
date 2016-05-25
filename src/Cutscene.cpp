@@ -56,16 +56,16 @@ void Cutscene::proceedCutscene(sf::Keyboard::Key key, bool continueButtonIsPress
 }
 
 void Cutscene::refreshText(int id){
-  if(this->current != this->database.getCutsceneById(id)){
-    this->current = this->database.getCutsceneById(id);
+  if(this->currentCutscene != this->database.getCutsceneById(id)){
+    this->currentCutscene = this->database.getCutsceneById(id);
   }
 
-  if(this->textDisplayIterator >= this->current.size()){
+  if(this->textDisplayIterator >= this->currentCutscene.size()){
     this->keepAdvancing = false;
     return;
   }
 
-  this->text = sf::Text(this->current[this->textDisplayIterator], font);
+  this->text = sf::Text(this->currentCutscene[this->textDisplayIterator], font);
 
   this->text.setCharacterSize(20);
 	this->text.setColor(sf::Color::White);
