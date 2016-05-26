@@ -108,13 +108,13 @@ void Game::clearNDraw(){
 	this->gameScreen.clear();
 	this->gameScreen.draw(backgroundSprite);
 	this->gameScreen.draw(level.getTileMap());
+	this->level.drawEnemies(this->gameScreen);
 	this->gameScreen.draw(player.getSprite());
+	drawBullets();
 	if(this->cutscene.isActive()){
 		this->cutscene.drawCutsceneBackground(this->gameScreen);
 		this->cutscene.drawText(this->gameScreen);
 	}
-	drawBullets();
-	this->level.drawEnemies(this->gameScreen);
 	this->gameScreen.display();
 }
 
