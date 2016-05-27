@@ -55,9 +55,21 @@ The game is a platform game.
 * Shoot with K.
 * Teleport with mouse click.
 
-# AUTHOR
+# CREDITS
+
+## AUTHOR
 
 1. Murilo Bento (murilo.araujo.md@gmail.com)
+
+## ADDITIONAL RESOURCES
+
+The music file, *sounds/Overworld.ogg* is from **Royalty Free Music**, from **Incompetech**. As instructed in-site, this is the credits I give to it:
+---
+Overworld Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 3.0 License
+http://creativecommons.org/licenses/by/3.0/
+---
+You can listen to the music on YouTube: https://youtu.be/d5FVNxdZkfA
 
 ***
 # Language::PORTUGUÊS
@@ -113,9 +125,21 @@ O jogo é um jogo de plataforma.
 * Atire com K.
 * Teletransporte-se com o clique do mouse.
 
-# AUTOR
+# CREDITOS
+
+## AUTOR
 
 1. Murilo Bento (murilo.araujo.md@gmail.com)
+
+## RECURSOS ADICIONAIS
+
+O arquivo de música, *sounds/Overworld.ogg* é de **Royalty Free Music**, de **Incompetech**. Como instruído pelo site, estes são os créditos que eu dou a ele:
+---
+Overworld Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 3.0 License
+http://creativecommons.org/licenses/by/3.0/
+---
+Você pode escutar essa música no YouTube: https://youtu.be/d5FVNxdZkfA
 
 ***
 GNJK - End/Fim
