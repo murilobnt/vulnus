@@ -25,33 +25,7 @@ void Player::recoveryHealth(float modifier){
 	this->increaseHealth(modifier);
 }
 
-void Player::handleJumpingMovement(float jumpAcceleration, float jumpDesacceleration){
-	if(movingRight){
-		if(movement.x < 0){
-			movement.x -= jumpDesacceleration;
-		}
-		if(movement.x < speed){
-			if(movement.x + jumpAcceleration > speed){
-				movement.x = speed;
-			} else {
-				movement.x += jumpAcceleration;
-			}
-		}
-	} else if (movingLeft) {
-		if(movement.x > 0){
-			movement.x += jumpDesacceleration;
-		}
-		if(movement.x > -speed){
-			if(movement.x - jumpAcceleration < -speed){
-				movement.x = -speed;
-			} else {
-				movement.x -= jumpAcceleration;
-			}
-		}
-	}
-}
-
-void Player::handleGroundMovement(float jumpAcceleration, float jumpDesacceleration){
+void Player::movePlayer(){
 	if(this->movingRight){
 		if(this->movement.x < speed){
 			this->movement.x += 0.2;
@@ -67,23 +41,13 @@ void Player::handleGroundMovement(float jumpAcceleration, float jumpDesaccelerat
 	}
 }
 
-void Player::movePlayer(){
-	float jumpDesacceleration = speed/8;
-	float jumpAcceleration = speed/6;
-	if(isJumping){
-		handleJumpingMovement(jumpAcceleration, jumpDesacceleration);
-		return;
-	}
-	handleGroundMovement(jumpAcceleration, jumpDesacceleration);
-}
-
 void Player::stopPlayer(){
 	this->movement.x = 0;
 }
 
 void Player::shoot(bool release){
 	if(!this->bulletControl){
-		this->theBullets.push_back(Bullet(6.0, sf::Vector2f(this->getSprite().getPosition().x + 16, this->getSprite().getPosition().y + 16), this->facingRight));
+		this->theBullets.push_back(Bullet(16.0, sf::Vector2f(this->getSprite().getPosition().x + 16, this->getSprite().getPosition().y + 16), this->facingRight));
 		this->bulletControl = true;
 	} else if(release){
 		this->bulletControl = false;
@@ -92,6 +56,9 @@ void Player::shoot(bool release){
 
 void Player::handlePlayerInput(sf::Keyboard::Key key, bool release){
 	switch (key) {
+		case sf::Keyboard::LShift:
+		run(release);
+		break;
 		case sf::Keyboard::K:
 		shoot(release);
 		break;
@@ -102,9 +69,10 @@ void Player::handlePlayerInput(sf::Keyboard::Key key, bool release){
 		jumpWill = true;
 		if(release){
 			if(this->movement.y < 0){
-				this->movement.y += 1;
+				//this->movement.y += 1;
+				this->movement.y = -1;
 			}
-			jumpWill = false;
+				jumpWill = false;
 			break;
 		}
 		break;
@@ -143,6 +111,14 @@ void Player::jump(){
 	if(!isJumping && !jumpWill){
 		this->movement.y = -7;
 		isJumping = true;
+	}
+}
+
+void Player::run(bool shouldRun){
+	if(!shouldRun){
+		this->speed += 3;
+	} else {
+		this->speed = this->originalSpeed;
 	}
 }
 
@@ -222,7 +198,7 @@ void Player::moveNDeleteBullets(){
 	if(this->theBullets.empty()){
 		return;
 	}
-	
+
 	for (uint i = 0; i < this->theBullets.size(); i++) {
         Bullet *cur = &this->theBullets[i];
 				cur->moveBullet();

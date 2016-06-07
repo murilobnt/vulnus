@@ -12,9 +12,11 @@ Game::Game(int gameWidth, int gameHeight, std::string gameTitle) :
 {
 	bgm.openFromFile("sounds/Overworld.ogg");
 	bgm.setLoop(true);
+
 	backgroundSprite.setTexture(*backgroundTexture.getTexture());
 	backgroundSprite.setPosition(sf::Vector2f(0,0));
-	backgroundSprite.setTextureRect(sf::IntRect(0, 0, 1200, 1000));
+	backgroundSprite.setTextureRect(sf::IntRect(0, 0, 1400, 1000));
+
 	this->gameWidth = gameWidth;
 	this->gameHeight = gameHeight;
 	this->gameScreen.setFramerateLimit(60);
@@ -142,5 +144,5 @@ int Game::getGameHeight(){
 }
 
 void Game::refreshBackgroundPos(){
-	this->backgroundSprite.setPosition(sf::Vector2f(-0.2 * this->gameCamera.getObject().getCenter().x, 0));
+	this->backgroundSprite.setPosition(sf::Vector2f(-0.3 * this->gameCamera.getObject().getCenter().x, 0));
 }

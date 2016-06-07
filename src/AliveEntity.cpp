@@ -50,6 +50,7 @@ AliveEntity::AliveEntity(int x, int y, float health, float speed, sf::Texture co
 	this->animationRightLoop = 0;
 
 	this->health = health;
+	this->originalSpeed = speed;
 	this->speed = speed;
 
 	this->spriteInitX = spriteInitX;

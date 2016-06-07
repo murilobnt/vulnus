@@ -31,8 +31,6 @@ private:
 	// The set of every bullet of the player
 	std::vector<Bullet> theBullets;
 
-	void handleJumpingMovement(float jumpAcceleration, float jumpDesacceleration);
-	void handleGroundMovement(float jumpAcceleration, float jumpDesacceleration);
 	void shoot(bool release);
 
 public:
@@ -93,6 +91,11 @@ public:
 	 * Jump.
 	 */
 	void jump();
+
+	/**
+	 * Run.
+	 */
+	void run(bool shouldRun);
 
 	/**
 	 * Desaccelerate the player.

@@ -47,6 +47,9 @@ protected:
 	// The speed
 	float speed;
 
+	// The default speed of the entity
+	float originalSpeed;
+
 	// Recover player health
 	void increaseHealth(float modifier);
 
