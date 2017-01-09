@@ -1,12 +1,12 @@
 #include "TileMap.h"
 
-TileMap::TileMap(){ }
+TileMap::TileMap() : tiles(0, 0, 0){ }
 
 bool TileMap::load(const std::string& tileset, sf::Vector2u tileSize, const int* tiles, unsigned int width, unsigned int height, const int* selected, int length) {
   this->levelWidth = width * 32;
   this->levelHeight = height * 32;
 
-  //this->tiles = TileSet(levelWidth, levelHeight, 64);
+  this->tiles = TileSet(levelWidth, levelHeight, 150);
 
   // load the tileset texture
   if (!m_tileset.loadFromFile(tileset))

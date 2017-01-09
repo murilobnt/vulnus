@@ -3,46 +3,31 @@
 
 #include <vector>
 #include <cmath>
-#include "Tile.h"
-#include <iostream>
 
-struct Cell{
-  // The tiles on the cell
+#include "Tile.h"
+
+class Unity {
+public:
   std::vector<Tile> tiles;
 };
 
-class Grid{
+class Grid {
 private:
-  // The cells of the grid
-  std::vector<Cell> cells;
+  int w;
+  int h;
+  int unitySize;
 
-  // The size of every cell
-  int cellSize;
-
-  // The number of cells on x axis
   int xCells;
-
-  // The number of cells on y axis
   int yCells;
 
+  std::vector<Unity> unities;
+
+  sf::Vector2i checkCondition(sf::Vector2i before);
 public:
-  /**
-	 * Constructor.
-   * @param cellSize the size of every cell
-	 */
-  Grid(int w, int h, int cellSize);
-
-  /**
-	 * Get a cell of certain position.
-   * @param x the x position of the cell
-   * @param y the y position of the cell
-   * @return the cell of the passed postion
-	 */
-  Cell* getCell(int x, int y);
-
-  Cell getCell(sf::Vector2f playerPos);
-
+  Grid(int w, int h, int unitySize);
+  Unity* getUnity(int x, int y);
   void addTile(Tile tile);
+  std::vector<Unity> getUnitiesOnPosition(sf::Vector2f playerUpperLeftPos);
 };
 
 #endif

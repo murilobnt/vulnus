@@ -80,6 +80,7 @@ void AliveEntity::setMovementY(float y){
 }
 
 void AliveEntity::applyGravity(){
+	if (this->movement.y < 6)
 		this->movement.y += entityGravity;
 }
 

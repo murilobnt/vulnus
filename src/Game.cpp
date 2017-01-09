@@ -8,7 +8,8 @@ Game::Game(int gameWidth, int gameHeight, std::string gameTitle) :
 					 cutsceneTexture("images/rcutscene.png", 416, 96),
 					 cutscene(0, *cutsceneTexture.getTexture(), true),
 					 level(1, *aliveTexture.getTexture()),
-					 player(100.f, 2, *aliveTexture.getTexture(), 32, 0, 32, 32, 0.2, 0, 32, 0, 32)
+					 player(100.f, 2, *aliveTexture.getTexture(), 32, 0, 32, 32, 0.2, 0, 32, 0, 32),
+					 theTiles(0, 0, 64)
 {
 	bgm.openFromFile("sounds/Overworld.ogg");
 	bgm.setLoop(true);
@@ -144,5 +145,5 @@ int Game::getGameHeight(){
 }
 
 void Game::refreshBackgroundPos(){
-	this->backgroundSprite.setPosition(sf::Vector2f(-0.3 * this->gameCamera.getObject().getCenter().x, 0));
+	this->backgroundSprite.setPosition(sf::Vector2f(-0.1 * this->gameCamera.getObject().getCenter().x, 0));
 }

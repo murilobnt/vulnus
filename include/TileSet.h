@@ -13,6 +13,8 @@ private:
   // The set of tiles
   std::vector<Tile> tileSet;
 
+  Grid grid;
+
   enum collisionCase{
     groundCollision,
     roofCollision,
@@ -27,7 +29,7 @@ public:
   /**
    * Constructor.
    */
-  TileSet();
+  TileSet(int w, int h, int cellSize);
 
   /**
    * Add a tile to the set.

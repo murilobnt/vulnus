@@ -1,10 +1,9 @@
 #include "TileSet.h"
 
-TileSet::TileSet(){ }
+TileSet::TileSet(int w, int h, int cellSize) : grid(w, h, cellSize){ }
 
 void TileSet::addTile(Tile tile){
-  this->tileSet.push_back(tile);
-  //this->grid.addTile(tile);
+  this->grid.addTile(tile);
 }
 
 enum TileSet::collisionCase TileSet::getCollisionCase(sf::Vector2f playerPosition, Tile it, sf::Vector2f playerMovement){
@@ -38,32 +37,41 @@ void TileSet::verifyPlayerCollision(Player* player){
   sf::Vector2f playerPosition = player->getSprite().getPosition();
   sf::Vector2f playerMovement = player->getMovement();
 
-  for(std::vector<Tile>::iterator it = this->tileSet.begin(); it != this->tileSet.end(); ++it) {
-    switch(getCollisionCase(playerPosition, *it, playerMovement)){
-      case rightWallCollision:
-      if(player->getMovement().x > 0.f){
-        player->setMovementX(0.f);
+  std::vector<Unity> unities = grid.getUnitiesOnPosition(playerPosition);
+
+  for(std::vector<Unity>::iterator unitiesIt = unities.begin(); unitiesIt != unities.end(); ++unitiesIt){
+    Unity unity = *unitiesIt;
+    //int i = 1;
+
+    for(std::vector<Tile>::iterator it = unity.tiles.begin(); it != unity.tiles.end(); ++it){
+      //std::cout << "I'm verifying tile n = " << i << std::endl;
+      //i++;
+      switch(getCollisionCase(playerPosition, *it, playerMovement)){
+        case rightWallCollision:
+        if(player->getMovement().x > 0.f){
+          player->setMovementX(0.f);
+        }
+        break;
+        case leftWallCollision:
+        if(player->getMovement().x < 0.f){
+          player->setMovementX(0.f);
+        }
+        break;
+        case groundCollision:
+        if(playerPosition.y + 32 + player->getMovement().y > (*it).getPositionY()){
+          player->setSpritePosition(player->getSprite().getPosition().x, (*it).getPositionY() - 32);
+        }
+        if(player->getMovement().y > 0.f){
+          player->setMovementY(0.f);
+          player->setIsJumping(false);
+        }
+        break;
+        case roofCollision:
+        player->setMovementY(player->getGravity() + 1);
+        break;
+        case noCollision:
+        break;
       }
-      break;
-      case leftWallCollision:
-      if(player->getMovement().x < 0.f){
-        player->setMovementX(0.f);
-      }
-      break;
-      case groundCollision:
-      if(playerPosition.y + 32 + player->getMovement().y > (*it).getPositionY()){
-        player->setSpritePosition(player->getSprite().getPosition().x, (*it).getPositionY() - 32);
-      }
-      if(player->getMovement().y > 0.f){
-        player->setMovementY(0.f);
-        player->setIsJumping(false);
-      }
-      break;
-      case roofCollision:
-      player->setMovementY(player->getGravity() + 1);
-      break;
-      case noCollision:
-      break;
     }
   }
 }
