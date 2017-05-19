@@ -65,7 +65,7 @@ void Player::jump(){
 	}
 }
 
-void Player::stopJump(){
+void Player::stopJump(bool release){
 	if(release){
 		if(this->movement.y < 0){
 			this->movement.y = -1;

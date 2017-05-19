@@ -10,9 +10,9 @@
 // # Internal
 #include "camera.hpp"
 #include "player.hpp"
-#include "textureSet.hpp"
+#include "textureset.hpp"
 #include "level.hpp"
-#include "tileSet.hpp"
+#include "tileset.hpp"
 #include "bullet.hpp"
 #include "cutscene.hpp"
 #include "inputhandler.hpp"

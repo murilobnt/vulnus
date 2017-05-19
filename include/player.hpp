@@ -89,7 +89,7 @@ public:
 	 */
 	void jump();
 
-	void stopJump();
+	void stopJump(bool release);
 
 	/**
 	 * Run.
