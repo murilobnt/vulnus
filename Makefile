@@ -9,7 +9,7 @@ FLAGS = -Wall
 LANGUAGE = c++0x
 
 ## O executável
-TARGET = gnjk
+TARGET = vulnus
 
 ## A inclusão dos headers
 INCLUDES = -I ./include

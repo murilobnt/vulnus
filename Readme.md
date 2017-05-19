@@ -1,4 +1,4 @@
-GNJK - Readme/Leiame
+Vulnus - Readme/Leiame
 =======
 
 ***
@@ -7,7 +7,7 @@ GNJK - Readme/Leiame
 
 # INTRODUCTION
 
-**GNJK** is a game that is being developed for fun, learning and teaching purposes. It's language is C++ with SFML.
+**Vulnus** is a game that is being developed for fun, learning and teaching purposes. It's language is C++ with SFML.
 
 # HOW TO RUN
 
@@ -30,14 +30,14 @@ make
 
 And then, to execute it, you need to be at the **root of the project folder**. Then, run the following:
 ```
-./bin/gnjk
+./bin/vulnus
 ```
 
 # NERDY SPEECH
 
 I, Murilo, created this project on vacation merely for fun. I kinda forgot about him because of all classes and projects I have.
-If you want to contribute to the project, you can help me on collision detection. I created a class, Grid, to apply Spatial Partitioning in the game, but it went full buggy when I implemented.
-Your mission is: apply Spatial Partitioning on collision detection for the game!
+I finally managed to get the spatial partitioning! YAY!
+By the way, in means of performance, the game seems to be requiring more CPU now that I added the partitioning... and that does make a lot of sense! (lol it doesn't)
 
 # HOW TO USE
 
@@ -77,12 +77,12 @@ You can listen to the music on YouTube: https://youtu.be/d5FVNxdZkfA
 
 # INTRODUÇÃO
 
-**GNJK** é um jogo que está sendo desenvolvido para propósitos de diversão, aprendizado e de ensinamento. Sua linguagem é C++ com SFML.
+**Vulnus** é um jogo que está sendo desenvolvido para propósitos de diversão, aprendizado e de ensinamento. Sua linguagem é C++ com SFML.
 
 # COMO EXECUTAR
 
 ## REQUISITOS
-* Eu não tenho/uso o SO Windows. Então este guia irá ajudar você a testar o jogo no Linux (ditro Ubuntu);
+* Eu não tenho/uso o SO Windows. Então este guia irá ajudar você a testar o jogo no Linux (distro Ubuntu);
 * Biblioteca SFML:
 ```
 sudo apt-get install libsfml-dev
@@ -100,14 +100,14 @@ make
 
 E então, para executar, você precisa estar na **raiz do diretório do projeto**. Então, execute o seguinte:
 ```
-./bin/gnjk
+./bin/vulnus
 ```
 
 # DISCURSO NERD
 
 Eu, Murilo, criei este projeto nas férias meramente por diversão. Eu meio que esqueci dele por conta de todas as disciplinas e projetos que eu tenho.
-Se você quer contribuir ao projeto, você pode me ajudar na detecção da colisão. Eu criei uma classe, Grid, para aplicar Particionamento Espacial no jogo, mas ficou todo bugado quando eu implementei.
-Sua missão é: Aplicar Particionamento Espacial na detecção da colisão para o jogo!
+Eu finalmente consegui aplicar o particionamento espacial! YAY!
+A propósito, em questões de performance, o jogo parece requirir mais da CPU agora que eu adicionei o particionamento... e isso foi muito sentido! (kk sqn)
 
 # COMO USAR
 
@@ -142,5 +142,5 @@ http://creativecommons.org/licenses/by/3.0/
 Você pode escutar essa música no YouTube: https://youtu.be/d5FVNxdZkfA
 
 ***
-GNJK - End/Fim
+Vulnus - End/Fim
 =======
