@@ -35,7 +35,7 @@ void Game::gameStart(){
 
 	while(this->gameScreen.isOpen()){
 		processEvents();
-
+		
 		while(this->timeSinceLastUpdate > this->ups){
 			this->timeSinceLastUpdate -= this->ups;
 			updateLogic();
@@ -63,55 +63,12 @@ void Game::updateLogic(){
 	
 	moveNStopPlayer();
 	player.applyGravity();
-	applyPlayerAnimation(&player);
+
+	//applyPlayerAnimation(&player);
 	refreshBackgroundPos();
 	moveBullets();
 	controlCamera();
 	restrictPlayerMovement();
-	clearNDraw();
-}
-
-void Game::gameLoop(){
-	sf::Event event;
-
-	player.applyGravity();
-	launchCutscene();
-
-	while (this->gameScreen.pollEvent(event))
-	{
-	    // Next step: Create an event handler (hint: Use event as a parameter).
-		switch(event.type){
-			case sf::Event::KeyPressed :
-			if(!this->cutscene.isActive()){
-				//this->inputHandler.handlePlayerInput(&player, event.key.code, false);
-			} else {
-				cutscene.proceedCutscene(event.key.code, true);
-			}
-			break;
-
-			case sf::Event::KeyReleased :
-			if(this->cutscene.isActive()){
-				cutscene.proceedCutscene(event.key.code, false);
-			} else {
-				//this->inputHandler.handlePlayerInput(&player, event.key.code, true);
-			}
-			break;
-			case sf::Event::MouseButtonPressed :
-			if(!this->cutscene.isActive()){
-				//this->inputHandler.handleMouseInput(&player, this->gameScreen.mapPixelToCoords(sf::Vector2i(event.mouseButton.x, event.mouseButton.y)));
-			}
-			break;
-			case sf::Event::Closed : this->gameScreen.close(); break;
-		}
-	}
-
-	moveNStopPlayer();
-	applyPlayerAnimation(&player);
-	refreshBackgroundPos();
-	moveBullets();
-	controlCamera();
-	restrictPlayerMovement();
-	clearNDraw();
 }
 
 void Game::launchCutscene(){
@@ -127,7 +84,7 @@ void Game::applyPlayerAnimation(Player* player){
 void Game::moveNStopPlayer(){
 	player.movePlayer();
 	theTiles.verifyPlayerCollision(&player);
-	theTiles.verifyBulletCollision(player.getTheBulletsObject());
+	//theTiles.verifyBulletCollision(player.getTheBulletsObject());
 	player.moveEntity();
 }
 
@@ -143,15 +100,19 @@ void Game::restrictPlayerMovement(){
 
 void Game::clearNDraw(){
 	this->gameScreen.clear();
+
 	this->gameScreen.draw(backgroundSprite);
 	this->gameScreen.draw(level.getTileMap());
 	this->level.drawEnemies(this->gameScreen);
 	this->gameScreen.draw(player.getSprite());
-	drawBullets();
+
+	//drawBullets();
+
 	if(this->cutscene.isActive()){
 		this->cutscene.drawCutsceneBackground(this->gameScreen);
 		this->cutscene.drawText(this->gameScreen);
 	}
+
 	this->gameScreen.display();
 }
 

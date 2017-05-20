@@ -3,7 +3,7 @@
 CC = g++
 
 ## Flags adicionais
-FLAGS = -Wall
+FLAGS = 
 
 ## Modificador da linguagem
 LANGUAGE = c++11

@@ -80,7 +80,6 @@ public:
 	/**
 	 * Get the mouse input of the player and threat it.
 	 */
-	void handleMouseInput(sf::Vector2f mousePosition);
 
 	void teleport(int mX, int mY);
 
@@ -90,6 +89,10 @@ public:
 	void jump();
 
 	void stopJump(bool release);
+
+	void handleMouseInput(sf::Vector2f mousePosition);
+
+	void handlePlayerInput(sf::Keyboard::Key key, bool release);
 
 	/**
 	 * Run.

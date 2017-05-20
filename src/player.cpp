@@ -120,20 +120,17 @@ void Player::applyLeftAnimation(){
 }
 
 void Player::applyPlayerAnimation(sf::Time* timeSinceLastUpdate){
-	if(*timeSinceLastUpdate > this->getAnimationFramerate()){
-		*timeSinceLastUpdate -= this->getAnimationFramerate();
-		if(this->facingRight){
-			if(!this->isJumping){
-				applyRightAnimation();
-			} else {
-				configureSpriteRect(spriteInitX, spriteInitY, 32, 32);
-			}
-		} else if(!this->facingRight){
-			if(!this->isJumping){
-				applyLeftAnimation();
-			} else {
-				configureSpriteRect(spriteInitX, spriteEndY, 32, 32);
-			}
+	if(this->facingRight){
+		if(!this->isJumping){
+			applyRightAnimation();
+		} else {
+			configureSpriteRect(spriteInitX, spriteInitY, 32, 32);
+		}
+	} else if(!this->facingRight){
+		if(!this->isJumping){
+			applyLeftAnimation();
+		} else {
+			configureSpriteRect(spriteInitX, spriteEndY, 32, 32);
 		}
 	}
 }
