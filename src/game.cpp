@@ -71,7 +71,6 @@ void Game::updateLogic(){
 	moveNStopPlayer();
 	player.applyGravity();
 
-	//applyPlayerAnimation(&player);
 	refreshBackgroundPos();
 	moveBullets();
 	controlCamera();
