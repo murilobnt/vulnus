@@ -59,6 +59,7 @@ AliveEntity::AliveEntity(int x, int y, float health, float speed, sf::Texture co
 	setSprite(texture);
 	configureSpriteRect(spriteX, spriteY, spriteW, spriteH);
 	setAnimationFramerate(10);
+	this->framerateUp = sf::seconds(1.f / 10.f);
 }
 
 void AliveEntity::moveEntity(){

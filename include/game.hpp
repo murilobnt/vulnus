@@ -33,6 +33,8 @@ private:
 
 	// Fields to control game framerate
 	sf::Time timeSinceLastUpdate;
+	sf::Time fpsTime;
+	
 	sf::Time elapsedTime;
 
 	// The player
@@ -113,7 +115,7 @@ public:
 	/**
 	 * Apply player annimation.
 	 */
-	void applyPlayerAnimation(Player* player);
+	void applyPlayerAnimation();
 
 	/**
 	 * Clear screen and draw it again.

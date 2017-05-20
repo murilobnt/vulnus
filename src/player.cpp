@@ -119,7 +119,7 @@ void Player::applyLeftAnimation(){
 	}
 }
 
-void Player::applyPlayerAnimation(sf::Time* timeSinceLastUpdate){
+void Player::applyPlayerAnimation(){
 	if(this->facingRight){
 		if(!this->isJumping){
 			applyRightAnimation();

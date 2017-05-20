@@ -86,6 +86,8 @@ protected:
 	void moveEntity(sf::Vector2f movement);
 
 public:
+	sf::Time framerateUp;
+	
 	/**
 	 * Get the sprite.
 	 * @return this->sprite attribute

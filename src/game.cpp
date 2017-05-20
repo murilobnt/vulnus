@@ -24,6 +24,7 @@ theTiles(0, 0, 64)
 
 	this->ups = sf::seconds(1.f / 60.f);
 	this->timeSinceLastUpdate = sf::Time::Zero;
+	this->fpsTime = sf::Time::Zero;
 	this->player.setSpritePosition(0, 480 - 64);
 }
 
@@ -41,10 +42,16 @@ void Game::gameStart(){
 			updateLogic();
 		}
 
+		while(this->fpsTime > player.framerateUp){
+			this->fpsTime -= player.framerateUp;
+			applyPlayerAnimation();
+		}
+
 		clearNDraw();
 		
 		this->elapsedTime = this->clock.restart();
 		this->timeSinceLastUpdate += elapsedTime;
+		this->fpsTime += elapsedTime;
 	}
 }
 
@@ -77,14 +84,14 @@ void Game::launchCutscene(){
 	}
 }
 
-void Game::applyPlayerAnimation(Player* player){
-	player->applyPlayerAnimation(&this->timeSinceLastUpdate);
+void Game::applyPlayerAnimation(){
+	this->player.applyPlayerAnimation();
 }
 
 void Game::moveNStopPlayer(){
 	player.movePlayer();
 	theTiles.verifyPlayerCollision(&player);
-	//theTiles.verifyBulletCollision(player.getTheBulletsObject());
+	theTiles.verifyBulletCollision(player.getTheBulletsObject());
 	player.moveEntity();
 }
 
@@ -106,7 +113,7 @@ void Game::clearNDraw(){
 	this->level.drawEnemies(this->gameScreen);
 	this->gameScreen.draw(player.getSprite());
 
-	//drawBullets();
+	drawBullets();
 
 	if(this->cutscene.isActive()){
 		this->cutscene.drawCutsceneBackground(this->gameScreen);

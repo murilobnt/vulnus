@@ -111,7 +111,7 @@ public:
 	/**
 	 * Animate the player according to certain framerate.
 	 */
-	void applyPlayerAnimation(sf::Time* timeSinceLastUpdate);
+	void applyPlayerAnimation();
 
 	/**
 	 * Check the position of the player and handle the case the player stands on x = *.5
