@@ -26,9 +26,6 @@ protected:
 	// Flag to check if the entity is jumping
 	bool isJumping;
 
-	// Flag to check if the entity wants to jump
-	bool jumpWill;
-
 	// The integer to control the loop of the animation of the entity when it's walking right
 	int animationRightLoop;
 
