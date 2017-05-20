@@ -15,7 +15,7 @@
 #include "tileset.hpp"
 #include "bullet.hpp"
 #include "cutscene.hpp"
-#include "inputhandler.hpp"
+#include "eventhandler.hpp"
 
 class Game{
 
@@ -25,6 +25,8 @@ private:
 
 	// The camera of the game
 	Camera gameCamera;
+
+	sf::Time ups;
 
 	// The clock of the processor
 	sf::Clock clock;
@@ -36,7 +38,7 @@ private:
 	// The player
 	Player player;
 
-	InputHandler inputHandler;
+	EventHandler eventhandler;
 
 	// The texture of every alive entity
 	TextureSet aliveTexture;
@@ -80,6 +82,13 @@ public:
 	 * What to do when the game initializes.
 	 */
 	void gameStart();
+
+	void processEvents();
+
+	/**
+	 * What to do in the game loop.
+	 */
+	void updateLogic();
 
 	/**
 	 * What to do in the game loop.

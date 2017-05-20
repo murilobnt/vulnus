@@ -9,6 +9,7 @@ cutsceneTexture("images/rcutscene.png", 416, 96),
 cutscene(0, *cutsceneTexture.getTexture(), true),
 level(1, *aliveTexture.getTexture()),
 player(100.f, 2, *aliveTexture.getTexture(), 32, 0, 32, 32, 0.2, 0, 32, 0, 32),
+eventhandler(&player, &cutscene),
 theTiles(0, 0, 64)
 {
 	bgm.openFromFile("sounds/Overworld.ogg");
@@ -20,7 +21,8 @@ theTiles(0, 0, 64)
 
 	this->gameWidth = gameWidth;
 	this->gameHeight = gameHeight;
-	this->gameScreen.setFramerateLimit(60);
+
+	this->ups = sf::seconds(1.f / 60.f);
 	this->timeSinceLastUpdate = sf::Time::Zero;
 	this->player.setSpritePosition(0, 480 - 64);
 }
@@ -32,10 +34,41 @@ void Game::gameStart(){
 	theTiles = level.getTileMap().getTiles();
 
 	while(this->gameScreen.isOpen()){
+		processEvents();
+
+		while(this->timeSinceLastUpdate > this->ups){
+			this->timeSinceLastUpdate -= this->ups;
+			updateLogic();
+		}
+
+		clearNDraw();
+		
 		this->elapsedTime = this->clock.restart();
 		this->timeSinceLastUpdate += elapsedTime;
-		gameLoop();
 	}
+}
+
+void Game::processEvents(){
+	sf::Event event;
+
+	while (this->gameScreen.pollEvent(event))
+	{
+		if(this->eventhandler.handleEvent(event))
+			this->eventhandler.handleScreenEvent(event, &this->gameScreen);
+	}
+}
+
+void Game::updateLogic(){
+	launchCutscene();
+	
+	moveNStopPlayer();
+	player.applyGravity();
+	applyPlayerAnimation(&player);
+	refreshBackgroundPos();
+	moveBullets();
+	controlCamera();
+	restrictPlayerMovement();
+	clearNDraw();
 }
 
 void Game::gameLoop(){
@@ -50,7 +83,7 @@ void Game::gameLoop(){
 		switch(event.type){
 			case sf::Event::KeyPressed :
 			if(!this->cutscene.isActive()){
-				this->inputHandler.handlePlayerInput(&player, event.key.code, false);
+				//this->inputHandler.handlePlayerInput(&player, event.key.code, false);
 			} else {
 				cutscene.proceedCutscene(event.key.code, true);
 			}
@@ -60,12 +93,12 @@ void Game::gameLoop(){
 			if(this->cutscene.isActive()){
 				cutscene.proceedCutscene(event.key.code, false);
 			} else {
-				this->inputHandler.handlePlayerInput(&player, event.key.code, true);
+				//this->inputHandler.handlePlayerInput(&player, event.key.code, true);
 			}
 			break;
 			case sf::Event::MouseButtonPressed :
 			if(!this->cutscene.isActive()){
-				this->inputHandler.handleMouseInput(&player, this->gameScreen.mapPixelToCoords(sf::Vector2i(event.mouseButton.x, event.mouseButton.y)));
+				//this->inputHandler.handleMouseInput(&player, this->gameScreen.mapPixelToCoords(sf::Vector2i(event.mouseButton.x, event.mouseButton.y)));
 			}
 			break;
 			case sf::Event::Closed : this->gameScreen.close(); break;

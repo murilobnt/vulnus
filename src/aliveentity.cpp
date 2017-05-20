@@ -44,7 +44,6 @@ AliveEntity::AliveEntity(int x, int y, float health, float speed, sf::Texture co
 
 	this->entityGravity = entityGravity;
 	this->isJumping = true;
-	this->jumpWill = false;
 	this->animationLeftLoop = 0;
 	this->animationRightLoop = 0;
 

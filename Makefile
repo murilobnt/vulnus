@@ -24,7 +24,7 @@ OBJS-DIR = ./bin
 SRC = ./src
 
 ## Os objetos utilizados pelo main
-OBJS = $(OBJS-DIR)/$(TARGET).o $(OBJS-DIR)/aliveentity.o $(OBJS-DIR)/bullet.o $(OBJS-DIR)/bulletset.o $(OBJS-DIR)/camera.o $(OBJS-DIR)/cutscene.o $(OBJS-DIR)/cutscenedatabase.o $(OBJS-DIR)/enemy.o $(OBJS-DIR)/game.o $(OBJS-DIR)/grid.o $(OBJS-DIR)/inputhandler.o $(OBJS-DIR)/level.o $(OBJS-DIR)/player.o $(OBJS-DIR)/textureset.o $(OBJS-DIR)/tile.o $(OBJS-DIR)/tilemap.o $(OBJS-DIR)/tileset.o
+OBJS = $(OBJS-DIR)/$(TARGET).o $(OBJS-DIR)/aliveentity.o $(OBJS-DIR)/bullet.o $(OBJS-DIR)/bulletset.o $(OBJS-DIR)/camera.o $(OBJS-DIR)/cutscene.o $(OBJS-DIR)/cutscenedatabase.o $(OBJS-DIR)/enemy.o $(OBJS-DIR)/eventhandler.o $(OBJS-DIR)/game.o $(OBJS-DIR)/grid.o $(OBJS-DIR)/inputhandler.o $(OBJS-DIR)/level.o $(OBJS-DIR)/player.o $(OBJS-DIR)/textureset.o $(OBJS-DIR)/tile.o $(OBJS-DIR)/tilemap.o $(OBJS-DIR)/tileset.o
 
 #Sintaxe de compilação
 
@@ -56,6 +56,9 @@ $(OBJS-DIR)/cutscenedatabase.o : $(SRC)/cutscenedatabase.cpp
 
 $(OBJS-DIR)/enemy.o : $(SRC)/enemy.cpp
 	$(CC) $(FLAGS) -c $(INCLUDES) $(SRC)/enemy.cpp -o $(OBJS-DIR)/enemy.o
+
+$(OBJS-DIR)/eventhandler.o : $(SRC)/eventhandler.cpp
+	$(CC) $(FLAGS) -c $(INCLUDES) $(SRC)/eventhandler.cpp -o $(OBJS-DIR)/eventhandler.o
 
 $(OBJS-DIR)/game.o : $(SRC)/game.cpp
 	$(CC) $(FLAGS) -c $(INCLUDES) $(SRC)/game.cpp -o $(OBJS-DIR)/game.o

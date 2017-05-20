@@ -59,7 +59,7 @@ void Player::teleport(int mX, int mY){
 }
 
 void Player::jump(){
-	if(!isJumping && !jumpWill){
+	if(!isJumping){
 		this->movement.y = -7;
 		isJumping = true;
 	}
