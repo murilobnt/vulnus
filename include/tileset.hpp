@@ -17,16 +17,6 @@ private:
   std::vector<Tile> tileSet;
   Grid grid;
 
-  enum collisionCase{
-    groundCollision,
-    roofCollision,
-    leftWallCollision,
-    rightWallCollision,
-    noCollision
-  };
-
-  enum collisionCase getCollisionCase(sf::Vector2f playerPosition, Tile it, sf::Vector2f playerMovement);
-
 public:
   /**
    * Constructor.

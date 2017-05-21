@@ -6,74 +6,63 @@ void TileSet::addTile(Tile tile){
   this->grid.addTile(tile);
 }
 
-enum TileSet::collisionCase TileSet::getCollisionCase(sf::Vector2f playerPosition, Tile it, sf::Vector2f playerMovement){
-  if((playerPosition.x + 28 > it.getPositionX() && playerPosition.x + 28 < it.getPositionX() + 32) &&
-    ((playerPosition.y > it.getPositionY() && playerPosition.y < it.getPositionY() + 28) ||
-    (playerPosition.y + 28 < it.getPositionY() + 32 && playerPosition.y + 28 > it.getPositionY()))){
-    return rightWallCollision;
-  }
-
-  if((playerPosition.x + 4 < it.getPositionX() + 32 && playerPosition.x + 4 > it.getPositionX()) &&
-    ((playerPosition.y > it.getPositionY() && playerPosition.y < it.getPositionY() + 28) ||
-    (playerPosition.y + 28 < it.getPositionY() + 32 && playerPosition.y + 28 > it.getPositionY()))){
-    return leftWallCollision;
-  }
-
-  if((playerPosition.y + 32 + playerMovement.y > it.getPositionY() && playerPosition.y + 32 < it.getPositionY() + 32) &&
-    ((playerPosition.x + 8 > it.getPositionX() && playerPosition.x + 8 < it.getPositionX() + 32) ||
-    (playerPosition.x + 26 < it.getPositionX() + 32 && playerPosition.x + 26 > it.getPositionX()))){
-      return groundCollision;
-    }
-
-  if((playerPosition.y < it.getPositionY() + 32 && playerPosition.y > it.getPositionY()) &&
-      ((playerPosition.x + 8 > it.getPositionX() && playerPosition.x + 8 < it.getPositionX() + 32) ||
-      (playerPosition.x + 26 < it.getPositionX() + 32 && playerPosition.x + 26 > it.getPositionX()))){
-      return roofCollision;
-    }
-  return noCollision;
-}
-
 void TileSet::verifyPlayerCollision(Player* player){
-  sf::Vector2f playerPosition = player->getSprite().getPosition();
+  sf::Sprite playerSprite = player->getSprite();
+  sf::Vector2f playerPosition = playerSprite.getPosition();
   sf::Vector2f playerMovement = player->getMovement();
 
   std::vector<Unity> unities = grid.getUnitiesOnPosition(playerPosition);
 
   for(std::vector<Unity>::iterator unitiesIt = unities.begin(); unitiesIt != unities.end(); ++unitiesIt){
     Unity unity = *unitiesIt;
-    //int i = 1;
 
     for(std::vector<Tile>::iterator it = unity.tiles.begin(); it != unity.tiles.end(); ++it){
-      //std::cout << "I'm verifying tile n = " << i << std::endl;
-      //i++;
-      switch(getCollisionCase(playerPosition, *it, playerMovement)){
-        case rightWallCollision:
-        if(player->getMovement().x > 0.f){
-          player->setMovementX(0.f);
+      sf::FloatRect tileRect = (*it).getTileRect();
+
+      if(tileRect.intersects(playerSprite.getGlobalBounds())){
+        sf::Vector2f playerAuxPosXRight(playerPosition.x + 32 + playerMovement.x, playerPosition.y + 4);
+        sf::Vector2f playerAuxPosXRight2(playerPosition.x + 32 + playerMovement.x, playerPosition.y + 20);
+
+        sf::Vector2f playerAuxPosXLeft(playerPosition.x + playerMovement.x, playerPosition.y + 4);
+        sf::Vector2f playerAuxPosXLeft2(playerPosition.x + playerMovement.x, playerPosition.y + 20);
+
+        sf::Vector2f playerAuxPosYUp(playerPosition.x + 6, playerPosition.y + playerMovement.y);
+        sf::Vector2f playerAuxPosYUp2(playerPosition.x + 26, playerPosition.y + playerMovement.y);
+
+        sf::Vector2f playerAuxPosYDown(playerPosition.x + 6, playerPosition.y + 32 + playerMovement.y);
+        sf::Vector2f playerAuxPosYDown2(playerPosition.x + 26, playerPosition.y + 32 + playerMovement.y);
+
+        if(tileRect.contains(playerAuxPosXRight) || tileRect.contains(playerAuxPosXRight2)){
+          if(playerMovement.x > 0.f){
+              player->setMovementX(0.f);
+              player->setSpritePosition((*it).getPositionX() - 32, player->getSprite().getPosition().y);
+          }
         }
-        break;
-        case leftWallCollision:
-        if(player->getMovement().x < 0.f){
-          player->setMovementX(0.f);
+
+        if(tileRect.contains(playerAuxPosXLeft) || tileRect.contains(playerAuxPosXLeft2)){
+          if (playerMovement.x < 0.f){
+              player->setMovementX(0.f);
+              player->setSpritePosition((*it).getPositionX() + 32, player->getSprite().getPosition().y);
+          }
         }
-        break;
-        case groundCollision:
-        if(playerPosition.y + 32 + player->getMovement().y > (*it).getPositionY()){
-          player->setSpritePosition(player->getSprite().getPosition().x, (*it).getPositionY() - 32);
+
+        if(tileRect.contains(playerAuxPosYDown) || tileRect.contains(playerAuxPosYDown2)){
+          if(playerMovement.y > 0.f){
+              player->setMovementY(0.f);
+              player->setIsJumping(false);
+              player->setSpritePosition(player->getSprite().getPosition().x, (*it).getPositionY() - 32);
+          }
         }
-        if(player->getMovement().y > 0.f){
-          player->setMovementY(0.f);
-          player->setIsJumping(false);
+
+        if(tileRect.contains(playerAuxPosYUp) || tileRect.contains(playerAuxPosYUp2)){
+          if (playerMovement.y < 0.f){
+              player->setMovementY(player->getGravity() + 1);
+              player->setSpritePosition(player->getSprite().getPosition().x, (*it).getPositionY() + 32);
+          }
         }
-        break;
-        case roofCollision:
-        player->setMovementY(player->getGravity() + 1);
-        break;
-        case noCollision:
-        break;
       }
-    }
   }
+}
 }
 
 void TileSet::verifyBulletCollision(std::vector<Bullet>* bullets){
