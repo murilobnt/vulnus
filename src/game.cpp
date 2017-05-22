@@ -89,7 +89,7 @@ void Game::applyPlayerAnimation(){
 
 void Game::moveNStopPlayer(){
 	player.movePlayer();
-	theTiles.verifyPlayerCollision(&player);
+	theTiles.verifyEntityCollision(&player);
 	theTiles.verifyBulletCollision(player.getTheBulletsObject());
 	player.moveEntity();
 }

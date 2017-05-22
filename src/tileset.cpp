@@ -6,7 +6,7 @@ void TileSet::addTile(Tile tile){
   this->grid.addTile(tile);
 }
 
-void TileSet::verifyPlayerCollision(Player* player){
+void TileSet::verifyEntityCollision(AliveEntity* player){
   sf::Sprite playerSprite = player->getSprite();
   sf::Vector2f playerPosition = playerSprite.getPosition();
   sf::Vector2f playerMovement = player->getMovement();

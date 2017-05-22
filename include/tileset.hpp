@@ -10,6 +10,7 @@
 #include "player.hpp"
 #include "bullet.hpp"
 #include "grid.hpp"
+#include "aliveentity.hpp"
 
 class TileSet{
 private:
@@ -33,7 +34,7 @@ public:
    * Verify the collision of the player.
    * @param player the player to check the collision
    */
-  void verifyPlayerCollision(Player* player);
+  void verifyEntityCollision(AliveEntity* player);
 
   /**
    * Verify the collision of every bullet in a set.
