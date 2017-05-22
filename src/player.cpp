@@ -6,7 +6,7 @@ Player::Player(float health, float speed, sf::Texture const& texture,
 	this->bulletControl = false;
 	this->invulnerability = false;
 	this->level = level;
-	this->desaccelerationX = 0.1;
+	this->desaccelerationX = 0.2;
 	this->moving = false;
 	this->movingRight = false;
 	this->movingLeft = false;

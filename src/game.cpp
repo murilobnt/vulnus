@@ -119,7 +119,7 @@ void Game::controlCamera(){
 
 void Game::restrictPlayerMovement(){
 	player.desacceleratePlayer();
-	player.checkHalfOne();
+	//player.checkHalfOne();
 }
 
 void Game::clearNDraw(){
