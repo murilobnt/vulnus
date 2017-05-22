@@ -6,6 +6,7 @@
 #include <SFML/Audio.hpp>
 #include <iostream>
 #include <string>
+#include <vector>
 
 // # Internal
 #include "camera.hpp"
@@ -16,6 +17,7 @@
 #include "bullet.hpp"
 #include "cutscene.hpp"
 #include "eventhandler.hpp"
+#include "enemy.hpp"
 
 class Game{
 
@@ -70,6 +72,8 @@ private:
 	// Game dimensions
 	int gameWidth;
 	int gameHeight;
+
+	std::vector<Enemy>* currentEnemies;
 
 public:
 	/**
@@ -153,6 +157,10 @@ public:
 	 * Refresh the position of the background.
 	 */
 	void refreshBackgroundPos();
+
+	void changeLevel();
+
+	void applyGravityOnEntities();
 };
 
 #endif

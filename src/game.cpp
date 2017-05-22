@@ -26,6 +26,8 @@ theTiles(0, 0, 64)
 	this->timeSinceLastUpdate = sf::Time::Zero;
 	this->fpsTime = sf::Time::Zero;
 	this->player.setSpritePosition(0, 480 - 64);
+
+	changeLevel();
 }
 
 void Game::gameStart(){
@@ -69,7 +71,7 @@ void Game::updateLogic(){
 	launchCutscene();
 	
 	moveNStopPlayer();
-	player.applyGravity();
+	applyGravityOnEntities();
 
 	refreshBackgroundPos();
 	moveBullets();
@@ -90,8 +92,14 @@ void Game::applyPlayerAnimation(){
 void Game::moveNStopPlayer(){
 	player.movePlayer();
 	theTiles.verifyEntityCollision(&player);
-	theTiles.verifyBulletCollision(player.getTheBulletsObject());
+	//theTiles.verifyBulletCollision(player.getTheBulletsObject());
 	player.moveEntity();
+
+	for(std::vector<Enemy>::iterator it = currentEnemies->begin(); it != currentEnemies->end(); ++it){
+		(*it).moveEnemy(player.getSprite().getPosition());
+		theTiles.verifyEntityCollision(&(*(it)));
+		(*it).moveEntity();
+	}
 }
 
 void Game::controlCamera(){
@@ -147,4 +155,15 @@ int Game::getGameHeight(){
 
 void Game::refreshBackgroundPos(){
 	this->backgroundSprite.setPosition(sf::Vector2f(-0.1 * this->gameCamera.getObject().getCenter().x, 0));
+}
+
+void Game::changeLevel(){
+	this->currentEnemies = level.getEnemies();
+}
+
+void Game::applyGravityOnEntities(){
+	player.applyGravity();
+	for(std::vector<Enemy>::iterator it = currentEnemies->begin(); it != currentEnemies->end(); ++it){
+		(*it).applyGravity();
+	}
 }

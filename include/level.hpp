@@ -20,6 +20,7 @@ public:
   TileMap getTileMap();
   void loadLevel(int id, sf::Texture const& enemiesTexture);
   void drawEnemies(sf::RenderTarget& target);
+  std::vector<Enemy>* getEnemies();
 };
 
 #endif

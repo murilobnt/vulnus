@@ -59,7 +59,7 @@ void Level::loadLevelOne(sf::Texture const& enemiesTexture){
 
   tileMap.load("images/tiles.png", sf::Vector2u(32, 32), level, 32, 20, selected, 2);
 
-  Enemy enemy(96, 566 - 22, 30, 2, enemiesTexture, 64, 0, 32, 32, 0.2, 64, 96, 0, 32);
+  Enemy enemy(448, 480, 30, 1.2, enemiesTexture, 64, 0, 32, 32, 0.2, 64, 96, 0, 32);
 
   enemies.push_back(enemy);
 }
@@ -79,4 +79,8 @@ void Level::drawEnemies(sf::RenderTarget& target){
     Enemy cur = enemies.at(i);
     target.draw(cur.getSprite());
   }
+}
+
+std::vector<Enemy>* Level::getEnemies(){
+	return &this->enemies;
 }
