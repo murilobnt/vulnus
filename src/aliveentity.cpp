@@ -106,3 +106,7 @@ float AliveEntity::getGravity(){
 void AliveEntity::setSpritePosition(float x, float y){
 	this->sprite.setPosition(x, y);
 }
+
+float AliveEntity::getHealth(){
+	return this->health;
+}

@@ -171,6 +171,8 @@ public:
 	 * @param y the new y position of the sprite
 	 */
 	void setSpritePosition(float x, float y);
+
+	float getHealth();
 };
 
 #endif

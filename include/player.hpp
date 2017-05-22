@@ -59,7 +59,7 @@ public:
 	 * Recieve damage.
 	 * @param modifier the quantity of the damage
 	 */
-	void recieveDamage(float modifier);
+	void receiveDamage(float modifier);
 
 	/**
 	 * Recover health.

@@ -66,6 +66,8 @@ private:
 	// Background music
 	sf::Music bgm;
 
+	sf::RectangleShape playerHealth;
+
 	// Cutscene
 	Cutscene cutscene;
 
@@ -161,6 +163,10 @@ public:
 	void changeLevel();
 
 	void applyGravityOnEntities();
+
+	void displayPlayerHealth();
+
+	void updatePlayerHealth();
 };
 
 #endif

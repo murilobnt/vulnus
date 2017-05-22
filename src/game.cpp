@@ -10,6 +10,7 @@ cutscene(0, *cutsceneTexture.getTexture(), true),
 level(1, *aliveTexture.getTexture()),
 player(100.f, 2, *aliveTexture.getTexture(), 32, 0, 32, 32, 0.2, 0, 32, 0, 32),
 eventhandler(&player, &cutscene),
+playerHealth(sf::Vector2f(player.getHealth(), 20.f)),
 theTiles(0, 0, 64)
 {
 	bgm.openFromFile("sounds/Overworld.ogg");
@@ -26,6 +27,8 @@ theTiles(0, 0, 64)
 	this->timeSinceLastUpdate = sf::Time::Zero;
 	this->fpsTime = sf::Time::Zero;
 	this->player.setSpritePosition(0, 480 - 64);
+
+	playerHealth.setFillColor( sf::Color::Red );
 
 	changeLevel();
 }
@@ -80,6 +83,7 @@ void Game::updateLogic(){
 	moveBullets();
 	controlCamera();
 	restrictPlayerMovement();
+	updatePlayerHealth();
 }
 
 void Game::launchCutscene(){
@@ -102,6 +106,9 @@ void Game::moveNStopPlayer(){
 		(*it).moveEnemy(player.getSprite().getPosition());
 		theTiles.verifyEntityCollision(&(*(it)));
 		(*it).moveEntity();
+		if((*it).getSprite().getGlobalBounds().intersects(player.getSprite().getGlobalBounds())){
+			player.receiveDamage(1);
+		}
 	}
 }
 
@@ -129,6 +136,8 @@ void Game::clearNDraw(){
 		this->cutscene.drawCutsceneBackground(this->gameScreen);
 		this->cutscene.drawText(this->gameScreen);
 	}
+
+	this->gameScreen.draw(this->playerHealth);
 
 	this->gameScreen.display();
 }
@@ -169,4 +178,13 @@ void Game::applyGravityOnEntities(){
 	for(std::vector<Enemy>::iterator it = currentEnemies->begin(); it != currentEnemies->end(); ++it){
 		(*it).applyGravity();
 	}
+}
+
+void Game::updatePlayerHealth(){
+	sf::Vector2f camPos = this->gameCamera.getObject().getCenter();
+	sf::Vector2f camSize = this->gameCamera.getObject().getSize();
+
+	//playerHealth = sf::RectangleShape(sf::Vector2f(player.getHealth(), 20.f));
+	playerHealth.setSize(sf::Vector2f(player.getHealth(), 20.f));
+	playerHealth.setPosition(sf::Vector2f(camPos.x - (camSize.x / 2), camPos.y - (camSize.y / 2)));
 }

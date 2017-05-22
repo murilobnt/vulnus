@@ -17,7 +17,7 @@ void Player::levelUp(){
 	++this->level;
 }
 
-void Player::recieveDamage(float modifier){
+void Player::receiveDamage(float modifier){
 	this->decreaseHealth(modifier);
 }
 
