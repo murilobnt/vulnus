@@ -8,13 +8,18 @@
 #include "aliveentity.hpp"
 
 class Enemy : public AliveEntity{
-
+private:
+	bool movingRight;
+	bool movingLeft;
 public:
   Enemy(int x, int y, float health, float speed, sf::Texture const& texture, int spriteX, int spriteY, int spriteW, int spriteH, float gravity, int spriteInitX, int spriteEndX, int spriteInitY, int spriteEndY);
   void moveEnemy(sf::Vector2f playerPosition);
   void stopEnemy();
   void jump();
   bool playerIsInRadious(sf::Vector2f myPosition, sf::Vector2f playerPosition);
+  void applyLeftAnimation();
+  void applyRightAnimation();
+  void applyEnemyAnimation();
 };
 
 #endif

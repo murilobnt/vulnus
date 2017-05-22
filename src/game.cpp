@@ -3,8 +3,8 @@
 Game::Game(int gameWidth, int gameHeight, std::string gameTitle) :
 gameScreen(sf::VideoMode(gameWidth, gameHeight), gameTitle),
 gameCamera(0.f, 0.f, 320.f, 240.f, 2.0),
-aliveTexture("images/aliveentitiesa.png", 128, 64),
-backgroundTexture("images/background4.png", 100, 100, true),
+aliveTexture("images/aliveentities.png", 128, 64),
+backgroundTexture("images/background3.png", 100, 100, true),
 cutsceneTexture("images/rcutscene.png", 416, 96),
 cutscene(0, *cutsceneTexture.getTexture(), true),
 level(1, *aliveTexture.getTexture()),
@@ -47,6 +47,9 @@ void Game::gameStart(){
 		while(this->fpsTime > player.framerateUp){
 			this->fpsTime -= player.framerateUp;
 			applyPlayerAnimation();
+			for(std::vector<Enemy>::iterator it = currentEnemies->begin(); it != currentEnemies->end(); ++it){
+				(&(*it))->applyEnemyAnimation();
+			}
 		}
 
 		clearNDraw();
