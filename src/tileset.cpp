@@ -20,49 +20,41 @@ void TileSet::verifyPlayerCollision(Player* player){
       sf::FloatRect tileRect = (*it).getTileRect();
 
       if(tileRect.intersects(playerSprite.getGlobalBounds())){
-        sf::Vector2f playerAuxPosXRight(playerPosition.x + 32 + playerMovement.x, playerPosition.y + 4);
-        sf::Vector2f playerAuxPosXRight2(playerPosition.x + 32 + playerMovement.x, playerPosition.y + 20);
-
-        sf::Vector2f playerAuxPosXLeft(playerPosition.x + playerMovement.x, playerPosition.y + 4);
-        sf::Vector2f playerAuxPosXLeft2(playerPosition.x + playerMovement.x, playerPosition.y + 20);
-
-        sf::Vector2f playerAuxPosYUp(playerPosition.x + 6, playerPosition.y + playerMovement.y);
-        sf::Vector2f playerAuxPosYUp2(playerPosition.x + 26, playerPosition.y + playerMovement.y);
-
-        sf::Vector2f playerAuxPosYDown(playerPosition.x + 6, playerPosition.y + 32 + playerMovement.y);
-        sf::Vector2f playerAuxPosYDown2(playerPosition.x + 26, playerPosition.y + 32 + playerMovement.y);
-
-        if(tileRect.contains(playerAuxPosXRight) || tileRect.contains(playerAuxPosXRight2)){
-          if(playerMovement.x > 0.f){
-              player->setMovementX(0.f);
-              player->setSpritePosition((*it).getPositionX() - 32, player->getSprite().getPosition().y);
+        if(playerMovement.x > 0.f){
+          sf::Vector2f playerAuxPosXRight(playerPosition.x + 32 + playerMovement.x, playerPosition.y + 4);
+          sf::Vector2f playerAuxPosXRight2(playerPosition.x + 32 + playerMovement.x, playerPosition.y + 20);
+          if(tileRect.contains(playerAuxPosXRight) || tileRect.contains(playerAuxPosXRight2)){
+            player->setMovementX(0.f);
+            player->setSpritePosition((*it).getPositionX() - 32, player->getSprite().getPosition().y);
+          }
+        } else if(playerMovement.x < 0.f){
+          sf::Vector2f playerAuxPosXLeft(playerPosition.x + playerMovement.x, playerPosition.y + 4);
+          sf::Vector2f playerAuxPosXLeft2(playerPosition.x + playerMovement.x, playerPosition.y + 20);
+          if(tileRect.contains(playerAuxPosXLeft) || tileRect.contains(playerAuxPosXLeft2)){          
+            player->setMovementX(0.f);
+            player->setSpritePosition((*it).getPositionX() + 32, player->getSprite().getPosition().y);
           }
         }
 
-        if(tileRect.contains(playerAuxPosXLeft) || tileRect.contains(playerAuxPosXLeft2)){
-          if (playerMovement.x < 0.f){
-              player->setMovementX(0.f);
-              player->setSpritePosition((*it).getPositionX() + 32, player->getSprite().getPosition().y);
+        if (playerMovement.y > 0.f){
+          sf::Vector2f playerAuxPosYDown(playerPosition.x + 6, playerPosition.y + 32 + playerMovement.y);
+          sf::Vector2f playerAuxPosYDown2(playerPosition.x + 26, playerPosition.y + 32 + playerMovement.y);
+          if(tileRect.contains(playerAuxPosYDown) || tileRect.contains(playerAuxPosYDown2)){
+            player->setMovementY(0.f);
+            player->setIsJumping(false);
+            player->setSpritePosition(player->getSprite().getPosition().x, (*it).getPositionY() - 32);
           }
-        }
-
-        if(tileRect.contains(playerAuxPosYDown) || tileRect.contains(playerAuxPosYDown2)){
-          if(playerMovement.y > 0.f){
-              player->setMovementY(0.f);
-              player->setIsJumping(false);
-              player->setSpritePosition(player->getSprite().getPosition().x, (*it).getPositionY() - 32);
-          }
-        }
-
-        if(tileRect.contains(playerAuxPosYUp) || tileRect.contains(playerAuxPosYUp2)){
-          if (playerMovement.y < 0.f){
-              player->setMovementY(player->getGravity() + 1);
-              player->setSpritePosition(player->getSprite().getPosition().x, (*it).getPositionY() + 32);
+        } else if (playerMovement.y < 0.f) {
+          sf::Vector2f playerAuxPosYUp(playerPosition.x + 6, playerPosition.y + playerMovement.y);
+          sf::Vector2f playerAuxPosYUp2(playerPosition.x + 26, playerPosition.y + playerMovement.y);
+          if(tileRect.contains(playerAuxPosYUp) || tileRect.contains(playerAuxPosYUp2)){
+            player->setMovementY(player->getGravity() + 1);
+            player->setSpritePosition(player->getSprite().getPosition().x, (*it).getPositionY() + 32);
           }
         }
       }
+    }
   }
-}
 }
 
 void TileSet::verifyBulletCollision(std::vector<Bullet>* bullets){
