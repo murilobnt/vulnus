@@ -37,8 +37,6 @@ Unity* Grid::getUnity(int x, int y){
 }
 
 void Grid::addTile(Tile tile){
-  /*int tileX = (int)((tile.getPositionX() + 16)/unitySize);
-  int tileY = (int)((tile.getPositionY() + 16)/unitySize);*/
   int tileX = tile.getPositionX();
   int tileY = tile.getPositionY();
 
@@ -65,8 +63,6 @@ void Grid::addTile(Tile tile){
   if(unityLr != unityUr && unityLr != unityLl && unityLr != unityUl){
     unityLr->tiles.push_back(tile);
   }
-
-  //unity->tiles.push_back(tile);
 }
 
 std::vector<Unity> Grid::getUnitiesOnPosition(sf::Vector2f playerUpperLeft){
@@ -87,18 +83,18 @@ std::vector<Unity> Grid::getUnitiesOnPosition(sf::Vector2f playerUpperLeft){
   int upperRight = ur.x + ur.y * xCells;
   int lowerRight = lr.x + lr.y * xCells;
 
-  adjacent.push_back(upperLeft > (xCells * yCells) ? this->unities[xCells * yCells - 1] : this->unities[upperLeft]);
+  adjacent.push_back(upperLeft >= (xCells * yCells) ? this->unities[xCells * yCells - 1] : this->unities[upperLeft]);
 
   if(lowerLeft != upperLeft){
-    adjacent.push_back(lowerLeft > (xCells * yCells) ? this->unities[xCells * yCells - 1] : this->unities[lowerLeft]);
+    adjacent.push_back(lowerLeft >= (xCells * yCells) ? this->unities[xCells * yCells - 1] : this->unities[lowerLeft]);
   }
 
   if(upperRight != lowerLeft && upperRight != upperLeft){
-    adjacent.push_back(upperRight > (xCells * yCells) ? this->unities[xCells * yCells - 1] : this->unities[upperRight]);
+    adjacent.push_back(upperRight >= (xCells * yCells) ? this->unities[xCells * yCells - 1] : this->unities[upperRight]);
   }
 
   if(lowerRight != upperRight && lowerRight != lowerLeft && lowerRight != upperLeft){
-    adjacent.push_back(lowerRight > (xCells * yCells) ? this->unities[xCells * yCells - 1] : this->unities[lowerRight]);
+    adjacent.push_back(lowerRight >= (xCells * yCells) ? this->unities[xCells * yCells - 1] : this->unities[lowerRight]);
   }
 
   return adjacent;
