@@ -13,8 +13,11 @@ eventhandler(&player, &cutscene),
 playerHealth(sf::Vector2f(player.getHealth(), 20.f)),
 theTiles(0, 0, 64)
 {
-	bgm.openFromFile("sounds/Overworld.ogg");
+	bgm.openFromFile("sounds/happy8bitloop.wav");
 	bgm.setLoop(true);
+
+	playerStep.openFromFile("sounds/footstep.ogg");
+	playerStep.setVolume(60);
 
 	backgroundSprite.setTexture(*backgroundTexture.getTexture());
 	backgroundSprite.setPosition(sf::Vector2f(0,0));
@@ -23,9 +26,6 @@ theTiles(0, 0, 64)
 	this->gameWidth = gameWidth;
 	this->gameHeight = gameHeight;
 
-	this->ups = sf::seconds(1.f / 60.f);
-	this->timeSinceLastUpdate = sf::Time::Zero;
-	this->fpsTime = sf::Time::Zero;
 	this->player.setSpritePosition(0, 480 - 64);
 
 	playerHealth.setFillColor( sf::Color::Red );
@@ -41,25 +41,10 @@ void Game::gameStart(){
 
 	while(this->gameScreen.isOpen()){
 		processEvents();
-		
-		while(this->timeSinceLastUpdate > this->ups){
-			this->timeSinceLastUpdate -= this->ups;
-			updateLogic();
-		}
-
-		while(this->fpsTime > player.framerateUp){
-			this->fpsTime -= player.framerateUp;
-			applyPlayerAnimation();
-			for(std::vector<Enemy>::iterator it = currentEnemies->begin(); it != currentEnemies->end(); ++it){
-				(&(*it))->applyEnemyAnimation();
-			}
-		}
-
+		handleTimeActions();
 		clearNDraw();
 		
-		this->elapsedTime = this->clock.restart();
-		this->timeSinceLastUpdate += elapsedTime;
-		this->fpsTime += elapsedTime;
+		this->timeHandler.restartTime();
 	}
 }
 
@@ -119,7 +104,6 @@ void Game::controlCamera(){
 
 void Game::restrictPlayerMovement(){
 	player.desacceleratePlayer();
-	//player.checkHalfOne();
 }
 
 void Game::clearNDraw(){
@@ -184,7 +168,23 @@ void Game::updatePlayerHealth(){
 	sf::Vector2f camPos = this->gameCamera.getObject().getCenter();
 	sf::Vector2f camSize = this->gameCamera.getObject().getSize();
 
-	//playerHealth = sf::RectangleShape(sf::Vector2f(player.getHealth(), 20.f));
 	playerHealth.setSize(sf::Vector2f(player.getHealth(), 20.f));
 	playerHealth.setPosition(sf::Vector2f(camPos.x - (camSize.x / 2), camPos.y - (camSize.y / 2)));
+}
+
+void Game::handleTimeActions(){
+	while(this->timeHandler.timeToUpdateGame()){
+		updateLogic();
+	}
+
+	while(this->timeHandler.timeToUpdatePlayerAnimation()){
+		this->player.applyPlayerAnimation();
+		for(std::vector<Enemy>::iterator it = currentEnemies->begin(); it != currentEnemies->end(); ++it){
+			(&(*it))->applyEnemyAnimation();
+		}
+	}
+
+	while(this->timeHandler.timeToUpdatePlayerSound() && player.moving && !player.getIsJumping()){
+		playerStep.play();
+	}
 }

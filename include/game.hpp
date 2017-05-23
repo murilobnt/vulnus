@@ -18,6 +18,7 @@
 #include "cutscene.hpp"
 #include "eventhandler.hpp"
 #include "enemy.hpp"
+#include "timehandler.hpp"
 
 class Game{
 
@@ -66,6 +67,8 @@ private:
 	// Background music
 	sf::Music bgm;
 
+	sf::Music playerStep;
+
 	sf::RectangleShape playerHealth;
 
 	// Cutscene
@@ -76,6 +79,8 @@ private:
 	int gameHeight;
 
 	std::vector<Enemy>* currentEnemies;
+
+	TimeHandler timeHandler;
 
 public:
 	/**
@@ -167,6 +172,8 @@ public:
 	void displayPlayerHealth();
 
 	void updatePlayerHealth();
+
+	void handleTimeActions();
 };
 
 #endif

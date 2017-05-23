@@ -24,7 +24,7 @@ OBJS-DIR = ./bin
 SRC = ./src
 
 ## Os objetos utilizados pelo main
-OBJS = $(OBJS-DIR)/$(TARGET).o $(OBJS-DIR)/aliveentity.o $(OBJS-DIR)/bullet.o $(OBJS-DIR)/bulletset.o $(OBJS-DIR)/camera.o $(OBJS-DIR)/cutscene.o $(OBJS-DIR)/cutscenedatabase.o $(OBJS-DIR)/enemy.o $(OBJS-DIR)/eventhandler.o $(OBJS-DIR)/game.o $(OBJS-DIR)/grid.o $(OBJS-DIR)/inputhandler.o $(OBJS-DIR)/level.o $(OBJS-DIR)/player.o $(OBJS-DIR)/textureset.o $(OBJS-DIR)/tile.o $(OBJS-DIR)/tilemap.o $(OBJS-DIR)/tileset.o
+OBJS = $(OBJS-DIR)/$(TARGET).o $(OBJS-DIR)/aliveentity.o $(OBJS-DIR)/bullet.o $(OBJS-DIR)/bulletset.o $(OBJS-DIR)/camera.o $(OBJS-DIR)/cutscene.o $(OBJS-DIR)/cutscenedatabase.o $(OBJS-DIR)/enemy.o $(OBJS-DIR)/eventhandler.o $(OBJS-DIR)/game.o $(OBJS-DIR)/grid.o $(OBJS-DIR)/inputhandler.o $(OBJS-DIR)/level.o $(OBJS-DIR)/player.o $(OBJS-DIR)/textureset.o $(OBJS-DIR)/tile.o $(OBJS-DIR)/tilemap.o $(OBJS-DIR)/tileset.o $(OBJS-DIR)/timehandler.o
 
 #Sintaxe de compilação
 
@@ -86,6 +86,9 @@ $(OBJS-DIR)/tilemap.o : $(SRC)/tilemap.cpp
 
 $(OBJS-DIR)/tileset.o : $(SRC)/tileset.cpp
 	$(CC) $(FLAGS) -c $(INCLUDES) $(SRC)/tileset.cpp -o $(OBJS-DIR)/tileset.o
+
+$(OBJS-DIR)/timehandler.o : $(SRC)/timehandler.cpp
+	$(CC) $(FLAGS) -c $(INCLUDES) $(SRC)/timehandler.cpp -o $(OBJS-DIR)/timehandler.o	
 
 clean:
 	$(RM) $(OBJS-DIR)/*.o $(OBJS-DIR)/$(TARGET)

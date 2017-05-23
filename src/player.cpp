@@ -90,7 +90,7 @@ void Player::desacceleratePlayer(){
 	if(this->movement.x < 0 && !this->moving){
 		this->movement.x += this->desaccelerationX;
 	}
-	if((this->movement.x > 0 && this->movement.x < 0.1) || (this->movement.x < 0 && this->movement.x > -0.1)){
+	if((this->movement.x > 0 && this->movement.x < 0.2) || (this->movement.x < 0 && this->movement.x > -0.2)){
 		stopPlayer();
 	}
 }
