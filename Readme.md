@@ -1,6 +1,8 @@
 Vulnus - Readme/Leiame
 =======
 
+![Game screenshot](./images/gamescreenshot.png)
+
 ***
 # Language::ENGLISH
 -------
