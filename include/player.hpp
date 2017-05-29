@@ -90,7 +90,7 @@ public:
 	 */
 	void jump();
 
-	void jump(float modifier);
+	void reactToDamage(float modifier);
 
 	void stopJump();
 

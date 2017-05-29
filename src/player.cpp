@@ -21,7 +21,7 @@ void Player::levelUp(){
 void Player::receiveDamage(float modifier){
 	if(!this->invulnerability){
 		if(!this->isJumping){
-		this->jump(4);
+			this->reactToDamage(4);
 		}
 
 		if(this->facingRight){
@@ -81,12 +81,11 @@ void Player::jump(){
 	tryingToJump = true;
 }
 
-void Player::jump(float modifier){
-	if(!isJumping && !tryingToJump){
+void Player::reactToDamage(float modifier){
+	if(!isJumping){
 		this->movement.y = -modifier;
 		isJumping = true;
 	}
-	tryingToJump = true;
 }
 
 void Player::stopJump(){
