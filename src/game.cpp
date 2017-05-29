@@ -97,7 +97,7 @@ void Game::moveNStopPlayer(){
 		theTiles.verifyEntityCollision(&(*(it)));
 		(*it).moveEntity();
 		if((*it).getSprite().getGlobalBounds().intersects(player.getSprite().getGlobalBounds())){
-			player.receiveDamage(15);
+			player.receiveDamage((*it).getDamage());
 		}
 	}
 }
