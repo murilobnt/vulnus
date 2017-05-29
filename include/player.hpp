@@ -33,6 +33,8 @@ private:
 
 	// The set of every bullet of the player
 	std::vector<Bullet> theBullets;
+
+	bool tryingToJump;
 public:
 	/**
 	 * Constructor.
@@ -90,7 +92,7 @@ public:
 
 	void jump(float modifier);
 
-	void stopJump(bool release);
+	void stopJump();
 
 	void handleMouseInput(sf::Vector2f mousePosition);
 

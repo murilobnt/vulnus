@@ -11,6 +11,7 @@ Player::Player(float health, float speed, sf::Texture const& texture,
 	this->movingRight = false;
 	this->movingLeft = false;
 	this->facingRight = true;
+	this->tryingToJump = false;
 }
 
 void Player::levelUp(){
@@ -73,25 +74,26 @@ void Player::teleport(int mX, int mY){
 }
 
 void Player::jump(){
-	if(!isJumping){
+	if(!isJumping && !tryingToJump){
 		this->movement.y = -7;
 		isJumping = true;
 	}
+	tryingToJump = true;
 }
 
 void Player::jump(float modifier){
-	if(!isJumping){
+	if(!isJumping && !tryingToJump){
 		this->movement.y = -modifier;
 		isJumping = true;
 	}
+	tryingToJump = true;
 }
 
-void Player::stopJump(bool release){
-	if(release){
-		if(this->movement.y < 0){
-			this->movement.y = -1;
-		}
+void Player::stopJump(){
+	if(this->movement.y < 0){
+		this->movement.y = -1;
 	}
+	this->tryingToJump = false;
 }
 
 void Player::run(bool shouldRun){

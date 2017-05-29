@@ -11,9 +11,10 @@ void InputHandler::handlePlayerInput(Player* player, sf::Keyboard::Key key, bool
 		case sf::Keyboard::W:
 		case sf::Keyboard::Up:
 		case sf::Keyboard::Space:
-			player->jump();
 			if(release){
-				player->stopJump(release);
+				player->stopJump();
+			} else {
+				player->jump();
 			}
 		break;
 		case sf::Keyboard::D:
