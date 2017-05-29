@@ -17,6 +17,12 @@ private:
 	sf::Time playerSoundLastUpdate;
 	sf::Time playerSoundFps;
 
+	sf::Time playerInvulnLastUpdate;
+	sf::Time playerInvulnTime;
+
+	sf::Time playerInvulnAnimLastUpdate;
+	sf::Time playerInvulnAnimFps;
+
 	sf::Time elapsedTime;
 
 public:
@@ -25,8 +31,13 @@ public:
 	bool timeToUpdateGame();
 	bool timeToUpdatePlayerAnimation();
 	bool timeToUpdatePlayerSound();
+	
+	bool timeToEndPlayerInvulnerability();
+	bool timeToBlinkPlayer();
 
+	void restartClock();
 	void restartTime();
+	void restartInvulnTime();
 };
 
 #endif

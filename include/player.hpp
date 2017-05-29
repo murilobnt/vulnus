@@ -88,6 +88,8 @@ public:
 	 */
 	void jump();
 
+	void jump(float modifier);
+
 	void stopJump(bool release);
 
 	void handleMouseInput(sf::Vector2f mousePosition);
@@ -140,6 +142,10 @@ public:
 	void rightMovementControl(bool release);
 
 	void leftMovementControl(bool release);
+
+	bool getInvulnerability();
+
+	void setInvulnerability(bool invulnerability);
 };
 
 #endif

@@ -43,8 +43,13 @@ void Game::gameStart(){
 		processEvents();
 		handleTimeActions();
 		clearNDraw();
-		
+
+		this->timeHandler.restartClock();
 		this->timeHandler.restartTime();
+
+		if(this->player.getInvulnerability()){
+			this->timeHandler.restartInvulnTime();
+		}
 	}
 }
 
@@ -92,7 +97,7 @@ void Game::moveNStopPlayer(){
 		theTiles.verifyEntityCollision(&(*(it)));
 		(*it).moveEntity();
 		if((*it).getSprite().getGlobalBounds().intersects(player.getSprite().getGlobalBounds())){
-			player.receiveDamage(1);
+			player.receiveDamage(15);
 		}
 	}
 }
@@ -112,7 +117,13 @@ void Game::clearNDraw(){
 	this->gameScreen.draw(backgroundSprite);
 	this->gameScreen.draw(level.getTileMap());
 	this->level.drawEnemies(this->gameScreen);
-	this->gameScreen.draw(player.getSprite());
+	if(this->player.getInvulnerability()){
+		while(this->timeHandler.timeToBlinkPlayer()){
+			this->gameScreen.draw(player.getSprite());
+		}
+	} else {
+		this->gameScreen.draw(player.getSprite());
+	}
 
 	drawBullets();
 
@@ -182,6 +193,10 @@ void Game::handleTimeActions(){
 		for(std::vector<Enemy>::iterator it = currentEnemies->begin(); it != currentEnemies->end(); ++it){
 			(&(*it))->applyEnemyAnimation();
 		}
+	}
+
+	if(this->timeHandler.timeToEndPlayerInvulnerability()){
+		this->player.setInvulnerability(false);
 	}
 
 	while(this->timeHandler.timeToUpdatePlayerSound() && player.moving && !player.getIsJumping()){
