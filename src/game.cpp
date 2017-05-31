@@ -19,6 +19,8 @@ theTiles(0, 0, 64)
 	playerStep.openFromFile("sounds/footstep.ogg");
 	playerStep.setVolume(60);
 
+	playerGetHit.openFromFile("sounds/metallichit.wav");
+
 	backgroundSprite.setTexture(*backgroundTexture.getTexture());
 	backgroundSprite.setPosition(sf::Vector2f(0,0));
 	backgroundSprite.setTextureRect(sf::IntRect(0, 0, 1400, 1000));
@@ -96,8 +98,9 @@ void Game::moveNStopPlayer(){
 		(*it).moveEnemy(player.getSprite().getPosition());
 		theTiles.verifyEntityCollision(&(*(it)));
 		(*it).moveEntity();
-		if((*it).getSprite().getGlobalBounds().intersects(player.getSprite().getGlobalBounds())){
+		if((*it).getSprite().getGlobalBounds().intersects(player.getSprite().getGlobalBounds()) && !player.getInvulnerability()){
 			player.receiveDamage((*it).getDamage());
+			playerGetHit.play();
 		}
 	}
 }
@@ -117,6 +120,7 @@ void Game::clearNDraw(){
 	this->gameScreen.draw(backgroundSprite);
 	this->gameScreen.draw(level.getTileMap());
 	this->level.drawEnemies(this->gameScreen);
+	
 	if(this->player.getInvulnerability()){
 		while(this->timeHandler.timeToBlinkPlayer()){
 			this->gameScreen.draw(player.getSprite());

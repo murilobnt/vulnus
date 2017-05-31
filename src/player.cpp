@@ -19,21 +19,19 @@ void Player::levelUp(){
 }
 
 void Player::receiveDamage(float modifier){
-	if(!this->invulnerability){
-		if(!this->isJumping){
-			this->reactToDamage(4);
-		}
-
-		if(this->facingRight){
-			this->movement.x = -5;
-		} else {
-			this->movement.x = 5;
-		}
-
-		this->decreaseHealth(modifier);
-		
-		this->invulnerability = true;
+	if(!this->isJumping){
+		this->reactToDamage(4);
 	}
+
+	if(this->facingRight){
+		this->movement.x = -5;
+	} else {
+		this->movement.x = 5;
+	}
+
+	this->decreaseHealth(modifier);
+	
+	this->invulnerability = true;
 }
 
 void Player::recoveryHealth(float modifier){

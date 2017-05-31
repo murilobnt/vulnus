@@ -69,6 +69,8 @@ private:
 
 	sf::Music playerStep;
 
+	sf::Music playerGetHit;
+
 	sf::RectangleShape playerHealth;
 
 	// Cutscene

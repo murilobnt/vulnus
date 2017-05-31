@@ -25,7 +25,7 @@ Grid::Grid(int w, int h, int unitySize){
   this->h = h;
 
   this->xCells = ceil((float)w / unitySize);
-    this->yCells = ceil((float)h / unitySize);
+  this->yCells = ceil((float)h / unitySize);
 
   this->unitySize = unitySize;
 

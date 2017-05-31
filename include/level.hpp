@@ -16,11 +16,11 @@ private:
   void loadLevelOne(sf::Texture const& enemiesTexture);
 
 public:
-  Level(int id, sf::Texture const& enemiesTexture);
-  TileMap getTileMap();
-  void loadLevel(int id, sf::Texture const& enemiesTexture);
-  void drawEnemies(sf::RenderTarget& target);
-  std::vector<Enemy>* getEnemies();
+	Level(int id, sf::Texture const& enemiesTexture);
+	TileMap getTileMap();
+	void loadLevel(int id, sf::Texture const& enemiesTexture);
+	void drawEnemies(sf::RenderTarget& target);
+	std::vector<Enemy>* getEnemies();
 };
 
 #endif

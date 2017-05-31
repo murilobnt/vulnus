@@ -89,6 +89,13 @@ The music file, *sounds/footstep.wav* (original) and *sounds/footstep.ogg* (edit
 https://www.freesound.org/s/166506/
 - - -
 
+> Mettalic Hit
+
+The music file, *sounds/metallichit.wav* is from **dermotte**, at **freesound.org**. Since the author doesn't show any template of crediting, it is listed at the domain in the URL bellow:
+- - -
+https://www.freesound.org/s/263008/
+- - -
+
 ***
 # Language::PORTUGUÊS
 ---------
@@ -173,6 +180,13 @@ O arquivo de música, *sounds/happy8bitloop.wav* é de **Tristan_Lohengrin**, em
 O arquivo de música, *sounds/footstep.wav* (original) e *sounds/footstep.ogg* (editado por mim para amplificar um pouco o som) é de **Yoyodaman234**, em **freesound.org**. Já que o autor não oferece nenhum template de creditação, está listada no domínio na URL abaixo:
 - - -
 https://www.freesound.org/s/166506/
+- - -
+
+> Metallic Hit
+
+O arquivo de música, *sounds/metallichit.wav* é de **dermotte**, em **freesound.org**. Já que o autor não oferece nenhum template de creditação, está listada no domínio na URL abaixo:
+- - -
+https://www.freesound.org/s/263008/
 - - -
 
 ***
