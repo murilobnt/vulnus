@@ -56,6 +56,8 @@ AliveEntity::AliveEntity(int x, int y, float health, float speed, sf::Texture co
 	this->spriteInitY = spriteInitY;
 	this->spriteEndY = spriteEndY;
 
+	this->quad = 0;
+
 	setSprite(texture);
 	configureSpriteRect(spriteX, spriteY, spriteW, spriteH);
 	setAnimationFramerate(10);
@@ -109,4 +111,14 @@ void AliveEntity::setSpritePosition(float x, float y){
 
 float AliveEntity::getHealth(){
 	return this->health;
+}
+
+void AliveEntity::updateQuad(int newQuad){
+	if(quad != newQuad){
+		quad = newQuad;
+	}
+}
+
+int AliveEntity::getQuad(){
+	return this->quad;
 }

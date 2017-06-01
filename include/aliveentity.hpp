@@ -17,6 +17,8 @@ private:
 	sf::Time spriteAnimationFramerate;
 
 protected:
+	int quad;
+
 	// The sprite of the entity
 	sf::Sprite sprite;
 
@@ -173,6 +175,10 @@ public:
 	void setSpritePosition(float x, float y);
 
 	float getHealth();
+
+	void updateQuad(int newQuad);
+
+	int getQuad();
 };
 
 #endif

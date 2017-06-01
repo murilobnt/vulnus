@@ -9,14 +9,14 @@
 #include "tile.hpp"
 #include "player.hpp"
 #include "bullet.hpp"
-#include "grid.hpp"
+#include "tilegrid.hpp"
 #include "aliveentity.hpp"
 
 class TileSet{
 private:
   // The set of tiles
   std::vector<Tile> tileSet;
-  Grid grid;
+  TileGrid grid;
 
 public:
   /**

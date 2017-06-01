@@ -6,6 +6,7 @@
 
 // # Internal
 #include "tileset.hpp"
+#include "dynamicgrid.hpp"
 
 class TileMap : public sf::Drawable, public sf::Transformable {
 private:
@@ -57,6 +58,8 @@ public:
    * @return the size of the level
    */
   sf::Vector2u getLevelSize();
+
+  DynamicGrid generateDynaGrid();
 };
 
 #endif

@@ -73,3 +73,7 @@ TileSet TileMap::getTiles(){
 sf::Vector2u TileMap::getLevelSize(){
   return sf::Vector2u(this->levelWidth, this->levelHeight);
 }
+
+DynamicGrid TileMap::generateDynaGrid(){
+  return DynamicGrid(levelWidth, levelHeight, 150);
+}

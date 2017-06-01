@@ -33,6 +33,7 @@ theTiles(0, 0, 64)
 	playerHealth.setFillColor( sf::Color::Red );
 
 	changeLevel();
+	this->dynaGrid = level.generateDynamicGrid();
 }
 
 void Game::gameStart(){
@@ -71,6 +72,8 @@ void Game::updateLogic(){
 	moveNStopPlayer();
 	applyGravityOnEntities();
 
+	updateDynaGrid();
+
 	refreshBackgroundPos();
 	moveBullets();
 	controlCamera();
@@ -98,9 +101,11 @@ void Game::moveNStopPlayer(){
 		(*it).moveEnemy(player.getSprite().getPosition());
 		theTiles.verifyEntityCollision(&(*(it)));
 		(*it).moveEntity();
-		if((*it).getSprite().getGlobalBounds().intersects(player.getSprite().getGlobalBounds()) && !player.getInvulnerability()){
-			player.receiveDamage((*it).getDamage());
-			playerGetHit.play();
+		if(player.getQuad() == (*it).getQuad()){
+			if((*it).getSprite().getGlobalBounds().intersects(player.getSprite().getGlobalBounds()) && !player.getInvulnerability()){
+				player.receiveDamage((*it).getDamage());
+				playerGetHit.play();
+			}
 		}
 	}
 }
@@ -205,5 +210,12 @@ void Game::handleTimeActions(){
 
 	while(this->timeHandler.timeToUpdatePlayerSound() && player.moving && !player.getIsJumping()){
 		playerStep.play();
+	}
+}
+
+void Game::updateDynaGrid(){
+	player.updateQuad(dynaGrid.getQuad(player.getSprite().getPosition()));
+	for(std::vector<Enemy>::iterator it = currentEnemies->begin(); it != currentEnemies->end(); ++it){
+		(*it).updateQuad(dynaGrid.getQuad((*it).getSprite().getPosition()));
 	}
 }

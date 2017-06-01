@@ -84,3 +84,7 @@ void Level::drawEnemies(sf::RenderTarget& target){
 std::vector<Enemy>* Level::getEnemies(){
 	return &this->enemies;
 }
+
+DynamicGrid Level::generateDynamicGrid(){
+	return this->tileMap.generateDynaGrid();
+}

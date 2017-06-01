@@ -8,6 +8,7 @@
 // # Internal
 #include "enemy.hpp"
 #include "tilemap.hpp"
+#include "dynamicgrid.hpp"
 
 class Level{
 private:
@@ -21,6 +22,7 @@ public:
 	void loadLevel(int id, sf::Texture const& enemiesTexture);
 	void drawEnemies(sf::RenderTarget& target);
 	std::vector<Enemy>* getEnemies();
+	DynamicGrid generateDynamicGrid();
 };
 
 #endif

@@ -1,6 +1,6 @@
-#include "grid.hpp"
+#include "tilegrid.hpp"
 
-sf::Vector2i Grid::checkCondition(sf::Vector2i before){
+sf::Vector2i TileGrid::checkCondition(sf::Vector2i before){
   if(before.x < 0){
     before.x = 0;
   }
@@ -20,23 +20,15 @@ sf::Vector2i Grid::checkCondition(sf::Vector2i before){
   return before;
 }
 
-Grid::Grid(int w, int h, int unitySize){
-  this->w = w;
-  this->h = h;
-
-  this->xCells = ceil((float)w / unitySize);
-  this->yCells = ceil((float)h / unitySize);
-
-  this->unitySize = unitySize;
-
+TileGrid::TileGrid(int w, int h, int unitySize) : AbstractGrid::AbstractGrid(w, h, unitySize){
   this->unities.resize(this->xCells * this->yCells);
 }
 
-Unity* Grid::getUnity(int x, int y){
+Unity* TileGrid::getUnity(int x, int y){
   return &this->unities[x + y * xCells];
 }
 
-void Grid::addTile(Tile tile){
+void TileGrid::addTile(Tile tile){
   int tileX = tile.getPositionX();
   int tileY = tile.getPositionY();
 
@@ -65,7 +57,7 @@ void Grid::addTile(Tile tile){
   }
 }
 
-std::vector<Unity> Grid::getUnitiesOnPosition(sf::Vector2f playerUpperLeft){
+std::vector<Unity> TileGrid::getUnitiesOnPosition(sf::Vector2f playerUpperLeft){
   std::vector<Unity> adjacent;
 
   sf::Vector2i ul = sf::Vector2i((int) playerUpperLeft.x/unitySize, (int) playerUpperLeft.y/unitySize);

@@ -19,6 +19,7 @@
 #include "eventhandler.hpp"
 #include "enemy.hpp"
 #include "timehandler.hpp"
+#include "dynamicgrid.hpp"
 
 class Game{
 
@@ -72,6 +73,8 @@ private:
 	sf::Music playerGetHit;
 
 	sf::RectangleShape playerHealth;
+
+	DynamicGrid dynaGrid;
 
 	// Cutscene
 	Cutscene cutscene;
@@ -176,6 +179,8 @@ public:
 	void updatePlayerHealth();
 
 	void handleTimeActions();
+
+	void updateDynaGrid();
 };
 
 #endif
