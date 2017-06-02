@@ -13,5 +13,5 @@ int DynamicGrid::getQuad(sf::Vector2f position){
 }
 
 int DynamicGrid::getQuad(int x, int y){
-	return x + y * xCells;
+	return (x/unitySize) + (y/unitySize) * xCells;
 }
