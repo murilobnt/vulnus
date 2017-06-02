@@ -18,7 +18,6 @@ void TileSet::verifyEntityCollision(AliveEntity* player){
 
     for(std::vector<Tile>::iterator it = unity.tiles.begin(); it != unity.tiles.end(); ++it){
       sf::FloatRect tileRect = (*it).getTileRect();
-
       if(tileRect.intersects(playerSprite.getGlobalBounds())){
         if(playerMovement.x > 0.f){
           sf::Vector2f playerAuxPosXRight(playerPosition.x + 32 + playerMovement.x, playerPosition.y + 4);

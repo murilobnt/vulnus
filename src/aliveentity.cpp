@@ -32,10 +32,6 @@ void AliveEntity::setSpritePosition(sf::Vector2f position){
 	this->sprite.setPosition(position);
 }
 
-void AliveEntity::moveEntity(sf::Vector2f movement){
-	this->sprite.move(movement);
-}
-
 AliveEntity::AliveEntity(int x, int y, float health, float speed, sf::Texture const& texture,
 	                       int spriteX, int spriteY, int spriteW, int spriteH,
 											   float entityGravity, int spriteInitX, int spriteEndX, int spriteInitY, int spriteEndY){
@@ -66,6 +62,11 @@ AliveEntity::AliveEntity(int x, int y, float health, float speed, sf::Texture co
 
 void AliveEntity::moveEntity(){
 	this->sprite.move(movement);
+}
+
+void AliveEntity::moveEntity(DynamicGrid dynaGrid){
+	this->sprite.move(movement);
+	updateQuad(dynaGrid.getQuad(sprite.getPosition()));
 }
 
 sf::Vector2f AliveEntity::getMovement(){

@@ -2,10 +2,12 @@
 #define _COLLISIONHANDLER_HPP_
 
 #include <vector>
+#include <iostream>
 
 #include "player.hpp"
 #include "enemy.hpp"
 #include "dynamicgrid.hpp"
+#include "collision.h"
 
 class CollisionHandler{
 private:

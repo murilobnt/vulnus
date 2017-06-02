@@ -179,8 +179,6 @@ public:
 	void updatePlayerHealth();
 
 	void handleTimeActions();
-
-	void updateDynaGrid();
 };
 
 #endif

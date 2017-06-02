@@ -118,11 +118,6 @@ public:
 	void applyPlayerAnimation();
 
 	/**
-	 * Check the position of the player and handle the case the player stands on x = *.5
-	 */
-	void checkHalfOne();
-
-	/**
 	 * Move all the bullets and delete them, if it's the case.
 	 */
 	void moveNDeleteBullets();

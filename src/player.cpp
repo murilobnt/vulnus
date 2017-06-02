@@ -155,15 +155,6 @@ void Player::applyPlayerAnimation(){
 	}
 }
 
-void Player::checkHalfOne(){
-	float half = fmod(this->getSprite().getPosition().x, 0.5);
-	float full = fmod(this->getSprite().getPosition().x, 1.0);
-
-	if((half > 0 && half < 0.1) && full != 0){
-		moveEntity(sf::Vector2f(0.2, 0.0));
-	}
-}
-
 std::vector<Bullet> Player::getTheBullets(){
 	return this->theBullets;
 }

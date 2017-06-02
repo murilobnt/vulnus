@@ -11,6 +11,7 @@
 #include "bullet.hpp"
 #include "tilegrid.hpp"
 #include "aliveentity.hpp"
+#include "collision.h"
 
 class TileSet{
 private:

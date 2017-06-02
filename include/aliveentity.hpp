@@ -7,6 +7,7 @@
 
 // # Internal
 #include "textureset.hpp"
+#include "dynamicgrid.hpp"
 
 class AliveEntity{
 private:
@@ -85,8 +86,6 @@ protected:
 	 */
 	void setSpritePosition(sf::Vector2f position);
 
-	void moveEntity(sf::Vector2f movement);
-
 public:
 	sf::Time framerateUp;
 	
@@ -113,6 +112,8 @@ public:
 	 * Move this entity.
 	 */
 	void moveEntity();
+
+	void moveEntity(DynamicGrid dynaGrid);
 
 	/**
 	 * Get the movement of this entity.

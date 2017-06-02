@@ -3,7 +3,7 @@
 Game::Game(int gameWidth, int gameHeight, std::string gameTitle) :
 gameScreen(sf::VideoMode(gameWidth, gameHeight), gameTitle),
 gameCamera(0.f, 0.f, 320.f, 240.f, 2.0),
-aliveTexture("images/aliveentities.png", 128, 64),
+aliveTexture("images/aliveentities.png", 128, 64, false, true),
 backgroundTexture("images/background3.png", 100, 100, true),
 cutsceneTexture("images/rcutscene.png", 416, 96),
 cutscene(0, *cutsceneTexture.getTexture(), true),
@@ -64,9 +64,7 @@ void Game::updateLogic(){
 	
 	moveNStopPlayer();
 	applyGravityOnEntities();
-
-	updateDynaGrid();
-
+	
 	refreshBackgroundPos();
 	moveBullets();
 	controlCamera();
@@ -88,12 +86,12 @@ void Game::moveNStopPlayer(){
 	player.movePlayer();
 	theTiles.verifyEntityCollision(&player);
 	theTiles.verifyBulletCollision(player.getTheBulletsObject());
-	player.moveEntity();
+	player.moveEntity(dynaGrid);
 
 	for(std::vector<Enemy>::iterator it = currentEnemies->begin(); it != currentEnemies->end(); ++it){
 		(*it).moveEnemy(player.getSprite().getPosition());
 		theTiles.verifyEntityCollision(&(*(it)));
-		(*it).moveEntity();
+		(*it).moveEntity(dynaGrid);
 
 		if(colHandler.collisionBetweenPAndE(player, (*it))){
 			player.receiveDamage((*it).getDamage());
@@ -202,12 +200,5 @@ void Game::handleTimeActions(){
 
 	while(this->timeHandler.timeToUpdatePlayerSound() && player.moving && !player.getIsJumping()){
 		soundTable.playSound(2);
-	}
-}
-
-void Game::updateDynaGrid(){
-	player.updateQuad(dynaGrid.getQuad(player.getSprite().getPosition()));
-	for(std::vector<Enemy>::iterator it = currentEnemies->begin(); it != currentEnemies->end(); ++it){
-		(*it).updateQuad(dynaGrid.getQuad((*it).getSprite().getPosition()));
 	}
 }

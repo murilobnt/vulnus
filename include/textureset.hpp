@@ -5,6 +5,8 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 
+#include "collision.h"
+
 class TextureSet{
 private:
 	// The texture
@@ -31,7 +33,7 @@ public:
 	 * @param w the width of the texture
 	 * @param h the height of the texture
 	 */
-	TextureSet(std::string pathToImage, int w, int h, bool isRepeated = false);
+	TextureSet(std::string pathToImage, int w, int h, bool isRepeated = false, bool hasBitmask = false);
 
 	/**
 	 * Get the texture.

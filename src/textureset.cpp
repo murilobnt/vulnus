@@ -16,11 +16,17 @@ void TextureSet::createTexture(int w, int h){
     }
 }
 
-TextureSet::TextureSet(std::string pathToImage, int w, int h, bool isRepeated){
-	loadTexture(pathToImage);
+TextureSet::TextureSet(std::string pathToImage, int w, int h, bool isRepeated, bool hasBitmask){
+	if(!hasBitmask){
+		loadTexture(pathToImage);
+	} else {
+		Collision::CreateTextureAndBitmask(texture, pathToImage);
+	}
 	createTexture(w, h);
 	this->texture.setRepeated(isRepeated);
 }
+
+
 
 sf::Texture* TextureSet::getTexture(){
 	return &this->texture;
