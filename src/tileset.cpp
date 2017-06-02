@@ -60,10 +60,14 @@ void TileSet::verifyEntityCollision(AliveEntity* player){
 void TileSet::verifyBulletCollision(std::vector<Bullet>* bullets){
   for (uint i = 0; i < bullets->size(); i++) {
     Bullet *cur = &bullets->at(i);
-    for(uint j = 0; j < this->tileSet.size(); j++){
-      sf::FloatRect boundingBox = cur->getBullet().getGlobalBounds();
-      if(this->tileSet[j].getTileRect().intersects(boundingBox)){
-        cur->shouldBeDestroyed(true);
+    std::vector<Unity> unities = grid.getUnitiesOnPosition(cur->getBullet().getPosition());
+    for(std::vector<Unity>::iterator unitiesIt = unities.begin(); unitiesIt != unities.end(); ++unitiesIt){
+    Unity unity = *unitiesIt;
+      for(std::vector<Tile>::iterator it = unity.tiles.begin(); it != unity.tiles.end(); ++it){
+        sf::FloatRect boundingBox = cur->getBullet().getGlobalBounds();
+        if((*it).getTileRect().intersects(boundingBox)){
+          cur->shouldBeDestroyed(true);
+        }
       }
     }
   }

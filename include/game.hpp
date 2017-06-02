@@ -20,6 +20,8 @@
 #include "enemy.hpp"
 #include "timehandler.hpp"
 #include "dynamicgrid.hpp"
+#include "soundtable.hpp"
+#include "collisionhandler.hpp"
 
 class Game{
 
@@ -66,15 +68,13 @@ private:
 	TileSet theTiles;
 
 	// Background music
-	sf::Music bgm;
-
-	sf::Music playerStep;
-
-	sf::Music playerGetHit;
+	SoundTable soundTable;
 
 	sf::RectangleShape playerHealth;
 
 	DynamicGrid dynaGrid;
+
+	CollisionHandler colHandler;
 
 	// Cutscene
 	Cutscene cutscene;

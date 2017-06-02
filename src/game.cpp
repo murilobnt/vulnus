@@ -13,14 +13,6 @@ eventhandler(&player, &cutscene),
 playerHealth(sf::Vector2f(player.getHealth(), 20.f)),
 theTiles(0, 0, 64)
 {
-	bgm.openFromFile("sounds/happy8bitloop.wav");
-	bgm.setLoop(true);
-
-	playerStep.openFromFile("sounds/footstep.ogg");
-	playerStep.setVolume(60);
-
-	playerGetHit.openFromFile("sounds/metallichit.wav");
-
 	backgroundSprite.setTexture(*backgroundTexture.getTexture());
 	backgroundSprite.setPosition(sf::Vector2f(0,0));
 	backgroundSprite.setTextureRect(sf::IntRect(0, 0, 1400, 1000));
@@ -34,10 +26,11 @@ theTiles(0, 0, 64)
 
 	changeLevel();
 	this->dynaGrid = level.generateDynamicGrid();
+	this->colHandler = CollisionHandler(dynaGrid);
 }
 
 void Game::gameStart(){
-	bgm.play();
+	soundTable.playSound(1);
 	controlCamera();
 
 	theTiles = level.getTileMap().getTiles();
@@ -94,18 +87,17 @@ void Game::applyPlayerAnimation(){
 void Game::moveNStopPlayer(){
 	player.movePlayer();
 	theTiles.verifyEntityCollision(&player);
-	//theTiles.verifyBulletCollision(player.getTheBulletsObject());
+	theTiles.verifyBulletCollision(player.getTheBulletsObject());
 	player.moveEntity();
 
 	for(std::vector<Enemy>::iterator it = currentEnemies->begin(); it != currentEnemies->end(); ++it){
 		(*it).moveEnemy(player.getSprite().getPosition());
 		theTiles.verifyEntityCollision(&(*(it)));
 		(*it).moveEntity();
-		if(player.getQuad() == (*it).getQuad()){
-			if((*it).getSprite().getGlobalBounds().intersects(player.getSprite().getGlobalBounds()) && !player.getInvulnerability()){
-				player.receiveDamage((*it).getDamage());
-				playerGetHit.play();
-			}
+
+		if(colHandler.collisionBetweenPAndE(player, (*it))){
+			player.receiveDamage((*it).getDamage());
+			soundTable.playSound(3);	
 		}
 	}
 }
@@ -209,7 +201,7 @@ void Game::handleTimeActions(){
 	}
 
 	while(this->timeHandler.timeToUpdatePlayerSound() && player.moving && !player.getIsJumping()){
-		playerStep.play();
+		soundTable.playSound(2);
 	}
 }
 
