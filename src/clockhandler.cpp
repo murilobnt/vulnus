@@ -1,12 +1,13 @@
 #include "clockhandler.hpp"
 
-ClockHandler::ClockHandler() :
+ClockHandler::ClockHandler(GenericTimeHandler* entityComboDelimeter) :
 gameFrequency(sf::seconds(1.f / 60.f)),
 playerAnimation(sf::seconds(1.f / 10.f)),
 playerSound(sf::seconds(1.f / 5.f)),
 playerInvulnerability(sf::seconds(2)),
-playerInvulnerabilityAnimation(sf::seconds(1.f / 15.f))
-{ }
+playerInvulnerabilityAnimation(sf::seconds(1.f / 15.f)) {
+	this->entityComboDelimeter = entityComboDelimeter;
+}
 
 void ClockHandler::restartClock(){
 	this->elapsedTime = this->clock.restart();
@@ -21,6 +22,10 @@ void ClockHandler::restartTimeHandlers(){
 void ClockHandler::restartInvulnTimeHandlers(){
 	playerInvulnerability.restart(this->elapsedTime);
 	playerInvulnerabilityAnimation.restart(this->elapsedTime);
+}
+
+void ClockHandler::restartComboTimeHandlers(){
+	entityComboDelimeter->restart(this->elapsedTime);
 }
 
 GenericTimeHandler* ClockHandler::getHandler(TimeHandlers id){
@@ -39,6 +44,9 @@ GenericTimeHandler* ClockHandler::getHandler(TimeHandlers id){
 		break;
 		case PLAYERINVULNANIM:
 		return &playerInvulnerabilityAnimation;
+		break;
+		case ENTITYCOMBO:
+		return entityComboDelimeter;
 		break;
 		default:
 		return &gameFrequency;

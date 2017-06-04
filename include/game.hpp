@@ -94,6 +94,7 @@ private:
 	GenericTimeHandler* playerSound;
 	GenericTimeHandler* playerInvulnerability;
 	GenericTimeHandler* playerInvulnerabilityAnimation;
+	GenericTimeHandler* entityComboDelimeter;
 
 public:
 	/**

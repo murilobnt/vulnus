@@ -8,6 +8,8 @@
 // # Internal
 #include "textureset.hpp"
 #include "dynamicgrid.hpp"
+#include "inttostring.hpp"
+#include "generictimehandler.hpp"
 
 class AliveEntity{
 private:
@@ -17,8 +19,15 @@ private:
 	// The framerate of the animation
 	sf::Time spriteAnimationFramerate;
 
-protected:
+	sf::Font font;
+
 	sf::Text damageOutput;
+	float comboDamage;
+
+	bool onCombo;
+
+	GenericTimeHandler entityComboDelimeter;
+protected:
 
 	int quad;
 
@@ -89,7 +98,6 @@ protected:
 	void setSpritePosition(sf::Vector2f position);
 
 public:
-	sf::Time framerateUp;
 	
 	/**
 	 * Get the sprite.
@@ -147,12 +155,6 @@ public:
 	void setAnimationFramerate(float fps);
 
 	/**
-	 * Get the framerate of the animation.
-	 * @return the animation framerate
-	 */
-	sf::Time getAnimationFramerate();
-
-	/**
 	 * Check if the player is jumping or not.
 	 * @return if the player is jumping or not
 	 */
@@ -181,7 +183,17 @@ public:
 
 	void updateQuad(int newQuad);
 
+	void updateDamageText();
+
+	sf::Text getDamageOutput();
+
 	int getQuad();
+
+	void cccomboBreak();
+
+	bool getOnCombo();
+
+	GenericTimeHandler* getEntityComboDelimeter();
 };
 
 #endif

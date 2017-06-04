@@ -9,6 +9,11 @@ void AliveEntity::increaseSpeed(float modifier){
 }
 
 void AliveEntity::decreaseHealth(float modifier){
+	this->onCombo = true;
+	this->entityComboDelimeter.resetLastUpdate();
+	
+	this->comboDamage += modifier;
+	this->damageOutput.setString(IntToString::IntToString((int) - comboDamage));
 	this->health -= modifier;
 }
 
@@ -34,7 +39,7 @@ void AliveEntity::setSpritePosition(sf::Vector2f position){
 
 AliveEntity::AliveEntity(int x, int y, float health, float speed, sf::Texture const& texture,
 	                       int spriteX, int spriteY, int spriteW, int spriteH,
-											   float entityGravity, int spriteInitX, int spriteEndX, int spriteInitY, int spriteEndY){
+											   float entityGravity, int spriteInitX, int spriteEndX, int spriteInitY, int spriteEndY) : entityComboDelimeter(sf::seconds(3)){
 	this->movement = sf::Vector2f(0.f, 0.f);
 	this->sprite.setPosition(x, y);
 
@@ -56,8 +61,16 @@ AliveEntity::AliveEntity(int x, int y, float health, float speed, sf::Texture co
 
 	setSprite(texture);
 	configureSpriteRect(spriteX, spriteY, spriteW, spriteH);
-	setAnimationFramerate(10);
-	this->framerateUp = sf::seconds(1.f / 10.f);
+
+	this->font.loadFromFile("fonts/Ubuntu-C.tff");
+	this->comboDamage = 0;
+
+	this->damageOutput = sf::Text(std::string("-0"), font);
+
+	this->damageOutput.setCharacterSize(20);
+   	this->damageOutput.setColor(sf::Color::Red);
+
+	this->onCombo = false;
 }
 
 void AliveEntity::moveEntity(){
@@ -84,14 +97,6 @@ void AliveEntity::setMovementY(float y){
 void AliveEntity::applyGravity(){
 	if (this->movement.y < 6)
 		this->movement.y += entityGravity;
-}
-
-void AliveEntity::setAnimationFramerate(float fps){
-	this->spriteAnimationFramerate = sf::seconds(1.f/fps);
-}
-
-sf::Time AliveEntity::getAnimationFramerate(){
-	return this->spriteAnimationFramerate;
 }
 
 bool AliveEntity::getIsJumping(){
@@ -122,4 +127,25 @@ void AliveEntity::updateQuad(int newQuad){
 
 int AliveEntity::getQuad(){
 	return this->quad;
+}
+
+void AliveEntity::updateDamageText(){
+	this->damageOutput.setPosition(this->sprite.getPosition().x + this->sprite.getLocalBounds().width/2 - this->damageOutput.getLocalBounds().width/2, this->sprite.getPosition().y - 32);
+}
+
+sf::Text AliveEntity::getDamageOutput(){
+	return this->damageOutput;
+}
+
+void AliveEntity::cccomboBreak(){
+	this->onCombo = false;
+	this->comboDamage = 0;
+}
+
+bool AliveEntity::getOnCombo(){
+	return this->onCombo;
+}
+
+GenericTimeHandler* AliveEntity::getEntityComboDelimeter(){
+	return &this->entityComboDelimeter;
 }

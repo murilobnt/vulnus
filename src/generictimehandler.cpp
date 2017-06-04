@@ -20,3 +20,7 @@ bool GenericTimeHandler::timeToUpdate(){
 	}
 	return false;
 }
+
+void GenericTimeHandler::resetLastUpdate(){
+	this->lastUpdate = sf::Time::Zero;
+}

@@ -11,13 +11,15 @@ level(1, *aliveTexture.getTexture()),
 player(100.f, 2, *aliveTexture.getTexture(), 32, 0, 32, 32, 0.2, 0, 32, 0, 32),
 eventhandler(&player, &cutscene),
 playerHealth(sf::Vector2f(player.getHealth(), 20.f)),
-theTiles(0, 0, 64)
+theTiles(0, 0, 64),
+clockHandler(player.getEntityComboDelimeter())
 {
 	gameFrequency = this->clockHandler.getHandler(GAMEFREQ);
 	playerAnimation = this->clockHandler.getHandler(PLAYERANIM);
 	playerSound = this->clockHandler.getHandler(PLAYERSOUND);
 	playerInvulnerability = this->clockHandler.getHandler(PLAYERINVULN);
 	playerInvulnerabilityAnimation = this->clockHandler.getHandler(PLAYERINVULNANIM);
+	entityComboDelimeter = this->clockHandler.getHandler(ENTITYCOMBO);
 
 	backgroundSprite.setTexture(*backgroundTexture.getTexture());
 	backgroundSprite.setPosition(sf::Vector2f(0,0));
@@ -52,6 +54,10 @@ void Game::gameStart(){
 		if(this->player.getInvulnerability()){
 			this->clockHandler.restartInvulnTimeHandlers();
 		}
+
+		if(this->player.getOnCombo()){
+			this->clockHandler.restartComboTimeHandlers();
+		}
 	}
 }
 
@@ -72,6 +78,7 @@ void Game::updateLogic(){
 	applyGravityOnEntities();
 	
 	refreshBackgroundPos();
+	this->player.updateDamageText();
 	moveBullets();
 	controlCamera();
 	restrictPlayerMovement();
@@ -128,6 +135,10 @@ void Game::clearNDraw(){
 		}
 	} else {
 		this->gameScreen.draw(player.getSprite());
+	}
+
+	if(this->player.getOnCombo()){
+		this->gameScreen.draw(this->player.getDamageOutput());
 	}
 
 	drawBullets();
@@ -202,6 +213,10 @@ void Game::handleTimeActions(){
 
 	if(playerInvulnerability->timeToUpdate()){
 		this->player.setInvulnerability(false);
+	}
+
+	if(entityComboDelimeter->timeToUpdate()){
+		this->player.cccomboBreak();
 	}
 
 	while(playerSound->timeToUpdate() && player.moving && !player.getIsJumping()){
