@@ -3,6 +3,7 @@
 
 // # External
 #include <string>
+#include <iostream>
 #include <SFML/Graphics.hpp>
 
 // # Internal
@@ -10,6 +11,7 @@
 #include "dynamicgrid.hpp"
 #include "inttostring.hpp"
 #include "generictimehandler.hpp"
+#include "fontloader.hpp"
 
 class AliveEntity{
 private:
@@ -22,11 +24,14 @@ private:
 	sf::Font font;
 
 	sf::Text damageOutput;
+	
 	float comboDamage;
 
 	bool onCombo;
 
 	GenericTimeHandler entityComboDelimeter;
+
+	bool teste;
 protected:
 
 	int quad;
@@ -98,6 +103,8 @@ protected:
 	void setSpritePosition(sf::Vector2f position);
 
 public:
+
+	void init();
 	
 	/**
 	 * Get the sprite.

@@ -16,15 +16,24 @@ void Enemy::moveEnemy(sf::Vector2f playerPosition){
 		}
 
 		if(playerPosition.x < myPosition.x - 1){
-			this->movement.x = -(speed);
 			facingRight = false;
 			movingLeft = true;
 			movingRight = false;
+			if(this->movement.x > -(speed)){
+				this->movement.x -= 0.2;
+			} else {
+				this->movement.x = -(speed);
+			}
 		} else if(playerPosition.x > myPosition.x + 1){
 			facingRight = true;
 			movingLeft = false;
 			movingRight = true;
-			this->movement.x = speed;
+
+			if(this->movement.x < speed){
+				this->movement.x += 0.2;
+			} else{
+				this->movement.x = speed;
+			}
 		} else {
 			stopEnemy();
 		}
@@ -105,4 +114,22 @@ float Enemy::getDamage(){
 
 void Enemy::setDamage(float damage){
 	this->damage = damage;
+}
+
+void Enemy::receiveDamage(float damage){
+	this->reactToDamage(0);
+	this->decreaseHealth(damage);
+}
+
+void Enemy::reactToDamage(float modifier){
+	if(this->facingRight){
+		this->movement.x = -1;
+	} else {
+		this->movement.x = 1;
+	}
+
+	if(!isJumping){
+		this->movement.y = -modifier;
+		isJumping = true;
+	}
 }

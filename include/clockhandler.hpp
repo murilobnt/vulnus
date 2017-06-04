@@ -15,15 +15,14 @@ class ClockHandler{
 	GenericTimeHandler playerSound;
 	GenericTimeHandler playerInvulnerability;
 	GenericTimeHandler playerInvulnerabilityAnimation;
-	GenericTimeHandler* entityComboDelimeter;
 
 public:
-	ClockHandler(GenericTimeHandler* entityComboDelimeter);
+	ClockHandler();
 
 	void restartClock();
 	void restartTimeHandlers();
 	void restartInvulnTimeHandlers();
-	void restartComboTimeHandlers();
+	void restartComboTimeHandlers(GenericTimeHandler* entityComboDelimeter);
 
 	GenericTimeHandler* getHandler(TimeHandlers id);
 };

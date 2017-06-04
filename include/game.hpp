@@ -96,6 +96,8 @@ private:
 	GenericTimeHandler* playerInvulnerabilityAnimation;
 	GenericTimeHandler* entityComboDelimeter;
 
+	std::vector<Bullet>* playerBulletsRef;
+
 public:
 	/**
 	 * Constructor.

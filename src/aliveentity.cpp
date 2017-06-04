@@ -13,7 +13,17 @@ void AliveEntity::decreaseHealth(float modifier){
 	this->entityComboDelimeter.resetLastUpdate();
 	
 	this->comboDamage += modifier;
+
 	this->damageOutput.setString(IntToString::IntToString((int) - comboDamage));
+
+	/*if(this->teste){
+		std::cout << "Reached here" << std::endl;
+		this->damageOutput.setString(IntToString::IntToString((int) - comboDamage));
+	} else {
+		this->damageOutput = sf::Text(IntToString::IntToString((int) - comboDamage), font);
+		this->teste = !this->teste;
+	}*/
+
 	this->health -= modifier;
 }
 
@@ -37,9 +47,17 @@ void AliveEntity::setSpritePosition(sf::Vector2f position){
 	this->sprite.setPosition(position);
 }
 
+void AliveEntity::init(){
+	this->damageOutput = sf::Text(std::string("-0"), font);
+
+	this->damageOutput.setCharacterSize(20);
+   	this->damageOutput.setColor(sf::Color::Red);
+}
+
 AliveEntity::AliveEntity(int x, int y, float health, float speed, sf::Texture const& texture,
 	                       int spriteX, int spriteY, int spriteW, int spriteH,
-											   float entityGravity, int spriteInitX, int spriteEndX, int spriteInitY, int spriteEndY) : entityComboDelimeter(sf::seconds(3)){
+											   float entityGravity, int spriteInitX, int spriteEndX, int spriteInitY, int spriteEndY) : 
+entityComboDelimeter(sf::seconds(3)) {
 	this->movement = sf::Vector2f(0.f, 0.f);
 	this->sprite.setPosition(x, y);
 
@@ -59,16 +77,13 @@ AliveEntity::AliveEntity(int x, int y, float health, float speed, sf::Texture co
 
 	this->quad = 0;
 
+	this->teste = false;
+
 	setSprite(texture);
 	configureSpriteRect(spriteX, spriteY, spriteW, spriteH);
 
 	this->font.loadFromFile("fonts/Ubuntu-C.tff");
 	this->comboDamage = 0;
-
-	this->damageOutput = sf::Text(std::string("-0"), font);
-
-	this->damageOutput.setCharacterSize(20);
-   	this->damageOutput.setColor(sf::Color::Red);
 
 	this->onCombo = false;
 }

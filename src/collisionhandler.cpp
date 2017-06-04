@@ -16,3 +16,11 @@ bool CollisionHandler::collisionBetweenPAndE(Player player, Enemy enemy){
 	}
 	return false;
 }
+
+bool CollisionHandler::collisionBetweenBAndE(Bullet bullet, Enemy enemy){
+	if(bullet.getBullet().getGlobalBounds().intersects(enemy.getSprite().getGlobalBounds())){
+		return true;
+	}
+	
+	return false;
+}

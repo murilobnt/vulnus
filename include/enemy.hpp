@@ -25,6 +25,8 @@ public:
 
   float getDamage();
   void setDamage(float damage);
+  void receiveDamage(float damage);
+  void reactToDamage(float modifier);
 };
 
 #endif
