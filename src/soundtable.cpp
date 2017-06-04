@@ -5,7 +5,7 @@ SoundTable::SoundTable(){
 	bgm.setLoop(true);
 
 	playerStep.openFromFile("sounds/footstep.ogg");
-	playerStep.setVolume(60);
+	playerStep.setVolume(30);
 
 	playerGetHit.openFromFile("sounds/metallichit.wav");
 }

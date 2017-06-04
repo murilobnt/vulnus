@@ -13,6 +13,12 @@ eventhandler(&player, &cutscene),
 playerHealth(sf::Vector2f(player.getHealth(), 20.f)),
 theTiles(0, 0, 64)
 {
+	gameFrequency = this->clockHandler.getHandler(GAMEFREQ);
+	playerAnimation = this->clockHandler.getHandler(PLAYERANIM);
+	playerSound = this->clockHandler.getHandler(PLAYERSOUND);
+	playerInvulnerability = this->clockHandler.getHandler(PLAYERINVULN);
+	playerInvulnerabilityAnimation = this->clockHandler.getHandler(PLAYERINVULNANIM);
+
 	backgroundSprite.setTexture(*backgroundTexture.getTexture());
 	backgroundSprite.setPosition(sf::Vector2f(0,0));
 	backgroundSprite.setTextureRect(sf::IntRect(0, 0, 1400, 1000));
@@ -40,11 +46,11 @@ void Game::gameStart(){
 		handleTimeActions();
 		clearNDraw();
 
-		this->timeHandler.restartClock();
-		this->timeHandler.restartTime();
+		this->clockHandler.restartClock();
+		this->clockHandler.restartTimeHandlers();
 
 		if(this->player.getInvulnerability()){
-			this->timeHandler.restartInvulnTime();
+			this->clockHandler.restartInvulnTimeHandlers();
 		}
 	}
 }
@@ -117,7 +123,7 @@ void Game::clearNDraw(){
 	this->level.drawEnemies(this->gameScreen);
 	
 	if(this->player.getInvulnerability()){
-		while(this->timeHandler.timeToBlinkPlayer()){
+		while(playerInvulnerabilityAnimation->timeToUpdate()){
 			this->gameScreen.draw(player.getSprite());
 		}
 	} else {
@@ -183,22 +189,22 @@ void Game::updatePlayerHealth(){
 }
 
 void Game::handleTimeActions(){
-	while(this->timeHandler.timeToUpdateGame()){
+	while(gameFrequency->timeToUpdate()){
 		updateLogic();
 	}
 
-	while(this->timeHandler.timeToUpdatePlayerAnimation()){
+	while(playerAnimation->timeToUpdate()){
 		this->player.applyPlayerAnimation();
 		for(std::vector<Enemy>::iterator it = currentEnemies->begin(); it != currentEnemies->end(); ++it){
 			(&(*it))->applyEnemyAnimation();
 		}
 	}
 
-	if(this->timeHandler.timeToEndPlayerInvulnerability()){
+	if(playerInvulnerability->timeToUpdate()){
 		this->player.setInvulnerability(false);
 	}
 
-	while(this->timeHandler.timeToUpdatePlayerSound() && player.moving && !player.getIsJumping()){
+	while(playerSound->timeToUpdate() && player.moving && !player.getIsJumping()){
 		soundTable.playSound(2);
 	}
 }

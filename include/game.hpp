@@ -18,10 +18,12 @@
 #include "cutscene.hpp"
 #include "eventhandler.hpp"
 #include "enemy.hpp"
-#include "timehandler.hpp"
+#include "clockhandler.hpp"
+#include "generictimehandler.hpp"
 #include "dynamicgrid.hpp"
 #include "soundtable.hpp"
 #include "collisionhandler.hpp"
+#include "timehandlers.hpp"
 
 class Game{
 
@@ -85,7 +87,13 @@ private:
 
 	std::vector<Enemy>* currentEnemies;
 
-	TimeHandler timeHandler;
+	ClockHandler clockHandler;
+
+	GenericTimeHandler* gameFrequency;
+	GenericTimeHandler* playerAnimation;
+	GenericTimeHandler* playerSound;
+	GenericTimeHandler* playerInvulnerability;
+	GenericTimeHandler* playerInvulnerabilityAnimation;
 
 public:
 	/**

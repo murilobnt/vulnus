@@ -19,18 +19,8 @@ void Player::levelUp(){
 }
 
 void Player::receiveDamage(float modifier){
-	if(!this->isJumping){
-		this->reactToDamage(4);
-	}
-
-	if(this->facingRight){
-		this->movement.x = -5;
-	} else {
-		this->movement.x = 5;
-	}
-
+	this->reactToDamage(4);
 	this->decreaseHealth(modifier);
-	
 	this->invulnerability = true;
 }
 
@@ -77,13 +67,6 @@ void Player::jump(){
 		isJumping = true;
 	}
 	tryingToJump = true;
-}
-
-void Player::reactToDamage(float modifier){
-	if(!isJumping){
-		this->movement.y = -modifier;
-		isJumping = true;
-	}
 }
 
 void Player::stopJump(){
@@ -206,4 +189,17 @@ bool Player::getInvulnerability(){
 
 void Player::setInvulnerability(bool invulnerability){
 	this->invulnerability = invulnerability;
+}
+
+void Player::reactToDamage(float modifier){
+	if(this->facingRight){
+		this->movement.x = -5;
+	} else {
+		this->movement.x = 5;
+	}
+
+	if(!isJumping){
+		this->movement.y = -modifier;
+		isJumping = true;
+	}
 }

@@ -35,6 +35,8 @@ private:
 	std::vector<Bullet> theBullets;
 
 	bool tryingToJump;
+
+	void reactToDamage(float modifier);
 public:
 	/**
 	 * Constructor.
@@ -89,8 +91,6 @@ public:
 	 * Jump.
 	 */
 	void jump();
-
-	void reactToDamage(float modifier);
 
 	void stopJump();
 

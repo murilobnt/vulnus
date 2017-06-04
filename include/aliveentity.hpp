@@ -18,6 +18,8 @@ private:
 	sf::Time spriteAnimationFramerate;
 
 protected:
+	sf::Text damageOutput;
+
 	int quad;
 
 	// The sprite of the entity
