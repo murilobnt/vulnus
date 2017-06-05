@@ -13,13 +13,13 @@ SoundTable::SoundTable(){
 void SoundTable::playSound(int id){
 	switch(id){
 		case 1:
-			//bgm.play();
+			bgm.play();
 		break;
 		case 2:
-			//playerStep.play();
+			playerStep.play();
 		break;
 		case 3:
-			//playerGetHit.play();
+			playerGetHit.play();
 		break;
 		default:
 		break;
