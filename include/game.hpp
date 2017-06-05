@@ -190,6 +190,8 @@ public:
 	void updatePlayerHealth();
 
 	void handleTimeActions();
+
+	void checkEnemyHealth();
 };
 
 #endif

@@ -33,8 +33,10 @@ theTiles(0, 0, 64)
 	changeLevel();
 
 	player.init();
-	for(std::vector<Enemy>::iterator it = currentEnemies->begin(); it != currentEnemies->end(); ++it){
-		(*it).init();
+	if (!currentEnemies->empty()){
+		for(std::vector<Enemy>::iterator it = currentEnemies->begin(); it != currentEnemies->end(); ++it){
+			(*it).init();
+		}
 	}
 
 	this->dynaGrid = level.generateDynamicGrid();
@@ -65,8 +67,10 @@ void Game::gameStart(){
 			this->clockHandler.restartComboTimeHandlers(this->player.getEntityComboDelimeter());
 		}
 
-		for(std::vector<Enemy>::iterator it = currentEnemies->begin(); it != currentEnemies->end(); ++it){
-			this->clockHandler.restartComboTimeHandlers((*it).getEntityComboDelimeter());
+		if (!currentEnemies->empty()){
+			for(std::vector<Enemy>::iterator it = currentEnemies->begin(); it != currentEnemies->end(); ++it){
+				this->clockHandler.restartComboTimeHandlers((*it).getEntityComboDelimeter());
+			}
 		}
 	}
 }
@@ -83,15 +87,19 @@ void Game::processEvents(){
 
 void Game::updateLogic(){
 	launchCutscene();
-	
+	checkEnemyHealth();
+
 	moveNStopPlayer();
 	applyGravityOnEntities();
 	
 	refreshBackgroundPos();
 	
 	this->player.updateDamageText();
-	for(std::vector<Enemy>::iterator it = currentEnemies->begin(); it != currentEnemies->end(); ++it){
-		(*it).updateDamageText();
+
+	if (!currentEnemies->empty()){
+		for(std::vector<Enemy>::iterator it = currentEnemies->begin(); it != currentEnemies->end(); ++it){
+			(*it).updateDamageText();
+		}
 	}
 
 	moveBullets();
@@ -116,20 +124,22 @@ void Game::moveNStopPlayer(){
 	theTiles.verifyBulletCollision(playerBulletsRef);
 	player.moveEntity(dynaGrid);
 
-	for(std::vector<Enemy>::iterator it = currentEnemies->begin(); it != currentEnemies->end(); ++it){
-		(*it).moveEnemy(player.getSprite().getPosition());
-		theTiles.verifyEntityCollision(&(*(it)));
-		(*it).moveEntity(dynaGrid);
+	if (!currentEnemies->empty()){
+		for(std::vector<Enemy>::iterator it = currentEnemies->begin(); it != currentEnemies->end(); ++it){
+			(*it).moveEnemy(player.getSprite().getPosition());
+			theTiles.verifyEntityCollision(&(*(it)));
+			(*it).moveEntity(dynaGrid);
 
-		if(colHandler.collisionBetweenPAndE(player, (*it))){
-			player.receiveDamage((*it).getDamage());
-			soundTable.playSound(3);	
-		}
+			if(colHandler.collisionBetweenPAndE(player, (*it))){
+				player.receiveDamage((*it).getDamage());
+				soundTable.playSound(3);	
+			}
 
-		for(std::vector<Bullet>::iterator bIt = playerBulletsRef->begin(); bIt != playerBulletsRef->end(); ++bIt){
-			if(colHandler.collisionBetweenBAndE((*bIt), (*it))){
-				(*it).receiveDamage(5);
-				(*bIt).shouldBeDestroyed(true);
+			for(std::vector<Bullet>::iterator bIt = playerBulletsRef->begin(); bIt != playerBulletsRef->end(); ++bIt){
+				if(colHandler.collisionBetweenBAndE((*bIt), (*it))){
+					(*it).receiveDamage(5);
+					(*bIt).shouldBeDestroyed(true);
+				}
 			}
 		}
 	}
@@ -163,9 +173,11 @@ void Game::clearNDraw(){
 		this->gameScreen.draw(this->player.getDamageOutput());
 	}
 
-	for(std::vector<Enemy>::iterator it = currentEnemies->begin(); it != currentEnemies->end(); ++it){
-		if((*it).getOnCombo()){
-			this->gameScreen.draw((*it).getDamageOutput());
+	if (!currentEnemies->empty()){
+		for(std::vector<Enemy>::iterator it = currentEnemies->begin(); it != currentEnemies->end(); ++it){
+			if((*it).getOnCombo()){
+				this->gameScreen.draw((*it).getDamageOutput());
+			}
 		}
 	}
 
@@ -214,8 +226,10 @@ void Game::changeLevel(){
 
 void Game::applyGravityOnEntities(){
 	player.applyGravity();
-	for(std::vector<Enemy>::iterator it = currentEnemies->begin(); it != currentEnemies->end(); ++it){
-		(*it).applyGravity();
+	if (!currentEnemies->empty()){
+		for(std::vector<Enemy>::iterator it = currentEnemies->begin(); it != currentEnemies->end(); ++it){
+			(*it).applyGravity();
+		}
 	}
 }
 
@@ -234,8 +248,10 @@ void Game::handleTimeActions(){
 
 	while(playerAnimation->timeToUpdate()){
 		this->player.applyPlayerAnimation();
-		for(std::vector<Enemy>::iterator it = currentEnemies->begin(); it != currentEnemies->end(); ++it){
-			(&(*it))->applyEnemyAnimation();
+		if (!currentEnemies->empty()){
+			for(std::vector<Enemy>::iterator it = currentEnemies->begin(); it != currentEnemies->end(); ++it){
+				(&(*it))->applyEnemyAnimation();
+			}
 		}
 	}
 
@@ -247,13 +263,25 @@ void Game::handleTimeActions(){
 		this->player.cccomboBreak();
 	}
 
-	for(std::vector<Enemy>::iterator it = currentEnemies->begin(); it != currentEnemies->end(); ++it){
-		if((*it).getEntityComboDelimeter()->timeToUpdate()){
-			(*it).cccomboBreak();
+	if (!currentEnemies->empty()){
+		for(std::vector<Enemy>::iterator it = currentEnemies->begin(); it != currentEnemies->end(); ++it){
+			if((*it).getEntityComboDelimeter()->timeToUpdate()){
+				(*it).cccomboBreak();
+			}
 		}
 	}
 
 	while(playerSound->timeToUpdate() && player.moving && !player.getIsJumping()){
 		soundTable.playSound(2);
+	}
+}
+
+void Game::checkEnemyHealth(){
+	if (!currentEnemies->empty()){
+		for(uint i = 0; i < currentEnemies->size(); i++){
+			if((*currentEnemies)[i].getHealth() <= 0){
+				currentEnemies->erase(this->currentEnemies->begin() +i);
+			}
+		}
 	}
 }

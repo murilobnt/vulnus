@@ -16,14 +16,6 @@ void AliveEntity::decreaseHealth(float modifier){
 
 	this->damageOutput.setString(IntToString::IntToString((int) - comboDamage));
 
-	/*if(this->teste){
-		std::cout << "Reached here" << std::endl;
-		this->damageOutput.setString(IntToString::IntToString((int) - comboDamage));
-	} else {
-		this->damageOutput = sf::Text(IntToString::IntToString((int) - comboDamage), font);
-		this->teste = !this->teste;
-	}*/
-
 	this->health -= modifier;
 }
 
@@ -57,7 +49,7 @@ void AliveEntity::init(){
 AliveEntity::AliveEntity(int x, int y, float health, float speed, sf::Texture const& texture,
 	                       int spriteX, int spriteY, int spriteW, int spriteH,
 											   float entityGravity, int spriteInitX, int spriteEndX, int spriteInitY, int spriteEndY) : 
-entityComboDelimeter(sf::seconds(3)) {
+entityComboDelimeter(sf::seconds(2.5)) {
 	this->movement = sf::Vector2f(0.f, 0.f);
 	this->sprite.setPosition(x, y);
 
@@ -163,4 +155,8 @@ bool AliveEntity::getOnCombo(){
 
 GenericTimeHandler* AliveEntity::getEntityComboDelimeter(){
 	return &this->entityComboDelimeter;
+}
+
+void AliveEntity::setComboDelimeter(int seconds){
+	this->entityComboDelimeter = GenericTimeHandler(sf::seconds(seconds));
 }

@@ -5,6 +5,7 @@ AliveEntity::AliveEntity(x, y, health, speed, texture, spriteX, spriteY, spriteW
 	this->movingRight = false;
 	this->movingLeft = false;
 	this->damage = damage;
+	setComboDelimeter(1);
 }
 
 void Enemy::moveEnemy(sf::Vector2f playerPosition){

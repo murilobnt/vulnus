@@ -26,6 +26,7 @@ void Bullet::shouldBeDestroyed(bool markedForDeath){
     this->markedForDeath = true;
     return;
   }
+  
   if(movingRight){
     if(this->bulletSprite.getPosition().x > this->initialPosition.x + 200){
       this->markedForDeath = true;

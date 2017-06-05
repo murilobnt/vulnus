@@ -102,6 +102,8 @@ protected:
 	 */
 	void setSpritePosition(sf::Vector2f position);
 
+	void setComboDelimeter(int seconds);
+
 public:
 
 	void init();
