@@ -21,18 +21,11 @@ private:
 	// The framerate of the animation
 	sf::Time spriteAnimationFramerate;
 
-	sf::Font font;
-
-	sf::Text damageOutput;
-	
-	float comboDamage;
-
 	bool onCombo;
 
 	GenericTimeHandler entityComboDelimeter;
-
-	bool teste;
 protected:
+	float comboDamage;
 
 	int quad;
 
@@ -105,8 +98,6 @@ protected:
 	void setComboDelimeter(int seconds);
 
 public:
-
-	void init();
 	
 	/**
 	 * Get the sprite.

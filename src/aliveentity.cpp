@@ -11,11 +11,10 @@ void AliveEntity::increaseSpeed(float modifier){
 void AliveEntity::decreaseHealth(float modifier){
 	this->onCombo = true;
 	this->entityComboDelimeter.resetLastUpdate();
-	
+
+	//this->damageOutput.setString(IntToString::IntToString((int) - comboDamage));
+
 	this->comboDamage += modifier;
-
-	this->damageOutput.setString(IntToString::IntToString((int) - comboDamage));
-
 	this->health -= modifier;
 }
 
@@ -37,13 +36,6 @@ sf::Sprite AliveEntity::getSprite(){
 
 void AliveEntity::setSpritePosition(sf::Vector2f position){
 	this->sprite.setPosition(position);
-}
-
-void AliveEntity::init(){
-	this->damageOutput = sf::Text(std::string("-0"), font);
-
-	this->damageOutput.setCharacterSize(20);
-   	this->damageOutput.setColor(sf::Color::Red);
 }
 
 AliveEntity::AliveEntity(int x, int y, float health, float speed, sf::Texture const& texture,
@@ -69,12 +61,9 @@ entityComboDelimeter(sf::seconds(2.5)) {
 
 	this->quad = 0;
 
-	this->teste = false;
-
 	setSprite(texture);
 	configureSpriteRect(spriteX, spriteY, spriteW, spriteH);
 
-	this->font.loadFromFile("fonts/Ubuntu-C.tff");
 	this->comboDamage = 0;
 
 	this->onCombo = false;
@@ -134,14 +123,6 @@ void AliveEntity::updateQuad(int newQuad){
 
 int AliveEntity::getQuad(){
 	return this->quad;
-}
-
-void AliveEntity::updateDamageText(){
-	this->damageOutput.setPosition(this->sprite.getPosition().x + this->sprite.getLocalBounds().width/2 - this->damageOutput.getLocalBounds().width/2, this->sprite.getPosition().y - 32);
-}
-
-sf::Text AliveEntity::getDamageOutput(){
-	return this->damageOutput;
 }
 
 void AliveEntity::cccomboBreak(){

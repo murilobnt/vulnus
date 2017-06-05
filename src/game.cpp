@@ -31,14 +31,6 @@ theTiles(0, 0, 64)
 	playerHealth.setFillColor( sf::Color::Red );
 
 	changeLevel();
-
-	player.init();
-	if (!currentEnemies->empty()){
-		for(std::vector<Enemy>::iterator it = currentEnemies->begin(); it != currentEnemies->end(); ++it){
-			(*it).init();
-		}
-	}
-
 	this->dynaGrid = level.generateDynamicGrid();
 	this->colHandler = CollisionHandler(dynaGrid);
 
@@ -95,13 +87,6 @@ void Game::updateLogic(){
 	refreshBackgroundPos();
 	
 	this->player.updateDamageText();
-
-	if (!currentEnemies->empty()){
-		for(std::vector<Enemy>::iterator it = currentEnemies->begin(); it != currentEnemies->end(); ++it){
-			(*it).updateDamageText();
-		}
-	}
-
 	moveBullets();
 	controlCamera();
 	restrictPlayerMovement();
@@ -170,15 +155,8 @@ void Game::clearNDraw(){
 	}
 
 	if(this->player.getOnCombo()){
-		this->gameScreen.draw(this->player.getDamageOutput());
-	}
-
-	if (!currentEnemies->empty()){
-		for(std::vector<Enemy>::iterator it = currentEnemies->begin(); it != currentEnemies->end(); ++it){
-			if((*it).getOnCombo()){
-				this->gameScreen.draw((*it).getDamageOutput());
-			}
-		}
+		//this->gameScreen.draw(this->player.getDamageOutput());
+		this->player.drawText(this->gameScreen);
 	}
 
 	drawBullets();

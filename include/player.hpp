@@ -37,6 +37,10 @@ private:
 	bool tryingToJump;
 
 	void reactToDamage(float modifier);
+
+	sf::Text damageOutput;
+
+	sf::Font font;
 public:
 	/**
 	 * Constructor.
@@ -143,6 +147,12 @@ public:
 	bool getInvulnerability();
 
 	void setInvulnerability(bool invulnerability);
+
+	void updateDamageText();
+
+	sf::Text getDamageOutput();
+
+	void drawText(sf::RenderTarget& target);
 };
 
 #endif
