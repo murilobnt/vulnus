@@ -148,7 +148,7 @@ void Player::applyPlayerAnimation(){
 	}
 }
 
-std::vector<Bullet> Player::getTheBullets(){
+std::vector<Bullet> Player::getTheBullets() const{
 	return this->theBullets;
 }
 
@@ -193,7 +193,7 @@ void Player::leftMovementControl(bool release){
 	}
 }
 
-bool Player::getInvulnerability(){
+bool Player::getInvulnerability() const{
 	return this->invulnerability;
 }
 
@@ -218,7 +218,7 @@ void Player::updateDamageText(){
 	this->damageOutput.setPosition(this->sprite.getPosition().x + this->sprite.getLocalBounds().width/2 - this->damageOutput.getLocalBounds().width/2, this->sprite.getPosition().y - 32);
 }
 
-sf::Text Player::getDamageOutput(){
+sf::Text Player::getDamageOutput() const{
 	return this->damageOutput;
 }
 

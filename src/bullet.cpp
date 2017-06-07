@@ -13,11 +13,11 @@ void Bullet::moveBullet(){
   this->movingRight ? bulletSprite.move(sf::Vector2f(speed, 0)) : bulletSprite.move(sf::Vector2f(-speed, 0));
 }
 
-sf::Vector2f Bullet::getBulletPosition(){
+sf::Vector2f Bullet::getBulletPosition() const{
   return this->bulletSprite.getPosition();
 }
 
-sf::RectangleShape Bullet::getBullet(){
+sf::RectangleShape Bullet::getBullet() const{
   return this->bulletSprite;
 }
 
@@ -38,6 +38,6 @@ void Bullet::shouldBeDestroyed(bool markedForDeath){
   }
 }
 
-bool Bullet::getMarkedForDeath(){
+bool Bullet::getMarkedForDeath() const{
   return this->markedForDeath;
 }

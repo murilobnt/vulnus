@@ -70,7 +70,7 @@ public:
    * Get the text.
    * @return the text
    */
-  sf::Text getText();
+  sf::Text getText() const;
 
   /**
    * Set the text position to the camera.

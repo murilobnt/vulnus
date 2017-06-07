@@ -103,7 +103,7 @@ public:
 	 * Get the sprite.
 	 * @return this->sprite attribute
 	 */
-	sf::Sprite getSprite();
+	sf::Sprite getSprite() const;
 
 	/**
 	 * Constructor.
@@ -129,7 +129,7 @@ public:
 	 * Get the movement of this entity.
 	 * @return the movement of the entity
 	 */
-	sf::Vector2f getMovement();
+	sf::Vector2f getMovement() const;
 
 	/**
 	 * Set the movement of the entity on the X axis.
@@ -158,7 +158,7 @@ public:
 	 * Check if the player is jumping or not.
 	 * @return if the player is jumping or not
 	 */
-	bool getIsJumping();
+	bool getIsJumping() const;
 
 	/**
 	 * Set the verifier to the jump of the player.
@@ -170,7 +170,7 @@ public:
 	 * Get the total entityGravity of the entity.
 	 * @return the total entityGravity of the entity
 	 */
-	float getGravity();
+	float getGravity() const;
 
 	/**
 	 * Set the position of the sprite.
@@ -179,19 +179,19 @@ public:
 	 */
 	void setSpritePosition(float x, float y);
 
-	float getHealth();
+	float getHealth() const;
 
 	void updateQuad(int newQuad);
 
 	void updateDamageText();
 
-	sf::Text getDamageOutput();
+	sf::Text getDamageOutput() const;
 
-	int getQuad();
+	int getQuad() const;
 
 	void cccomboBreak();
 
-	bool getOnCombo();
+	bool getOnCombo() const;
 
 	GenericTimeHandler* getEntityComboDelimeter();
 };

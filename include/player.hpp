@@ -130,7 +130,7 @@ public:
 	 * Get all the bullets.
 	 * @return all the bullets
 	 */
-	std::vector<Bullet> getTheBullets();
+	std::vector<Bullet> getTheBullets() const;
 
 	void shoot(bool release);
 
@@ -144,13 +144,13 @@ public:
 
 	void leftMovementControl(bool release);
 
-	bool getInvulnerability();
+	bool getInvulnerability() const;
 
 	void setInvulnerability(bool invulnerability);
 
 	void updateDamageText();
 
-	sf::Text getDamageOutput();
+	sf::Text getDamageOutput() const;
 
 	void drawText(sf::RenderTarget& target);
 };

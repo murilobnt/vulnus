@@ -17,13 +17,13 @@ public:
 class TileGrid : public AbstractGrid {
 private:
   std::vector<Unity> unities;
-  sf::Vector2i checkCondition(sf::Vector2i before);
+  sf::Vector2i checkCondition(sf::Vector2i before) const;
 
 public:
   TileGrid(int w, int h, int unitySize);
   Unity* getUnity(int x, int y);
   void addTile(Tile tile);
-  std::vector<Unity> getUnitiesOnPosition(sf::Vector2f playerUpperLeftPos);
+  std::vector<Unity> getUnitiesOnPosition(sf::Vector2f playerUpperLeftPos) const;
 };
 
 #endif

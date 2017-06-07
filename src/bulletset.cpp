@@ -13,6 +13,6 @@ bool BulletSet::hasAtLeastOneBullet(){
   return true;
 }
 
-std::vector<Bullet> BulletSet::getBulletSet(){
+std::vector<Bullet> BulletSet::getBulletSet() const{
   return this->bulletSet;
 }

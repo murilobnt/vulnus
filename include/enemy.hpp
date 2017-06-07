@@ -18,12 +18,12 @@ public:
   void moveEnemy(sf::Vector2f playerPosition);
   void stopEnemy();
   void jump();
-  bool playerIsInRadious(sf::Vector2f myPosition, sf::Vector2f playerPosition);
+  bool playerIsInRadious(sf::Vector2f myPosition, sf::Vector2f playerPosition) const;
   void applyLeftAnimation();
   void applyRightAnimation();
   void applyEnemyAnimation();
 
-  float getDamage();
+  float getDamage() const;
   void setDamage(float damage);
   void receiveDamage(float damage);
   void reactToDamage(float modifier);

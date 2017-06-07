@@ -1,6 +1,6 @@
 #include "tilegrid.hpp"
 
-sf::Vector2i TileGrid::checkCondition(sf::Vector2i before){
+sf::Vector2i TileGrid::checkCondition(sf::Vector2i before) const{
   if(before.x < 0){
     before.x = 0;
   }
@@ -57,7 +57,7 @@ void TileGrid::addTile(Tile tile){
   }
 }
 
-std::vector<Unity> TileGrid::getUnitiesOnPosition(sf::Vector2f playerUpperLeft){
+std::vector<Unity> TileGrid::getUnitiesOnPosition(sf::Vector2f playerUpperLeft) const{
   std::vector<Unity> adjacent;
 
   sf::Vector2i ul = sf::Vector2i((int) playerUpperLeft.x/unitySize, (int) playerUpperLeft.y/unitySize);

@@ -17,8 +17,8 @@ private:
 public:
 	CollisionHandler(DynamicGrid dynaGrid);
 	CollisionHandler();
-	bool collisionBetweenPAndE(Player player, Enemy enemy);
-	bool collisionBetweenBAndE(Bullet bullet, Enemy enemy);
+	bool collisionBetweenPAndE(const Player& player, const Enemy& enemy) const;
+	bool collisionBetweenBAndE(const Bullet& bullet, const Enemy& enemy) const;
 };
 
 #endif

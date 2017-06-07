@@ -4,7 +4,7 @@ CutsceneDatabase::CutsceneDatabase(){
 
 }
 
-std::vector<std::string> CutsceneDatabase::getCutsceneById(int id){
+std::vector<std::string> CutsceneDatabase::getCutsceneById(int id) const{
   std::vector<std::string> cutsceneContent;
   std::string currentContent;
 

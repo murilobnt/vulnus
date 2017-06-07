@@ -126,6 +126,7 @@ void Game::moveNStopPlayer(){
 					(*bIt).shouldBeDestroyed(true);
 				}
 			}
+			
 		}
 	}
 }
@@ -155,7 +156,6 @@ void Game::clearNDraw(){
 	}
 
 	if(this->player.getOnCombo()){
-		//this->gameScreen.draw(this->player.getDamageOutput());
 		this->player.drawText(this->gameScreen);
 	}
 

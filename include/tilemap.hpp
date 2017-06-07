@@ -51,15 +51,15 @@ public:
    * Get the all the colliding tiles.
    * @return all the colliding tiles
    */
-  TileSet getTiles();
+  TileSet getTiles() const;
 
   /**
    * Get the size of the level.
    * @return the size of the level
    */
-  sf::Vector2u getLevelSize();
+  sf::Vector2u getLevelSize() const;
 
-  DynamicGrid generateDynaGrid();
+  DynamicGrid generateDynaGrid() const;
 };
 
 #endif

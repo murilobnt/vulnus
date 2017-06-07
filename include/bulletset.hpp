@@ -34,7 +34,7 @@ public:
    * Get the set of the bullets.
    * @return the set of the bullets.
    */
-  std::vector<Bullet> getBulletSet();
+  std::vector<Bullet> getBulletSet() const;
 };
 
 #endif

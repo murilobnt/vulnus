@@ -66,14 +66,14 @@ void TileMap::draw(sf::RenderTarget& target, sf::RenderStates states) const
     target.draw(m_vertices, states);
 }
 
-TileSet TileMap::getTiles(){
+TileSet TileMap::getTiles() const{
   return this->tiles;
 }
 
-sf::Vector2u TileMap::getLevelSize(){
+sf::Vector2u TileMap::getLevelSize() const{
   return sf::Vector2u(this->levelWidth, this->levelHeight);
 }
 
-DynamicGrid TileMap::generateDynaGrid(){
+DynamicGrid TileMap::generateDynaGrid() const{
   return DynamicGrid(levelWidth, levelHeight, 150);
 }

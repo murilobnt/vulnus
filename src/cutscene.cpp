@@ -26,7 +26,7 @@ void Cutscene::setActive(bool active){
   this->keepAdvancing = true;
 }
 
-sf::Text Cutscene::getText(){
+sf::Text Cutscene::getText() const{
   return this->text;
 }
 

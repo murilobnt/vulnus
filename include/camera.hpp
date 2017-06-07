@@ -37,7 +37,7 @@ public:
    * @param player the player
    * @param levelSize the size of the level
    */
-  void getToPlayer(Player player, sf::Vector2u levelSize);
+  void getToPlayer(const Player& player, sf::Vector2u levelSize);
 
   /**
    * Apply zoom on camera.
@@ -49,7 +49,7 @@ public:
    * Get the view of the camera.
    * @return the view of the camera
    */
-  sf::View getObject();
+  sf::View getObject() const;
 };
 
 #endif

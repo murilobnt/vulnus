@@ -26,7 +26,7 @@ void Camera::calculateCameraYPosition(float& cameraYPosition, sf::Vector2f playe
   }
 }
 
-void Camera::getToPlayer(Player player, sf::Vector2u levelSize){
+void Camera::getToPlayer(const Player& player, sf::Vector2u levelSize){
   sf::Vector2f playerSpritePos = player.getSprite().getPosition();
   sf::Vector2f viewSize(this->w, this->h);
 
@@ -43,6 +43,6 @@ void Camera::cameraZoom(float zoom){
   this->view.zoom(zoom);
 }
 
-sf::View Camera::getObject(){
+sf::View Camera::getObject() const{
   return this->view;
 }

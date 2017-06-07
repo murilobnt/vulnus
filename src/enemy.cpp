@@ -56,7 +56,7 @@ void Enemy::jump(){
 	}
 }
 
-bool Enemy::playerIsInRadious(sf::Vector2f myPosition, sf::Vector2f playerPosition){
+bool Enemy::playerIsInRadious(sf::Vector2f myPosition, sf::Vector2f playerPosition) const{
 	int rad = 7;
 	int raw = rad * 32;
 
@@ -109,7 +109,7 @@ void Enemy::applyEnemyAnimation(){
 	}
 }
 
-float Enemy::getDamage(){
+float Enemy::getDamage() const{
 	return this->damage;
 }
 

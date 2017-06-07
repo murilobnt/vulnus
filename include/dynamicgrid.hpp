@@ -9,8 +9,8 @@ class DynamicGrid : public AbstractGrid {
 public:
 	DynamicGrid(int w, int h, int unitySize);
 	DynamicGrid();
-	int getQuad(sf::Vector2f position);
-	int getQuad(int x, int y);
+	int getQuad(sf::Vector2f position) const;
+	int getQuad(int x, int y) const;
 };
 
 #endif

@@ -34,13 +34,13 @@ public:
    * Get the position of the bullet.
    * @return the bullet position
    */
-  sf::Vector2f getBulletPosition();
+  sf::Vector2f getBulletPosition() const;
 
   /**
    * Get the bullet sprite.
    * @return the bullet sprite
    */
-  sf::RectangleShape getBullet();
+  sf::RectangleShape getBullet() const;
 
   /**
    * Verify if the bullet should be destroyed. If so, he destroys the bullet.
@@ -51,7 +51,7 @@ public:
   /**
    * Get if the bullet is marked to be destroyed or not.
    */
-  bool getMarkedForDeath();
+  bool getMarkedForDeath() const;
 };
 
 #endif

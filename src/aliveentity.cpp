@@ -30,7 +30,7 @@ void AliveEntity::configureSpriteRect(int x, int y, int w, int h){
     this->sprite.setTextureRect(sf::IntRect(x, y, w, h));
 }
 
-sf::Sprite AliveEntity::getSprite(){
+sf::Sprite AliveEntity::getSprite() const{
 	return this->sprite;
 }
 
@@ -78,7 +78,7 @@ void AliveEntity::moveEntity(DynamicGrid dynaGrid){
 	updateQuad(dynaGrid.getQuad(sprite.getPosition()));
 }
 
-sf::Vector2f AliveEntity::getMovement(){
+sf::Vector2f AliveEntity::getMovement() const{
 	return this->movement;
 }
 
@@ -95,7 +95,7 @@ void AliveEntity::applyGravity(){
 		this->movement.y += entityGravity;
 }
 
-bool AliveEntity::getIsJumping(){
+bool AliveEntity::getIsJumping() const{
 	return this->isJumping;
 }
 
@@ -103,7 +103,7 @@ void AliveEntity::setIsJumping(bool jumping){
 	this->isJumping = jumping;
 }
 
-float AliveEntity::getGravity(){
+float AliveEntity::getGravity() const{
 	return this->entityGravity;
 }
 
@@ -111,7 +111,7 @@ void AliveEntity::setSpritePosition(float x, float y){
 	this->sprite.setPosition(x, y);
 }
 
-float AliveEntity::getHealth(){
+float AliveEntity::getHealth() const{
 	return this->health;
 }
 
@@ -121,7 +121,7 @@ void AliveEntity::updateQuad(int newQuad){
 	}
 }
 
-int AliveEntity::getQuad(){
+int AliveEntity::getQuad() const{
 	return this->quad;
 }
 
@@ -130,7 +130,7 @@ void AliveEntity::cccomboBreak(){
 	this->comboDamage = 0;
 }
 
-bool AliveEntity::getOnCombo(){
+bool AliveEntity::getOnCombo() const{
 	return this->onCombo;
 }
 
