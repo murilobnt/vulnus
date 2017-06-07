@@ -45,6 +45,8 @@ private:
 	
 	sf::Time elapsedTime;
 
+	sf::Font font;
+
 	// The player
 	Player player;
 

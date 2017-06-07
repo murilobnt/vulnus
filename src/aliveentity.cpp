@@ -11,10 +11,10 @@ void AliveEntity::increaseSpeed(float modifier){
 void AliveEntity::decreaseHealth(float modifier){
 	this->onCombo = true;
 	this->entityComboDelimeter.resetLastUpdate();
-
-	//this->damageOutput.setString(IntToString::IntToString((int) - comboDamage));
-
 	this->comboDamage += modifier;
+
+	this->damageOutput.setString(IntToString::IntToString((int) - comboDamage));
+
 	this->health -= modifier;
 }
 
@@ -140,4 +140,23 @@ GenericTimeHandler* AliveEntity::getEntityComboDelimeter(){
 
 void AliveEntity::setComboDelimeter(int seconds){
 	this->entityComboDelimeter = GenericTimeHandler(sf::seconds(seconds));
+}
+
+void AliveEntity::init(const sf::Font& font){
+	this->damageOutput = sf::Text(std::string("-0"), font);
+
+	this->damageOutput.setCharacterSize(20);
+  	this->damageOutput.setColor(sf::Color::Red);
+}
+
+void AliveEntity::updateDamageText(){
+	this->damageOutput.setPosition(this->sprite.getPosition().x + this->sprite.getLocalBounds().width/2 - this->damageOutput.getLocalBounds().width/2, this->sprite.getPosition().y - 32);
+}
+
+sf::Text AliveEntity::getDamageOutput() const{
+	return this->damageOutput;
+}
+
+void AliveEntity::drawText(sf::RenderTarget& target){
+  target.draw(this->damageOutput);
 }

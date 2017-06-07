@@ -35,6 +35,15 @@ theTiles(0, 0, 64)
 	this->colHandler = CollisionHandler(dynaGrid);
 
 	this->playerBulletsRef = this->player.getTheBulletsObject();
+
+	this->font.loadFromFile("fonts/Ubuntu-C.tff");
+
+	player.init(font);
+	if (!currentEnemies->empty()){
+		for(std::vector<Enemy>::iterator it = currentEnemies->begin(); it != currentEnemies->end(); ++it){
+			(*it).init(font);
+		}
+	}
 }
 
 void Game::gameStart(){
@@ -87,6 +96,13 @@ void Game::updateLogic(){
 	refreshBackgroundPos();
 	
 	this->player.updateDamageText();
+
+	if (!currentEnemies->empty()){
+		for(std::vector<Enemy>::iterator it = currentEnemies->begin(); it != currentEnemies->end(); ++it){
+			(*it).updateDamageText();
+		}
+	}
+
 	moveBullets();
 	controlCamera();
 	restrictPlayerMovement();
@@ -157,6 +173,14 @@ void Game::clearNDraw(){
 
 	if(this->player.getOnCombo()){
 		this->player.drawText(this->gameScreen);
+	}
+
+	if (!currentEnemies->empty()){
+		for(std::vector<Enemy>::iterator it = currentEnemies->begin(); it != currentEnemies->end(); ++it){
+			if((*it).getOnCombo()){
+				(*it).drawText(this->gameScreen);
+			}
+		}
 	}
 
 	drawBullets();

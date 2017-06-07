@@ -24,6 +24,8 @@ private:
 	bool onCombo;
 
 	GenericTimeHandler entityComboDelimeter;
+
+	sf::Text damageOutput;
 protected:
 	float comboDamage;
 
@@ -194,6 +196,10 @@ public:
 	bool getOnCombo() const;
 
 	GenericTimeHandler* getEntityComboDelimeter();
+
+	void init(const sf::Font& font);
+
+	void drawText(sf::RenderTarget& target);
 };
 
 #endif

@@ -13,12 +13,6 @@ AliveEntity::AliveEntity(0, 0, health, speed, texture, spriteX, spriteY, spriteW
 	this->movingLeft = false;
 	this->facingRight = true;
 	this->tryingToJump = false;
-
-	this->font.loadFromFile("fonts/Ubuntu-C.tff");
-	this->damageOutput = sf::Text(std::string("-0"), font);
-
-	this->damageOutput.setCharacterSize(20);
-   	this->damageOutput.setColor(sf::Color::Red);
 }
 
 void Player::levelUp(){
@@ -28,8 +22,6 @@ void Player::levelUp(){
 void Player::receiveDamage(float modifier){
 	this->reactToDamage(4);
 	this->decreaseHealth(modifier);
-
-	this->damageOutput.setString(IntToString::IntToString((int) - comboDamage));
 
 	this->invulnerability = true;
 }
@@ -212,16 +204,4 @@ void Player::reactToDamage(float modifier){
 		this->movement.y = -modifier;
 		isJumping = true;
 	}
-}
-
-void Player::updateDamageText(){
-	this->damageOutput.setPosition(this->sprite.getPosition().x + this->sprite.getLocalBounds().width/2 - this->damageOutput.getLocalBounds().width/2, this->sprite.getPosition().y - 32);
-}
-
-sf::Text Player::getDamageOutput() const{
-	return this->damageOutput;
-}
-
-void Player::drawText(sf::RenderTarget& target){
-  target.draw(this->damageOutput);
 }
