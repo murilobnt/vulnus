@@ -73,7 +73,7 @@ void AliveEntity::moveEntity(){
 	this->sprite.move(movement);
 }
 
-void AliveEntity::moveEntity(DynamicGrid dynaGrid){
+void AliveEntity::moveEntity(const DynamicGrid& dynaGrid){
 	this->sprite.move(movement);
 	updateQuad(dynaGrid.getQuad(sprite.getPosition()));
 }

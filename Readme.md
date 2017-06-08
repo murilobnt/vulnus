@@ -65,6 +65,14 @@ The game is a platform game.
 
 ## ADDITIONAL RESOURCES
 
+> Free Platformer Game Tileset: Scrolling background
+
+The image, images/7536921_orig.png, is from **Zuhria Alfitra** a.k.a **pzUH**, at **Game Art 2D**. It was downloaded from the following URL:
+- - -
+http://www.gameart2d.com/free-platformer-game-tileset.html
+- - -
+"Not necessary to put my name or this site link. But I won't stop you if you do that. :p", pzUH. "You deserve credit for your awesome work! :D", me.
+
 > Overworld
 
 The music file, *sounds/overworld.ogg* is from **Royalty Free Music**, from **Incompetech**. As instructed in-site, this is the credits I give to it:
@@ -147,7 +155,7 @@ O jogo é um jogo de plataforma.
   * W;
   * Seta para cima;
   * Barra de espaço.
-* Atire com K.
+* Atire com K. (Atire rindo "kkkkkkk")
 * Teletransporte-se com o clique do mouse.
 
 # CREDITOS
@@ -157,6 +165,14 @@ O jogo é um jogo de plataforma.
 1. Murilo Bento (murilo.araujo.md@gmail.com)
 
 ## RECURSOS ADICIONAIS
+
+> Free Platformer Game Tileset: Scrolling background
+
+A imagem, images/7536921_orig.png, é de **Zuhria Alfitra** também conhecido como **pzUH**, em **Game Art 2D**. Foi baixada da seguinte URL:
+- - -
+http://www.gameart2d.com/free-platformer-game-tileset.html
+- - -
+"Não é necessário colocar meu nome ou o link para este site. Mas eu não vou te impedir se você fizer isso. :p", pzUH (traduzido). "Você merece crédito pelo seu trabalho maneiro! :D", eu.
 
 > Overworld
 

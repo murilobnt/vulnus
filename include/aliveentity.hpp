@@ -125,7 +125,7 @@ public:
 	 */
 	void moveEntity();
 
-	void moveEntity(DynamicGrid dynaGrid);
+	void moveEntity(const DynamicGrid& dynaGrid);
 
 	/**
 	 * Get the movement of this entity.

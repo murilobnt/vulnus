@@ -4,7 +4,7 @@ Game::Game(int gameWidth, int gameHeight, std::string gameTitle) :
 gameScreen(sf::VideoMode(gameWidth, gameHeight), gameTitle),
 gameCamera(0.f, 0.f, 320.f, 240.f, 2.0),
 aliveTexture("images/aliveentities.png", 128, 64, false, true),
-backgroundTexture("images/background3.png", 100, 100, true),
+backgroundTexture("images/7536921_orig.png", 1000, 750, true),
 cutsceneTexture("images/rcutscene.png", 416, 96),
 cutscene(0, *cutsceneTexture.getTexture(), true),
 level(1, *aliveTexture.getTexture()),
@@ -21,7 +21,8 @@ theTiles(0, 0, 64)
 
 	backgroundSprite.setTexture(*backgroundTexture.getTexture());
 	backgroundSprite.setPosition(sf::Vector2f(0,0));
-	backgroundSprite.setTextureRect(sf::IntRect(0, 0, 1400, 1000));
+
+	backgroundSprite.setTextureRect(sf::IntRect(0, 0, (64 * 32) + ((64 * 32)*0.1), 20*32));
 
 	this->gameWidth = gameWidth;
 	this->gameHeight = gameHeight;
