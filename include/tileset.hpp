@@ -37,11 +37,7 @@ public:
    */
   void verifyEntityCollision(AliveEntity* player);
 
-  /**
-   * Verify the collision of every bullet in a set.
-   * @param bullets the set of the bullets
-   */
-  void verifyBulletCollision(std::vector<Bullet>* bullets);
+  TileGrid getTileGrid() const;
 };
 
 #endif

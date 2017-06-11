@@ -35,8 +35,6 @@ theTiles(0, 0, 64)
 	this->dynaGrid = level.generateDynamicGrid();
 	this->colHandler = CollisionHandler(dynaGrid);
 
-	this->playerBulletsRef = this->player.getTheBulletsObject();
-
 	this->font.loadFromFile("fonts/Ubuntu-C.tff");
 
 	player.init(font);
@@ -123,7 +121,8 @@ void Game::applyPlayerAnimation(){
 void Game::moveNStopPlayer(){
 	player.movePlayer();
 	theTiles.verifyEntityCollision(&player);
-	theTiles.verifyBulletCollision(playerBulletsRef);
+	//theTiles.verifyBulletCollision(playerBulletsRef);
+	player.getPlayerWeapon().isCollidingWithEnvironment(theTiles.getTileGrid());
 	player.moveEntity(dynaGrid);
 
 	if (!currentEnemies->empty()){
@@ -137,13 +136,9 @@ void Game::moveNStopPlayer(){
 				soundTable.playSound(3);	
 			}
 
-			for(std::vector<Bullet>::iterator bIt = playerBulletsRef->begin(); bIt != playerBulletsRef->end(); ++bIt){
-				if(colHandler.collisionBetweenBAndE((*bIt), (*it))){
-					(*it).receiveDamage(5);
-					(*bIt).shouldBeDestroyed(true);
-				}
+			if(player.getPlayerWeapon().isCollidingWithEnemy((*it))){
+				(*it).receiveDamage(player.getPlayerWeapon().getDamage());
 			}
-			
 		}
 	}
 }
@@ -197,18 +192,11 @@ void Game::clearNDraw(){
 }
 
 void Game::drawBullets(){
-	std::vector<Bullet> playerBullets = player.getTheBullets();
-	if(playerBullets.empty()){
-		return;
-	}
-
-	for(std::vector<Bullet>::iterator it = playerBullets.begin(); it != playerBullets.end(); ++it){
-		this->gameScreen.draw((*it).getBullet());
-	}
+	player.getPlayerWeapon().draw(this->gameScreen);
 }
 
 void Game::moveBullets(){
-	player.moveNDeleteBullets();
+	player.getPlayerWeapon().update();
 }
 
 int Game::getGameWidth(){

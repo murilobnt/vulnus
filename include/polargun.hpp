@@ -2,7 +2,6 @@
 #define _POLARGUN_HPP_
 
 #include <vector>
-#include <SFML/Graphics.hpp>
 
 #include "bullet.hpp"
 #include "weapon.hpp"
@@ -13,9 +12,11 @@ private:
 
 public:
 	PolarGun(float damage);
-	void use(Player& player);
+	void use(AliveEntity& player);
 	void update();
-	bool isCollindingWithEnemy(const Enemy& enemy);
+	bool isCollidingWithEnemy(const AliveEntity& enemy);
+	bool isCollidingWithEnvironment(const TileGrid& grid);
+	void draw(sf::RenderTarget& target);
 };
 
 #endif

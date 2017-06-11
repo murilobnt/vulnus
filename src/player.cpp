@@ -3,7 +3,8 @@
 Player::Player(float health, float speed, sf::Texture const& texture,
 	             int spriteX, int spriteY, int spriteW, int spriteH,
 							 float gravity, int spriteInitX, int spriteEndX, int spriteInitY, int spriteEndY) : 
-AliveEntity::AliveEntity(0, 0, health, speed, texture, spriteX, spriteY, spriteW, spriteH, gravity, spriteInitX, spriteEndX, spriteInitY, spriteEndY) {
+AliveEntity::AliveEntity(0, 0, health, speed, texture, spriteX, spriteY, spriteW, spriteH, gravity, spriteInitX, spriteEndX, spriteInitY, spriteEndY),
+ranged(5) {
 	this->bulletControl = false;
 	this->invulnerability = false;
 	this->level = level;
@@ -52,8 +53,7 @@ void Player::stopPlayer(){
 
 void Player::shoot(bool release){
 	if(!this->bulletControl){
-		//this->theBullets.push_back(Bullet(16.0, sf::Vector2f(this->getSprite().getPosition().x + 16, this->getSprite().getPosition().y + 16), this->facingRight));
-		//this->polarGun.use(this);
+		this->ranged.use(*this);
 		this->bulletControl = true;
 	} else if(release){
 		this->bulletControl = false;
@@ -141,29 +141,6 @@ void Player::applyPlayerAnimation(){
 	}
 }
 
-std::vector<Bullet> Player::getTheBullets() const{
-	return this->theBullets;
-}
-
-std::vector<Bullet>* Player::getTheBulletsObject(){
-	return &this->theBullets;
-}
-
-void Player::moveNDeleteBullets(){
-	if(this->theBullets.empty()){
-		return;
-	}
-
-	for (uint i = 0; i < this->theBullets.size(); i++) {
-        Bullet *cur = &this->theBullets[i];
-				cur->moveBullet();
-				cur->shouldBeDestroyed(false);
-        if(cur->getMarkedForDeath()){
-					this->theBullets.erase(this->theBullets.begin() +i);
-				}
-  }
-}
-
 void Player::rightMovementControl(bool release){
 	if(release){
 		this->movingRight = false;
@@ -205,4 +182,8 @@ void Player::reactToDamage(float modifier){
 		this->movement.y = -modifier;
 		isJumping = true;
 	}
+}
+
+Weapon& Player::getPlayerWeapon(){
+	return this->ranged;
 }

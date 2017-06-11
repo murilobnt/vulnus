@@ -12,6 +12,7 @@
 #include "aliveentity.hpp"
 #include "bullet.hpp"
 #include "textureset.hpp"
+#include "polargun.hpp"
 
 class Player : public AliveEntity{
 private:
@@ -31,12 +32,12 @@ private:
 	// The x desacceleration of the player
 	float desaccelerationX;
 
-	// The set of every bullet of the player
-	std::vector<Bullet> theBullets;
-
 	bool tryingToJump;
 
 	void reactToDamage(float modifier);
+
+	PolarGun ranged;
+
 public:
 	/**
 	 * Constructor.
@@ -117,24 +118,7 @@ public:
 	 */
 	void applyPlayerAnimation();
 
-	/**
-	 * Move all the bullets and delete them, if it's the case.
-	 */
-	void moveNDeleteBullets();
-
-	/**
-	 * Get all the bullets.
-	 * @return all the bullets
-	 */
-	std::vector<Bullet> getTheBullets() const;
-
 	void shoot(bool release);
-
-	/**
-	 * Get all the bullets reference.
-	 * @return the bullets reference
-	 */
-	std::vector<Bullet>* getTheBulletsObject();
 
 	void rightMovementControl(bool release);
 
@@ -143,6 +127,8 @@ public:
 	bool getInvulnerability() const;
 
 	void setInvulnerability(bool invulnerability);
+
+	Weapon& getPlayerWeapon();
 };
 
 #endif
