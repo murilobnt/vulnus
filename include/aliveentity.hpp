@@ -26,6 +26,7 @@ private:
 	GenericTimeHandler entityComboDelimeter;
 
 	sf::Text damageOutput;
+
 protected:
 	float comboDamage;
 
@@ -200,6 +201,8 @@ public:
 	void init(const sf::Font& font);
 
 	void drawText(sf::RenderTarget& target);
+
+	bool isFacingRight() const;
 };
 
 #endif

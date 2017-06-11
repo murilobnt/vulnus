@@ -160,3 +160,7 @@ sf::Text AliveEntity::getDamageOutput() const{
 void AliveEntity::drawText(sf::RenderTarget& target){
   target.draw(this->damageOutput);
 }
+
+bool AliveEntity::isFacingRight() const{
+	return this->facingRight;
+}

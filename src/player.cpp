@@ -52,7 +52,8 @@ void Player::stopPlayer(){
 
 void Player::shoot(bool release){
 	if(!this->bulletControl){
-		this->theBullets.push_back(Bullet(16.0, sf::Vector2f(this->getSprite().getPosition().x + 16, this->getSprite().getPosition().y + 16), this->facingRight));
+		//this->theBullets.push_back(Bullet(16.0, sf::Vector2f(this->getSprite().getPosition().x + 16, this->getSprite().getPosition().y + 16), this->facingRight));
+		//this->polarGun.use(this);
 		this->bulletControl = true;
 	} else if(release){
 		this->bulletControl = false;
