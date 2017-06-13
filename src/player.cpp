@@ -142,6 +142,10 @@ void Player::applyPlayerAnimation(){
 }
 
 void Player::rightMovementControl(bool release){
+	if(this->movingLeft){
+		return;
+	}
+
 	if(release){
 		this->movingRight = false;
 		this->moving = false;
@@ -153,6 +157,10 @@ void Player::rightMovementControl(bool release){
 }
 
 void Player::leftMovementControl(bool release){
+	if(this->movingRight){
+		return;
+	}
+
 	if(release){
 		this->movingLeft = false;
 		this->moving = false;

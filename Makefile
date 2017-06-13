@@ -54,7 +54,7 @@ $(TARGET) : $(OBJS)
 ## To satisfy the objects dependency above, we need the source code files.
 ## Para satisfazer a dependência dos objetos acima, nós precisamos dos arquivos do código fonte.
 $(OBJS-DIR)/%.o: $(SRC)/%.cpp
-	$(CC) $(FLAGS) -c $(INCLUDES) $< -o ./$@
+	$(CC) $(FLAGS) -c $(INCLUDES) ./$< -o ./$@
 
 ## For entry "clean" (make clean), delete the objects and the executable.
 ## Para a entrada "clean" (make clean), delete os objetos e o executável.

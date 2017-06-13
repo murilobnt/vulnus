@@ -1,18 +1,18 @@
-#ifndef _POLARGUN_HPP_
-#define _POLARGUN_HPP_
+#ifndef _BLADE_HPP_
+#define _BLADE_HPP_
 
-#include <vector>
+#include <SFML/Graphics.hpp>
 
-#include "bullet.hpp"
+#include "aliveentity.hpp"
 #include "weapon.hpp"
 
-class PolarGun : public Weapon {
+class Blade : public Weapon {
 private:
-	std::vector<Bullet> bullets;
+	sf::RectangleShape sprite;
 
 public:
-	PolarGun(float damage);
-	
+	Blade(float damage);
+
 	void use(AliveEntity& player);
 	void update();
 	bool isCollidingWithEnemy(const AliveEntity& enemy);
