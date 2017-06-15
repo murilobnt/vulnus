@@ -10,10 +10,18 @@ float Weapon::getDamage() const{
 	return this->damage;
 }
 
+void Weapon::setDamage(const float damage){
+	this->damage = damage;
+}
+
 bool Weapon::isActive() const{
 	return this->active;
 }
 
 WeaponTypes Weapon::getWeaponType() const{
 	return this->weaponType;
+}
+
+void Weapon::setActive(const bool active){
+	this->active = active;
 }

@@ -13,6 +13,7 @@
 #include "bullet.hpp"
 #include "textureset.hpp"
 #include "polargun.hpp"
+#include "blade.hpp"
 
 class Player : public AliveEntity{
 private:
@@ -37,6 +38,8 @@ private:
 	void reactToDamage(float modifier);
 
 	PolarGun ranged;
+
+	Blade blade;
 
 public:
 	/**

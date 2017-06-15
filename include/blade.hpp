@@ -5,11 +5,21 @@
 
 #include "aliveentity.hpp"
 #include "weapon.hpp"
+#include "bladestate.hpp"
 
 class Blade : public Weapon {
 private:
 	sf::RectangleShape sprite;
+	float rawDamage;
 
+	bool bladeControl;
+	bool attackLeft;
+	bool canDamage;
+
+	BladeState state;
+	float reach;
+
+	GenericTimeHandler comboTime;
 public:
 	Blade(float damage);
 

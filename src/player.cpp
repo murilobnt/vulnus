@@ -4,7 +4,8 @@ Player::Player(float health, float speed, sf::Texture const& texture,
 	             int spriteX, int spriteY, int spriteW, int spriteH,
 							 float gravity, int spriteInitX, int spriteEndX, int spriteInitY, int spriteEndY) : 
 AliveEntity::AliveEntity(0, 0, health, speed, texture, spriteX, spriteY, spriteW, spriteH, gravity, spriteInitX, spriteEndX, spriteInitY, spriteEndY),
-ranged(5) {
+ranged(5),
+blade(10) {
 	this->bulletControl = false;
 	this->invulnerability = false;
 	this->level = level;
@@ -32,6 +33,11 @@ void Player::recoveryHealth(float modifier){
 }
 
 void Player::movePlayer(){
+	if(blade.isActive() && !isJumping){
+		this->movement.x = 0;
+		return;
+	}
+
 	if(this->movingRight){
 		if(this->movement.x < speed){
 			this->movement.x += 0.2;
@@ -53,7 +59,8 @@ void Player::stopPlayer(){
 
 void Player::shoot(bool release){
 	if(!this->bulletControl){
-		this->ranged.use(*this);
+		//this->ranged.use(*this);
+		this->blade.use(*this);
 		this->bulletControl = true;
 	} else if(release){
 		this->bulletControl = false;
@@ -193,5 +200,6 @@ void Player::reactToDamage(float modifier){
 }
 
 Weapon& Player::getPlayerWeapon(){
+	return this->blade;
 	return this->ranged;
 }

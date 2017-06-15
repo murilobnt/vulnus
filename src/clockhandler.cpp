@@ -5,7 +5,8 @@ gameFrequency(sf::seconds(1.f / 60.f)),
 playerAnimation(sf::seconds(1.f / 10.f)),
 playerSound(sf::seconds(1.f / 5.f)),
 playerInvulnerability(sf::seconds(2)),
-playerInvulnerabilityAnimation(sf::seconds(1.f / 15.f)) {
+playerInvulnerabilityAnimation(sf::seconds(1.f / 15.f))
+{
 }
 
 void ClockHandler::restartClock(){

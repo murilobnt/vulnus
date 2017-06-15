@@ -2,11 +2,13 @@
 #define _WEAPON_HPP_
 
 #include <SFML/Graphics.hpp>
+#include <iostream>
 
 #include "weapontypes.hpp"
 #include "aliveentity.hpp"
 #include "enemy.hpp"
 #include "tilegrid.hpp"
+#include "clockhandler.hpp"
 
 class Weapon{
 private:
@@ -24,7 +26,9 @@ public:
 	virtual void draw(sf::RenderTarget& target) = 0;
 
 	float getDamage() const;
+	void setDamage(const float damage);
 	bool isActive() const;
+	void setActive(const bool active);
 	WeaponTypes getWeaponType() const;
 };
 
