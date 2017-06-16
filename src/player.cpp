@@ -15,6 +15,8 @@ blade(10) {
 	this->movingLeft = false;
 	this->facingRight = true;
 	this->tryingToJump = false;
+
+	this->weaponId = 0;
 }
 
 void Player::levelUp(){
@@ -59,8 +61,11 @@ void Player::stopPlayer(){
 
 void Player::shoot(bool release){
 	if(!this->bulletControl){
-		//this->ranged.use(*this);
-		this->blade.use(*this);
+		if(weaponId == 0){
+			this->ranged.use(*this);
+		} else {
+			this->blade.use(*this);
+		}
 		this->bulletControl = true;
 	} else if(release){
 		this->bulletControl = false;
@@ -200,6 +205,16 @@ void Player::reactToDamage(float modifier){
 }
 
 Weapon& Player::getPlayerWeapon(){
+	if(this->weaponId == 0){
+		return this->ranged;
+	}
 	return this->blade;
-	return this->ranged;
+}
+
+void Player::changeWeapon(){
+	if(weaponId == 0){
+		weaponId = 1;
+	} else if(weaponId == 1){
+		weaponId = 0;
+	}
 }

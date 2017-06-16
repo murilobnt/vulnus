@@ -25,6 +25,11 @@ void InputHandler::handlePlayerInput(Player* player, sf::Keyboard::Key key, bool
 		case sf::Keyboard::Left:
 			player->leftMovementControl(release);
 		break;
+		case sf::Keyboard::Q:
+		case sf::Keyboard::E:
+			if(release)
+			player->changeWeapon();
+		break;
 	}
 }
 

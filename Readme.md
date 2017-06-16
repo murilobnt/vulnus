@@ -54,7 +54,8 @@ The game is a platform game.
   * W;
   * Up arrow;
   * Space bar.
-* Shoot with K.
+* Change weapon with Q or E.
+* Use weapon with K.
 * Teleport with mouse click.
 
 # CREDITS
@@ -155,7 +156,8 @@ O jogo é um jogo de plataforma.
   * W;
   * Seta para cima;
   * Barra de espaço.
-* Atire com K. (Atire rindo "kkkkkkk")
+* Mude a arma com Q ou E.
+* Use a arma com K. (Atire rindo "kkkkkkk")
 * Teletransporte-se com o clique do mouse.
 
 # CREDITOS

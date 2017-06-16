@@ -38,8 +38,9 @@ private:
 	void reactToDamage(float modifier);
 
 	PolarGun ranged;
-
 	Blade blade;
+
+	int weaponId;
 
 public:
 	/**
@@ -132,6 +133,8 @@ public:
 	void setInvulnerability(bool invulnerability);
 
 	Weapon& getPlayerWeapon();
+
+	void changeWeapon();
 };
 
 #endif
