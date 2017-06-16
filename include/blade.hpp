@@ -13,7 +13,6 @@ private:
 	float rawDamage;
 
 	bool bladeControl;
-	bool attackLeft;
 	bool canDamage;
 
 	BladeState state;

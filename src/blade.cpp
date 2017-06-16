@@ -2,27 +2,33 @@
 
 Blade::Blade(float damage) : 
 Weapon::Weapon(damage, SLASH),
-sprite(sf::Vector2f(75, 5))
+sprite(sf::Vector2f(75, 1))
 {
 	rawDamage = damage;
 	bladeControl = false;
-	state = FIRST;
-	attackLeft = false;
+	state = FIRST;	
 	canDamage = true;
 	reach = 50;
 }
 
 void Blade::use(AliveEntity& player){
 	if(!isActive()){
-		//this->comboTime.resetLastUpdate();
-
+		if(state == FIRST){
+			sprite.setRotation(10);
+		}
+		if(state == SECOND){
+			sprite.setRotation(-10);
+		}
+		if(state == END){
+			sprite.setRotation(0);
+		}
 		if(player.isFacingRight()){
 			this->sprite.setPosition(player.getSprite().getPosition().x + 32, player.getSprite().getPosition().y + 16);
 			if(state == END){
 				player.setSpritePosition(player.getSprite().getPosition().x + 112, player.getSprite().getPosition().y);
 			}
 		} else {
-			attackLeft = true;
+			sprite.rotate(180);
 			this->sprite.setPosition(player.getSprite().getPosition().x, player.getSprite().getPosition().y + 16);
 			if(state == END){
 				player.setSpritePosition(player.getSprite().getPosition().x - 112, player.getSprite().getPosition().y);
@@ -30,16 +36,11 @@ void Blade::use(AliveEntity& player){
 		}
 
 		setActive(true);
-		sprite.setSize(sf::Vector2f(0, 5));
+		sprite.setSize(sf::Vector2f(0, 1));
 	}
 }
 
 void Blade::update(){
-	/*if(comboTime.timeToUpdate()){
-		std::cout << "entrou aqui" << std::endl;
-		state = FIRST;
-	}*/
-
 	if(isActive()){
 		if(state == END){
 			reach = 80;
@@ -53,32 +54,17 @@ void Blade::update(){
 
 		if(!bladeControl){
 			spriteSize.x = spriteSize.x + 15;
-
-			if(attackLeft){
-				sf::Vector2f spritePos = sprite.getPosition();
-				spritePos.x = spritePos.x - 15;
-				sprite.setPosition(spritePos);
-			}
-
 			sprite.setSize(spriteSize);
 
 		} else if(state == END) {
 			sprite.setSize(sf::Vector2f(0, 5));
 		} else {
 			spriteSize.x = spriteSize.x - 15;
-
-			if(attackLeft){
-				sf::Vector2f spritePos = sprite.getPosition();
-				spritePos.x = spritePos.x + 15;
-				sprite.setPosition(spritePos);
-			}
-
 			sprite.setSize(spriteSize);
 		}
 
 		if(spriteSize.x <= 0.f){
 			bladeControl = false;
-			attackLeft = false;
 			setActive(false);
 			canDamage = true;
 
