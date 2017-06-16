@@ -2,6 +2,7 @@ Vulnus - Readme/Leiame
 =======
 
 ![Game screenshot](./images/gamescreenshot.png)
+![Game class diagram](./etc/classdiagram.png)
 
 ***
 # Language::ENGLISH
