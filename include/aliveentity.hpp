@@ -7,7 +7,7 @@
 #include <SFML/Graphics.hpp>
 
 // # Internal
-#include "textureset.hpp"
+#include "textureloader.hpp"
 #include "dynamicgrid.hpp"
 #include "inttostring.hpp"
 #include "generictimehandler.hpp"

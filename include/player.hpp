@@ -11,7 +11,7 @@
 // # Internal
 #include "aliveentity.hpp"
 #include "bullet.hpp"
-#include "textureset.hpp"
+#include "textureloader.hpp"
 #include "polargun.hpp"
 #include "blade.hpp"
 

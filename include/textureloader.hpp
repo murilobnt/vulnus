@@ -1,5 +1,5 @@
-#ifndef _TEXTURESET_HPP_
-#define _TEXTURESET_HPP_
+#ifndef _TEXTURELOADER_HPP_
+#define _TEXTURELOADER_HPP_
 
 // # External
 #include <SFML/Graphics.hpp>
@@ -7,7 +7,7 @@
 
 #include "collision.h"
 
-class TextureSet{
+class TextureLoader{
 private:
 	// The texture
 	sf::Texture texture;
@@ -33,13 +33,13 @@ public:
 	 * @param w the width of the texture
 	 * @param h the height of the texture
 	 */
-	TextureSet(std::string pathToImage, int w, int h, bool isRepeated = false, bool hasBitmask = false);
+	TextureLoader(std::string pathToImage, int w, int h, bool isRepeated = false, bool hasBitmask = false);
 
 	/**
 	 * Get the texture.
 	 * @return the texture
 	 */
-	sf::Texture* getTexture();
+	sf::Texture& getTexture();
 };
 
 #endif

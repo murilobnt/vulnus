@@ -1,22 +1,22 @@
-#include "textureset.hpp"
+#include "textureloader.hpp"
 
 #include <string>
 
-void TextureSet::loadTexture(std::string pathToImage){
+void TextureLoader::loadTexture(std::string pathToImage){
 	if (!this->texture.loadFromFile(pathToImage))
     {
         // error
     }
 }
 
-void TextureSet::createTexture(int w, int h){
+void TextureLoader::createTexture(int w, int h){
 	if (!this->texture.create(w, h))
     {
         // error
     }
 }
 
-TextureSet::TextureSet(std::string pathToImage, int w, int h, bool isRepeated, bool hasBitmask){
+TextureLoader::TextureLoader(std::string pathToImage, int w, int h, bool isRepeated, bool hasBitmask){
 	if(!hasBitmask){
 		loadTexture(pathToImage);
 	} else {
@@ -28,6 +28,6 @@ TextureSet::TextureSet(std::string pathToImage, int w, int h, bool isRepeated, b
 
 
 
-sf::Texture* TextureSet::getTexture(){
-	return &this->texture;
+sf::Texture& TextureLoader::getTexture(){
+	return this->texture;
 }

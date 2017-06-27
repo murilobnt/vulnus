@@ -9,9 +9,10 @@
 #include <vector>
 
 // # Internal
+#include "textureindex.hpp"
 #include "camera.hpp"
 #include "player.hpp"
-#include "textureset.hpp"
+#include "texturemanager.hpp"
 #include "level.hpp"
 #include "tileset.hpp"
 #include "bullet.hpp"
@@ -52,14 +53,7 @@ private:
 
 	EventHandler eventhandler;
 
-	// The texture of every alive entity
-	TextureSet aliveTexture;
-
-	// The background texture
-	TextureSet backgroundTexture;
-
-	// The cutscene texture
-	TextureSet cutsceneTexture;
+	TextureManager textureManager;
 
 	// The sprite of the background
 	sf::Sprite backgroundSprite;
