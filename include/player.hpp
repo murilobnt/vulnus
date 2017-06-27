@@ -42,6 +42,10 @@ private:
 
 	int weaponId;
 
+	GenericTimeHandler animation;
+	GenericTimeHandler footstep;
+	GenericTimeHandler invulnerabilityTime;
+	GenericTimeHandler invulnerabilityAnimation;
 public:
 	/**
 	 * Constructor.
@@ -135,6 +139,8 @@ public:
 	Weapon& getPlayerWeapon();
 
 	void changeWeapon();
+
+	GenericTimeHandler& getTimeHandler(int index);
 };
 
 #endif

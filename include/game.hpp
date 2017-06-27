@@ -91,12 +91,14 @@ private:
 
 	ClockHandler clockHandler;
 
-	GenericTimeHandler* gameFrequency;
+	GenericTimeHandler gameFrequency;
+
+	/*GenericTimeHandler* gameFrequency;
 	GenericTimeHandler* playerAnimation;
 	GenericTimeHandler* playerSound;
 	GenericTimeHandler* playerInvulnerability;
 	GenericTimeHandler* playerInvulnerabilityAnimation;
-	GenericTimeHandler* entityComboDelimeter;
+	GenericTimeHandler* entityComboDelimeter;*/
 
 	std::vector<Bullet>* playerBulletsRef;
 

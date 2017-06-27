@@ -5,7 +5,11 @@ Player::Player(float health, float speed, sf::Texture const& texture,
 							 float gravity, int spriteInitX, int spriteEndX, int spriteInitY, int spriteEndY) : 
 AliveEntity::AliveEntity(0, 0, health, speed, texture, spriteX, spriteY, spriteW, spriteH, gravity, spriteInitX, spriteEndX, spriteInitY, spriteEndY),
 ranged(5),
-blade(10) {
+blade(10),
+animation(sf::seconds(1.f / 10.f)),
+footstep(sf::seconds(1.f / 5.f)),
+invulnerabilityTime(sf::seconds(2)),
+invulnerabilityAnimation(sf::seconds(1.f / 15.f)) {
 	this->bulletControl = false;
 	this->invulnerability = false;
 	this->level = level;
@@ -216,5 +220,25 @@ void Player::changeWeapon(){
 		weaponId = 1;
 	} else if(weaponId == 1){
 		weaponId = 0;
+	}
+}
+
+GenericTimeHandler& Player::getTimeHandler(int index){
+	switch(index){
+		case 0:
+			return this->animation;
+		break;
+		case 1:
+			return this->footstep;
+		break;
+		case 2:
+			return this->invulnerabilityTime;
+		break;
+		case 3:
+			return this->invulnerabilityAnimation;
+		break;
+		default:
+			return this->animation;
+		break;
 	}
 }

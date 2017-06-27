@@ -11,14 +11,9 @@ level(1, *aliveTexture.getTexture()),
 player(100.f, 2, *aliveTexture.getTexture(), 32, 0, 32, 32, 0.2, 0, 32, 0, 32),
 eventhandler(&player, &cutscene),
 playerHealth(sf::Vector2f(player.getHealth(), 20.f)),
-theTiles(0, 0, 64)
+theTiles(0, 0, 64),
+gameFrequency(sf::seconds(1.f / 60.f))
 {
-	gameFrequency = this->clockHandler.getHandler(GAMEFREQ);
-	playerAnimation = this->clockHandler.getHandler(PLAYERANIM);
-	playerSound = this->clockHandler.getHandler(PLAYERSOUND);
-	playerInvulnerability = this->clockHandler.getHandler(PLAYERINVULN);
-	playerInvulnerabilityAnimation = this->clockHandler.getHandler(PLAYERINVULNANIM);
-
 	backgroundSprite.setTexture(*backgroundTexture.getTexture());
 	backgroundSprite.setPosition(sf::Vector2f(0,0));
 
@@ -57,19 +52,23 @@ void Game::gameStart(){
 		clearNDraw();
 
 		this->clockHandler.restartClock();
-		this->clockHandler.restartTimeHandlers();
+
+		this->clockHandler.restartTimeHandler(&gameFrequency);
+		this->clockHandler.restartTimeHandler(&player.getTimeHandler(0));
+		this->clockHandler.restartTimeHandler(&player.getTimeHandler(1));
 
 		if(this->player.getInvulnerability()){
-			this->clockHandler.restartInvulnTimeHandlers();
+			this->clockHandler.restartTimeHandler(&player.getTimeHandler(2));
+			this->clockHandler.restartTimeHandler(&player.getTimeHandler(3));
 		}
 
 		if(this->player.getOnCombo()){
-			this->clockHandler.restartComboTimeHandlers(this->player.getEntityComboDelimeter());
+			this->clockHandler.restartTimeHandler(this->player.getEntityComboDelimeter());
 		}
 
 		if (!currentEnemies->empty()){
 			for(std::vector<Enemy>::iterator it = currentEnemies->begin(); it != currentEnemies->end(); ++it){
-				this->clockHandler.restartComboTimeHandlers((*it).getEntityComboDelimeter());
+				this->clockHandler.restartTimeHandler((*it).getEntityComboDelimeter());
 			}
 		}
 	}
@@ -160,7 +159,7 @@ void Game::clearNDraw(){
 	this->level.drawEnemies(this->gameScreen);
 	
 	if(this->player.getInvulnerability()){
-		while(playerInvulnerabilityAnimation->timeToUpdate()){
+		while(player.getTimeHandler(3).timeToUpdate()){
 			this->gameScreen.draw(player.getSprite());
 		}
 	} else {
@@ -233,11 +232,11 @@ void Game::updatePlayerHealth(){
 }
 
 void Game::handleTimeActions(){
-	while(gameFrequency->timeToUpdate()){
+	while(gameFrequency.timeToUpdate()){
 		updateLogic();
 	}
 
-	while(playerAnimation->timeToUpdate()){
+	while(player.getTimeHandler(0).timeToUpdate()){
 		this->player.applyPlayerAnimation();
 		if (!currentEnemies->empty()){
 			for(std::vector<Enemy>::iterator it = currentEnemies->begin(); it != currentEnemies->end(); ++it){
@@ -246,7 +245,7 @@ void Game::handleTimeActions(){
 		}
 	}
 
-	if(playerInvulnerability->timeToUpdate()){
+	if(player.getTimeHandler(2).timeToUpdate()){
 		this->player.setInvulnerability(false);
 	}
 
@@ -262,7 +261,7 @@ void Game::handleTimeActions(){
 		}
 	}
 
-	while(playerSound->timeToUpdate() && player.moving && !player.getIsJumping()){
+	while(player.getTimeHandler(1).timeToUpdate() && player.moving && !player.getIsJumping()){
 		soundTable.playSound(2);
 	}
 }
