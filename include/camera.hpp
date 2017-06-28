@@ -49,7 +49,7 @@ public:
    * Get the view of the camera.
    * @return the view of the camera
    */
-  sf::View getObject() const;
+  sf::View getView() const;
 };
 
 #endif

@@ -43,6 +43,6 @@ void Camera::cameraZoom(float zoom){
   this->view.zoom(zoom);
 }
 
-sf::View Camera::getObject() const{
+sf::View Camera::getView() const{
   return this->view;
 }

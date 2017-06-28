@@ -106,7 +106,7 @@ void Game::updateLogic(){
 
 void Game::launchCutscene(){
 	if(this->cutscene.isActive()){
-		this->cutscene.setTextToCamera(this->gameCamera.getObject());
+		this->cutscene.setTextToCamera(this->gameCamera.getView());
 	}
 }
 
@@ -140,7 +140,7 @@ void Game::moveNStopPlayer(){
 
 void Game::controlCamera(){
 	this->gameCamera.getToPlayer(player, level.getTileMap().getLevelSize());
-	this->gameScreen.setView(gameCamera.getObject());
+	this->gameScreen.setView(gameCamera.getView());
 }
 
 void Game::restrictPlayerMovement(){
@@ -203,7 +203,7 @@ int Game::getGameHeight(){
 }
 
 void Game::refreshBackgroundPos(){
-	this->backgroundSprite.setPosition(sf::Vector2f(-0.1 * this->gameCamera.getObject().getCenter().x, 0));
+	this->backgroundSprite.setPosition(sf::Vector2f(-0.1 * this->gameCamera.getView().getCenter().x, 0));
 }
 
 void Game::changeLevel(){
@@ -220,8 +220,8 @@ void Game::applyGravityOnEntities(){
 }
 
 void Game::updatePlayerHealth(){
-	sf::Vector2f camPos = this->gameCamera.getObject().getCenter();
-	sf::Vector2f camSize = this->gameCamera.getObject().getSize();
+	sf::Vector2f camPos = this->gameCamera.getView().getCenter();
+	sf::Vector2f camSize = this->gameCamera.getView().getSize();
 
 	playerHealth.setSize(sf::Vector2f(player.getHealth(), 20.f));
 	playerHealth.setPosition(sf::Vector2f(camPos.x - (camSize.x / 2), camPos.y - (camSize.y / 2)));
