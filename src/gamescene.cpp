@@ -42,8 +42,8 @@ void GameScene::handleEvent(sf::Event event, sf::RenderWindow& screen){
 		eventhandler.handleMouseEvent(event, screen);
 }
 
-void GameScene::controlCamera(sf::RenderWindow& screen){
-	gameSceneManager.setCameraToWindow(screen);
+void GameScene::controlCamera(sf::RenderWindow& window){
+	gameSceneManager.setCameraToWindow(window);
 }
 
 void GameScene::doOperations(){

@@ -45,7 +45,7 @@ public:
 
 	void start();
 	void handleEvent(sf::Event event, sf::RenderWindow& screen);
-	void controlCamera(sf::RenderWindow& screen);
+	void controlCamera(sf::RenderWindow& window);
 	void doOperations();
 	void drawEntities(sf::RenderWindow& window);
 	void doInternalTimedActions();
