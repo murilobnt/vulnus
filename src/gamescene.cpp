@@ -21,8 +21,7 @@ theTiles(0, 0, 64)
 
 	this->dynaGrid = level.generateDynamicGrid();
 	this->colHandler = CollisionHandler(dynaGrid);
-
-	sf::Font font;
+	
 	font.loadFromFile("fonts/Ubuntu-C.tff");
 
 	player.init(font);

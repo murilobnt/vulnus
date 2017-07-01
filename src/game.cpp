@@ -53,9 +53,9 @@ int Game::getGameHeight(){
 void Game::handleTimeActions(){
 	while(gameFrequency.timeToUpdate()){
 		processEvents();
-		scene.doOperations();
 		if(scene.hasCamera)
 			scene.controlCamera(gameScreen);
+		scene.doOperations();
 	}
 
 	scene.doInternalTimedActions();

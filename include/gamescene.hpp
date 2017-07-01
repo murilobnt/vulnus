@@ -32,6 +32,7 @@ private:
 	sf::RectangleShape playerHealth;
 
 	DynamicGrid dynaGrid;
+	sf::Font font;
 
 	CollisionHandler colHandler;
 
