@@ -35,14 +35,12 @@ bool EventHandler::handleEvent(sf::Event event){
 	}
 }
 
-void EventHandler::handleScreenEvent(sf::Event event, sf::RenderWindow* gameScreen){
-	switch (event.type){
+void EventHandler::handleMouseEvent(sf::Event event, sf::RenderWindow& screen){
+	switch(event.type){
 		case sf::Event::MouseButtonPressed :
 			if(!this->cutscene->isActive()){
-				this->inputhandler.handleMouseInput(player, gameScreen->mapPixelToCoords(sf::Vector2i(event.mouseButton.x, event.mouseButton.y)));
+				this->inputhandler.handleMouseInput(player, screen.mapPixelToCoords(sf::Vector2i(event.mouseButton.x, event.mouseButton.y)));
 			}
 		break;
-
-		case sf::Event::Closed : gameScreen->close(); break;
 	}
 }

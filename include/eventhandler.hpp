@@ -19,7 +19,7 @@ public:
 	EventHandler(Player* player, Cutscene* cutscene);
 	InputHandler getInputHandler() const;
 	bool handleEvent(sf::Event event);
-	void handleScreenEvent(sf::Event event, sf::RenderWindow* gameScreen);
+	void handleMouseEvent(sf::Event event, sf::RenderWindow& screen);
 };
 
 #endif

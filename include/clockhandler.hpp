@@ -13,7 +13,7 @@ public:
 	ClockHandler();
 
 	void restartClock();
-	void restartTimeHandler(GenericTimeHandler* entityComboDelimeter);
+	void restartTimeHandler(GenericTimeHandler* genericTimeHandler);
 };
 
 #endif

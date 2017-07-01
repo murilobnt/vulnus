@@ -1,9 +1,8 @@
-#include "cameramanager.hpp"
+#include "gamescenemanager.hpp"
 
-GameSceneManager::GameSceneManager(sf::Texture& texture)
+GameSceneManager::GameSceneManager()
 :
-camera(0.f, 0.f, 320.f, 240.f, 2.0),
-cutscene(0, texture, true)
+camera(0.f, 0.f, 320.f, 240.f, 2.0)
 {
 
 }
@@ -16,7 +15,7 @@ void GameSceneManager::setCameraToWindow(sf::RenderWindow& window){
 	window.setView(camera.getView());
 }
 
-void GameSceneManager::setSpritePositionRelativeToCamera(sf::Sprite& sprite, float xrule, float yrule){
+void GameSceneManager::setSpritePositionRelativeToCamera(sf::Transformable& sprite, float xrule, float yrule){
 	sprite.setPosition(sf::Vector2f(xrule, yrule));
 }
 
@@ -26,4 +25,12 @@ float GameSceneManager::getCameraPointRelativeToCenterX(float offsetx){
 
 float GameSceneManager::getCameraPointRelativeToCenterY(float offsety){
 	return camera.getView().getCenter().y + offsety;
+}
+
+sf::Vector2f GameSceneManager::getCameraSize(){
+	return camera.getView().getSize();
+}
+
+Camera GameSceneManager::getCamera(){
+	return camera;
 }

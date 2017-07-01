@@ -8,6 +8,6 @@ void ClockHandler::restartClock(){
 	this->elapsedTime = this->clock.restart();
 }
 
-void ClockHandler::restartTimeHandler(GenericTimeHandler* entityComboDelimeter){
-	entityComboDelimeter->restart(this->elapsedTime);
+void ClockHandler::restartTimeHandler(GenericTimeHandler* genericTimeHandler){
+	genericTimeHandler->restart(this->elapsedTime);
 }

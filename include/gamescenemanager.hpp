@@ -9,17 +9,19 @@
 class GameSceneManager{
 private:
 	Camera camera;
-	Cutscene cutscene;
 
 public:
-	GameSceneManager(sf::Texture& texture);
+	GameSceneManager();
 
 	void setCameraToPlayer(const Player& player, sf::Vector2u levelSize);
 	void setCameraToWindow(sf::RenderWindow& window);
-	void setSpritePositionRelativeToCamera(sf::Sprite& sprite, float xrule, float yrule);
+	void setSpritePositionRelativeToCamera(sf::Transformable& sprite, float xrule, float yrule);
 
 	float getCameraPointRelativeToCenterX(float offsetx = 0.f);
 	float getCameraPointRelativeToCenterY(float offsety = 0.f);
+	sf::Vector2f getCameraSize();
+
+	Camera getCamera();
 };
 
 #endif
