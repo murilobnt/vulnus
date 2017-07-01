@@ -1,0 +1,20 @@
+HEY YOU!
+
+You know, I am adding this at my eightieth commit. There's SO much story to tell about this project! *-*
+
+This calls for a celebration, right? Well then, I will list fun facts about this project:
+
+1 - This project is highly inspired by Cave Story (Doukutsu Monogatari), a game made by Pixel. I played Cave Story when I was doing a technical course on IT when I was on High School. Such sweet memories I have about this time.
+2 - While I was writing the last item, "Cave Story: Running Hell" started playing here, at random (my playlist is a collection of my favorite videogame OSTs).
+3 - I have two all time favorite games: Kingdom Hearts II and Alundra. I think so much about Alundra when I'm adding functionalities to the game, and I want to create a plot like the plot of those two games.
+4 - Almost every programmer colleague says to me "Why wouldn't you make this game in Unity3D? You are overworking!". I answer "I have fun programming in C++" :D
+5 - I admit I delayed college tasks to be working in this game.
+6 - I think about creating another project to aid me in the process of creating this game. A web project.
+7 - You may listen to my heart here: https://www.youtube.com/playlist?list=PLTOo8axq-goEBBhisWc33FIJPSpQTSoSP
+8 - I don't expect this game to become a "GOTY" or widely recognized. That's not my main goal. As I pointed out before, my main goal is to have fun on creating this game.
+9 - Multiplayer is highly desired for this game, so I can play with my bros :D
+10 - I expect to have enough structure to create a full simple game until my hundredth commit. Wish me luck, guys!
+11 - I will release a video at my hundredth commit. Let's see how much I can do until the time comes :D
+12 - Contact me at: murilo.araujo.md@gmail.com. I know I said this before at the README, but tell me about anything you like (without spam, of course :D).
+
+And that's it. See ya, guys!
