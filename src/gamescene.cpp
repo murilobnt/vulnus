@@ -43,7 +43,6 @@ void GameScene::handleEvent(sf::Event event, sf::RenderWindow& screen){
 }
 
 void GameScene::controlCamera(sf::RenderWindow& screen){
-	gameSceneManager.setCameraToPlayer(player, level.getTileMap().getLevelSize());
 	gameSceneManager.setCameraToWindow(screen);
 }
 
@@ -155,6 +154,7 @@ void GameScene::updateLogic(){
 	}
 
 	moveBullets();
+	gameSceneManager.setCameraToPlayer(player, level.getTileMap().getLevelSize());
 	restrictPlayerMovement();
 	updatePlayerHealth();
 }
