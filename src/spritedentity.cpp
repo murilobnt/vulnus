@@ -26,6 +26,10 @@ void SpritedEntity::moveSprite(sf::Vector2f movement){
 	this->sprite.move(movement);
 }
 
+void SpritedEntity::setSpriteColor(sf::Color color){
+	this->sprite.setColor(color);
+}
+
 sf::Sprite SpritedEntity::getSprite() const {
 	return this->sprite;
 }

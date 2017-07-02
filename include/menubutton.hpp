@@ -2,17 +2,11 @@
 #define _MENUBUTTON_HPP_
 
 #include <SFML/Graphics.hpp>
+#include "spritedentity.hpp"
 
-class MenuButton {
+class MenuButton : public SpritedEntity {
 private:
-	sf::Sprite sprite;
 	bool focused;
-
-	// The boundaries of the animation
-	int spriteInitX;
-	int spriteEndX;
-	int spriteInitY;
-	int spriteEndY;
 
 public:
 	MenuButton(sf::Texture const& texture, int spriteX, int spriteY, int spriteW, int spriteH, int spriteInitX, int spriteEndX, int spriteInitY, int spriteEndY);

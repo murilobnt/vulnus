@@ -9,7 +9,6 @@
 #include "tile.hpp"
 #include "tilegrid.hpp"
 #include "aliveentity.hpp"
-#include "spritedentity.hpp"
 
 class TileSet{
 private:

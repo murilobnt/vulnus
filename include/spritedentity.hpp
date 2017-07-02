@@ -18,6 +18,7 @@ public:
 	void setSpritePosition(sf::Vector2f position);
 	void setSpritePosition(float x, float y);
 	void moveSprite(sf::Vector2f movement);
+	void setSpriteColor(sf::Color color);
 
 	sf::Sprite getSprite() const;
 	sf::Vector2f getSpritePosition() const;

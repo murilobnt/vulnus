@@ -10,7 +10,6 @@
 
 // # Internal
 #include "aliveentity.hpp"
-#include "spritedentity.hpp"
 #include "bullet.hpp"
 #include "textureloader.hpp"
 #include "polargun.hpp"
