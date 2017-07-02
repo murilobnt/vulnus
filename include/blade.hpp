@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "aliveentity.hpp"
+#include "spritedentity.hpp"
 #include "weapon.hpp"
 #include "bladestate.hpp"
 

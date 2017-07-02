@@ -24,14 +24,14 @@ void TileSet::verifyEntityCollision(AliveEntity* player){
           sf::Vector2f playerAuxPosXRight2(playerPosition.x + 32 + playerMovement.x, playerPosition.y + 20);
           if(tileRect.contains(playerAuxPosXRight) || tileRect.contains(playerAuxPosXRight2)){
             player->setMovementX(0.f);
-            player->setSpritePosition((*it).getPositionX() - 32, player->getSprite().getPosition().y);
+            player->setSpritePosition((*it).getPositionX() - 32, player->getSpritePosition().y);
           }
         } else if(playerMovement.x < 0.f){
           sf::Vector2f playerAuxPosXLeft(playerPosition.x + playerMovement.x, playerPosition.y + 4);
           sf::Vector2f playerAuxPosXLeft2(playerPosition.x + playerMovement.x, playerPosition.y + 20);
           if(tileRect.contains(playerAuxPosXLeft) || tileRect.contains(playerAuxPosXLeft2)){          
             player->setMovementX(0.f);
-            player->setSpritePosition((*it).getPositionX() + 32, player->getSprite().getPosition().y);
+            player->setSpritePosition((*it).getPositionX() + 32, player->getSpritePosition().y);
           }
         }
 
@@ -41,14 +41,14 @@ void TileSet::verifyEntityCollision(AliveEntity* player){
           if(tileRect.contains(playerAuxPosYDown) || tileRect.contains(playerAuxPosYDown2)){
             player->setMovementY(0.f);
             player->setIsJumping(false);
-            player->setSpritePosition(player->getSprite().getPosition().x, (*it).getPositionY() - 32);
+            player->setSpritePosition(player->getSpritePosition().x, (*it).getPositionY() - 32);
           }
         } else if (playerMovement.y < 0.f) {
           sf::Vector2f playerAuxPosYUp(playerPosition.x + 6, playerPosition.y + playerMovement.y);
           sf::Vector2f playerAuxPosYUp2(playerPosition.x + 26, playerPosition.y + playerMovement.y);
           if(tileRect.contains(playerAuxPosYUp) || tileRect.contains(playerAuxPosYUp2)){
             player->setMovementY(player->getGravity() + 1);
-            player->setSpritePosition(player->getSprite().getPosition().x, (*it).getPositionY() + 32);
+            player->setSpritePosition(player->getSpritePosition().x, (*it).getPositionY() + 32);
           }
         }
       }

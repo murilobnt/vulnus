@@ -177,7 +177,7 @@ void GameScene::moveNStopPlayer(){
 
 	if (!currentEnemies->empty()){
 		for(std::vector<Enemy>::iterator it = currentEnemies->begin(); it != currentEnemies->end(); ++it){
-			(*it).moveEnemy(player.getSprite().getPosition());
+			(*it).moveEnemy(player.getSpritePosition());
 			theTiles.verifyEntityCollision(&(*(it)));
 			(*it).moveEntity(dynaGrid);
 

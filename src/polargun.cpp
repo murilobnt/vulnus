@@ -4,7 +4,7 @@ PolarGun::PolarGun(float damage) : Weapon::Weapon(damage, RANGED){
 }
 
 void PolarGun::use(AliveEntity& player){
-	this->bullets.push_back(Bullet(16.0, sf::Vector2f(player.getSprite().getPosition().x + 16, player.getSprite().getPosition().y + 16), player.isFacingRight()));
+	this->bullets.push_back(Bullet(16.0, sf::Vector2f(player.getSpritePosition().x + 16, player.getSpritePosition().y + 16), player.isFacingRight()));
 }
 
 void PolarGun::update(){
@@ -30,7 +30,7 @@ bool PolarGun::isCollidingWithEnemy(const AliveEntity& enemy){
 	}
 
 	for(std::vector<Bullet>::iterator bIt = bullets.begin(); bIt != bullets.end(); ++bIt){
-		if((*bIt).getBullet().getGlobalBounds().intersects(enemy.getSprite().getGlobalBounds())){
+		if((*bIt).getBullet().getGlobalBounds().intersects(enemy.getSpriteGlobalBounds())){
 			(*bIt).shouldBeDestroyed(true);
 			return true;
 		}

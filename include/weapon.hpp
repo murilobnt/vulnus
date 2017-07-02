@@ -6,6 +6,7 @@
 
 #include "weapontypes.hpp"
 #include "aliveentity.hpp"
+#include "spritedentity.hpp"
 #include "enemy.hpp"
 #include "tilegrid.hpp"
 #include "clockhandler.hpp"

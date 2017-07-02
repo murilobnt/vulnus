@@ -6,6 +6,7 @@
 
 // # Internal
 #include "aliveentity.hpp"
+#include "spritedentity.hpp"
 
 class Enemy : public AliveEntity{
 private:

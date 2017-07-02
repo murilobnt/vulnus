@@ -12,8 +12,9 @@
 #include "inttostring.hpp"
 #include "generictimehandler.hpp"
 #include "fontloader.hpp"
+#include "spritedentity.hpp"
 
-class AliveEntity{
+class AliveEntity : public SpritedEntity {
 private:
 	// The entityGravity of the entity
 	float entityGravity;
@@ -33,7 +34,7 @@ protected:
 	int quad;
 
 	// The sprite of the entity
-	sf::Sprite sprite;
+	//sf::Sprite sprite;
 
 	// The movement of the entity
 	sf::Vector2f movement;
@@ -46,12 +47,6 @@ protected:
 
 	// The integer to control the loop of the animation of the entity when it's walking left
 	int animationLeftLoop;
-
-	// The boundaries of the animation
-	int spriteInitX;
-	int spriteEndX;
-	int spriteInitY;
-	int spriteEndY;
 
 	// Check the orientation of the entity
 	bool facingRight;
@@ -77,36 +72,9 @@ protected:
 	// Decrease player speed
 	void decreaseSpeed(float modifier);
 
-	/**
-	 * Set the sprite based on a texture.
-	 * @param texture The texture
-	 */
-	void setSprite(sf::Texture const& texture);
-
-	/**
-	 * Set the rect of the sprite of the entity.
-	 * @param x The x coordinate of the sprite on the texture
-	 * @param y The y coordinate of the sprite on the texture
-	 * @param w The width of the sprite
-	 * @param h The height of the sprite
-	 */
-	void configureSpriteRect(int x, int y, int w, int h);
-
-	/**
-	 *
-	 *
-	 */
-	void setSpritePosition(sf::Vector2f position);
-
 	void setComboDelimeter(int seconds);
 
 public:
-	
-	/**
-	 * Get the sprite.
-	 * @return this->sprite attribute
-	 */
-	sf::Sprite getSprite() const;
 
 	/**
 	 * Constructor.
@@ -120,11 +88,6 @@ public:
 	 * @param entityGravity the entityGravity for the entity
 	 */
 	AliveEntity(int x, int y, float health, float speed, sf::Texture const& texture, int spriteX, int spriteY, int spriteW, int spriteH, float entityGravity, int spriteInitX, int spriteEndX, int spriteInitY, int spriteEndY);
-
-	/**
-	 * Move this entity.
-	 */
-	void moveEntity();
 
 	void moveEntity(const DynamicGrid& dynaGrid);
 
@@ -174,13 +137,6 @@ public:
 	 * @return the total entityGravity of the entity
 	 */
 	float getGravity() const;
-
-	/**
-	 * Set the position of the sprite.
-	 * @param x the new x position of the sprite
-	 * @param y the new y position of the sprite
-	 */
-	void setSpritePosition(float x, float y);
 
 	float getHealth() const;
 

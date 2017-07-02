@@ -118,26 +118,26 @@ void Player::desacceleratePlayer(){
 }
 
 void Player::applyRightAnimation(){
-	if(spriteInitX + this->animationRightLoop*32 > spriteEndX){
+	if(getSpriteInitX() + this->animationRightLoop*32 > getSpriteEndX()){
 		this->animationRightLoop = 0;
 	}
 	if(this->movement.x > 0){
-		configureSpriteRect(spriteInitX + animationRightLoop*32, spriteInitY, 32, 32);
+		configureSpriteRect(getSpriteInitX() + animationRightLoop*32, getSpriteInitY(), 32, 32);
 		++this->animationRightLoop;
 	} else if(this->movement.x == 0.f){
-		configureSpriteRect(spriteEndX, spriteInitY, 32, 32);
+		configureSpriteRect(getSpriteEndX(), getSpriteInitY(), 32, 32);
 	}
 }
 
 void Player::applyLeftAnimation(){
-	if(this->spriteInitX + this->animationLeftLoop*32 > spriteEndX){
+	if(this->getSpriteInitX() + this->animationLeftLoop*32 > getSpriteEndX()){
 		this->animationLeftLoop = 0;
 	}
 	if(this->movement.x < 0){
-		configureSpriteRect(spriteInitX + animationLeftLoop * 32, spriteEndY, 32, 32);
+		configureSpriteRect(getSpriteInitX() + animationLeftLoop * 32, getSpriteEndY(), 32, 32);
 		++this->animationLeftLoop;
 	} else if(this->movement.x == 0.f){
-		configureSpriteRect(spriteEndX, spriteEndY, 32, 32);
+		configureSpriteRect(getSpriteEndX(), getSpriteEndY(), 32, 32);
 	}
 }
 
@@ -146,13 +146,13 @@ void Player::applyPlayerAnimation(){
 		if(!this->isJumping){
 			applyRightAnimation();
 		} else {
-			configureSpriteRect(spriteInitX, spriteInitY, 32, 32);
+			configureSpriteRect(getSpriteInitX(), getSpriteInitY(), 32, 32);
 		}
 	} else if(!this->facingRight){
 		if(!this->isJumping){
 			applyLeftAnimation();
 		} else {
-			configureSpriteRect(spriteInitX, spriteEndY, 32, 32);
+			configureSpriteRect(getSpriteInitX(), getSpriteEndY(), 32, 32);
 		}
 	}
 }

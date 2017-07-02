@@ -27,7 +27,7 @@ void Camera::calculateCameraYPosition(float& cameraYPosition, sf::Vector2f playe
 }
 
 void Camera::getToPlayer(const Player& player, sf::Vector2u levelSize){
-  sf::Vector2f playerSpritePos = player.getSprite().getPosition();
+  sf::Vector2f playerSpritePos = player.getSpritePosition();
   sf::Vector2f viewSize(this->w, this->h);
 
   float cameraXPosition = playerSpritePos.x + 16;

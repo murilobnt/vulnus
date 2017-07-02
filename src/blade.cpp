@@ -23,15 +23,15 @@ void Blade::use(AliveEntity& player){
 			sprite.setRotation(0);
 		}
 		if(player.isFacingRight()){
-			this->sprite.setPosition(player.getSprite().getPosition().x + 32, player.getSprite().getPosition().y + 16);
+			this->sprite.setPosition(player.getSpritePosition().x + 32, player.getSpritePosition().y + 16);
 			if(state == END){
-				player.setSpritePosition(player.getSprite().getPosition().x + 112, player.getSprite().getPosition().y);
+				player.setSpritePosition(player.getSpritePosition().x + 112, player.getSpritePosition().y);
 			}
 		} else {
 			sprite.rotate(180);
-			this->sprite.setPosition(player.getSprite().getPosition().x, player.getSprite().getPosition().y + 16);
+			this->sprite.setPosition(player.getSpritePosition().x, player.getSpritePosition().y + 16);
 			if(state == END){
-				player.setSpritePosition(player.getSprite().getPosition().x - 112, player.getSprite().getPosition().y);
+				player.setSpritePosition(player.getSpritePosition().x - 112, player.getSpritePosition().y);
 			}
 		}
 
@@ -81,7 +81,7 @@ void Blade::update(){
 }
 
 bool Blade::isCollidingWithEnemy(const AliveEntity& enemy){
-	if(sprite.getGlobalBounds().intersects(enemy.getSprite().getGlobalBounds()) && canDamage){
+	if(sprite.getGlobalBounds().intersects(enemy.getSpriteGlobalBounds()) && canDamage){
 		canDamage = false;
 		return true;
 	}

@@ -22,28 +22,13 @@ void AliveEntity::decreaseSpeed(float modifier){
 	this->speed -= modifier;
 }
 
-void AliveEntity::setSprite(sf::Texture const& texture){
-	this->sprite.setTexture(texture);
-}
-
-void AliveEntity::configureSpriteRect(int x, int y, int w, int h){
-    this->sprite.setTextureRect(sf::IntRect(x, y, w, h));
-}
-
-sf::Sprite AliveEntity::getSprite() const{
-	return this->sprite;
-}
-
-void AliveEntity::setSpritePosition(sf::Vector2f position){
-	this->sprite.setPosition(position);
-}
-
 AliveEntity::AliveEntity(int x, int y, float health, float speed, sf::Texture const& texture,
 	                       int spriteX, int spriteY, int spriteW, int spriteH,
 											   float entityGravity, int spriteInitX, int spriteEndX, int spriteInitY, int spriteEndY) : 
+SpritedEntity::SpritedEntity(texture, spriteX, spriteY, spriteW, spriteH, spriteInitX, spriteEndX, spriteInitY, spriteEndY),
 entityComboDelimeter(sf::seconds(2.5)) {
 	this->movement = sf::Vector2f(0.f, 0.f);
-	this->sprite.setPosition(x, y);
+	setSpritePosition(x, y);
 
 	this->entityGravity = entityGravity;
 	this->isJumping = true;
@@ -54,28 +39,16 @@ entityComboDelimeter(sf::seconds(2.5)) {
 	this->originalSpeed = speed;
 	this->speed = speed;
 
-	this->spriteInitX = spriteInitX;
-	this->spriteEndX = spriteEndX;
-	this->spriteInitY = spriteInitY;
-	this->spriteEndY = spriteEndY;
-
 	this->quad = 0;
-
-	setSprite(texture);
-	configureSpriteRect(spriteX, spriteY, spriteW, spriteH);
 
 	this->comboDamage = 0;
 
 	this->onCombo = false;
 }
 
-void AliveEntity::moveEntity(){
-	this->sprite.move(movement);
-}
-
 void AliveEntity::moveEntity(const DynamicGrid& dynaGrid){
-	this->sprite.move(movement);
-	updateQuad(dynaGrid.getQuad(sprite.getPosition()));
+	moveSprite(movement);
+	updateQuad(dynaGrid.getQuad(getSpritePosition()));
 }
 
 sf::Vector2f AliveEntity::getMovement() const{
@@ -105,10 +78,6 @@ void AliveEntity::setIsJumping(bool jumping){
 
 float AliveEntity::getGravity() const{
 	return this->entityGravity;
-}
-
-void AliveEntity::setSpritePosition(float x, float y){
-	this->sprite.setPosition(x, y);
 }
 
 float AliveEntity::getHealth() const{
@@ -150,7 +119,7 @@ void AliveEntity::init(const sf::Font& font){
 }
 
 void AliveEntity::updateDamageText(){
-	this->damageOutput.setPosition(this->sprite.getPosition().x + this->sprite.getLocalBounds().width/2 - this->damageOutput.getLocalBounds().width/2, this->sprite.getPosition().y - 32);
+	this->damageOutput.setPosition(getSpritePosition().x + getSpriteLocalBounds().width/2 - this->damageOutput.getLocalBounds().width/2, getSpritePosition().y - 32);
 }
 
 sf::Text AliveEntity::getDamageOutput() const{

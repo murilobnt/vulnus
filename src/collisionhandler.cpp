@@ -10,7 +10,7 @@ CollisionHandler::CollisionHandler(){
 
 bool CollisionHandler::collisionBetweenPAndE(const Player& player, const Enemy& enemy) const{
 	if(player.getQuad() == enemy.getQuad()){
-		if(player.getSprite().getGlobalBounds().intersects(enemy.getSprite().getGlobalBounds())){
+		if(player.getSpriteGlobalBounds().intersects(enemy.getSpriteGlobalBounds())){
 			if(Collision::PixelPerfectTest(player.getSprite(), enemy.getSprite()) && !player.getInvulnerability()){
 				return true;
 			}
@@ -21,7 +21,7 @@ bool CollisionHandler::collisionBetweenPAndE(const Player& player, const Enemy& 
 }
 
 bool CollisionHandler::collisionBetweenBAndE(const Bullet& bullet, const Enemy& enemy) const{
-	if(bullet.getBullet().getGlobalBounds().intersects(enemy.getSprite().getGlobalBounds())){
+	if(bullet.getBullet().getGlobalBounds().intersects(enemy.getSpriteGlobalBounds())){
 		return true;
 	}
 	
