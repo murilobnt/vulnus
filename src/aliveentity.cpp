@@ -25,7 +25,8 @@ void AliveEntity::decreaseSpeed(float modifier){
 AliveEntity::AliveEntity(int x, int y, float health, float speed, sf::Texture const& texture,
 	                       int spriteX, int spriteY, int spriteW, int spriteH,
 											   float entityGravity, int spriteInitX, int spriteEndX, int spriteInitY, int spriteEndY) : 
-SpritedEntity::SpritedEntity(texture, spriteX, spriteY, spriteW, spriteH, spriteInitX, spriteEndX, spriteInitY, spriteEndY),
+SpritedEntity::SpritedEntity(texture, spriteX, spriteY, spriteW, spriteH),
+AnimatedEntity::AnimatedEntity(spriteInitX, spriteEndX, spriteInitY, spriteEndY),
 entityComboDelimeter(sf::seconds(2.5)) {
 	this->movement = sf::Vector2f(0.f, 0.f);
 	setSpritePosition(x, y);

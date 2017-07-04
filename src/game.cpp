@@ -7,7 +7,8 @@ scene(textureManager)
 {
 	this->gameWidth = gameWidth;
 	this->gameHeight = gameHeight;
-	scene.start();
+	sceneManager.setScene(scene);
+	sceneManager.getScene().start();
 }
 
 void Game::gameStart(){
@@ -17,7 +18,7 @@ void Game::gameStart(){
 
 		this->clockHandler.restartClock();
 		this->clockHandler.restartTimeHandler(&gameFrequency);
-		scene.resetTimeHandlers(clockHandler);
+		sceneManager.getScene().resetTimeHandlers(clockHandler);
 	}
 }
 
@@ -30,14 +31,14 @@ void Game::processEvents(){
 			gameScreen.close();
 		}
 		
-		scene.handleEvent(event, gameScreen);
+		sceneManager.getScene().handleEvent(event, gameScreen);
 	}
 }
 
 void Game::clearNDraw(){
 	this->gameScreen.clear();
 
-	scene.drawEntities(gameScreen);
+	sceneManager.getScene().drawEntities(gameScreen);
 
 	this->gameScreen.display();
 }
@@ -53,10 +54,10 @@ int Game::getGameHeight(){
 void Game::handleTimeActions(){
 	while(gameFrequency.timeToUpdate()){
 		processEvents();
-		scene.doOperations();
-		if(scene.hasCamera)
-			scene.controlCamera(gameScreen);
+		sceneManager.getScene().doOperations();
+		if(sceneManager.getScene().hasCamera)
+			sceneManager.getScene().controlCamera(gameScreen);
 	}
 
-	scene.doInternalTimedActions();
+	sceneManager.getScene().doInternalTimedActions();
 }

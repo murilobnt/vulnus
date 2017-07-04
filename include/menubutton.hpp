@@ -9,7 +9,7 @@ private:
 	bool focused;
 
 public:
-	MenuButton(sf::Texture const& texture, int spriteX, int spriteY, int spriteW, int spriteH, int spriteInitX, int spriteEndX, int spriteInitY, int spriteEndY);
+	MenuButton(sf::Texture const& texture, int spriteX, int spriteY, int spriteW, int spriteH);
 	void setFocused(bool focused);
 	bool isFocused();
 };

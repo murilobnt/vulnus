@@ -2,7 +2,7 @@
 #include "game.hpp"
 
 int main(){
-	Game game(640, 480, "Vulnus");
+	Game game(800, 600, "Vulnus");
 	game.gameStart();
 	return 0;
 }

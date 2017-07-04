@@ -1,11 +1,10 @@
 #include "cutscene.hpp"
 
-Cutscene::Cutscene(int id, sf::Texture const& texture, bool startCutscene) : database(){
+Cutscene::Cutscene(int id, sf::Texture const& texture, int spriteX, int spriteY, int spriteW, int spriteH, bool startCutscene) : 
+SpritedEntity::SpritedEntity(texture, spriteX, spriteY, spriteW, spriteH)
+{
   this->id = id;
   this->font.loadFromFile("fonts/Ubuntu-C.tff");
-
-  this->textBoxSprite.setTexture(texture);
-  this->textBoxSprite.setTextureRect(sf::IntRect(0, 0, 416, 96));
 
   setActive(id);
   refreshText(id);
@@ -31,7 +30,7 @@ sf::Text Cutscene::getText() const{
 }
 
 sf::Vector2f Cutscene::calculateTextBoxPosition(sf::View view){
-  return sf::Vector2f(view.getCenter().x - (this->textBoxSprite.getLocalBounds().width/2), view.getCenter().y + (view.getSize().y/2) - 80);
+  return sf::Vector2f(view.getCenter().x - (getSpriteLocalBounds().width/2), view.getCenter().y + (view.getSize().y/2) - 80);
 }
 
 sf::Vector2f Cutscene::calculateTextPosition(sf::View view){
@@ -39,7 +38,7 @@ sf::Vector2f Cutscene::calculateTextPosition(sf::View view){
 }
 
 void Cutscene::setTextToCamera(sf::View view){
-  this->textBoxSprite.setPosition(calculateTextBoxPosition(view));
+  setSpritePosition(calculateTextBoxPosition(view));
   this->text.setPosition(calculateTextPosition(view));
 }
 
@@ -77,5 +76,5 @@ void Cutscene::drawText(sf::RenderTarget& target){
 }
 
 void Cutscene::drawCutsceneBackground(sf::RenderTarget& target){
-  target.draw(textBoxSprite);
+  target.draw(getSprite());
 }

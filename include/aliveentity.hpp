@@ -13,8 +13,9 @@
 #include "generictimehandler.hpp"
 #include "fontloader.hpp"
 #include "spritedentity.hpp"
+#include "animatedentity.hpp"
 
-class AliveEntity : public SpritedEntity {
+class AliveEntity : public SpritedEntity, public AnimatedEntity {
 private:
 	// The entityGravity of the entity
 	float entityGravity;

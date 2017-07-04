@@ -10,11 +10,10 @@
 // # Internal
 #include "cutscenedatabase.hpp"
 #include "player.hpp"
+#include "spritedentity.hpp"
 
-class Cutscene{
+class Cutscene : public SpritedEntity {
 private:
-  // The sprite of the text box
-  sf::Sprite textBoxSprite;
   // The id of the cutscene
   int id;
   // The verifier to check if the cutscene is active or not
@@ -46,7 +45,7 @@ public:
    * @param texture the texture of the text box
    * @param startCutscene the verifier to check if the cutscene start when the object is constructed or not
    */
-  Cutscene(int id, sf::Texture const& texture, bool startCutscene);
+  Cutscene(int id, sf::Texture const& texture, int spriteX, int spriteY, int spriteW, int spriteH, bool startCutscene);
 
   /**
    * Check if the cutscene is active.

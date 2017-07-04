@@ -1,7 +1,7 @@
 #include "menubutton.hpp"
 
-MenuButton::MenuButton(sf::Texture const& texture, int spriteX, int spriteY, int spriteW, int spriteH, int spriteInitX, int spriteEndX, int spriteInitY, int spriteEndY) :
-SpritedEntity::SpritedEntity(texture, spriteX, spriteY, spriteW, spriteH, spriteInitX, spriteEndX, spriteInitY, spriteEndY) {
+MenuButton::MenuButton(sf::Texture const& texture, int spriteX, int spriteY, int spriteW, int spriteH) :
+SpritedEntity::SpritedEntity(texture, spriteX, spriteY, spriteW, spriteH) {
 	setFocused(false);
 }
 

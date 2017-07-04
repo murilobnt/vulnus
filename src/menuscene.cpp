@@ -1,11 +1,11 @@
 #include "menuscene.hpp"
 
-MenuScene::MenuScene(TextureManager& textureManager){
+MenuScene::MenuScene(TextureManager& textureManager) {
 	hasCamera = false;
 }
 
 void MenuScene::start(){
-
+	
 }
 
 void MenuScene::handleEvent(sf::Event event, sf::RenderWindow& screen){

@@ -1,23 +1,21 @@
-#ifndef _MENUSCENE_HPP_
-#define _MENUSCENE_HPP_
+#ifndef _SCENEMANAGER_HPP_
+#define _SCENEMANAGER_HPP_
 
 #include "scene.hpp"
-#include "texturemanager.hpp"
-#include "clockhandler.hpp"
 
-class MenuScene : public Scene {
+class SceneManager {
 private:
-	/*MenuButton startGame;
-	MenuButton loadGame;
-	MenuButton exit;*/
+	Scene* scene;
 
 public:
-	MenuScene(TextureManager& textureManager);
+	SceneManager();
+	void setScene(Scene& scene);
+	Scene& getScene() const;
 
 	void start();
 	void handleEvent(sf::Event event, sf::RenderWindow& screen);
 	void controlCamera(sf::RenderWindow& window);
-	void doOperations();	
+	void doOperations();
 	void drawEntities(sf::RenderWindow& window);
 	void doInternalTimedActions();
 	void resetTimeHandlers(ClockHandler& clockHandler);

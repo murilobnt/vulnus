@@ -19,6 +19,7 @@
 #include "collisionhandler.hpp"
 #include "timehandlers.hpp"
 #include "gamescene.hpp"
+#include "scenemanager.hpp"
 
 class Game{
 
@@ -33,6 +34,7 @@ private:
 	GenericTimeHandler gameFrequency;
 
 	GameScene scene;
+	SceneManager sceneManager;
 
 public:
 	/**
