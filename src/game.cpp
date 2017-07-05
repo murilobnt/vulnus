@@ -3,12 +3,16 @@
 Game::Game(int gameWidth, int gameHeight, std::string gameTitle) :
 gameScreen(sf::VideoMode(gameWidth, gameHeight), gameTitle),
 gameFrequency(sf::seconds(1.f / 60.f)),
-scene(textureManager)
+scene(textureManager, nullptr),
+sceneManager(textureManager, scene),
+bsm(nullptr)
 {
+	bsm.setSceneManager(&sceneManager);
+	scene.setBsm(&bsm);
+	sceneManager.setScene(scene);
+	
 	this->gameWidth = gameWidth;
 	this->gameHeight = gameHeight;
-	sceneManager.setScene(scene);
-	sceneManager.getScene().start();
 }
 
 void Game::gameStart(){
@@ -18,7 +22,7 @@ void Game::gameStart(){
 
 		this->clockHandler.restartClock();
 		this->clockHandler.restartTimeHandler(&gameFrequency);
-		sceneManager.getScene().resetTimeHandlers(clockHandler);
+		sceneManager.resetTimeHandlers(clockHandler);
 	}
 }
 
@@ -31,14 +35,14 @@ void Game::processEvents(){
 			gameScreen.close();
 		}
 		
-		sceneManager.getScene().handleEvent(event, gameScreen);
+		sceneManager.handleEvent(event, gameScreen);
 	}
 }
 
 void Game::clearNDraw(){
 	this->gameScreen.clear();
 
-	sceneManager.getScene().drawEntities(gameScreen);
+	sceneManager.drawEntities(gameScreen);
 
 	this->gameScreen.display();
 }
@@ -54,10 +58,10 @@ int Game::getGameHeight(){
 void Game::handleTimeActions(){
 	while(gameFrequency.timeToUpdate()){
 		processEvents();
-		sceneManager.getScene().doOperations();
+		sceneManager.doOperations();
 		if(sceneManager.getScene().hasCamera)
-			sceneManager.getScene().controlCamera(gameScreen);
+			sceneManager.controlCamera(gameScreen);
 	}
 
-	sceneManager.getScene().doInternalTimedActions();
+	sceneManager.doInternalTimedActions();
 }

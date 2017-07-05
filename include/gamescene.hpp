@@ -41,7 +41,7 @@ private:
 
 	void controlCamera();
 public:
-	GameScene(TextureManager& textureManager);
+	GameScene(TextureManager& textureManager, BridgeSceneManager* bsm);
 
 	void start();
 	void handleEvent(sf::Event event, sf::RenderWindow& screen);
@@ -50,6 +50,7 @@ public:
 	void drawEntities(sf::RenderWindow& window);
 	void doInternalTimedActions();
 	void resetTimeHandlers(ClockHandler& clockHandler);
+	void changeScene();
 
 	void updateLogic();
 	void moveNStopPlayer();

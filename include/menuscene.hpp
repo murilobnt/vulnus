@@ -12,7 +12,7 @@ private:
 	MenuButton exit;*/
 
 public:
-	MenuScene(TextureManager& textureManager);
+	MenuScene(TextureManager& TextureManager, BridgeSceneManager* bsm);
 
 	void start();
 	void handleEvent(sf::Event event, sf::RenderWindow& screen);
@@ -21,6 +21,7 @@ public:
 	void drawEntities(sf::RenderWindow& window);
 	void doInternalTimedActions();
 	void resetTimeHandlers(ClockHandler& clockHandler);
+	void changeScene();
 };
 
 #endif

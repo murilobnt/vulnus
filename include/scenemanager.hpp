@@ -1,15 +1,21 @@
 #ifndef _SCENEMANAGER_HPP_
 #define _SCENEMANAGER_HPP_
 
-#include "scene.hpp"
+#include <iostream>
 
-class SceneManager {
+#include "scene.hpp"
+#include "texturemanager.hpp"
+#include "gamescene.hpp"
+
+class SceneManager : public SSceneManager {
 private:
-	Scene* scene;
+	Scene& scene;
+	TextureManager textureManager;
 
 public:
-	SceneManager();
+	SceneManager(TextureManager& textureManager, Scene& scene);
 	void setScene(Scene& scene);
+	void changeScene();
 	Scene& getScene() const;
 
 	void start();
