@@ -6,17 +6,19 @@
 #include "scene.hpp"
 #include "texturemanager.hpp"
 #include "gamescene.hpp"
+#include "menuscene.hpp"
 
 class SceneManager : public SSceneManager {
 private:
-	Scene& scene;
+	Scene* scene;
 	TextureManager textureManager;
 
 public:
-	SceneManager(TextureManager& textureManager, Scene& scene);
-	void setScene(Scene& scene);
+	SceneManager(TextureManager& textureManager);
+	~SceneManager();
+	void setScene(Scene* scene);
 	void changeScene();
-	Scene& getScene() const;
+	Scene* getScene() const;
 
 	void start();
 	void handleEvent(sf::Event event, sf::RenderWindow& screen);

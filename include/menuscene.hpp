@@ -1,6 +1,8 @@
 #ifndef _MENUSCENE_HPP_
 #define _MENUSCENE_HPP_
 
+#include <iostream>
+
 #include "scene.hpp"
 #include "texturemanager.hpp"
 #include "clockhandler.hpp"
@@ -12,7 +14,7 @@ private:
 	MenuButton exit;*/
 
 public:
-	MenuScene(TextureManager& TextureManager, BridgeSceneManager* bsm);
+	MenuScene(TextureManager& TextureManager, SSceneManager* sceneManager);
 
 	void start();
 	void handleEvent(sf::Event event, sf::RenderWindow& screen);

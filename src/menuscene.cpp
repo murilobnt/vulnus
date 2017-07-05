@@ -1,7 +1,7 @@
 #include "menuscene.hpp"
 
-MenuScene::MenuScene(TextureManager& textureManager, BridgeSceneManager* bsm) :
-Scene::Scene(bsm)
+MenuScene::MenuScene(TextureManager& textureManager, SSceneManager* sceneManager) :
+Scene::Scene(sceneManager)
 {
 	hasCamera = false;
 }
@@ -27,7 +27,7 @@ void MenuScene::controlCamera(sf::RenderWindow& window){
 }
 
 void MenuScene::doOperations(){
-
+	
 }
 
 void MenuScene::drawEntities(sf::RenderWindow& window){
@@ -43,5 +43,5 @@ void MenuScene::resetTimeHandlers(ClockHandler& clockHandler){
 }
 
 void MenuScene::changeScene(){
-	getBsm()->getSceneManager()->changeScene();
+	getSSceneManager()->changeScene();
 }

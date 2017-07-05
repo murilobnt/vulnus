@@ -8,7 +8,7 @@
 CC = g++
 
 ## Additional flags / Flags adicionais
-FLAGS = -g
+FLAGS = 
 
 ## Language modifier / Modificador da linguagem
 LANGUAGE = c++11

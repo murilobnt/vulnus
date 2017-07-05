@@ -4,16 +4,16 @@
 #include <SFML/Graphics.hpp>
 
 #include "clockhandler.hpp"
-#include "bridgescenemanager.hpp"
+#include "sscenemanager.hpp"
 
 class Scene {
 protected:
-	BridgeSceneManager* bsm;
+	SSceneManager* sceneManager;
 	
 public:
 	bool hasCamera;
 
-	Scene(BridgeSceneManager* bsm);
+	Scene(SSceneManager* sceneManager);
 
 	virtual void start() = 0;
 	virtual void handleEvent(sf::Event event, sf::RenderWindow& screen) = 0;
@@ -23,8 +23,8 @@ public:
 	virtual void doInternalTimedActions() = 0;
 	virtual void resetTimeHandlers(ClockHandler& clockHandler) = 0;
 	virtual void changeScene() = 0;
-	void setBsm(BridgeSceneManager* bsm);
-	BridgeSceneManager* getBsm();
+	void setSSceneManager(SSceneManager* sceneManager);
+	SSceneManager* getSSceneManager();
 };
 
 #endif

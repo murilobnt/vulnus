@@ -1,7 +1,7 @@
 #include "gamescene.hpp"
 
-GameScene::GameScene(TextureManager& textureManager, BridgeSceneManager* bsm) :
-Scene::Scene(bsm),
+GameScene::GameScene(TextureManager& textureManager, SSceneManager* sceneManager) :
+Scene::Scene(sceneManager),
 cutscene(0, textureManager.getTexture(CUTSCN), 0, 0, 416, 96, true),
 level(1, textureManager.getTexture(AET)),
 player(100.f, 2, textureManager.getTexture(AET), 32, 0, 32, 32, 0.2, 0, 32, 0, 32),

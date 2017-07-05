@@ -41,7 +41,7 @@ private:
 
 	void controlCamera();
 public:
-	GameScene(TextureManager& textureManager, BridgeSceneManager* bsm);
+	GameScene(TextureManager& textureManager, SSceneManager* sceneManager);
 
 	void start();
 	void handleEvent(sf::Event event, sf::RenderWindow& screen);

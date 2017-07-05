@@ -1,13 +1,13 @@
 #include "scene.hpp"
 
-Scene::Scene(BridgeSceneManager* bsm){
-	this->bsm = bsm;
+Scene::Scene(SSceneManager* sceneManager){
+	this->sceneManager = sceneManager;
 }
 
-void Scene::setBsm(BridgeSceneManager* bsm){
-	this->bsm = bsm;
+void Scene::setSSceneManager(SSceneManager* sceneManager){
+	this->sceneManager = sceneManager;
 }
 
-BridgeSceneManager* Scene::getBsm(){
-	return this->bsm;
+SSceneManager* Scene::getSSceneManager(){
+	return this->sceneManager;
 }

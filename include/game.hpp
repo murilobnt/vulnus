@@ -20,8 +20,6 @@
 #include "timehandlers.hpp"
 #include "gamescene.hpp"
 #include "scenemanager.hpp"
-#include "menuscene.hpp"
-#include "bridgescenemanager.hpp"
 
 class Game{
 
@@ -35,9 +33,7 @@ private:
 	TextureManager textureManager;
 	GenericTimeHandler gameFrequency;
 
-	MenuScene scene;
 	SceneManager sceneManager;
-	BridgeSceneManager bsm;
 
 public:
 	/**

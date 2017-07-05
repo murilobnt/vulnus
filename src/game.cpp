@@ -3,14 +3,8 @@
 Game::Game(int gameWidth, int gameHeight, std::string gameTitle) :
 gameScreen(sf::VideoMode(gameWidth, gameHeight), gameTitle),
 gameFrequency(sf::seconds(1.f / 60.f)),
-scene(textureManager, nullptr),
-sceneManager(textureManager, scene),
-bsm(nullptr)
-{
-	bsm.setSceneManager(&sceneManager);
-	scene.setBsm(&bsm);
-	sceneManager.setScene(scene);
-	
+sceneManager(textureManager)
+{	
 	this->gameWidth = gameWidth;
 	this->gameHeight = gameHeight;
 }
@@ -59,7 +53,7 @@ void Game::handleTimeActions(){
 	while(gameFrequency.timeToUpdate()){
 		processEvents();
 		sceneManager.doOperations();
-		if(sceneManager.getScene().hasCamera)
+		if(sceneManager.getScene()->hasCamera)
 			sceneManager.controlCamera(gameScreen);
 	}
 
