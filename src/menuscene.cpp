@@ -15,7 +15,7 @@ void MenuScene::handleEvent(sf::Event event, sf::RenderWindow& screen){
 		case sf::Event::KeyReleased :
 			switch(event.key.code){
 				case sf::Keyboard::Z:
-					changeScene();
+					changeScene(GAME);
 				break;
 			}
 		break;
@@ -42,6 +42,6 @@ void MenuScene::resetTimeHandlers(ClockHandler& clockHandler){
 	
 }
 
-void MenuScene::changeScene(){
-	getSSceneManager()->changeScene();
+void MenuScene::changeScene(SceneCatalog sceneCatalog){
+	getSSceneManager()->changeScene(sceneCatalog);
 }

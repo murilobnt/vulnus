@@ -50,7 +50,7 @@ public:
 	void drawEntities(sf::RenderWindow& window);
 	void doInternalTimedActions();
 	void resetTimeHandlers(ClockHandler& clockHandler);
-	void changeScene();
+	void changeScene(SceneCatalog sceneCatalog);
 
 	void updateLogic();
 	void moveNStopPlayer();

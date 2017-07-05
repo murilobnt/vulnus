@@ -137,7 +137,7 @@ void GameScene::resetTimeHandlers(ClockHandler& clockHandler){
 	}
 }
 
-void GameScene::changeScene(){
+void GameScene::changeScene(SceneCatalog sceneCatalog){
 
 }
 

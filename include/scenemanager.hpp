@@ -7,6 +7,7 @@
 #include "texturemanager.hpp"
 #include "gamescene.hpp"
 #include "menuscene.hpp"
+#include "scenecatalog.hpp"
 
 class SceneManager : public SSceneManager {
 private:
@@ -17,7 +18,7 @@ public:
 	SceneManager(TextureManager& textureManager);
 	~SceneManager();
 	void setScene(Scene* scene);
-	void changeScene();
+	void changeScene(SceneCatalog sceneCatalog);
 	Scene* getScene() const;
 
 	void start();

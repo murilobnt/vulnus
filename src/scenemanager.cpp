@@ -14,10 +14,14 @@ void SceneManager::setScene(Scene* scene){
 	scene->start();
 }
 
-void SceneManager::changeScene(){
+void SceneManager::changeScene(SceneCatalog sceneCatalog){
 	delete scene;
-	this->scene = new GameScene(textureManager, this);
-	this->scene->start();
+	switch (sceneCatalog){
+		case GAME:
+			this->scene = new GameScene(textureManager, this);
+			this->scene->start();
+		break;
+	}
 }
 
 Scene* SceneManager::getScene() const{

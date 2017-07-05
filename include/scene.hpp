@@ -5,6 +5,7 @@
 
 #include "clockhandler.hpp"
 #include "sscenemanager.hpp"
+#include "scenecatalog.hpp"
 
 class Scene {
 protected:
@@ -22,7 +23,7 @@ public:
 	virtual void drawEntities(sf::RenderWindow& window) = 0;
 	virtual void doInternalTimedActions() = 0;
 	virtual void resetTimeHandlers(ClockHandler& clockHandler) = 0;
-	virtual void changeScene() = 0;
+	virtual void changeScene(SceneCatalog sceneCatalog) = 0;
 	void setSSceneManager(SSceneManager* sceneManager);
 	SSceneManager* getSSceneManager();
 };
