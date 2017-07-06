@@ -80,6 +80,13 @@ void Player::teleport(int mX, int mY){
 	setSpritePosition(sf::Vector2f(mX - 16, mY - 16));
 }
 
+void Player::voidJump(){
+	if(!isJumping){
+		this->movement.y = -7;
+		isJumping = true;
+	}
+}
+
 void Player::jump(){
 	if(!isJumping && !tryingToJump){
 		this->movement.y = -7;

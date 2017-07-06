@@ -96,6 +96,8 @@ public:
 
 	void teleport(int mX, int mY);
 
+	void voidJump();
+
 	/**
 	 * Jump.
 	 */

@@ -4,7 +4,9 @@
 enum TextureIndex{
 	AET,
 	BG,
-	CUTSCN
+	CUTSCN,
+	BUTTON,
+	MBG
 };
 
 #endif

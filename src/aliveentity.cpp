@@ -47,6 +47,10 @@ entityComboDelimeter(sf::seconds(2.5)) {
 	this->onCombo = false;
 }
 
+void AliveEntity::moveEntity(){
+	moveSprite(movement);
+}
+
 void AliveEntity::moveEntity(const DynamicGrid& dynaGrid){
 	moveSprite(movement);
 	updateQuad(dynaGrid.getQuad(getSpritePosition()));

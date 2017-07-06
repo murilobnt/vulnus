@@ -90,6 +90,8 @@ public:
 	 */
 	AliveEntity(int x, int y, float health, float speed, sf::Texture const& texture, int spriteX, int spriteY, int spriteW, int spriteH, float entityGravity, int spriteInitX, int spriteEndX, int spriteInitY, int spriteEndY);
 
+	void moveEntity();
+	
 	void moveEntity(const DynamicGrid& dynaGrid);
 
 	/**

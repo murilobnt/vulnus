@@ -10,7 +10,7 @@ Vulnus - Readme/Leiame
 
 # INTRODUCTION
 
-**Vulnus** is a game that is being developed for fun, learning and teaching purposes. It's language is C++ with SFML.
+**Vulnus** is a game that is being developed for fun, learning and teaching purposes. Its language is C++ with SFML.
 
 # HOW TO RUN
 
@@ -67,6 +67,10 @@ The game is a platform game.
 
 ## ADDITIONAL RESOURCES
 
+> Muli
+
+The font, Muli, has its OFL license in fonts/Muli/OFL.txt.
+
 > Free Platformer Game Tileset: Scrolling background
 
 The image, images/7536921_orig.png, is from **Zuhria Alfitra** a.k.a **pzUH**, at **Game Art 2D**. It was downloaded from the following URL:
@@ -74,6 +78,13 @@ The image, images/7536921_orig.png, is from **Zuhria Alfitra** a.k.a **pzUH**, a
 http://www.gameart2d.com/free-platformer-game-tileset.html
 - - -
 "Not necessary to put my name or this site link. But I won't stop you if you do that. :p", pzUH. "You deserve credit for your awesome work! :D", me.
+
+> Free Winter Platformer Game Tileset: Scrolling background
+
+The image, images/7579418\_orig.jpg (images/7579418\_altered.png is this image altered by myself because of SFML), is from **Zuhria Alfitra** a.k.a **pzUH**, at **Game Art 2D**. It was downloaded from the following URL:
+- - -
+http://www.gameart2d.com/winter-platformer-game-tileset.html
+- - -
 
 > Overworld
 
@@ -169,6 +180,10 @@ O jogo é um jogo de plataforma.
 
 ## RECURSOS ADICIONAIS
 
+> Muli
+
+A fonte, Muli, tem a sua licensa OFL em fonts/Muli/OFL.txt.
+
 > Free Platformer Game Tileset: Scrolling background
 
 A imagem, images/7536921_orig.png, é de **Zuhria Alfitra** também conhecido como **pzUH**, em **Game Art 2D**. Foi baixada da seguinte URL:
@@ -176,6 +191,13 @@ A imagem, images/7536921_orig.png, é de **Zuhria Alfitra** também conhecido co
 http://www.gameart2d.com/free-platformer-game-tileset.html
 - - -
 "Não é necessário colocar meu nome ou o link para este site. Mas eu não vou te impedir se você fizer isso. :p", pzUH (traduzido). "Você merece crédito pelo seu trabalho maneiro! :D", eu.
+
+> Free Winter Platformer Game Tileset: Scrolling background
+
+A imagem, images/7579418\_orig.jpg (images/7579418\_altered.png é esta imagem alterada por mim mesmo por causa do SFML), é de **Zuhria Alfitra** também conhecido como **pzUH**, em **Game Art 2D**. Foi baixada da seguinte URL:
+- - -
+http://www.gameart2d.com/winter-platformer-game-tileset.html
+- - -
 
 > Overworld
 

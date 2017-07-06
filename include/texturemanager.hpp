@@ -2,6 +2,7 @@
 #define _TEXTUREMANAGER_HPP_
 
 #include <SFML/Graphics.hpp>
+#include <iostream>
 
 #include "textureloader.hpp"
 #include "textureindex.hpp"
@@ -11,6 +12,8 @@ private:
 	TextureLoader aet;
 	TextureLoader bg;
 	TextureLoader cutscn;
+	TextureLoader button;
+	TextureLoader menubg;
 
 public:
 	TextureManager();

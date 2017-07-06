@@ -1,17 +1,27 @@
 #ifndef _MENUSCENE_HPP_
 #define _MENUSCENE_HPP_
 
-#include <iostream>
-
 #include "scene.hpp"
 #include "texturemanager.hpp"
 #include "clockhandler.hpp"
+#include "menubutton.hpp"
+#include "player.hpp"
 
 class MenuScene : public Scene {
 private:
-	/*MenuButton startGame;
+	sf::Font font;
+
+	Player player;
+
+	MenuButton startGame;
 	MenuButton loadGame;
-	MenuButton exit;*/
+	MenuButton exit;
+
+	sf::Sprite background;
+
+	MenuButton* buttonArray[3];
+
+	int selected;
 
 public:
 	MenuScene(TextureManager& TextureManager, SSceneManager* sceneManager);
