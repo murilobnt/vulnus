@@ -3,7 +3,8 @@
 
 enum SceneCatalog {
 	MENU,
-	GAME
+	GAME,
+	GAMEMENU
 };
 
 #endif

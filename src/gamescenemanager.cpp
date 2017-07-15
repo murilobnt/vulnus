@@ -7,6 +7,10 @@ camera(0.f, 0.f, 400.f, 300.f, 2.0)
 
 }
 
+void GameSceneManager::resetCameraPosition(){
+	camera.resetCameraPosition();
+}
+
 void GameSceneManager::setCameraToPlayer(const Player& player, sf::Vector2u levelSize){
 	camera.getToPlayer(player, levelSize);
 }

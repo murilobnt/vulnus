@@ -6,6 +6,10 @@ Camera::Camera(float xCenter, float yCenter, float w, float h, float zoom) : vie
   cameraZoom(zoom);
 }
 
+void Camera::resetCameraPosition(){
+  this->view.setCenter(400,300);
+}
+
 void Camera::calculateCameraXPosition(float& cameraXPosition, sf::Vector2f playerSpritePos, sf::Vector2f viewSize, sf::Vector2u levelSize){
   if((playerSpritePos.x + 16) - viewSize.x < 0){
     cameraXPosition = viewSize.x;

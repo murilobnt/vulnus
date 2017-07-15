@@ -38,11 +38,17 @@ void MenuScene::handleEvent(sf::Event event, sf::RenderWindow& screen){
 		case sf::Event::KeyReleased :
 			switch(event.key.code){
 				case sf::Keyboard::Z:
+				case sf::Keyboard::X:
 				case sf::Keyboard::Return:
 				case sf::Keyboard::Space:
 					switch(selected){
 						case 0:
 							changeScene(GAME);
+						break;
+						case 1:
+						break;
+						case 2:
+							screen.close();
 						break;
 					}
 				break;

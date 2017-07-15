@@ -21,7 +21,26 @@ void SceneManager::changeScene(SceneCatalog sceneCatalog){
 			this->scene = new GameScene(textureManager, this);
 			this->scene->start();
 		break;
+		case MENU:
+			this->scene = new MenuScene(textureManager, this);
+			this->scene->start();
+		break;
 	}
+}
+
+void SceneManager::changeToRuntimeScene(SceneCatalog sceneCatalog){
+	this->lastScene = this->scene;
+
+	switch (sceneCatalog){
+		case GAMEMENU:
+			this->scene = new GameMenuScene(textureManager, this);
+			this->scene->start();
+		break;
+	}
+}
+
+void SceneManager::setLastScene(){
+	this->scene = lastScene;
 }
 
 Scene* SceneManager::getScene() const{

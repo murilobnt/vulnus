@@ -39,6 +39,17 @@ void GameScene::start(){
 }
 
 void GameScene::handleEvent(sf::Event event, sf::RenderWindow& screen){
+	switch(event.type){
+		case sf::Event::KeyReleased :
+			switch(event.key.code){
+				case sf::Keyboard::Escape:
+					this->gameSceneManager.resetCameraPosition();
+					this->gameSceneManager.setCameraToWindow(screen);
+					getSSceneManager()->changeToRuntimeScene(GAMEMENU);
+				break;
+			}
+	}
+	
 	if(eventhandler.handleEvent(event))
 		eventhandler.handleMouseEvent(event, screen);
 }
@@ -138,7 +149,7 @@ void GameScene::resetTimeHandlers(ClockHandler& clockHandler){
 }
 
 void GameScene::changeScene(SceneCatalog sceneCatalog){
-
+	getSSceneManager()->changeScene(sceneCatalog);
 }
 
 void GameScene::updateLogic(){

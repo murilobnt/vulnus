@@ -2,16 +2,20 @@
 #define _SCENEMANAGER_HPP_
 
 #include <iostream>
+#include <cstring>
 
 #include "scene.hpp"
 #include "texturemanager.hpp"
 #include "gamescene.hpp"
 #include "menuscene.hpp"
+#include "gamemenuscene.hpp"
 #include "scenecatalog.hpp"
 
 class SceneManager : public SSceneManager {
 private:
 	Scene* scene;
+	Scene* lastScene;
+
 	TextureManager textureManager;
 
 public:
@@ -19,6 +23,8 @@ public:
 	~SceneManager();
 	void setScene(Scene* scene);
 	void changeScene(SceneCatalog sceneCatalog);
+	void changeToRuntimeScene(SceneCatalog sceneCatalog);
+	void setLastScene();
 	Scene* getScene() const;
 
 	void start();

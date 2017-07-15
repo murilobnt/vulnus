@@ -32,6 +32,8 @@ public:
    */
   Camera(float xCenter, float yCenter, float w, float h, float zoom);
 
+  void resetCameraPosition();
+
   /**
    * Get the camera to player.
    * @param player the player

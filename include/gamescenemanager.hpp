@@ -13,6 +13,7 @@ private:
 public:
 	GameSceneManager();
 
+	void resetCameraPosition();
 	void setCameraToPlayer(const Player& player, sf::Vector2u levelSize);
 	void setCameraToWindow(sf::RenderWindow& window);
 	void setSpritePositionRelativeToCamera(sf::Transformable& sprite, float xrule, float yrule);
