@@ -1,4 +1,4 @@
-#include "tileset.hpp"
+#include "structures/tileset.hpp"
 
 TileSet::TileSet(int w, int h, int cellSize) : grid(w, h, cellSize){ }
 

@@ -1,4 +1,4 @@
-#include "soundtable.hpp"
+#include "entities/soundtable.hpp"
 
 SoundTable::SoundTable(){
 	bgm.openFromFile("sounds/happy8bitloop.wav");

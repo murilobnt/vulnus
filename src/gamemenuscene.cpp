@@ -1,4 +1,4 @@
-#include "gamemenuscene.hpp"
+#include "scenes/gamemenuscene.hpp"
 
 GameMenuScene::GameMenuScene(TextureManager& textureManager, SSceneManager* sceneManager) :
 Scene::Scene(sceneManager),

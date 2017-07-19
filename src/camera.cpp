@@ -1,4 +1,4 @@
-#include "camera.hpp"
+#include "entities/camera.hpp"
 
 Camera::Camera(float xCenter, float yCenter, float w, float h, float zoom) : view(sf::Vector2f(xCenter, yCenter), sf::Vector2f(w, h)){
   this->w = w;

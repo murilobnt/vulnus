@@ -1,4 +1,4 @@
-#include "cutscene.hpp"
+#include "entities/cutscene/cutscene.hpp"
 
 Cutscene::Cutscene(int id, sf::Texture const& texture, int spriteX, int spriteY, int spriteW, int spriteH, bool startCutscene) : 
 SpritedEntity::SpritedEntity(texture, spriteX, spriteY, spriteW, spriteH)

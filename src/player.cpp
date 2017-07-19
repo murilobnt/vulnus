@@ -1,4 +1,4 @@
-#include "player.hpp"
+#include "entities/gamecomponents/player.hpp"
 
 Player::Player(float health, float speed, sf::Texture const& texture,
 	             int spriteX, int spriteY, int spriteW, int spriteH,

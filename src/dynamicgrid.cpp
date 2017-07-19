@@ -1,4 +1,4 @@
-#include "dynamicgrid.hpp"
+#include "structures/dynamicgrid.hpp"
 
 DynamicGrid::DynamicGrid(int w, int h, int unitySize) : AbstractGrid::AbstractGrid(w, h, unitySize){
 

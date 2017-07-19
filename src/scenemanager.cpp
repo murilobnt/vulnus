@@ -1,4 +1,4 @@
-#include "scenemanager.hpp"
+#include "structures/scenemanager.hpp"
 
 SceneManager::SceneManager(TextureManager& textureManager) {
 	this->scene = new MenuScene(textureManager, this);

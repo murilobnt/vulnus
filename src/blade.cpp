@@ -1,4 +1,4 @@
-#include "blade.hpp"
+#include "entities/weapon/blade.hpp"
 
 Blade::Blade(float damage) : 
 Weapon::Weapon(damage, SLASH),

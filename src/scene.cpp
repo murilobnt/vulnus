@@ -1,4 +1,4 @@
-#include "scene.hpp"
+#include "generics/scene.hpp"
 
 Scene::Scene(SSceneManager* sceneManager){
 	this->sceneManager = sceneManager;

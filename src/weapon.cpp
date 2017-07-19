@@ -1,4 +1,4 @@
-#include "weapon.hpp"
+#include "generics/weapon.hpp"
 
 Weapon::Weapon(float damage, WeaponTypes weaponType){
 	this->damage = damage;

@@ -1,4 +1,4 @@
-#include "spritedentity.hpp"
+#include "generics/spritedentity.hpp"
 
 SpritedEntity::SpritedEntity(sf::Texture const& texture, int spriteX, int spriteY, int spriteW, int spriteH){
 	this->sprite.setTexture(texture);

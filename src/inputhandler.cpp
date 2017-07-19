@@ -1,4 +1,4 @@
-#include "inputhandler.hpp"
+#include "structures/inputhandler.hpp"
 
 void InputHandler::handlePlayerInput(Player* player, sf::Keyboard::Key key, bool release){
 	switch (key) {

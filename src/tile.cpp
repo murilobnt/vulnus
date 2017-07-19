@@ -1,4 +1,4 @@
-#include "tile.hpp"
+#include "structures/tile.hpp"
 
 Tile::Tile(sf::Vector2f tilePosition, int id){
   this->tilePosition = tilePosition;

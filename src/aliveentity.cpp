@@ -1,4 +1,4 @@
-#include "aliveentity.hpp"
+#include "generics/aliveentity.hpp"
 
 void AliveEntity::increaseHealth(float modifier){
 	this->health += modifier;

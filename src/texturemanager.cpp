@@ -1,4 +1,4 @@
-#include "texturemanager.hpp"
+#include "structures/texturemanager.hpp"
 
 TextureManager::TextureManager() :
 aet("images/aliveentities.png", 128, 64, false, true),

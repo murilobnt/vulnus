@@ -1,4 +1,4 @@
-#include "cutscenedatabase.hpp"
+#include "entities/cutscene/cutscenedatabase.hpp"
 
 CutsceneDatabase::CutsceneDatabase(){
 

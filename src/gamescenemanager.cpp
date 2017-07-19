@@ -1,4 +1,4 @@
-#include "gamescenemanager.hpp"
+#include "scenes/gamescenemanager.hpp"
 
 GameSceneManager::GameSceneManager()
 :

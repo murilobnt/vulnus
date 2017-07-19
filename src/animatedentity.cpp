@@ -1,4 +1,4 @@
-#include "animatedentity.hpp"
+#include "generics/animatedentity.hpp"
 
 AnimatedEntity::AnimatedEntity(int spriteInitX, int spriteEndX, int spriteInitY, int spriteEndY){
 	this->spriteInitX = spriteInitX;

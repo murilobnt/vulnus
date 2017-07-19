@@ -1,4 +1,4 @@
-#include "abstractgrid.hpp"
+#include "generics/abstractgrid.hpp"
 
 AbstractGrid::AbstractGrid(int w, int h, int unitySize){
 	this->w = w;

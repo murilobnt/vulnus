@@ -1,4 +1,4 @@
-#include "bullet.hpp"
+#include "structures/bullet.hpp"
 
 Bullet::Bullet(float speed, sf::Vector2f playerPos, bool movingRight) : bulletSprite(sf::Vector2f(20, 5)){
   this->markedForDeath = false;

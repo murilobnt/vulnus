@@ -1,4 +1,4 @@
-#include "tilegrid.hpp"
+#include "structures/tilegrid.hpp"
 
 sf::Vector2i TileGrid::checkCondition(sf::Vector2i before) const{
   if(before.x < 0){

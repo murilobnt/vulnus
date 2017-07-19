@@ -1,4 +1,4 @@
-#include "level.hpp"
+#include "entities/level.hpp"
 
 Level::Level(int id, sf::Texture const& enemiesTexture){
   loadLevel(id, enemiesTexture);

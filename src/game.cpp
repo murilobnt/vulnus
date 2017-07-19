@@ -1,4 +1,4 @@
-#include "game.hpp"
+#include "structures/game.hpp"
 
 Game::Game(int gameWidth, int gameHeight, std::string gameTitle) :
 gameScreen(sf::VideoMode(gameWidth, gameHeight), gameTitle),

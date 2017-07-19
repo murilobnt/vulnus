@@ -1,4 +1,4 @@
-#include "tilemap.hpp"
+#include "structures/tilemap.hpp"
 
 TileMap::TileMap() : tiles(0, 0, 0){ }
 

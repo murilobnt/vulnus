@@ -1,4 +1,4 @@
-#include "menubutton.hpp"
+#include "scenes/uicomponents/menubutton.hpp"
 
 MenuButton::MenuButton(float x, float y, sf::Texture const& texture, int spriteX, int spriteY, int spriteW, int spriteH) :
 SpritedEntity::SpritedEntity(texture, spriteX, spriteY, spriteW, spriteH) {

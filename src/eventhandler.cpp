@@ -1,4 +1,4 @@
-#include "eventhandler.hpp"
+#include "structures/eventhandler.hpp"
 
 EventHandler::EventHandler(Player* player, Cutscene* cutscene) : 
 player(player),

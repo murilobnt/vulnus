@@ -1,4 +1,4 @@
-#include "polargun.hpp"
+#include "entities/weapon/polargun.hpp"
 
 PolarGun::PolarGun(float damage) : Weapon::Weapon(damage, RANGED){
 }

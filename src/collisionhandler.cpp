@@ -1,4 +1,4 @@
-#include "collisionhandler.hpp"
+#include "structures/collisionhandler.hpp"
 
 CollisionHandler::CollisionHandler(DynamicGrid dynaGrid){
 	this->dynaGrid = dynaGrid;
