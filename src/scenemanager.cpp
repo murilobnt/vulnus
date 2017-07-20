@@ -15,6 +15,7 @@ void SceneManager::setScene(Scene* scene){
 }
 
 void SceneManager::changeScene(SceneCatalog sceneCatalog){
+	scene->onExit();
 	delete scene;
 	switch (sceneCatalog){
 		case GAME:
@@ -39,8 +40,13 @@ void SceneManager::changeToRuntimeScene(SceneCatalog sceneCatalog){
 	}
 }
 
+void SceneManager::removeLastScene(){
+	delete lastScene;
+}
+
 void SceneManager::setLastScene(){
 	this->scene = lastScene;
+	this->scene->resumeScene();
 }
 
 Scene* SceneManager::getScene() const{

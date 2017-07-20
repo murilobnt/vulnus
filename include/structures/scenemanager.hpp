@@ -23,6 +23,7 @@ public:
 	void setScene(Scene* scene);
 	void changeScene(SceneCatalog sceneCatalog);
 	void changeToRuntimeScene(SceneCatalog sceneCatalog);
+	void removeLastScene();
 	void setLastScene();
 	Scene* getScene() const;
 

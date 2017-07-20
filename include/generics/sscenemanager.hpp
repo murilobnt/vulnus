@@ -12,6 +12,7 @@ private:
 public:
 	virtual void changeScene(SceneCatalog sceneCatalog) = 0;
 	virtual void changeToRuntimeScene(SceneCatalog sceneCatalog) = 0;
+	virtual void removeLastScene() = 0;
 	virtual void setLastScene() = 0;
 	virtual void setScene(Scene* scene) = 0;
 };

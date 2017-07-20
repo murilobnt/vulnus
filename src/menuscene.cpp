@@ -107,3 +107,11 @@ void MenuScene::resetTimeHandlers(ClockHandler& clockHandler){
 void MenuScene::changeScene(SceneCatalog sceneCatalog){
 	getSSceneManager()->changeScene(sceneCatalog);
 }
+
+void MenuScene::onExit(){
+	
+}
+
+void MenuScene::resumeScene(){
+	
+}

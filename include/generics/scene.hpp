@@ -26,6 +26,9 @@ public:
 	virtual void changeScene(SceneCatalog sceneCatalog) = 0;
 	void setSSceneManager(SSceneManager* sceneManager);
 	SSceneManager* getSSceneManager();
+
+	virtual void onExit() = 0;
+	virtual void resumeScene() = 0;
 };
 
 #endif

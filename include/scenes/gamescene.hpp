@@ -53,6 +53,8 @@ public:
 	void doInternalTimedActions();
 	void resetTimeHandlers(ClockHandler& clockHandler);
 	void changeScene(SceneCatalog sceneCatalog);
+	void onExit();
+	void resumeScene();
 
 	void updateLogic();
 	void moveNStopPlayer();

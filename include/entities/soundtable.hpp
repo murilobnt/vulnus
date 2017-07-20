@@ -6,12 +6,16 @@
 class SoundTable {
 private:
 	sf::Music bgm; // 1
-	sf::Music playerStep; // 2
-	sf::Music playerGetHit; // 3
+	sf::SoundBuffer psb;
+	sf::Sound playerStep; // 2
+	sf::SoundBuffer pghb;
+	sf::Sound playerGetHit; // 3
 
 public:
 	SoundTable();
 	void playSound(int id);
+	void stopSound();
+	void pauseSound();
 };
 
 #endif

@@ -39,6 +39,7 @@ void GameMenuScene::handleEvent(sf::Event event, sf::RenderWindow& screen){
 							this->sceneManager->setLastScene();
 						break;
 						case 1:
+							getSSceneManager()->removeLastScene();
 							changeScene(MENU);
 						break;
 					}
@@ -89,4 +90,12 @@ void GameMenuScene::resetTimeHandlers(ClockHandler& clockHandler){
 
 void GameMenuScene::changeScene(SceneCatalog sceneCatalog){
 	getSSceneManager()->changeScene(sceneCatalog);
+}
+
+void GameMenuScene::onExit(){
+	
+}
+
+void GameMenuScene::resumeScene(){
+	
 }

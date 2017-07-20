@@ -45,6 +45,7 @@ void GameScene::handleEvent(sf::Event event, sf::RenderWindow& screen){
 				case sf::Keyboard::Escape:
 					this->gameSceneManager.resetCameraPosition();
 					this->gameSceneManager.setCameraToWindow(screen);
+					this->soundTable.pauseSound();
 					getSSceneManager()->changeToRuntimeScene(GAMEMENU);
 				break;
 			}
@@ -173,6 +174,14 @@ void GameScene::updateLogic(){
 	gameSceneManager.setCameraToPlayer(player, level.getTileMap().getLevelSize());
 	restrictPlayerMovement();
 	updatePlayerHealth();
+}
+
+void GameScene::onExit(){
+	this->soundTable.stopSound();
+}
+
+void GameScene::resumeScene(){
+	this->soundTable.playSound(1);
 }
 
 void GameScene::launchCutscene(){

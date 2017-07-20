@@ -4,10 +4,12 @@ SoundTable::SoundTable(){
 	bgm.openFromFile("sounds/happy8bitloop.wav");
 	bgm.setLoop(true);
 
-	playerStep.openFromFile("sounds/footstep.ogg");
+	psb.loadFromFile("sounds/footstep.ogg");
+	playerStep.setBuffer(psb);
 	playerStep.setVolume(30);
 
-	playerGetHit.openFromFile("sounds/metallichit.wav");
+	pghb.loadFromFile("sounds/metallichit.wav");
+	playerGetHit.setBuffer(psb);
 }
 
 void SoundTable::playSound(int id){
@@ -24,4 +26,12 @@ void SoundTable::playSound(int id){
 		default:
 		break;
 	}
+}
+
+void SoundTable::stopSound(){
+	bgm.stop();
+}
+
+void SoundTable::pauseSound(){
+	bgm.pause();
 }
