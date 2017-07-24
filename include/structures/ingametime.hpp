@@ -6,6 +6,7 @@
 #include "entities/clock/generictimehandler.hpp"
 #include "structures/inttostring.hpp"
 #include "structures/colorgetter.hpp"
+#include "structures/weekcontainer.hpp"
 #include "enums/daytime.hpp"
 
 class InGameTime {
@@ -26,11 +27,14 @@ private:
 	bool mode12;
 
 	bool am;
+
 	DayTime dayTime;
+	WeekContainer weekContainer;
 
 	void setTimeText(std::string hours, std::string minutes);
 	void changeDayTime();
 	void dayTimeChange();
+
 public:
 	InGameTime(bool mode12 = false);
 	sf::Text& getText();

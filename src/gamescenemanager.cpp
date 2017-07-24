@@ -2,7 +2,7 @@
 
 GameSceneManager::GameSceneManager()
 :
-camera(0.f, 0.f, 400.f, 300.f, 2.0)
+camera(0.f, 0.f, 400.f, 300.f, 2)
 {
 
 }

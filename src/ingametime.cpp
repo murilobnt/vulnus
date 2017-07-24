@@ -15,9 +15,9 @@ void InGameTime::setTimeText(std::string hours, std::string minutes){
 		else
 			period = "PM";
 
-		text.setString(hours + ":" + minutes + period);
+		text.setString(weekContainer.getDofwText() + "\n" + hours + ":" + minutes + " " + period);
 	} else {
-		text.setString(hours + ":" + minutes);
+		text.setString(weekContainer.getDofwText() + "\n" + hours + ":" + minutes);
 	}
 }
 
@@ -40,9 +40,9 @@ void InGameTime::changeDayTime(){
 				dayTime = NIGHT;
 			}
 		} else {
-			if(hours >= 0 || hours < 6){
+			if(hours >= 0 && hours < 6){
 				dayTime = AFTERNOON;
-			} else if(hours >= 6 || hours < 10){
+			} else if(hours >= 6 && hours < 10){
 				dayTime = EVENING;
 			} else {
 				dayTime = NIGHT;
@@ -108,7 +108,8 @@ InGameTime::InGameTime(bool mode12) : timeCycle(sf::seconds(5.f)){
 	this->text = sf::Text(std::string(""), font);
 	this->text.setColor(sf::Color::Black);
 	this->text.setPosition(sf::Vector2f(400, 300));
-	this->hours = 6;
+	this->text.setCharacterSize(20);
+	this->hours = 5;
 	this->minutes = 0;
 
 	this->mode12 = mode12;
@@ -121,14 +122,14 @@ InGameTime::InGameTime(bool mode12) : timeCycle(sf::seconds(5.f)){
 			am = true;
 		}
 		this->hours = this->hours % this->timeReseter;
-		this->hours = (this->hours % this->timeReseter == 0) ? 0 : this->hours; 
+		this->hours = (this->hours % this->timeReseter == 0) ? 0 : this->hours;
 	}
 	else{
 		this->timeReseter = 24;
 	}
 
-	setTimeText(IntToString::IntToString(hours), IntToString::IntToString(minutes*10));
 	changeDayTime();
+	setTimeText(IntToString::IntToString(hours), IntToString::IntToString(minutes*10));
 }
 
 sf::Text& InGameTime::getText(){
@@ -145,9 +146,18 @@ void InGameTime::updateTime(){
 		minutes = 0;
 		hours++;
 
-		if(mode12)
-			if(hours % timeReseter == 0)
+		if(mode12){
+			if(hours % timeReseter == 0){
+				if(!am){
+					weekContainer.incrementDofw();
+				}
 				am = !am;
+			}
+		} else {
+			if(hours % timeReseter == 0){
+				weekContainer.incrementDofw();
+			}
+		}
 
 		hours = (hours % timeReseter == 0) ? 0 : hours;
 
