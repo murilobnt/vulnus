@@ -7,7 +7,8 @@ level(1, textureManager.getTexture(AET)),
 player(100.f, 2, textureManager.getTexture(AET), 32, 0, 32, 32, 0.2, 0, 32, 0, 32),
 eventhandler(&player, &cutscene),
 playerHealth(sf::Vector2f(player.getHealth(), 20.f)),
-theTiles(0, 0, 64)
+theTiles(0, 0, 64),
+gameTime(true)
 {
 	hasCamera = true;
 
@@ -64,6 +65,7 @@ void GameScene::doOperations(){
 }
 
 void GameScene::drawEntities(sf::RenderWindow& window){
+	gameTime.clearRenderTexture();
 	window.draw(backgroundSprite);
 	window.draw(level.getTileMap());
 	this->level.drawEnemies(window);
@@ -94,7 +96,9 @@ void GameScene::drawEntities(sf::RenderWindow& window){
 		this->cutscene.drawCutsceneBackground(window);
 		this->cutscene.drawText(window);
 	}
-
+	window.draw(gameTime.getFilter());
+	
+	window.draw(gameTime.getText());
 	window.draw(this->playerHealth);
 }
 
@@ -124,6 +128,10 @@ void GameScene::doInternalTimedActions(){
 		}
 	}
 
+	if(gameTime.getTimeHandler().timeToUpdate() && !cutscene.isActive()){
+		gameTime.updateTime();
+	}
+
 	while(player.getTimeHandler(1).timeToUpdate() && player.moving && !player.getIsJumping()){
 		soundTable.playSound(2);
 	}
@@ -147,6 +155,9 @@ void GameScene::resetTimeHandlers(ClockHandler& clockHandler){
 			clockHandler.restartTimeHandler((*it).getEntityComboDelimeter());
 		}
 	}
+
+	if(!cutscene.isActive())
+		clockHandler.restartTimeHandler(&gameTime.getTimeHandler());
 }
 
 void GameScene::changeScene(SceneCatalog sceneCatalog){
@@ -160,8 +171,6 @@ void GameScene::updateLogic(){
 	moveNStopPlayer();
 	applyGravityOnEntities();
 	
-	refreshBackgroundPos();
-	
 	this->player.updateDamageText();
 
 	if (!currentEnemies->empty()){
@@ -174,6 +183,8 @@ void GameScene::updateLogic(){
 	gameSceneManager.setCameraToPlayer(player, level.getTileMap().getLevelSize());
 	restrictPlayerMovement();
 	updatePlayerHealth();
+	refreshTimePos();
+	refreshBackgroundPos();
 }
 
 void GameScene::onExit(){
@@ -232,6 +243,11 @@ void GameScene::changeLevel(){
 
 void GameScene::refreshBackgroundPos(){
 	gameSceneManager.setSpritePositionRelativeToCamera(backgroundSprite, -0.1 * gameSceneManager.getCameraPointRelativeToCenterX(), 0);
+	gameSceneManager.setSpritePositionRelativeToCamera(gameTime.getFilter(), gameSceneManager.getCameraPointRelativeToCenterX() - 400, gameSceneManager.getCameraPointRelativeToCenterY() - 300);
+}
+
+void GameScene::refreshTimePos(){
+	gameSceneManager.setSpritePositionRelativeToCamera(gameTime.getText(), gameSceneManager.getCameraPointRelativeToCenterX() + 400 - gameTime.getText().getLocalBounds().width, gameSceneManager.getCameraPointRelativeToCenterY() - 300);
 }
 
 void GameScene::applyGravityOnEntities(){

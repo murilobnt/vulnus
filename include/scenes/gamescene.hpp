@@ -5,6 +5,8 @@
 
 #include "scenes/gamescenemanager.hpp"
 
+#include "enums/daytime.hpp"
+
 #include "entities/cutscene/cutscene.hpp"
 #include "entities/gamecomponents/player.hpp"
 #include "entities/level.hpp"
@@ -16,6 +18,8 @@
 #include "entities/soundtable.hpp"
 #include "structures/collisionhandler.hpp"
 #include "structures/texturemanager.hpp"
+#include "structures/ingametime.hpp"
+#include "structures/colorgetter.hpp"
 
 class GameScene : public Scene {
 private:
@@ -35,6 +39,8 @@ private:
 
 	DynamicGrid dynaGrid;
 	sf::Font font;
+
+	InGameTime gameTime;
 
 	CollisionHandler colHandler;
 
@@ -65,6 +71,7 @@ public:
 
 	void changeLevel();
 	void refreshBackgroundPos();
+	void refreshTimePos();
 	void applyGravityOnEntities();
 	void displayPlayerHealth();
 	void updatePlayerHealth();

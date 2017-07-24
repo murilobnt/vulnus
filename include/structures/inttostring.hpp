@@ -4,7 +4,7 @@
 #include <sstream>
 
 namespace IntToString{
-	std::string IntToString ( int Number );
+	std::string IntToString(int Number);
 };
 
 #endif
