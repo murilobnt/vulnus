@@ -109,7 +109,7 @@ InGameTime::InGameTime(bool mode12) : timeCycle(sf::seconds(5.f)){
 	this->text.setColor(sf::Color::Black);
 	this->text.setPosition(sf::Vector2f(400, 300));
 	this->text.setCharacterSize(20);
-	this->hours = 5;
+	this->hours = 6;
 	this->minutes = 0;
 
 	this->mode12 = mode12;
