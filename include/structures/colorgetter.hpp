@@ -7,6 +7,7 @@
 
 namespace ColorGetter{
 	sf::Color GetScreenFilterColorToDayTime(DayTime Period);
+	sf::Color GetBackgroundFilterColorToDayTime(DayTime Period);
 };
 
 #endif

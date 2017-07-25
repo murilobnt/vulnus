@@ -8,7 +8,7 @@ player(100.f, 2, textureManager.getTexture(AET), 32, 0, 32, 32, 0.2, 0, 32, 0, 3
 eventhandler(&player, &cutscene),
 playerHealth(sf::Vector2f(player.getHealth(), 20.f)),
 theTiles(0, 0, 64),
-gameTime(true)
+gameTime(&backgroundSprite, true)
 {
 	hasCamera = true;
 
@@ -78,6 +78,14 @@ void GameScene::drawEntities(sf::RenderWindow& window){
 		window.draw(player.getSprite());
 	}
 
+	player.getPlayerWeapon().draw(window);
+	window.draw(gameTime.getFilter());
+
+	if(this->cutscene.isActive()){
+		this->cutscene.drawCutsceneBackground(window);
+		this->cutscene.drawText(window);
+	}
+
 	if(this->player.getOnCombo()){
 		this->player.drawText(window);
 	}
@@ -89,14 +97,6 @@ void GameScene::drawEntities(sf::RenderWindow& window){
 			}
 		}
 	}
-
-	player.getPlayerWeapon().draw(window);
-
-	if(this->cutscene.isActive()){
-		this->cutscene.drawCutsceneBackground(window);
-		this->cutscene.drawText(window);
-	}
-	window.draw(gameTime.getFilter());
 	
 	window.draw(gameTime.getText());
 	window.draw(this->playerHealth);

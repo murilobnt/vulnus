@@ -9,6 +9,10 @@
 #include "structures/weekcontainer.hpp"
 #include "enums/daytime.hpp"
 
+#define TIMECYCLE 0.3f
+#define INITIALH 6
+#define INITIALM 0
+
 class InGameTime {
 private:
 	sf::Text text;
@@ -24,19 +28,25 @@ private:
 	short timeIncreaser;
 
 	GenericTimeHandler timeCycle;
-	bool mode12;
 
+	bool mode12;
 	bool am;
 
 	DayTime dayTime;
-	WeekContainer weekContainer;
+	WeekContainer weekContainer;	
+
+	bool hasGameBg;
+	sf::Sprite* gameBackground;
 
 	void setTimeText(std::string hours, std::string minutes);
 	void changeDayTime();
 	void dayTimeChange();
 
+	void init(bool mode12, bool hasGameBg);
+
 public:
 	InGameTime(bool mode12 = false);
+	InGameTime(sf::Sprite* gameBackground, bool mode12 = false);
 	sf::Text& getText();
 	GenericTimeHandler& getTimeHandler();
 	void updateTime();
@@ -45,6 +55,7 @@ public:
 	void set24Mode();
 
 	void setTime(short hours, short minutes);
+	void setGameBackground(sf::Sprite* gameBackground);
 
 	DayTime getDayTime();
 	sf::Sprite& getFilter();

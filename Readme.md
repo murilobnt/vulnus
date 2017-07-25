@@ -1,6 +1,9 @@
 # VULNUS
 
-<p align="center"><img src ="./images/gamescreenshot.png" width=400></p>
+<p align="center">
+<img src ="./images/screenshotnight.png" width=400>
+<img src ="./images/screenshotafternoon.png" width=400>
+</p>
 
 ## Introduction
 

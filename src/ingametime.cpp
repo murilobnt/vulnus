@@ -50,6 +50,8 @@ void InGameTime::changeDayTime(){
 		}
 	}
 
+	if(hasGameBg)
+		gameBackground->setColor(ColorGetter::GetBackgroundFilterColorToDayTime(dayTime));
 	filter.setColor(ColorGetter::GetScreenFilterColorToDayTime(dayTime));
 }
 
@@ -69,7 +71,7 @@ void InGameTime::dayTimeChange(){
 			dayTime = EVENING;
 			changed = true;
 		}
-		if(hours = 22){
+		if(hours == 22){
 			dayTime = NIGHT;
 			changed = true;
 		}
@@ -95,22 +97,27 @@ void InGameTime::dayTimeChange(){
 		}
 	}
 
-	if(changed)
+	if(changed){
+		if(hasGameBg)
+			gameBackground->setColor(ColorGetter::GetBackgroundFilterColorToDayTime(dayTime));
 		filter.setColor(ColorGetter::GetScreenFilterColorToDayTime(dayTime));
+	}
 }
 
-InGameTime::InGameTime(bool mode12) : timeCycle(sf::seconds(5.f)){
+void InGameTime::init(bool mode12, bool hasGameBg){
+	this->hasGameBg = hasGameBg;
+
 	renderTexture.create(800, 600);
 	filter = sf::Sprite(renderTexture.getTexture());
 
 	this->font.loadFromFile("fonts/Ubuntu-C.tff");
 
 	this->text = sf::Text(std::string(""), font);
-	this->text.setColor(sf::Color::Black);
+	this->text.setColor(sf::Color::Blue);
 	this->text.setPosition(sf::Vector2f(400, 300));
 	this->text.setCharacterSize(20);
-	this->hours = 6;
-	this->minutes = 0;
+	this->hours = INITIALH;
+	this->minutes = INITIALM;
 
 	this->mode12 = mode12;
 
@@ -130,6 +137,15 @@ InGameTime::InGameTime(bool mode12) : timeCycle(sf::seconds(5.f)){
 
 	changeDayTime();
 	setTimeText(IntToString::IntToString(hours), IntToString::IntToString(minutes*10));
+}
+
+InGameTime::InGameTime(bool mode12) : timeCycle(sf::seconds(TIMECYCLE)){
+	init(mode12, false);
+}
+
+InGameTime::InGameTime(sf::Sprite* gameBackground, bool mode12) : timeCycle(sf::seconds(TIMECYCLE)){
+	this->gameBackground = gameBackground;
+	init(mode12, true);
 }
 
 sf::Text& InGameTime::getText(){
@@ -187,6 +203,10 @@ void InGameTime::set24Mode(){
 void InGameTime::setTime(short hours, short minutes){
 	this->hours = hours;
 	this->minutes = minutes;
+}
+
+void InGameTime::setGameBackground(sf::Sprite* gameBackground){
+	this->gameBackground = gameBackground;
 }
 
 DayTime InGameTime::getDayTime(){
