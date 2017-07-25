@@ -1,31 +1,46 @@
-Vulnus - Readme/Leiame
-=======
+# VULNUS
 
-![Game screenshot](./images/gamescreenshot.png)
-![Game screenshot](./etc/classdiagram.png)
+<p align="center"><img src ="./images/gamescreenshot.png" width=400></p>
 
-***
-# Language::ENGLISH
--------
-
-# INTRODUCTION
+## Introduction
 
 **Vulnus** is a game that is being developed for fun, learning and teaching purposes. Its language is C++ with SFML.
 
-# HOW TO RUN
+## Features and TO DOs
 
-## REQUISITES
-* I don't have/use Windows OS. Then this guide will help you to test the game on Linux (Ubuntu distro);
-* SFML library:
+- [x] Player
+- [x] Level
+- [x] Collision
+- [x] Enemies
+- [x] Cutscene
+- [x] Multiple weapons
+- [x] Menus
+- [x] Scene changing
+- [x] Timed actions handling
+- [x] In game day of the week + time
+- [x] World look modification on time changing
+- [ ] Change of level
+- [ ] Game over event
+- [ ] Multiplayer
+- [ ] Time conditioned events
+- [ ] NPCs
+- [ ] Database
+
+## How to run
+
+### Requisites
+I don't have/use Windows OS. Then this guide will help you to test the game on Linux (Ubuntu distro);
+To get the latest SFML library:
 ```
 sudo apt-get install libsfml-dev
 ```
-* Go to root of the project folder and create a directory named **bin**, if it doesn't exist:
+
+GCC (g++) compiler:
 ```
-mkdir bin
+sudo apt-get install g++
 ```
 
-## COMPILING
+## Compiling
 To run this project, you will may want to compile it first. To do so, go to the root of the project folder via terminal and run the following:
 ```
 make
@@ -36,42 +51,42 @@ And then, to execute it, you need to be at the **root of the project folder**. T
 ./bin/vulnus
 ```
 
-# NERDY SPEECH
-
-I, Murilo, created this project on vacation merely for fun. I kinda forgot about him because of all classes and projects I have.
-I finally managed to get the spatial partitioning! YAY!
-By the way, in means of performance, the game seems to be requiring more CPU now that I added the partitioning... and that does make a lot of sense! (lol it doesn't)
-
-# HOW TO USE
+## About the game
 
 The game is a platform game.
 
-## CONTROLS
+### Controls
 
-* Move with:
-  * A and D;
-  * Left and Right arrows.
-* Jump with:
-  * W;
-  * Up arrow;
-  * Space bar.
-* Change weapon with Q or E.
-* Use weapon with K.
-* Teleport with mouse click.
+| Action | Keys
+-------- | ---
+| Movement | WASD or arrow keys
+| Jump | W, Spacebar or Up arrow key
+| Weapon | K
+| Change Weapon | Q or E
+| Teleport | Mouse click
 
-# CREDITS
+### Time mechanics
 
-## AUTHOR
+The time is increased by 10 minutes every 5 seconds. There are no years, no months and no numeral days, just days of the week. The following schema shows all day sections:
 
-1. Murilo Bento (murilo.araujo.md@gmail.com)
+| Section | Hour
+------ | -------
+| Morning | 6:00 AM
+| Afternoon | 00:00 PM
+| Evening | 6:00 PM
+| Night | 10:00 PM
 
-## ADDITIONAL RESOURCES
+## Additional resources
 
-> Muli
+### Fonts
+
+#### Muli
 
 The font, Muli, has its OFL license in fonts/Muli/OFL.txt.
 
-> Free Platformer Game Tileset: Scrolling background
+### Sprites
+
+#### Free Platformer Game Tileset: Scrolling background
 
 The image, images/7536921_orig.png, is from **Zuhria Alfitra** a.k.a **pzUH**, at **Game Art 2D**. It was downloaded from the following URL:
 - - -
@@ -79,14 +94,16 @@ http://www.gameart2d.com/free-platformer-game-tileset.html
 - - -
 "Not necessary to put my name or this site link. But I won't stop you if you do that. :p", pzUH. "You deserve credit for your awesome work! :D", me.
 
-> Free Winter Platformer Game Tileset: Scrolling background
+#### Free Winter Platformer Game Tileset: Scrolling background
 
 The image, images/7579418\_orig.jpg (images/7579418\_altered.png is this image altered by myself because of SFML), is from **Zuhria Alfitra** a.k.a **pzUH**, at **Game Art 2D**. It was downloaded from the following URL:
 - - -
 http://www.gameart2d.com/winter-platformer-game-tileset.html
 - - -
 
-> Overworld
+### Musics and sounds
+
+#### Overworld
 
 The music file, *sounds/overworld.ogg* is from **Royalty Free Music**, from **Incompetech**. As instructed in-site, this is the credits I give to it:
 - - -
@@ -96,140 +113,27 @@ http://creativecommons.org/licenses/by/3.0/
 - - -
 You can listen to the music on YouTube: https://youtu.be/d5FVNxdZkfA
 
-> Happy 8bit Loop 01
+#### Happy 8bit Loop 01
 
 The music file, *sounds/happy8bitloop.wav* is from **Tristan_Lohengrin**, at **freesound.org**. As instructed by the author, this is the credits I give to it:
 - - -
 "Happy 8bit Loop 01" by Tristan Lohengrin : http://tristanlohengrin.wixsite.com/studio
 - - -
 
-> Concrete Footstep 4
+#### Concrete Footstep 4
 
 The music file, *sounds/footstep.wav* (original) and *sounds/footstep.ogg* (edited by me to amplify the sound a little) is from **Yoyodaman234**, at **freesound.org**. Since the author doesn't show any template of crediting, it is listed at the domain in the URL bellow:
 - - -
 https://www.freesound.org/s/166506/
 - - -
 
-> Mettalic Hit
+#### Mettalic Hit
 
 The music file, *sounds/metallichit.wav* is from **dermotte**, at **freesound.org**. Since the author doesn't show any template of crediting, it is listed at the domain in the URL bellow:
 - - -
 https://www.freesound.org/s/263008/
 - - -
 
-***
-# Language::PORTUGUÊS
----------
+## Author
 
-# INTRODUÇÃO
-
-**Vulnus** é um jogo que está sendo desenvolvido para propósitos de diversão, aprendizado e de ensinamento. Sua linguagem é C++ com SFML.
-
-# COMO EXECUTAR
-
-## REQUISITOS
-* Eu não tenho/uso o SO Windows. Então este guia irá ajudar você a testar o jogo no Linux (distro Ubuntu);
-* Biblioteca SFML:
-```
-sudo apt-get install libsfml-dev
-```
-* Vá para a raiz do diretório do projeto e crie uma pasta nomeada **bin**, se ele não existir:
-```
-mkdir bin
-```
-
-## COMPILING
-Para executar este projeto, você deve compilá-lo primeiro. Para fazer isso, vá para a raiz do diretório do projeto e então execute o seguinte:
-```
-make
-```
-
-E então, para executar, você precisa estar na **raiz do diretório do projeto**. Então, execute o seguinte:
-```
-./bin/vulnus
-```
-
-# DISCURSO NERD
-
-Eu, Murilo, criei este projeto nas férias meramente por diversão. Eu meio que esqueci dele por conta de todas as disciplinas e projetos que eu tenho.
-Eu finalmente consegui aplicar o particionamento espacial! YAY!
-A propósito, em questões de performance, o jogo parece requirir mais da CPU agora que eu adicionei o particionamento... e isso foi muito sentido! (kk sqn)
-
-# COMO USAR
-
-O jogo é um jogo de plataforma.
-
-## CONTROLES
-
-* Mova-se com:
-  * A e D;
-  * Setas da esquerda e direita.
-* Pule com:
-  * W;
-  * Seta para cima;
-  * Barra de espaço.
-* Mude a arma com Q ou E.
-* Use a arma com K. (Atire rindo "kkkkkkk")
-* Teletransporte-se com o clique do mouse.
-
-# CREDITOS
-
-## AUTOR
-
-1. Murilo Bento (murilo.araujo.md@gmail.com)
-
-## RECURSOS ADICIONAIS
-
-> Muli
-
-A fonte, Muli, tem a sua licensa OFL em fonts/Muli/OFL.txt.
-
-> Free Platformer Game Tileset: Scrolling background
-
-A imagem, images/7536921_orig.png, é de **Zuhria Alfitra** também conhecido como **pzUH**, em **Game Art 2D**. Foi baixada da seguinte URL:
-- - -
-http://www.gameart2d.com/free-platformer-game-tileset.html
-- - -
-"Não é necessário colocar meu nome ou o link para este site. Mas eu não vou te impedir se você fizer isso. :p", pzUH (traduzido). "Você merece crédito pelo seu trabalho maneiro! :D", eu.
-
-> Free Winter Platformer Game Tileset: Scrolling background
-
-A imagem, images/7579418\_orig.jpg (images/7579418\_altered.png é esta imagem alterada por mim mesmo por causa do SFML), é de **Zuhria Alfitra** também conhecido como **pzUH**, em **Game Art 2D**. Foi baixada da seguinte URL:
-- - -
-http://www.gameart2d.com/winter-platformer-game-tileset.html
-- - -
-
-> Overworld
-
-O arquivo de música, *sounds/overworld.ogg* é de **Royalty Free Music**, de **Incompetech**. Como instruído pelo site, estes são os créditos que eu dou a ele:
-- - -
-Overworld Kevin MacLeod (incompetech.com)
-Licensed under Creative Commons: By Attribution 3.0 License
-http://creativecommons.org/licenses/by/3.0/
-- - -
-Você pode escutar essa música no YouTube: https://youtu.be/d5FVNxdZkfA
-
-> Happy 8bit Loop 01
-
-O arquivo de música, *sounds/happy8bitloop.wav* é de **Tristan_Lohengrin**, em **freesound.org**. Como instruído pelo autor, estes são os créditos que eu dou a ele:
-- - -
-"Happy 8bit Loop 01" by Tristan Lohengrin : http://tristanlohengrin.wixsite.com/studio
-- - -
-
-> Concrete Footstep 4
-
-O arquivo de música, *sounds/footstep.wav* (original) e *sounds/footstep.ogg* (editado por mim para amplificar um pouco o som) é de **Yoyodaman234**, em **freesound.org**. Já que o autor não oferece nenhum template de creditação, está listada no domínio na URL abaixo:
-- - -
-https://www.freesound.org/s/166506/
-- - -
-
-> Metallic Hit
-
-O arquivo de música, *sounds/metallichit.wav* é de **dermotte**, em **freesound.org**. Já que o autor não oferece nenhum template de creditação, está listada no domínio na URL abaixo:
-- - -
-https://www.freesound.org/s/263008/
-- - -
-
-***
-Vulnus - End/Fim
-=======
+[Murilo Bento](https://github.com/murilobnt) (murilo.araujo.md@gmail.com)
