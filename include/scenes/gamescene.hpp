@@ -20,6 +20,7 @@
 #include "structures/texturemanager.hpp"
 #include "structures/ingametime.hpp"
 #include "structures/colorgetter.hpp"
+#include "structures/colorcontainer.hpp"
 
 class GameScene : public Scene {
 private:
@@ -46,6 +47,9 @@ private:
 
 	std::vector<Enemy>* currentEnemies;
 	std::vector<Bullet>* playerBulletsRef;
+
+	GenericTimeHandler filterTH;
+	GenericTimeHandler bgTH;
 
 	void controlCamera();
 public:

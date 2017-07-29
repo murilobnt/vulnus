@@ -52,6 +52,7 @@ void InGameTime::changeDayTime(){
 
 	if(hasGameBg)
 		gameBackground->setColor(ColorGetter::GetBackgroundFilterColorToDayTime(dayTime));
+	
 	filter.setColor(ColorGetter::GetScreenFilterColorToDayTime(dayTime));
 }
 
@@ -98,9 +99,10 @@ void InGameTime::dayTimeChange(){
 	}
 
 	if(changed){
-		if(hasGameBg)
-			gameBackground->setColor(ColorGetter::GetBackgroundFilterColorToDayTime(dayTime));
-		filter.setColor(ColorGetter::GetScreenFilterColorToDayTime(dayTime));
+		/*if(hasGameBg)
+			bgCC.setTransitionTo(dayTime);*/
+
+		filterCC.setTransitionTo(dayTime);
 	}
 }
 
@@ -139,11 +141,19 @@ void InGameTime::init(bool mode12, bool hasGameBg){
 	setTimeText(IntToString::IntToString(hours), IntToString::IntToString(minutes*10));
 }
 
-InGameTime::InGameTime(bool mode12) : timeCycle(sf::seconds(TIMECYCLE)){
+InGameTime::InGameTime(bool mode12) : 
+timeCycle(sf::seconds(TIMECYCLE)),
+filterCC(&this->filter),
+bgCC(this->gameBackground)
+{
 	init(mode12, false);
 }
 
-InGameTime::InGameTime(sf::Sprite* gameBackground, bool mode12) : timeCycle(sf::seconds(TIMECYCLE)){
+InGameTime::InGameTime(sf::Sprite* gameBackground, bool mode12) : 
+timeCycle(sf::seconds(TIMECYCLE)),
+filterCC(&this->filter),
+bgCC(gameBackground)
+{
 	this->gameBackground = gameBackground;
 	init(mode12, true);
 }
@@ -220,4 +230,12 @@ sf::Sprite& InGameTime::getFilter(){
 void InGameTime::clearRenderTexture(){
 	renderTexture.clear(sf::Color::White);
 	renderTexture.display();
+}
+
+ColorContainer& InGameTime::getFilterCC(){
+	return this->filterCC;
+}
+
+ColorContainer& InGameTime::getBgCC(){
+	return this->bgCC;
 }

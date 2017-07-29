@@ -1,4 +1,4 @@
-### LOL, just now I realised this was written in pt-br all this commits! O:
+### LOL, just now I realized this was written in pt-br all this commits! O:
 ### Since makefile isn't the easier thing to comprehend, I'll comment what
 ### I do below :D
 
