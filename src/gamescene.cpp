@@ -8,7 +8,7 @@ player(100.f, 2, textureManager.getTexture(AET), 32, 0, 32, 32, 0.2, 0, 32, 0, 3
 eventhandler(&player, &cutscene),
 playerHealth(sf::Vector2f(player.getHealth(), 20.f)),
 theTiles(0, 0, 64),
-gameTime(&backgroundSprite)
+gameTime(&backgroundSprite, true)
 {
 	this->filterTH = gameTime.getFilterCC().getTimeHandler();
 	this->bgTH = gameTime.getBgCC().getTimeHandler();
@@ -139,9 +139,9 @@ void GameScene::doInternalTimedActions(){
 		gameTime.getFilterCC().updateTransition();
 	}
 
-	/*if(gameTime.getBgCC().isInTransition() && bgTH.timeToUpdate()){
+	if(gameTime.getBgCC().isInTransition() && bgTH.timeToUpdate()){
 		gameTime.getBgCC().updateTransition();
-	}*/
+	}
 
 	while(player.getTimeHandler(1).timeToUpdate() && player.moving && !player.getIsJumping()){
 		soundTable.playSound(2);

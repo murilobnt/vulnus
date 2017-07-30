@@ -99,8 +99,8 @@ void InGameTime::dayTimeChange(){
 	}
 
 	if(changed){
-		/*if(hasGameBg)
-			bgCC.setTransitionTo(dayTime);*/
+		if(hasGameBg)
+			bgCC.setTransitionTo(dayTime);
 
 		filterCC.setTransitionTo(dayTime);
 	}

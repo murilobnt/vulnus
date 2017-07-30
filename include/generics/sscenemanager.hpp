@@ -6,9 +6,6 @@
 class Scene;
 
 class SSceneManager{
-private:
-	bool imcool;
-
 public:
 	virtual void changeScene(SceneCatalog sceneCatalog) = 0;
 	virtual void changeToRuntimeScene(SceneCatalog sceneCatalog) = 0;

@@ -2,13 +2,13 @@
 #define _INGAMETIME_HPP_
 
 #include <SFML/Graphics.hpp>
-#include <iostream>
 
 #include "entities/clock/generictimehandler.hpp"
 #include "structures/inttostring.hpp"
 #include "structures/colorgetter.hpp"
 #include "structures/weekcontainer.hpp"
-#include "structures/colorcontainer.hpp"
+#include "structures/backgroundcolorcontainer.hpp"
+#include "structures/filtercolorcontainer.hpp"
 #include "enums/daytime.hpp"
 
 #define TIMECYCLE 5.f
@@ -23,8 +23,8 @@ private:
 	sf::Sprite filter;
 	sf::RenderTexture renderTexture;
 
-	ColorContainer filterCC;
-	ColorContainer bgCC;
+	FilterColorContainer filterCC;
+	BackgroundColorContainer bgCC;
 
 	short timeReseter;
 

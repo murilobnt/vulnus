@@ -3,7 +3,6 @@
 
 #include "enums/dayoftheweek.hpp"
 #include <string>
-#include <iostream>
 
 class WeekContainer {
 private:

@@ -20,7 +20,7 @@
 #include "structures/texturemanager.hpp"
 #include "structures/ingametime.hpp"
 #include "structures/colorgetter.hpp"
-#include "structures/colorcontainer.hpp"
+#include "generics/colorcontainer.hpp"
 
 class GameScene : public Scene {
 private:

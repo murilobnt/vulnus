@@ -2,28 +2,27 @@
 #define _COLORCONTAINER_HPP_
 
 #include <SFML/Graphics.hpp>
-#include <iostream>
-#include <math.h>
 
 #include "entities/clock/generictimehandler.hpp"
 #include "enums/daytime.hpp"
 
 #define SECONDS 0.3f
-#define INCREASER 5
 
 class ColorContainer{
 private:
-	bool transitionFromBlueToYellow();
-	bool transitionFromYellowToOrange();
-	bool transitionFromOrangeToBlack();
-	bool transitionFromBlackToBlue();
+	virtual bool transitionFromMorningToAfternoon() = 0;
+	virtual bool transitionFromAfternoonToEvening() = 0;
+	virtual bool transitionFromEveningToNight() = 0;
+	virtual bool transitionFromNightToMorning() = 0;
 
-	sf::Color raw;
 	GenericTimeHandler transitionTime;
 
 	sf::Sprite* sprite;
 	bool inTransition;
 	DayTime current;
+
+protected:
+	sf::Color raw;
 
 public:
 	ColorContainer(sf::Sprite* sprite);
