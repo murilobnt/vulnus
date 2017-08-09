@@ -5,21 +5,11 @@
 #include <SFML/Graphics.hpp>
 
 // # Internal
-#include "entities/gamecomponents/player.hpp"
-#include "entities/cutscene/cutscene.hpp"
-#include "structures/inputhandler.hpp"
+#include "generics/controlableentity.hpp"
 
 class EventHandler {
-private:
-	InputHandler inputhandler;
-
-	Player* player;
-	Cutscene* cutscene;
 public:
-	EventHandler(Player* player, Cutscene* cutscene);
-	InputHandler getInputHandler() const;
-	bool handleEvent(sf::Event event);
-	void handleMouseEvent(sf::Event event, sf::RenderWindow& screen);
+	void handleEvent(sf::Event event, ControlableEntity& entity);
 };
 
 #endif

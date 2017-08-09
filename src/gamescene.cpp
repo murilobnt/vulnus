@@ -5,7 +5,6 @@ Scene::Scene(sceneManager),
 cutscene(0, textureManager.getTexture(CUTSCN), 0, 0, 416, 96, true),
 level(1, textureManager.getTexture(AET)),
 player(100.f, 2, textureManager.getTexture(AET), 32, 0, 32, 32, 0.2, 0, 32, 0, 32),
-eventhandler(&player, &cutscene),
 playerHealth(sf::Vector2f(player.getHealth(), 20.f)),
 theTiles(0, 0, 64),
 gameTime(&backgroundSprite, true)
@@ -55,8 +54,14 @@ void GameScene::handleEvent(sf::Event event, sf::RenderWindow& screen){
 			}
 	}
 	
-	if(eventhandler.handleEvent(event))
-		eventhandler.handleMouseEvent(event, screen);
+	eventhandler.handleEvent(event, cutscene);
+	
+	if(!this->cutscene.isActive()){
+		eventhandler.handleEvent(event, player);
+		eventhandler.handleEvent(event, gameTime);
+	
+		pmc.controlEntityByMouse(event, player, screen.mapPixelToCoords(sf::Vector2i(event.mouseButton.x, event.mouseButton.y)));
+	}
 }
 
 void GameScene::controlCamera(sf::RenderWindow& window){

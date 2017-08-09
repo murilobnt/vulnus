@@ -24,3 +24,8 @@ bool GenericTimeHandler::timeToUpdate(){
 void GenericTimeHandler::resetLastUpdate(){
 	this->lastUpdate = sf::Time::Zero;
 }
+
+void GenericTimeHandler::setFps(sf::Time fps){
+	this->lastUpdate = sf::seconds(fps.asSeconds() / (this->fps.asSeconds() / lastUpdate.asSeconds()));
+	this->fps = fps;
+}

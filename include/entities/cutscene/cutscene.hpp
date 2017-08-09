@@ -10,8 +10,9 @@
 #include "entities/cutscene/cutscenedatabase.hpp"
 #include "entities/gamecomponents/player.hpp"
 #include "generics/spritedentity.hpp"
+#include "generics/controlableentity.hpp"
 
-class Cutscene : public SpritedEntity {
+class Cutscene : public SpritedEntity, public ControlableEntity {
 private:
   // The id of the cutscene
   int id;
@@ -100,6 +101,8 @@ public:
    * @param target the window target to draw the background
    */
   void drawCutsceneBackground(sf::RenderTarget& target);
+
+  void controlEntity(sf::Keyboard::Key key, bool release);
 };
 
 #endif

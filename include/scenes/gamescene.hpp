@@ -2,6 +2,7 @@
 #define _GAMESCENE_HPP_
 
 #include "generics/scene.hpp"
+#include "generics/colorcontainer.hpp"
 
 #include "scenes/gamescenemanager.hpp"
 
@@ -11,16 +12,16 @@
 #include "entities/gamecomponents/player.hpp"
 #include "entities/level.hpp"
 #include "entities/gamecomponents/enemy.hpp"
+#include "entities/soundtable.hpp"
 
 #include "structures/tileset.hpp"
 #include "structures/bullet.hpp"
 #include "structures/eventhandler.hpp"
-#include "entities/soundtable.hpp"
 #include "structures/collisionhandler.hpp"
 #include "structures/texturemanager.hpp"
 #include "structures/ingametime.hpp"
 #include "structures/colorgetter.hpp"
-#include "generics/colorcontainer.hpp"
+#include "structures/playermousecontrol.hpp"
 
 class GameScene : public Scene {
 private:
@@ -50,6 +51,8 @@ private:
 
 	GenericTimeHandler filterTH;
 	GenericTimeHandler bgTH;
+
+	PlayerMouseControl pmc;
 
 	void controlCamera();
 public:

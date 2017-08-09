@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "generics/controlableentity.hpp"
 #include "entities/clock/generictimehandler.hpp"
 #include "structures/inttostring.hpp"
 #include "structures/colorgetter.hpp"
@@ -15,7 +16,7 @@
 #define INITIALH 6
 #define INITIALM 0
 
-class InGameTime {
+class InGameTime : public ControlableEntity {
 private:
 	sf::Text text;
 	sf::Font font;
@@ -69,6 +70,8 @@ public:
 	
 	ColorContainer& getFilterCC();
 	ColorContainer& getBgCC();
+
+	void controlEntity(sf::Keyboard::Key key, bool release);
 };
 
 #endif

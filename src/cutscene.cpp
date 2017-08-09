@@ -78,3 +78,7 @@ void Cutscene::drawText(sf::RenderTarget& target){
 void Cutscene::drawCutsceneBackground(sf::RenderTarget& target){
   target.draw(getSprite());
 }
+
+void Cutscene::controlEntity(sf::Keyboard::Key key, bool release){
+  proceedCutscene(key, !release);
+}

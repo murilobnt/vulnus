@@ -239,3 +239,17 @@ ColorContainer& InGameTime::getFilterCC(){
 ColorContainer& InGameTime::getBgCC(){
 	return this->bgCC;
 }
+
+void InGameTime::controlEntity(sf::Keyboard::Key key, bool release){
+	switch(key){
+		case sf::Keyboard::Num1:
+			this->timeCycle.setFps(sf::seconds(5.f));
+		break;
+		case sf::Keyboard::Num2:
+			this->timeCycle.setFps(sf::seconds(2.f));
+		break;
+		case sf::Keyboard::Num3:
+			this->timeCycle.setFps(sf::seconds(0.3f));
+		break;
+	}
+}

@@ -11,6 +11,11 @@
 
 ## Features and TO DOs
 
+**THE BIG DO:** 
+- [ ] Make, from this project, a game framework for C++
+
+**Normal do's:**
+
 - [x] Player
 - [x] Level
 - [x] Collision
@@ -67,6 +72,7 @@ The game is a platform game.
 | Weapon | K
 | Change Weapon | Q or E
 | Teleport | Mouse click
+| Daytime speed | 1 (normal), 2 (fast) or 3 (fastest)
 
 ### Time mechanics
 

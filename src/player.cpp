@@ -249,3 +249,36 @@ GenericTimeHandler& Player::getTimeHandler(int index){
 		break;
 	}
 }
+
+void Player::controlEntity(sf::Keyboard::Key key, bool release){
+	switch (key) {
+		case sf::Keyboard::LShift:
+			this->run(release);
+		break;
+		case sf::Keyboard::K:
+			this->shoot(release);
+		break;
+		case sf::Keyboard::W:
+		case sf::Keyboard::Up:
+		case sf::Keyboard::Space:
+			if(release){
+				this->stopJump();
+			} else {
+				this->jump();
+			}
+		break;
+		case sf::Keyboard::D:
+		case sf::Keyboard::Right:
+			this->rightMovementControl(release);
+		break;
+		case sf::Keyboard::A:
+		case sf::Keyboard::Left:
+			this->leftMovementControl(release);
+		break;
+		case sf::Keyboard::Q:
+		case sf::Keyboard::E:
+			if(release)
+			this->changeWeapon();
+		break;
+	}
+}

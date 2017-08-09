@@ -11,6 +11,7 @@ protected:
 public:
 	GenericTimeHandler();
 	GenericTimeHandler(sf::Time fps);
+	void setFps(sf::Time fps);
 	void restart(sf::Time elapsedTime);
 	bool timeToUpdate();
 	void resetLastUpdate();

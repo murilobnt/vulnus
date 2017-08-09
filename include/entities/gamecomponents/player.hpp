@@ -9,12 +9,13 @@
 
 // # Internal
 #include "generics/aliveentity.hpp"
+#include "generics/controlableentity.hpp"
 #include "structures/bullet.hpp"
 #include "structures/textureloader.hpp"
 #include "entities/weapon/polargun.hpp"
 #include "entities/weapon/blade.hpp"
 
-class Player : public AliveEntity{
+class Player : public AliveEntity, public ControlableEntity {
 private:
 	// Check if the player is invunerable
 	bool invulnerability;
@@ -142,6 +143,8 @@ public:
 	void changeWeapon();
 
 	GenericTimeHandler& getTimeHandler(int index);
+
+	void controlEntity(sf::Keyboard::Key key, bool release);
 };
 
 #endif
