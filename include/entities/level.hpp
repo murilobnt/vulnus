@@ -11,9 +11,15 @@
 
 class Level{
 private:
-  TileMap tileMap;
-  std::vector<Enemy> enemies;
-  void loadLevelOne(sf::Texture const& enemiesTexture);
+	int w;
+	int h;
+
+	int rawW;
+	int rawH;
+
+	TileMap tileMap;
+	std::vector<Enemy> enemies;
+	void loadLevelOne(sf::Texture const& enemiesTexture);
 
 public:
 	Level(int id, sf::Texture const& enemiesTexture);
@@ -22,6 +28,9 @@ public:
 	void drawEnemies(sf::RenderTarget& target);
 	std::vector<Enemy>* getEnemies();
 	DynamicGrid generateDynamicGrid();
+
+	int getW();
+	int getH();
 };
 
 #endif

@@ -110,6 +110,13 @@ The image, images/7579418\_orig.jpg (images/7579418\_altered.png is this image a
 http://www.gameart2d.com/winter-platformer-game-tileset.html
 - - -
 
+#### Cloud Background
+
+The image, images/3722\_original.jpg (images/3722\_altered\_mono.png is this image altered by myself), is from **Kangae Studio**, at **GameMaker: Marketplace**. It was downloaded from the following URL:
+- - -
+https://marketplace.yoyogames.com/assets/1372/cloud-background
+- - -
+
 ### Musics and sounds
 
 #### Overworld

@@ -13,6 +13,7 @@
 #include "entities/level.hpp"
 #include "entities/gamecomponents/enemy.hpp"
 #include "entities/soundtable.hpp"
+#include "entities/parallaxbackground.hpp"
 
 #include "structures/tileset.hpp"
 #include "structures/bullet.hpp"
@@ -31,6 +32,11 @@ private:
 	Player player;
 
 	sf::Sprite backgroundSprite;
+	ParallaxBackground layer1;
+
+	sf::Sprite skySprite;
+	ParallaxBackground layer2;
+
 	Level level;
 
 	EventHandler eventhandler;

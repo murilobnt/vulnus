@@ -13,6 +13,7 @@ private:
 	TextureLoader cutscn;
 	TextureLoader button;
 	TextureLoader menubg;
+	TextureLoader sky;
 
 public:
 	TextureManager();

@@ -5,7 +5,8 @@ aet("images/aliveentities.png", 128, 64, false, true),
 bg("images/7536921_orig.png", 1000, 750, true),
 cutscn("images/rcutscene.png", 416, 96),
 button("images/uibutton.png", 250, 35),
-menubg("images/7579418_altered.png", 800, 600)
+menubg("images/7579418_altered.png", 800, 600),
+sky("images/3722_altered_mono.png", 492, 136, true)
 {
 }
 
@@ -25,6 +26,9 @@ sf::Texture& TextureManager::getTexture(TextureIndex index){
 		break;
 		case MBG:
 			return this->menubg.getTexture();
+		break;
+		case SKY:
+			return this->sky.getTexture();
 		break;
 		default:
 			return this->aet.getTexture();

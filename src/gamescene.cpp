@@ -7,6 +7,8 @@ level(1, textureManager.getTexture(AET)),
 player(100.f, 2, textureManager.getTexture(AET), 32, 0, 32, 32, 0.2, 0, 32, 0, 32),
 playerHealth(sf::Vector2f(player.getHealth(), 20.f)),
 theTiles(0, 0, 64),
+layer1(textureManager.getTexture(BG), 0.1),
+layer2(textureManager.getTexture(SKY), 0.3),
 gameTime(&backgroundSprite, true)
 {
 	this->filterTH = gameTime.getFilterCC().getTimeHandler();
@@ -14,9 +16,11 @@ gameTime(&backgroundSprite, true)
 
 	hasCamera = true;
 
-	backgroundSprite.setTexture(textureManager.getTexture(BG));
-	backgroundSprite.setPosition(sf::Vector2f(0,0));
-	backgroundSprite.setTextureRect(sf::IntRect(0, 0, (64 * 32) + ((64 * 32)*0.1), 20*32));
+	layer1.initLevelWandH(level.getW(), level.getH());
+	layer2.initLevelWandH(level.getW(), 136);
+
+	backgroundSprite = layer1.getSprite();
+	skySprite = layer2.getSprite();
 
 	this->player.setSpritePosition(0, 480 - 64);
 	playerHealth.setFillColor( sf::Color::Red );
@@ -87,6 +91,7 @@ void GameScene::drawEntities(sf::RenderWindow& window){
 	}
 
 	player.getPlayerWeapon().draw(window);
+	window.draw(skySprite);
 	window.draw(gameTime.getFilter());
 
 	if(this->cutscene.isActive()){
@@ -264,12 +269,13 @@ void GameScene::changeLevel(){
 }
 
 void GameScene::refreshBackgroundPos(){
-	gameSceneManager.setSpritePositionRelativeToCamera(backgroundSprite, -0.1 * gameSceneManager.getCameraPointRelativeToCenterX(), 0);
-	gameSceneManager.setSpritePositionRelativeToCamera(gameTime.getFilter(), gameSceneManager.getCameraPointRelativeToCenterX() - 400, gameSceneManager.getCameraPointRelativeToCenterY() - 300);
+	backgroundSprite.setPosition(sf::Vector2f(-layer1.getMovementFactor() * gameSceneManager.getCameraPointRelativeToCenterX(), 0));
+	skySprite.setPosition(sf::Vector2f(-layer2.getMovementFactor() * gameSceneManager.getCameraPointRelativeToCenterX(), 0));
+	gameSceneManager.setSpritePositionRelativeToCamera(gameTime.getFilter(), -400, -300);
 }
 
 void GameScene::refreshTimePos(){
-	gameSceneManager.setSpritePositionRelativeToCamera(gameTime.getText(), gameSceneManager.getCameraPointRelativeToCenterX() + 400 - gameTime.getText().getLocalBounds().width, gameSceneManager.getCameraPointRelativeToCenterY() - 300);
+	gameSceneManager.setSpritePositionRelativeToCamera(gameTime.getText(), 400 - gameTime.getText().getLocalBounds().width, -300);
 }
 
 void GameScene::applyGravityOnEntities(){
@@ -283,7 +289,7 @@ void GameScene::applyGravityOnEntities(){
 
 void GameScene::updatePlayerHealth(){
 	playerHealth.setSize(sf::Vector2f(player.getHealth(), 20.f));
-	gameSceneManager.setSpritePositionRelativeToCamera(playerHealth, gameSceneManager.getCameraPointRelativeToCenterX() - (gameSceneManager.getCameraSize().x / 2), gameSceneManager.getCameraPointRelativeToCenterY() - (gameSceneManager.getCameraSize().y / 2));
+	gameSceneManager.setSpritePositionRelativeToCamera(playerHealth, -(gameSceneManager.getCameraSize().x / 2), -(gameSceneManager.getCameraSize().y / 2));
 }
 
 void GameScene::checkEnemyHealth(){

@@ -20,7 +20,8 @@ void GameSceneManager::setCameraToWindow(sf::RenderWindow& window){
 }
 
 void GameSceneManager::setSpritePositionRelativeToCamera(sf::Transformable& sprite, float xrule, float yrule){
-	sprite.setPosition(sf::Vector2f(xrule, yrule));
+	//sprite.setPosition(sf::Vector2f(xrule, yrule));
+	sprite.setPosition(sf::Vector2f(getCameraPointRelativeToCenterX(xrule), getCameraPointRelativeToCenterY(yrule)));
 }
 
 float GameSceneManager::getCameraPointRelativeToCenterX(float offsetx){
