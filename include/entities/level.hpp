@@ -3,11 +3,14 @@
 
 // # External
 #include <vector>
+#include <iostream>
+#include <functional>
 
 // # Internal
 #include "entities/gamecomponents/enemy.hpp"
 #include "structures/tilemap.hpp"
 #include "structures/dynamicgrid.hpp"
+#include "structures/levelloaderfilereader.hpp"
 
 class Level{
 private:
@@ -19,7 +22,11 @@ private:
 
 	TileMap tileMap;
 	std::vector<Enemy> enemies;
+	
+	LevelLoaderFileReader levelLoader;
+
 	void loadLevelOne(sf::Texture const& enemiesTexture);
+	void setLevelWandH();
 
 public:
 	Level(int id, sf::Texture const& enemiesTexture);

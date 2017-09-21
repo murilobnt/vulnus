@@ -79,6 +79,7 @@ void MenuScene::doOperations(){
 		player.setMovementY(0.f);
 		player.setIsJumping(false);
 	}
+	
 	player.voidJump();
 	player.movePlayer();
 	player.moveEntity();
