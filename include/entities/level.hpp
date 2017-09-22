@@ -8,6 +8,7 @@
 
 // # Internal
 #include "entities/gamecomponents/enemy.hpp"
+#include "entities/gamecomponents/player.hpp"
 #include "structures/tilemap.hpp"
 #include "structures/dynamicgrid.hpp"
 #include "structures/levelloaderfilereader.hpp"
@@ -25,13 +26,14 @@ private:
 	
 	LevelLoaderFileReader levelLoader;
 
+	void loadAnyLevel(Player& player, std::string levelFilePath, sf::Texture const& enemiesTexture, void (Level::*loadLevelFunction)(sf::Texture const&));
 	void loadLevelOne(sf::Texture const& enemiesTexture);
+	void loadLevelTwo(sf::Texture const& enemiesTexture);
 	void setLevelWandH();
 
 public:
-	Level(int id, sf::Texture const& enemiesTexture);
 	TileMap getTileMap();
-	void loadLevel(int id, sf::Texture const& enemiesTexture);
+	void loadLevel(Player& player, int id, sf::Texture const& enemiesTexture);
 	void drawEnemies(sf::RenderTarget& target);
 	std::vector<Enemy>* getEnemies();
 	DynamicGrid generateDynamicGrid();

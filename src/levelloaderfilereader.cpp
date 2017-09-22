@@ -2,24 +2,33 @@
 
 void LevelLoaderFileReader::readFile(std::string fileName){
 	in.open(fileName.c_str());
-	in >> levelW >> levelH;
 
-	this->level = new int[levelW * levelH];
+	if(in.is_open()){
+		in >> levelW >> levelH;
 
-	for(int i = 0; i < levelH; i++)
-		for(int j = 0; j < levelW; j++)
-			in >> level[j + (i * levelW)];
+		this->level = new int[levelW * levelH];
 
-	int collisionLength;
+		for(int i = 0; i < levelH; i++)
+			for(int j = 0; j < levelW; j++)
+				in >> level[j + (i * levelW)];
 
-	in >> collisionLength;
+		int collisionLength;
 
-	this->collision = new int[collisionLength];
+		in >> collisionLength;
 
-	for(int i = 0; i < collisionLength; i++)
-		in >> collision[i];
+		this->collision = new int[collisionLength];
 
-	in.close();
+		for(int i = 0; i < collisionLength; i++)
+			in >> collision[i];
+
+		float playerStartPosX, playerStartPosY;
+
+		in >> playerStartPosX >> playerStartPosY;
+
+		this->playerStartPosition = sf::Vector2f(playerStartPosX, playerStartPosY);
+
+		in.close();
+	}
 }
 
 int LevelLoaderFileReader::getLevelW(){
@@ -36,6 +45,10 @@ int* LevelLoaderFileReader::getLevelArray(){
 
 int* LevelLoaderFileReader::getCollisionTiles(){
 	return this->collision;
+}
+
+sf::Vector2f LevelLoaderFileReader::getPlayerStartPosition(){
+	return this->playerStartPosition;
 }
 
 void LevelLoaderFileReader::loadLevel(std::string fileName){

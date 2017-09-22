@@ -3,7 +3,6 @@
 GameScene::GameScene(TextureManager& textureManager, SSceneManager* sceneManager) :
 Scene::Scene(sceneManager),
 cutscene(0, textureManager.getTexture(CUTSCN), 0, 0, 416, 96, true),
-level(1, textureManager.getTexture(AET)),
 player(100.f, 2, textureManager.getTexture(AET), 32, 0, 32, 32, 0.2, 0, 32, 0, 32),
 playerHealth(sf::Vector2f(player.getHealth(), 20.f)),
 theTiles(0, 0, 64),
@@ -14,6 +13,8 @@ gameTime(&backgroundSprite, true)
 	this->filterTH = gameTime.getFilterCC().getTimeHandler();
 	this->bgTH = gameTime.getBgCC().getTimeHandler();
 
+	level.loadLevel(player, 1, textureManager.getTexture(AET));
+
 	hasCamera = true;
 
 	layer1.initLevelWandH(level.getW(), level.getH());
@@ -22,7 +23,6 @@ gameTime(&backgroundSprite, true)
 	backgroundSprite = layer1.getSprite();
 	skySprite = layer2.getSprite();
 
-	this->player.setSpritePosition(0, 480 - 64);
 	playerHealth.setFillColor( sf::Color::Red );
 
 	changeLevel();
