@@ -26,9 +26,7 @@ private:
 	
 	LevelLoaderFileReader levelLoader;
 
-	void loadAnyLevel(Player& player, std::string levelFilePath, sf::Texture const& enemiesTexture, void (Level::*loadLevelFunction)(sf::Texture const&));
-	void loadLevelOne(sf::Texture const& enemiesTexture);
-	void loadLevelTwo(sf::Texture const& enemiesTexture);
+	void loadAnyLevel(Player& player, std::string levelFilePath, sf::Texture const& enemiesTexture);
 	void setLevelWandH();
 
 public:

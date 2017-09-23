@@ -10,6 +10,7 @@ void TileSet::verifyEntityCollision(AliveEntity* player){
   sf::Sprite playerSprite = player->getSprite();
   sf::Vector2f playerPosition = playerSprite.getPosition();
   sf::Vector2f playerMovement = player->getMovement();
+  sf::FloatRect playerSize = playerSprite.getGlobalBounds();
 
   std::vector<Unity> unities = grid.getUnitiesOnPosition(playerPosition);
 
@@ -18,40 +19,39 @@ void TileSet::verifyEntityCollision(AliveEntity* player){
 
     for(std::vector<Tile>::iterator it = unity.tiles.begin(); it != unity.tiles.end(); ++it){
       sf::FloatRect tileRect = (*it).getTileRect();
-      if(tileRect.intersects(playerSprite.getGlobalBounds())){
-        if(playerMovement.x > 0.f){
-          sf::Vector2f playerAuxPosXRight(playerPosition.x + 32 + playerMovement.x, playerPosition.y + 4);
-          sf::Vector2f playerAuxPosXRight2(playerPosition.x + 32 + playerMovement.x, playerPosition.y + 20);
-          if(tileRect.contains(playerAuxPosXRight) || tileRect.contains(playerAuxPosXRight2)){
-            player->setMovementX(0.f);
-            player->setSpritePosition((*it).getPositionX() - 32, player->getSpritePosition().y);
-          }
-        } else if(playerMovement.x < 0.f){
-          sf::Vector2f playerAuxPosXLeft(playerPosition.x + playerMovement.x, playerPosition.y + 4);
-          sf::Vector2f playerAuxPosXLeft2(playerPosition.x + playerMovement.x, playerPosition.y + 20);
-          if(tileRect.contains(playerAuxPosXLeft) || tileRect.contains(playerAuxPosXLeft2)){          
-            player->setMovementX(0.f);
-            player->setSpritePosition((*it).getPositionX() + 32, player->getSpritePosition().y);
-          }
-        }
 
-        if (playerMovement.y > 0.f){
-          sf::Vector2f playerAuxPosYDown(playerPosition.x + 6, playerPosition.y + 32 + playerMovement.y);
-          sf::Vector2f playerAuxPosYDown2(playerPosition.x + 26, playerPosition.y + 32 + playerMovement.y);
-          if(tileRect.contains(playerAuxPosYDown) || tileRect.contains(playerAuxPosYDown2)){
-            player->setMovementY(0.f);
-            player->setIsJumping(false);
-            player->setSpritePosition(player->getSpritePosition().x, (*it).getPositionY() - 32);
-          }
-        } else if (playerMovement.y < 0.f) {
-          sf::Vector2f playerAuxPosYUp(playerPosition.x + 6, playerPosition.y + playerMovement.y);
-          sf::Vector2f playerAuxPosYUp2(playerPosition.x + 26, playerPosition.y + playerMovement.y);
-          if(tileRect.contains(playerAuxPosYUp) || tileRect.contains(playerAuxPosYUp2)){
-            player->setMovementY(player->getGravity() + 1);
-            player->setSpritePosition(player->getSpritePosition().x, (*it).getPositionY() + 32);
-          }
+      if(playerMovement.x > 0.f){
+        sf::RectangleShape nextMovement(sf::Vector2f(playerSize.width + playerMovement.x, playerSize.height));
+        nextMovement.setPosition(sf::Vector2f(playerPosition.x, playerPosition.y));
+        if(tileRect.intersects(nextMovement.getGlobalBounds())){
+          player->setMovementX(0.f);
+          player->setSpritePosition((*it).getPositionX() - 32, player->getSpritePosition().y);
+        }
+      }else if(playerMovement.x < 0.f){
+        sf::RectangleShape nextMovement(sf::Vector2f(playerSize.width + (-playerMovement.x), playerSize.height));
+        nextMovement.setPosition(sf::Vector2f(playerPosition.x + 32 - (playerSize.width + (-playerMovement.x)), playerPosition.y));
+        if(tileRect.intersects(nextMovement.getGlobalBounds())){
+          player->setMovementX(0.f);
+          player->setSpritePosition((*it).getPositionX() + 32, player->getSpritePosition().y);
         }
       }
+
+      if(playerMovement.y > 0.f){
+        sf::RectangleShape nextMovement(sf::Vector2f(playerSize.width, playerSize.height + playerMovement.y));
+        nextMovement.setPosition(sf::Vector2f(playerPosition.x, playerPosition.y));
+        if(tileRect.intersects(nextMovement.getGlobalBounds())){
+          player->setMovementY(0.f);
+          player->setIsJumping(false);
+          player->setSpritePosition(player->getSpritePosition().x, (*it).getPositionY() - 32);
+        }
+      } else if(playerMovement.y < 0.f){
+        sf::RectangleShape nextMovement(sf::Vector2f(playerSize.width, (int)(playerSize.height - playerMovement.y)));
+        nextMovement.setPosition(sf::Vector2f(playerPosition.x, playerPosition.y + 32 - (int)(playerSize.height - playerMovement.y)));
+        if(tileRect.intersects(nextMovement.getGlobalBounds())){
+          player->setMovementY(player->getGravity());
+          player->setSpritePosition(player->getSpritePosition().x, (*it).getPositionY() + 32);
+        }
+      } // This one shall be erased!
     }
   }
 }

@@ -3,6 +3,7 @@
 
 // # External
 #include <vector>
+#include <iostream>
 
 // # Internal
 #include "structures/tile.hpp"
