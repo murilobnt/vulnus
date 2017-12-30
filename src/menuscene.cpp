@@ -1,6 +1,6 @@
 #include "scenes/menuscene.hpp"
 
-MenuScene::MenuScene(TextureManager& textureManager, SSceneManager* sceneManager) :
+MenuScene::MenuScene(TextureManager& textureManager, SceneManager* sceneManager) :
 Scene::Scene(sceneManager),
 player(100.f, 2, textureManager.getTexture(AET), 32, 32, 32, 32, 0.2, 0, 32, 0, 32),
 startGame(0, 225, textureManager.getTexture(BUTTON), 0, 0, 250, 35),
@@ -106,7 +106,7 @@ void MenuScene::resetTimeHandlers(ClockHandler& clockHandler){
 }
 
 void MenuScene::changeScene(SceneCatalog sceneCatalog){
-	getSSceneManager()->changeScene(sceneCatalog);
+	getSceneManager()->changeScene(sceneCatalog);
 }
 
 void MenuScene::onExit(){

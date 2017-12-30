@@ -1,6 +1,6 @@
 #include "scenes/gamescene.hpp"
 
-GameScene::GameScene(TextureManager& textureManager, SSceneManager* sceneManager) :
+GameScene::GameScene(TextureManager& textureManager, SceneManager* sceneManager) :
 Scene::Scene(sceneManager),
 cutscene(0, textureManager.getTexture(CUTSCN), 0, 0, 416, 96, true),
 player(100.f, 2, textureManager.getTexture(AET), 32, 0, 32, 32, 0.2, 0, 32, 0, 32),
@@ -53,7 +53,7 @@ void GameScene::handleEvent(sf::Event event, sf::RenderWindow& screen){
 					this->gameSceneManager.resetCameraPosition();
 					this->gameSceneManager.setCameraToWindow(screen);
 					this->soundTable.pauseSound();
-					getSSceneManager()->changeToRuntimeScene(GAMEMENU);
+					getSceneManager()->changeToRuntimeScene(GAMEMENU);
 				break;
 			}
 	}
@@ -188,7 +188,7 @@ void GameScene::resetTimeHandlers(ClockHandler& clockHandler){
 }
 
 void GameScene::changeScene(SceneCatalog sceneCatalog){
-	getSSceneManager()->changeScene(sceneCatalog);
+	getSceneManager()->changeScene(sceneCatalog);
 }
 
 void GameScene::updateLogic(){
@@ -271,7 +271,7 @@ void GameScene::changeLevel(){
 void GameScene::refreshBackgroundPos(){
 	backgroundSprite.setPosition(sf::Vector2f(-layer1.getMovementFactor() * gameSceneManager.getCameraPointRelativeToCenterX(), 0));
 	skySprite.setPosition(sf::Vector2f(-layer2.getMovementFactor() * gameSceneManager.getCameraPointRelativeToCenterX(), 0));
-	gameSceneManager.setSpritePositionRelativeToCamera(gameTime.getFilter(), -400, -300);
+	gameSceneManager.setSpritePositionRelativeToCamera(gameTime.getFilter(), -GAMEWIDTH/2, -GAMEHEIGHT/2);
 }
 
 void GameScene::refreshTimePos(){

@@ -19,7 +19,7 @@ private:
 
 	int selected;
 public:
-	GameMenuScene(TextureManager& TextureManager, SSceneManager* sceneManager);
+	GameMenuScene(TextureManager& TextureManager, SceneManager* sceneManager);
 
 	void start();
 	void handleEvent(sf::Event event, sf::RenderWindow& screen);

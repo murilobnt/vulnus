@@ -1,0 +1,2 @@
+#define GAMEWIDTH 1366
+#define GAMEHEIGHT 768

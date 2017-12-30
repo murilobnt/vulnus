@@ -1,6 +1,6 @@
 #include "scenes/gamemenuscene.hpp"
 
-GameMenuScene::GameMenuScene(TextureManager& textureManager, SSceneManager* sceneManager) :
+GameMenuScene::GameMenuScene(TextureManager& textureManager, SceneManager* sceneManager) :
 Scene::Scene(sceneManager),
 resume(0, 225, textureManager.getTexture(BUTTON), 0, 0, 250, 35),
 exit(0, 300, textureManager.getTexture(BUTTON), 0, 0, 250, 35)
@@ -39,7 +39,7 @@ void GameMenuScene::handleEvent(sf::Event event, sf::RenderWindow& screen){
 							this->sceneManager->setLastScene();
 						break;
 						case 1:
-							getSSceneManager()->removeLastScene();
+							getSceneManager()->removeLastScene();
 							changeScene(MENU);
 						break;
 					}
@@ -89,7 +89,7 @@ void GameMenuScene::resetTimeHandlers(ClockHandler& clockHandler){
 }
 
 void GameMenuScene::changeScene(SceneCatalog sceneCatalog){
-	getSSceneManager()->changeScene(sceneCatalog);
+	getSceneManager()->changeScene(sceneCatalog);
 }
 
 void GameMenuScene::onExit(){

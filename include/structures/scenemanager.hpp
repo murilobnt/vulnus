@@ -3,14 +3,16 @@
 
 #include <cstring>
 
-#include "generics/scene.hpp"
 #include "structures/texturemanager.hpp"
-#include "scenes/gamescene.hpp"
-#include "scenes/menuscene.hpp"
-#include "scenes/gamemenuscene.hpp"
+#include "entities/clock/clockhandler.hpp"
 #include "enums/scenecatalog.hpp"
 
-class SceneManager : public SSceneManager {
+class Scene;
+class GameScene;
+class MenuScene;
+class GameMenuScene;
+
+class SceneManager {
 private:
 	Scene* scene;
 	Scene* lastScene;
@@ -20,6 +22,7 @@ private:
 public:
 	SceneManager(TextureManager& textureManager);
 	~SceneManager();
+	
 	void setScene(Scene* scene);
 	void changeScene(SceneCatalog sceneCatalog);
 	void changeToRuntimeScene(SceneCatalog sceneCatalog);

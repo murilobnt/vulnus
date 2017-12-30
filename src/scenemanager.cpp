@@ -1,5 +1,10 @@
 #include "structures/scenemanager.hpp"
 
+#include "generics/scene.hpp"
+#include "scenes/gamescene.hpp"
+#include "scenes/menuscene.hpp"
+#include "scenes/gamemenuscene.hpp"
+
 SceneManager::SceneManager(TextureManager& textureManager) {
 	this->scene = new MenuScene(textureManager, this);
 	this->textureManager = textureManager;

@@ -34,11 +34,22 @@ void Camera::getToPlayer(const Player& player, sf::Vector2u levelSize){
   sf::Vector2f playerSpritePos = player.getSpritePosition();
   sf::Vector2f viewSize(this->w, this->h);
 
-  float cameraXPosition = playerSpritePos.x + 16;
-  float cameraYPosition = playerSpritePos.y + 16;
+  float cameraXPosition;
+  float cameraYPosition;
 
-  calculateCameraXPosition(cameraXPosition, playerSpritePos, viewSize, levelSize);
-  calculateCameraYPosition(cameraYPosition, playerSpritePos, viewSize, levelSize);
+  if(levelSize.y < GAMEHEIGHT){
+    cameraYPosition = GAMEWIDTH / 2 - viewSize.y;
+  } else {
+    cameraYPosition = playerSpritePos.y + 16;
+    calculateCameraYPosition(cameraYPosition, playerSpritePos, viewSize, levelSize);
+  }
+
+  if(levelSize.x < GAMEWIDTH){
+    cameraXPosition = GAMEHEIGHT / 2;
+  } else {
+    cameraXPosition = playerSpritePos.x + 16;
+    calculateCameraXPosition(cameraXPosition, playerSpritePos, viewSize, levelSize);
+  }
 
   this->view.setCenter(cameraXPosition, cameraYPosition);
 }

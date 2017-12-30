@@ -3,9 +3,11 @@
 
 // # External
 #include <SFML/Graphics.hpp>
+#include <iostream>
 
 // # Internal
 #include "entities/gamecomponents/player.hpp"
+#include "const/config.hpp"
 
 class Camera{
 private:

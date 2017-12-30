@@ -11,6 +11,7 @@
 #include "structures/backgroundcolorcontainer.hpp"
 #include "structures/filtercolorcontainer.hpp"
 #include "enums/daytime.hpp"
+#include "const/config.hpp"
 
 #define TIMECYCLE 5.f
 #define INITIALH 6

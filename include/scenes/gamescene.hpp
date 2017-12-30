@@ -24,6 +24,8 @@
 #include "structures/colorgetter.hpp"
 #include "structures/playermousecontrol.hpp"
 
+#include "const/config.hpp"
+
 class GameScene : public Scene {
 private:
 	Cutscene cutscene;
@@ -62,7 +64,7 @@ private:
 
 	void controlCamera();
 public:
-	GameScene(TextureManager& textureManager, SSceneManager* sceneManager);
+	GameScene(TextureManager& textureManager, SceneManager* sceneManager);
 
 	void start();
 	void handleEvent(sf::Event event, sf::RenderWindow& screen);

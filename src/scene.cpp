@@ -1,13 +1,13 @@
 #include "generics/scene.hpp"
 
-Scene::Scene(SSceneManager* sceneManager){
+Scene::Scene(SceneManager* sceneManager){
 	this->sceneManager = sceneManager;
 }
 
-void Scene::setSSceneManager(SSceneManager* sceneManager){
+void Scene::setSceneManager(SceneManager* sceneManager){
 	this->sceneManager = sceneManager;
 }
 
-SSceneManager* Scene::getSSceneManager(){
+SceneManager* Scene::getSceneManager(){
 	return this->sceneManager;
 }

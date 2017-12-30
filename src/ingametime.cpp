@@ -109,7 +109,7 @@ void InGameTime::dayTimeChange(){
 void InGameTime::init(bool mode12, bool hasGameBg){
 	this->hasGameBg = hasGameBg;
 
-	renderTexture.create(800, 600);
+	renderTexture.create(GAMEWIDTH, GAMEHEIGHT);
 	filter = sf::Sprite(renderTexture.getTexture());
 
 	this->font.loadFromFile("fonts/Ubuntu-C.tff");

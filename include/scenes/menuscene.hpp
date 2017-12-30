@@ -24,7 +24,7 @@ private:
 	int selected;
 
 public:
-	MenuScene(TextureManager& TextureManager, SSceneManager* sceneManager);
+	MenuScene(TextureManager& TextureManager, SceneManager* sceneManager);
 
 	void start();
 	void handleEvent(sf::Event event, sf::RenderWindow& screen);
