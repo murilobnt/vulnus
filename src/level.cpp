@@ -30,6 +30,7 @@ void Level::loadLevel(Player& player, int id, sf::Texture const& enemiesTexture)
 			loadAnyLevel(player, std::string("data/level2.txt"), enemiesTexture);
 		break;
 		default:
+			loadAnyLevel(player, std::string("data/smallLevel.txt"), enemiesTexture);
 		break;
 	}
 }

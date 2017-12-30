@@ -38,14 +38,14 @@ void Camera::getToPlayer(const Player& player, sf::Vector2u levelSize){
   float cameraYPosition;
 
   if(levelSize.y < GAMEHEIGHT){
-    cameraYPosition = GAMEWIDTH / 2 - viewSize.y;
+    cameraYPosition = levelSize.y/2;
   } else {
     cameraYPosition = playerSpritePos.y + 16;
     calculateCameraYPosition(cameraYPosition, playerSpritePos, viewSize, levelSize);
   }
 
   if(levelSize.x < GAMEWIDTH){
-    cameraXPosition = GAMEHEIGHT / 2;
+    cameraXPosition = levelSize.x/2;
   } else {
     cameraXPosition = playerSpritePos.x + 16;
     calculateCameraXPosition(cameraXPosition, playerSpritePos, viewSize, levelSize);
