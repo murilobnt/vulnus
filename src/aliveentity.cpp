@@ -36,6 +36,7 @@ entityComboDelimeter(sf::seconds(2.5)) {
 	this->animationLeftLoop = 0;
 	this->animationRightLoop = 0;
 
+	this->maxHealth = health;
 	this->health = health;
 	this->originalSpeed = speed;
 	this->speed = speed;
@@ -87,6 +88,10 @@ float AliveEntity::getGravity() const{
 
 float AliveEntity::getHealth() const{
 	return this->health;
+}
+
+float AliveEntity::getMaxHealth() const{
+	return this->maxHealth;
 }
 
 void AliveEntity::updateQuad(int newQuad){

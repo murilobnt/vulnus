@@ -49,6 +49,8 @@ protected:
 	// Check the orientation of the entity
 	bool facingRight;
 
+	float maxHealth;
+
 	// The total health
 	float health;
 
@@ -137,6 +139,8 @@ public:
 	 * @return the total entityGravity of the entity
 	 */
 	float getGravity() const;
+
+	float getMaxHealth() const;
 
 	float getHealth() const;
 

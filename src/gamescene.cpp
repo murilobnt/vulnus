@@ -288,8 +288,8 @@ void GameScene::applyGravityOnEntities(){
 }
 
 void GameScene::updatePlayerHealth(){
-	playerHealth.setSize(sf::Vector2f(player.getHealth(), 20.f));
-	gameSceneManager.setSpritePositionRelativeToCamera(playerHealth, -(gameSceneManager.getCameraSize().x / 2), -(gameSceneManager.getCameraSize().y / 2));
+	playerHealth.setSize(sf::Vector2f(((player.getHealth() / player.getMaxHealth()) * 300), 20.f));
+	gameSceneManager.setSpritePositionRelativeToCamera(playerHealth, -400, -300 + 10);
 }
 
 void GameScene::checkEnemyHealth(){
