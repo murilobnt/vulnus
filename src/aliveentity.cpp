@@ -79,7 +79,7 @@ bool AliveEntity::getIsJumping() const{
 }
 
 void AliveEntity::setIsJumping(bool jumping){
-	this->isJumping = jumping;
+	this->isJumping = jumping;	
 }
 
 float AliveEntity::getGravity() const{
@@ -142,4 +142,8 @@ void AliveEntity::drawText(sf::RenderTarget& target){
 
 bool AliveEntity::isFacingRight() const{
 	return this->facingRight;
+}
+
+void AliveEntity::setDoubleJump(bool doubleJump){
+	this->doubleJump = doubleJump;
 }

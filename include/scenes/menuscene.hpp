@@ -2,6 +2,7 @@
 #define _MENUSCENE_HPP_
 
 #include "generics/scene.hpp"
+#include "entities/camera.hpp"
 #include "structures/texturemanager.hpp"
 #include "entities/clock/clockhandler.hpp"
 #include "scenes/uicomponents/menubutton.hpp"
@@ -9,6 +10,7 @@
 
 class MenuScene : public Scene {
 private:
+	Camera camera;
 	sf::Font font;
 
 	Player player;

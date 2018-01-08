@@ -41,6 +41,7 @@ void TileSet::verifyEntityCollision(AliveEntity* player){
         nextMovement.setPosition(sf::Vector2f(playerPosition.x, playerPosition.y));
         if(tileRect.intersects(nextMovement.getGlobalBounds())){
           player->setMovementY(0.f);
+          player->setDoubleJump(false);
           player->setIsJumping(false);
           player->setSpritePosition(player->getSpritePosition().x, (*it).getPositionY() - 32);
         }

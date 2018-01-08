@@ -19,6 +19,7 @@ invulnerabilityAnimation(sf::seconds(1.f / 15.f)) {
 	this->movingLeft = false;
 	this->facingRight = true;
 	this->tryingToJump = false;
+	this->doubleJump = false;
 
 	this->weaponId = 0;
 }
@@ -88,6 +89,11 @@ void Player::voidJump(){
 }
 
 void Player::jump(){
+	if(isJumping && !tryingToJump && !doubleJump){
+		this->movement.y = -6;
+		doubleJump = true;
+	}
+
 	if(!isJumping && !tryingToJump){
 		this->movement.y = -8;
 		isJumping = true;

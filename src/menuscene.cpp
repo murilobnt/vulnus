@@ -2,6 +2,7 @@
 
 MenuScene::MenuScene(TextureManager& textureManager, SceneManager* sceneManager) :
 Scene::Scene(sceneManager),
+camera(400.f, 300.f, 683.f, 384.f, 2),
 player(100.f, 2, textureManager.getTexture(AET), 32, 32, 32, 32, 0.2, 0, 32, 0, 32),
 startGame(0, 225, textureManager.getTexture(BUTTON), 0, 0, 250, 35),
 loadGame(0, 300, textureManager.getTexture(BUTTON), 0, 0, 250, 35),
@@ -24,7 +25,7 @@ exit(0, 375, textureManager.getTexture(BUTTON), 0, 0, 250, 35)
 	loadGame.initText(font, "Load Game");
 	exit.initText(font, "Exit");
 
-	hasCamera = false;
+	hasCamera = true;
 
 	buttonArray[selected]->setFocused(true);
 }
@@ -70,7 +71,8 @@ void MenuScene::handleEvent(sf::Event event, sf::RenderWindow& screen){
 }
 
 void MenuScene::controlCamera(sf::RenderWindow& window){
-
+	window.setView(camera.getView());
+	hasCamera = false;
 }
 
 void MenuScene::doOperations(){	

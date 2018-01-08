@@ -4,6 +4,7 @@
 // # External
 #include <string>
 #include <SFML/Graphics.hpp>
+#include <iostream>
 
 // # Internal
 #include "structures/dynamicgrid.hpp"
@@ -39,6 +40,8 @@ protected:
 
 	// Flag to check if the entity is jumping
 	bool isJumping;
+
+	bool doubleJump;
 
 	// The integer to control the loop of the animation of the entity when it's walking right
 	int animationRightLoop;
@@ -163,6 +166,8 @@ public:
 	void drawText(sf::RenderTarget& target);
 
 	bool isFacingRight() const;
+
+	void setDoubleJump(bool doubleJump);
 };
 
 #endif
