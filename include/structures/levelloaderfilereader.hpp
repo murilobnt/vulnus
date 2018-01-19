@@ -5,6 +5,8 @@
 #include <SFML/Graphics.hpp>
 
 #include "generics/filereader.hpp"
+#include "entities/gamecomponents/enemy.hpp"
+#include "enums/leveledge.hpp"
 
 class LevelLoaderFileReader : public FileReader {
 private:
@@ -15,9 +17,23 @@ private:
 
 	int* level;
 	int* collision;
+
+	sf::Texture enemiesTexture;
+	std::vector<Enemy> enemies;
+	
 	sf::Vector2f playerStartPosition;
 
-	void readFile(std::string fileName);
+	void openFileStream(std::string fileName);
+	void closeFileStream();
+
+	void loadLevel();
+
+	void loadTileMap();
+	void loadCollisionTiles();
+	void loadPlayerPosition();
+	void loadEnemies();
+	void loadTransitionEdges();
+	void loadTransitionPoints();
 
 public:
 	int getLevelW();
@@ -26,7 +42,10 @@ public:
 	int* getCollisionTiles();
 	sf::Vector2f getPlayerStartPosition();
 
-	void loadLevel(std::string fileName);
+	void setEnemiesTexture(sf::Texture const& enemiesTexture);
+	std::vector<Enemy> getEnemies();
+
+	void readFile(std::string fileName);
 	void deleteLevel();
 };
 

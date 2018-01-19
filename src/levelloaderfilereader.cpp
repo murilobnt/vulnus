@@ -1,34 +1,112 @@
 #include "structures/levelloaderfilereader.hpp"
 
-void LevelLoaderFileReader::readFile(std::string fileName){
+void LevelLoaderFileReader::openFileStream(std::string fileName){
 	in.open(fileName.c_str());
+}
 
-	if(in.is_open()){
-		in >> levelW >> levelH;
+void LevelLoaderFileReader::closeFileStream(){
+	in.close();
+}
 
-		this->level = new int[levelW * levelH];
+void LevelLoaderFileReader::loadTileMap(){
+	if(!in.is_open())
+		return;
 
-		for(int i = 0; i < levelH; i++)
-			for(int j = 0; j < levelW; j++)
-				in >> level[j + (i * levelW)];
+	in >> levelW >> levelH;
 
-		int collisionLength;
+	this->level = new int[levelW * levelH];
 
-		in >> collisionLength;
+	for(int i = 0; i < levelH; i++)
+		for(int j = 0; j < levelW; j++)
+			in >> level[j + (i * levelW)];
+}
 
-		this->collision = new int[collisionLength];
+void LevelLoaderFileReader::loadCollisionTiles(){
+	if(!in.is_open())
+		return;
 
-		for(int i = 0; i < collisionLength; i++)
-			in >> collision[i];
+	int collisionLength;
 
-		float playerStartPosX, playerStartPosY;
+	in >> collisionLength;
 
-		in >> playerStartPosX >> playerStartPosY;
+	this->collision = new int[collisionLength];
 
-		this->playerStartPosition = sf::Vector2f(playerStartPosX, playerStartPosY);
+	for(int i = 0; i < collisionLength; i++)
+		in >> collision[i];
+}
 
-		in.close();
+void LevelLoaderFileReader::loadPlayerPosition(){
+	if(!in.is_open())
+		return;
+
+	float playerStartPosX, playerStartPosY;
+
+	in >> playerStartPosX >> playerStartPosY;
+
+	this->playerStartPosition = sf::Vector2f(playerStartPosX, playerStartPosY);
+}
+
+void LevelLoaderFileReader::loadEnemies(){
+	if(!in.is_open())
+		return;
+
+	enemies.clear();
+
+	int numberOfEnemies;
+
+	in >> numberOfEnemies;
+
+	for(int i = 0; i < numberOfEnemies; i++){
+		int enX, enY;
+
+		in >> enX >> enY;
+
+		enemies.push_back(Enemy(enX, enY, 30, 1.2, this->enemiesTexture, 64, 0, 32, 32, 0.2, 64, 96, 0, 32, 15));
 	}
+}
+
+void LevelLoaderFileReader::loadTransitionPoints(){
+	if(!in.is_open())
+		return;
+
+	int numberOfTransitionPoints;
+
+	in >> numberOfTransitionPoints;
+}
+
+void LevelLoaderFileReader::loadTransitionEdges(){
+	if(!in.is_open())
+		return;
+
+	int numberOfTransitionEdges;
+
+	for(int i = 0; i < numberOfTransitionEdges; i++){
+		int levelEdge, destination;
+
+		in >> levelEdge;
+		LevelEdge currentLevelEdge = static_cast<LevelEdge>(levelEdge);
+	}
+}
+
+void LevelLoaderFileReader::loadLevel(){
+	loadTileMap();
+	loadCollisionTiles();
+	loadEnemies();
+	loadPlayerPosition();
+}
+
+void LevelLoaderFileReader::setEnemiesTexture(sf::Texture const& enemiesTexture){
+	this->enemiesTexture = enemiesTexture;
+}
+
+std::vector<Enemy> LevelLoaderFileReader::getEnemies(){
+	return this->enemies;
+}
+
+void LevelLoaderFileReader::readFile(std::string fileName){
+	openFileStream(fileName);
+	loadLevel();
+	closeFileStream();
 }
 
 int LevelLoaderFileReader::getLevelW(){
@@ -49,10 +127,6 @@ int* LevelLoaderFileReader::getCollisionTiles(){
 
 sf::Vector2f LevelLoaderFileReader::getPlayerStartPosition(){
 	return this->playerStartPosition;
-}
-
-void LevelLoaderFileReader::loadLevel(std::string fileName){
-	readFile(fileName);
 }
 
 void LevelLoaderFileReader::deleteLevel(){

@@ -13,11 +13,13 @@ TileMap Level::getTileMap(){
 }
 
 void Level::loadAnyLevel(Player& player, std::string levelFilePath, sf::Texture const& enemiesTexture){
-	levelLoader.loadLevel(levelFilePath.c_str());
+	levelLoader.setEnemiesTexture(enemiesTexture);
+	levelLoader.readFile(levelFilePath.c_str());
 	setLevelWandH();
 	int* collisionTiles = levelLoader.getCollisionTiles();
 	tileMap.load("images/tiles.png", sf::Vector2u(32, 32), levelLoader.getLevelArray(), rawW, rawH, collisionTiles, (sizeof(collisionTiles)/sizeof(*collisionTiles)));
 	player.setSpritePosition(levelLoader.getPlayerStartPosition());
+	enemies = levelLoader.getEnemies();
 	levelLoader.deleteLevel();
 }
 

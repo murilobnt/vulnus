@@ -1,7 +1,9 @@
 #include "structures/game.hpp"
 
+//gameScreen(sf::VideoMode(gameWidth, gameHeight), gameTitle, sf::Style::Fullscreen)
+
 Game::Game(int gameWidth, int gameHeight, std::string gameTitle) :
-gameScreen(sf::VideoMode(gameWidth, gameHeight), gameTitle, sf::Style::Fullscreen),
+gameScreen(sf::VideoMode(gameWidth, gameHeight), gameTitle),
 gameFrequency(sf::seconds(1.f / 60.f)),
 sceneManager(textureManager)
 {	
