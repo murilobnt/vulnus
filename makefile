@@ -7,7 +7,7 @@ RM = rm -f
 
 FLAGS =
 LANGUAGE = c++11
-TARGET = sample
+TARGET = vulnus
 
 INCLUDE = -I ./include
 
