@@ -2,10 +2,11 @@
 
 Player::Player() { right = true; }
 
-Player::Player(sf::Texture const &texture)
-    : GameObject(texture, sf::Vector2i(0, 0), sf::Vector2i(32, 32)),
+Player::Player(sf::Texture const &texture, sf::Vector2f position)
+    : GameObject(texture, sf::Vector2i(32, 32)),
       AnimatedEntity(sf::Vector2i(0, 64), sf::Vector2i(0, 64), 10) {
   right = true;
+  set_sprite_position(position);
 }
 
 void Player::animate() {

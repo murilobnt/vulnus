@@ -11,7 +11,8 @@ private:
 
 public:
   Player();
-  Player(sf::Texture const &texture);
+  Player(sf::Texture const &texture,
+         sf::Vector2f position = sf::Vector2f(0, 0));
   void animate();
   void control_entity(float delta_time);
   void move();
