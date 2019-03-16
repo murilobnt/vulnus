@@ -15,6 +15,8 @@ public:
          sf::Vector2f position = sf::Vector2f(0, 0));
   void animate();
   void control_entity(float delta_time);
+  void jump(float delta_time);
+  void apply_gravity(float delta_time);
   void move();
   void move(float delta_time);
 };

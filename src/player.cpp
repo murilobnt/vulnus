@@ -18,6 +18,15 @@ void Player::animate() {
     right ? configure_sprite_rect(0, 0) : configure_sprite_rect(0, 32);
 }
 
+void Player::jump(float delta_time) { movement.y = -400 * delta_time; }
+
+void Player::apply_gravity(float delta_time) {
+  if (get_sprite_position().y < 300)
+    movement.y += 20 * delta_time;
+  else
+    movement.y = 0;
+}
+
 void Player::control_entity(float delta_time) {
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
     movement.x = -200 * delta_time;
@@ -27,11 +36,14 @@ void Player::control_entity(float delta_time) {
     movement.x = 200 * delta_time;
     right = true;
   }
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+    jump(delta_time);
+  }
 }
 
 void Player::move() {
   move_sprite(movement);
-  movement = sf::Vector2f(0, 0);
+  movement = sf::Vector2f(0, movement.y);
 }
 
 void Player::move(float delta_time) { move_sprite(movement * delta_time); }

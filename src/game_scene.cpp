@@ -7,6 +7,7 @@ void GameScene::start() {
 }
 
 void GameScene::update() {
+  player.apply_gravity(get_delta_time());
   player.control_entity(get_delta_time());
   player.time_trigger();
   player.move();
