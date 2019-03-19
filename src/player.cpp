@@ -41,12 +41,14 @@ void Player::apply_gravity(float delta_time) {
 }
 
 void Player::control_entity(float delta_time) {
+  m_d = STILL;
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
     if (opposite)
       if (!on_ground)
         m_i += 0.5 * delta_time;
-      else
-        m_i -= 10 * delta_time;
+
+    if (on_ground)
+      m_i -= 10 * delta_time;
 
     if (m_i < 0)
       m_i = 0;
@@ -58,8 +60,9 @@ void Player::control_entity(float delta_time) {
     if (opposite)
       if (!on_ground)
         m_i += 0.5 * delta_time;
-      else
-        m_i -= 10 * delta_time;
+
+    if (on_ground)
+      m_i -= 10 * delta_time;
 
     if (m_i < 0)
       m_i = 0;
@@ -67,6 +70,10 @@ void Player::control_entity(float delta_time) {
     f_p = RIGHT;
     m_d = POSITIVE;
   }
+
+  if (on_ground && m_d == STILL)
+    m_i = 0;
+
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
     if (on_ground) {
       last_m_d = m_d;
@@ -81,6 +88,8 @@ void Player::move() {
   if (!on_ground)
     if (m_d != last_m_d)
       opposite = true;
+    else
+      opposite = false;
 
   move_sprite(movement);
   movement = sf::Vector2f(0, movement.y);
