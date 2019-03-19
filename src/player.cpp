@@ -42,10 +42,11 @@ void Player::apply_gravity(float delta_time) {
 
 void Player::control_entity(float delta_time) {
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-    if (!on_ground && !ac_x_lock)
-      m_i += 0.5 * delta_time;
-    else
-      m_i -= 10 * delta_time;
+    if (opposite)
+      if (!on_ground)
+        m_i += 0.5 * delta_time;
+      else
+        m_i -= 10 * delta_time;
 
     if (m_i < 0)
       m_i = 0;
@@ -54,10 +55,11 @@ void Player::control_entity(float delta_time) {
     m_d = NEGATIVE;
   }
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-    if (!on_ground && !ac_x_lock)
-      m_i += 0.5 * delta_time;
-    else
-      m_i -= 10 * delta_time;
+    if (opposite)
+      if (!on_ground)
+        m_i += 0.5 * delta_time;
+      else
+        m_i -= 10 * delta_time;
 
     if (m_i < 0)
       m_i = 0;
@@ -67,13 +69,8 @@ void Player::control_entity(float delta_time) {
   }
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
     if (on_ground) {
-      if (m_d != last_m_d || !opposite) {
-        ac_x_lock = true;
-        last_m_d = m_d;
-      } else {
-        ac_x_lock = false;
-        opposite = false;
-      }
+      last_m_d = m_d;
+      opposite = false;
 
       jump(delta_time);
     }
