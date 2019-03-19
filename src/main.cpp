@@ -2,6 +2,6 @@
 #include "gs2d/core.hpp"
 
 int main() {
-  gs::App app(800, 600, "Vulnus");
-  app.app_start(new GameScene());
+  gs::App app(800, 600, "Vulnus", 128);
+  app.app_start(new GameScene(), true);
 }

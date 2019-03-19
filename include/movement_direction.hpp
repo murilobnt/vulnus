@@ -1,0 +1,6 @@
+#ifndef MOVEMENT_DIRECTION_HPP
+#define MOVEMENT_DIRECTION_HPP
+
+enum MovementDirection { STILL, POSITIVE, NEGATIVE };
+
+#endif
