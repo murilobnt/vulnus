@@ -3,5 +3,5 @@
 
 int main() {
   gs::App app(800, 600, "Vulnus", 128);
-  app.app_start(new GameScene(), true);
+  app.app_start(new GameScene());
 }
