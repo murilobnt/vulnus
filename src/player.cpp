@@ -42,13 +42,11 @@ void Player::apply_gravity(float delta_time) {
 
 void Player::control_entity(float delta_time) {
   m_d = STILL;
+  jump_pressed = false;
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
     if (opposite)
       if (!on_ground)
         m_i += 0.5 * delta_time;
-
-    if (on_ground)
-      m_i -= 10 * delta_time;
 
     if (m_i < 0)
       m_i = 0;
@@ -61,9 +59,6 @@ void Player::control_entity(float delta_time) {
       if (!on_ground)
         m_i += 0.5 * delta_time;
 
-    if (on_ground)
-      m_i -= 10 * delta_time;
-
     if (m_i < 0)
       m_i = 0;
     movement.x = 200 * delta_time + m_i;
@@ -71,11 +66,9 @@ void Player::control_entity(float delta_time) {
     m_d = POSITIVE;
   }
 
-  if (on_ground && m_d == STILL)
-    m_i = 0;
-
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
     if (on_ground) {
+      jump_pressed = true;
       last_m_d = m_d;
       opposite = false;
 
@@ -84,15 +77,30 @@ void Player::control_entity(float delta_time) {
   }
 }
 
-void Player::move() {
+int Player::get_speed(float delta_time) const {
+  if (movement.x == 0 && m_i == 0)
+    return 0;
+  else
+    return abs((200 * delta_time + m_i) / delta_time);
+}
+
+void Player::move() {}
+
+void Player::move(float delta_time) {
   if (!on_ground)
     if (m_d != last_m_d)
       opposite = true;
     else
       opposite = false;
+  else {
+    if (m_d == STILL)
+      m_i = 0;
+    if (!jump_pressed)
+      m_i -= 10 * delta_time;
 
+    if (m_i < 0)
+      m_i = 0;
+  }
   move_sprite(movement);
   movement = sf::Vector2f(0, movement.y);
 }
-
-void Player::move(float delta_time) { move_sprite(movement * delta_time); }

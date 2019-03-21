@@ -1,6 +1,7 @@
 #ifndef PLAYER_HPP
 #define PLAYER_HPP
 
+#include <cmath>
 #include <gs2d/scene_components.hpp>
 #include <iostream>
 
@@ -15,8 +16,8 @@ private:
   MovementDirection m_d;
   MovementDirection last_m_d;
   bool on_ground;
+  bool jump_pressed;
   float m_i;
-  bool ac_x_lock;
   bool opposite;
 
 public:
@@ -29,6 +30,7 @@ public:
   void apply_gravity(float delta_time);
   void move();
   void move(float delta_time);
+  int get_speed(float delta_time) const;
 };
 
 #endif
